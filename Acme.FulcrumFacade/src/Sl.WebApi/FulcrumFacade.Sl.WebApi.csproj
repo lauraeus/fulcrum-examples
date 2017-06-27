@@ -170,10 +170,10 @@
       <HintPath>..\..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.Standard, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Standard.1.0.1\lib\netstandard1.4\Xlent.Lever.Libraries2.Standard.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Standard.1.1.0\lib\netstandard1.4\Xlent.Lever.Libraries2.Standard.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.WebApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.WebApi.1.0.0\lib\Libraries2.WebApi\Xlent.Lever.Libraries2.WebApi.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.WebApi.1.0.1\lib\Libraries2.WebApi\Xlent.Lever.Libraries2.WebApi.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -210,9 +210,9 @@
       <Project>{79BE6A98-3047-4A03-96D5-2754F025FEFD}</Project>
       <Name>FulcrumFacade.Bll</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Dal.WebApi\FulcrumFacade.Dal.WebApi.csproj">
-      <Project>{C221D19B-C05A-4435-AF1C-776310ECF92A}</Project>
-      <Name>FulcrumFacade.Dal.WebApi</Name>
+    <ProjectReference Include="..\Dal.Memory\FulcrumFacade.Dal.Memory.csproj">
+      <Project>{C4BCE2FF-7DE6-4EDC-90D6-7EC47B0B80D5}</Project>
+      <Name>FulcrumFacade.Dal.Memory</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

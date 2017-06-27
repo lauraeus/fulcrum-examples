@@ -13,7 +13,7 @@ namespace Acme.FulcrumFacade.Bll.Contract.Bll.Model
         public DateTimeOffset DateAdded { get; set; }
 
         /// <inheritdoc/>
-        public void Validate(string errorLocaction)
+        public void Validate(string errorLocaction, string propertyPath = "")
         {
             FulcrumValidate.IsGreaterThan(0, Id, nameof(Id), errorLocaction);
             FulcrumValidate.IsNotNullOrWhiteSpace(Name, nameof(Name), errorLocaction);

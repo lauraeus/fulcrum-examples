@@ -5,7 +5,7 @@ using Autofac.Integration.WebApi;
 using Acme.FulcrumFacade.Bll;
 using Acme.FulcrumFacade.Bll.Contract.Bll.Interface;
 using Acme.FulcrumFacade.Bll.Contract.Dal;
-using Acme.FulcrumFacade.Dal.WebApi;
+using Acme.FulcrumFacade.Dal.Memory;
 
 namespace Acme.FulcrumFacade.Sl.WebApi
 {
