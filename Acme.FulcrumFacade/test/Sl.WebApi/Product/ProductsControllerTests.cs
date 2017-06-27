@@ -39,7 +39,7 @@ namespace Sl.WebApi.Tests.Product
         [TestMethod]
         public async Task GetProduct()
         {
-            _productLogic.Setup(mock => mock.GetProduct(_domainProduct.Id)).ReturnsAsync(_domainProduct);
+            _productLogic.Setup(mock => mock.GetProduct(_domainProduct.Id.ToString())).ReturnsAsync(_domainProduct);
             var actualProduct = await _controller.GetProduct(_expectedProduct.Id);
             AssertProductsAreEqual(_expectedProduct, actualProduct);
         }
@@ -85,7 +85,7 @@ namespace Sl.WebApi.Tests.Product
         [TestMethod]
         public async Task DeleteProduct()
         {
-            _productLogic.Setup(mock => mock.DeleteProduct(_domainProduct.Id)).ReturnsAsync(_domainProduct);
+            _productLogic.Setup(mock => mock.DeleteProduct(_domainProduct.Id.ToString())).ReturnsAsync(_domainProduct);
             var actualProduct = await _controller.DeleteProduct(_expectedProduct.Id);
             AssertProductsAreEqual(_expectedProduct, actualProduct);
         }

@@ -52,14 +52,17 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Controllers
         /// <response code="500">Internal Server Error</response>
         [HttpGet]
         [Route("{id}")]
-        public async Task<Product> GetProduct(int id)
+        public async Task<Product> GetProduct(string id)
         {
-            ServiceContract.RequireGreaterThan(0, id, nameof(id));
+            ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
 
             var domainModelProduct = await _productLogic.GetProduct(id);
-            FulcrumAssert.IsValidatedAndNotNull(domainModelProduct, $"{Namespace}: A2AF61A8-A6BC-453C-9F29-5220F8592FEF");
+            FulcrumAssert.IsNotNull(domainModelProduct, nameof(domainModelProduct));
+            FulcrumAssert.IsValidated(domainModelProduct, $"{Namespace}: A2AF61A8-A6BC-453C-9F29-5220F8592FEF");
+
             var result = AutoMapper.Mapper.Map<Product>(domainModelProduct);
-            FulcrumAssert.IsValidatedAndNotNull(result, $"{Namespace}: 41042A82-2D71-427F-BBBF-9CDC7545E590");
+            FulcrumAssert.IsNotNull(result, nameof(result));
+            FulcrumAssert.IsValidated(result, $"{Namespace}: 41042A82-2D71-427F-BBBF-9CDC7545E590");
 
             return result;
         }
@@ -76,13 +79,17 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Controllers
         [Route("")]
         public async Task<Product> CreateProduct(Product product)
         {
-            ServiceContract.RequireValidatedAndNotNull(product, nameof(product));
+            ServiceContract.RequireNotNull(product, nameof(product));
+            ServiceContract.RequireValidated(product, nameof(product));
 
             var domainModelProduct = AutoMapper.Mapper.Map<Bll.Contract.Bll.Model.Product>(product);
-            FulcrumAssert.IsValidatedAndNotNull(domainModelProduct, $"{Namespace}: A2AF61A8-A6BC-453C-9F29-5220F8592FEF");
+            FulcrumAssert.IsNotNull(domainModelProduct, nameof(domainModelProduct));
+            FulcrumAssert.IsValidated(domainModelProduct, $"{Namespace}: A2AF61A8-A6BC-453C-9F29-5220F8592FEF");
             domainModelProduct = await _productLogic.CreateProduct(domainModelProduct);
+
             var result = AutoMapper.Mapper.Map<Product>(domainModelProduct);
-            FulcrumAssert.IsValidatedAndNotNull(result, $"{Namespace}: 41042A82-2D71-427F-BBBF-9CDC7545E590");
+            FulcrumAssert.IsNotNull(result, nameof(result));
+            FulcrumAssert.IsValidated(result, $"{Namespace}: 41042A82-2D71-427F-BBBF-9CDC7545E590");
 
             return result;
         }
@@ -99,13 +106,17 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Controllers
         [Route("")]
         public async Task<Product> UpdateProduct(Product product)
         {
-            ServiceContract.RequireValidatedAndNotNull(product, nameof(product));
+            ServiceContract.RequireNotNull(product, nameof(product));
+            ServiceContract.RequireValidated(product, nameof(product));
 
             var domainModelProduct = AutoMapper.Mapper.Map<Bll.Contract.Bll.Model.Product>(product);
-            FulcrumAssert.IsValidatedAndNotNull(domainModelProduct, $"{Namespace}: 8980E968-8C9F-4704-ADF1-00871920F808");
+            FulcrumAssert.IsNotNull(domainModelProduct, nameof(domainModelProduct));
+            FulcrumAssert.IsValidated(domainModelProduct, $"{Namespace}: 8980E968-8C9F-4704-ADF1-00871920F808");
             domainModelProduct = await _productLogic.UpdateProduct(domainModelProduct);
+
             var result = AutoMapper.Mapper.Map<Product>(domainModelProduct);
-            FulcrumAssert.IsValidatedAndNotNull(result, $"{Namespace}: 27A74E83-C31A-4A87-B8C6-1FE5A7FF9F85");
+            FulcrumAssert.IsNotNull(result, nameof(result));
+            FulcrumAssert.IsValidated(result, $"{Namespace}: 27A74E83-C31A-4A87-B8C6-1FE5A7FF9F85");
 
             return result;
         }
@@ -119,14 +130,17 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Controllers
         /// <response code="500">Internal Server Error</response>
         [HttpDelete]
         [Route("{id}")]
-        public async Task<Product> DeleteProduct(int id)
+        public async Task<Product> DeleteProduct(string id)
         {
-            ServiceContract.RequireGreaterThan(0, id, nameof(id));
+            ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
 
             var domainModelProduct = await _productLogic.DeleteProduct(id);
-            FulcrumAssert.IsValidatedAndNotNull(domainModelProduct, $"{Namespace}: 049D7F2A-A2DF-4CDA-BBD6-3EAD9C883E49");
+            FulcrumAssert.IsNotNull(domainModelProduct, nameof(domainModelProduct));
+            FulcrumAssert.IsValidated(domainModelProduct, $"{Namespace}: 049D7F2A-A2DF-4CDA-BBD6-3EAD9C883E49");
+
             var result = AutoMapper.Mapper.Map<Product>(domainModelProduct);
-            FulcrumAssert.IsValidatedAndNotNull(result, $"{Namespace}: 8278948E-33CE-4B27-82B1-83BD26CF3788");
+            FulcrumAssert.IsNotNull(result, nameof(result));
+            FulcrumAssert.IsValidated(result, $"{Namespace}: 8278948E-33CE-4B27-82B1-83BD26CF3788");
 
             return result;
         }

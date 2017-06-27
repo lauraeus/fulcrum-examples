@@ -15,7 +15,7 @@ namespace Bll.Tests
     {
         private ProductLogic _productLogic;
         private Mock<IProductRepository> _productRepository;
-      
+
         private Product _expectedProduct;
 
         [TestInitialize]
@@ -31,7 +31,7 @@ namespace Bll.Tests
         public async Task GetProduct()
         {
             _productRepository.Setup(mock => mock.GetProduct(_expectedProduct.Id)).ReturnsAsync(_expectedProduct);
-            var actualProduct = await _productLogic.GetProduct(_expectedProduct.Id);
+            var actualProduct = await _productLogic.GetProduct(_expectedProduct.Id.ToString());
             AssertProductsAreEqual(_expectedProduct, actualProduct);
         }
         #endregion
@@ -52,7 +52,7 @@ namespace Bll.Tests
         public async Task UpdateProduct()
         {
             _productRepository.Setup(mockRepo => mockRepo.UpdateProduct(It.IsNotNull<Product>())).ReturnsAsync(_expectedProduct);
-            
+
             var actualProduct = await _productLogic.UpdateProduct(_expectedProduct);
 
             AssertProductsAreEqual(_expectedProduct, actualProduct);
@@ -64,7 +64,7 @@ namespace Bll.Tests
         public async Task CreateProduct()
         {
             _productRepository.Setup(mockRepo => mockRepo.CreateProduct(It.IsNotNull<Product>())).ReturnsAsync(_expectedProduct);
-            
+
             var actualProduct = await _productLogic.CreateProduct(_expectedProduct);
 
             AssertProductsAreEqual(_expectedProduct, actualProduct);
@@ -76,7 +76,7 @@ namespace Bll.Tests
         public async Task DeleteProduct()
         {
             _productRepository.Setup(mock => mock.DeleteProduct(_expectedProduct.Id)).ReturnsAsync(_expectedProduct);
-            var actualProduct = await _productLogic.DeleteProduct(_expectedProduct.Id);
+            var actualProduct = await _productLogic.DeleteProduct(_expectedProduct.Id.ToString());
             AssertProductsAreEqual(_expectedProduct, actualProduct);
         }
         #endregion
@@ -93,14 +93,14 @@ namespace Bll.Tests
             return result;
         }
 
-        private Product GenerateProduct(int id = 0)
+        private Product GenerateProduct(int id = 1)
         {
             return new Product
             {
                 Id = id,
                 Name = "sausage",
                 Category = "food",
-                DateAdded = new DateTimeOffset(new DateTime(2017, 1,1), new TimeSpan(1,0,0))
+                DateAdded = new DateTimeOffset(new DateTime(2017, 1, 1), new TimeSpan(1, 0, 0))
             };
         }
         #endregion

@@ -10,12 +10,12 @@ namespace Sl.WebApi.Tests.Product
             IList<Acme.FulcrumFacade.Sl.WebApi.Model.Product> products = new List<Acme.FulcrumFacade.Sl.WebApi.Model.Product>();
             for (var i = 0; i < numberOfProducts; ++i)
             {
-                products.Add(CreateProduct(i + 1));
+                products.Add(CreateProduct($"{i + 1}"));
             }
             return products;
         }
 
-        public static Acme.FulcrumFacade.Sl.WebApi.Model.Product CreateProduct(int id = 1, string name = "mockName", string category = "mockCategory", double price = 123)
+        public static Acme.FulcrumFacade.Sl.WebApi.Model.Product CreateProduct(string id = "1", string name = "mockName", string category = "mockCategory", double price = 123)
         {
             return new Acme.FulcrumFacade.Sl.WebApi.Model.Product
             {

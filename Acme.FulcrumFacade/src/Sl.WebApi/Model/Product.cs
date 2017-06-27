@@ -8,7 +8,7 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Model
     public class Product : IValidatable
     {
         [Range(0, int.MaxValue)]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Required]
         [RegularExpression("[a-zA-Z]+")]
@@ -28,7 +28,7 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Model
         /// <inheritdoc/>
         public void Validate(string errorLocaction, string propertyPath = "")
         {
-            FulcrumValidate.IsGreaterThan(0, Id, nameof(Id), errorLocaction);
+            FulcrumValidate.IsNotNullOrWhiteSpace(Id, nameof(Id), errorLocaction);
             FulcrumValidate.IsNotNullOrWhiteSpace(Name, nameof(Name), errorLocaction);
             FulcrumValidate.IsTrue(Regex.IsMatch(Name, "^[a-zA-Z]+$"), errorLocaction, $"Property {nameof(Name)} must only consist of upper or lower case a-z.");
             FulcrumValidate.IsNotNullOrWhiteSpace(Category, nameof(Category), errorLocaction);
