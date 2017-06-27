@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Sl.WebApi.Tests.Helpers;
 using Acme.FulcrumFacade.Bll.Contract.Bll.Interface;
 using Acme.FulcrumFacade.Sl.WebApi;
 using Acme.FulcrumFacade.Sl.WebApi.Controllers;
@@ -62,7 +61,7 @@ namespace Sl.WebApi.Tests.Product
         public async Task UpdateProduct()
         {
             _productLogic.Setup(mockRepo => mockRepo.UpdateProduct(It.IsNotNull<Acme.FulcrumFacade.Bll.Contract.Bll.Model.Product>())).ReturnsAsync(_domainProduct);
-            ModelStateValidator.AssertModelIsValid(_expectedProduct);
+            _expectedProduct.Validate("err loc");
             var actualProduct = await _controller.UpdateProduct(_expectedProduct);
 
             AssertProductsAreEqual(_expectedProduct, actualProduct);
@@ -74,7 +73,7 @@ namespace Sl.WebApi.Tests.Product
         public async Task CreateProduct()
         {
             _productLogic.Setup(mockRepo => mockRepo.CreateProduct(It.IsNotNull<Acme.FulcrumFacade.Bll.Contract.Bll.Model.Product>())).ReturnsAsync(_domainProduct);
-            ModelStateValidator.AssertModelIsValid(_expectedProduct);
+            _expectedProduct.Validate("err loc");
             var actualProduct = await _controller.CreateProduct(_expectedProduct);
 
             AssertProductsAreEqual(_expectedProduct, actualProduct);

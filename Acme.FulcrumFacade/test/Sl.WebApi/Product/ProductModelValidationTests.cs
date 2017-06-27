@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sl.WebApi.Tests.Helpers;
 using Xlent.Lever.Libraries2.Standard.Error.Logic;
 
 namespace Sl.WebApi.Tests.Product

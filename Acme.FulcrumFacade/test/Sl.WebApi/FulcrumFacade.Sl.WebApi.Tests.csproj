@@ -148,7 +148,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\ModelStateValidator.cs" />
     <Compile Include="Product\ProductFactory.cs" />
     <Compile Include="Product\ProductsControllerTests.cs" />
     <Compile Include="Product\ProductModelValidationTests.cs" />
