@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemFacade.Dal.RestClient
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemFacade.Fulcrum.Contract", "src\Bll.Contract\SystemFacade.Fulcrum.Contract.csproj", "{B5C92EA6-F20D-4576-A8EB-87B5A39EB0D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemFacade.Dal.RestClients.Test", "test\Dal.RestClients.Test\SystemFacade.Dal.RestClients.Test.csproj", "{352A1133-8560-4F8B-9487-A15073ED1AAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{B5C92EA6-F20D-4576-A8EB-87B5A39EB0D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5C92EA6-F20D-4576-A8EB-87B5A39EB0D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5C92EA6-F20D-4576-A8EB-87B5A39EB0D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{352A1133-8560-4F8B-9487-A15073ED1AAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{352A1133-8560-4F8B-9487-A15073ED1AAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{352A1133-8560-4F8B-9487-A15073ED1AAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{352A1133-8560-4F8B-9487-A15073ED1AAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,5 +66,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BB32899F-0C41-4CED-95E4-F920D65E4404} = {4C41FCC3-3EC4-41F7-8541-BC59EA8ED3F0}
 		{2B3EF51E-65E3-4763-BD88-882B847AEF7A} = {4C41FCC3-3EC4-41F7-8541-BC59EA8ED3F0}
+		{352A1133-8560-4F8B-9487-A15073ED1AAF} = {4C41FCC3-3EC4-41F7-8541-BC59EA8ED3F0}
 	EndGlobalSection
 EndGlobal

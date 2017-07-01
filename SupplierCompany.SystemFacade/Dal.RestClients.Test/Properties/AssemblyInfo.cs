@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SupplierCompany.SystemFacade.CompositionRoot")]
+[assembly: AssemblyTitle("Dal.RestClients.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SupplierCompany.SystemFacade.CompositionRoot")]
+[assembly: AssemblyProduct("Dal.RestClients.Test")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("68ed1904-0333-429b-8604-c567427e4511")]
+[assembly: Guid("6c422840-51c2-4622-9433-fbee9f697bf2")]
 
 // Version information for an assembly consists of the following four values:
 //
