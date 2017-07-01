@@ -11,11 +11,11 @@ namespace SupplierCompany.SystemFacade.Dal.RestClients.GoogleGeocode.Clients
     /// </summary>
     public class GeocodeClient : IGeocodeClient
     {
-        private readonly RestClient _restClient;
+        private readonly IRestClient _restClient;
 
-        public GeocodeClient()
+        public GeocodeClient(IRestClient restClient)
         {
-            _restClient = new RestClient("https://maps.googleapis.com/maps/api/geocode");
+            _restClient = restClient;
         }
 
         public async Task<GeocodingResponse> GeocodeAsync(Address address)

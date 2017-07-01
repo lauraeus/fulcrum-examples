@@ -4,6 +4,7 @@ using Autofac;
 using Autofac.Integration.WebApi;
 using SupplierCompany.SystemFacade.Bll;
 using SupplierCompany.SystemFacade.Dal.RestClients.GoogleGeocode.Clients;
+using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
 
 namespace SupplierCompany.SystemFacade.Sl.WebApi
 {
@@ -23,8 +24,10 @@ namespace SupplierCompany.SystemFacade.Sl.WebApi
             //Register Bll and Dal dependencies
             builder.RegisterType<GeocodingFunctionality>().As<IGeocodingFunctionality>();
             builder.RegisterType<GeocodeClient>().As<IGeocodeClient>();
+            builder.Register(ctx => new GeocodeClient(new RestClient("https://maps.googleapis.com/maps/api/geocode")))
+                .As<IGeocodeClient>().SingleInstance();
 
-            // Register your Web API controllers.
+            // Register your controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
            //Register a IDependencyResolver used by WebApi 
