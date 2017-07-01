@@ -7,8 +7,8 @@
     <ProjectGuid>{BB32899F-0C41-4CED-95E4-F920D65E4404}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bll.Tests</RootNamespace>
-    <AssemblyName>Bll.Tests</AssemblyName>
+    <RootNamespace>Acme.FulcrumFacade.Bll.Tests</RootNamespace>
+    <AssemblyName>Acme.FulcrumFacade.Bll.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -63,8 +63,8 @@
       <HintPath>..\..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Diagnostics.DiagnosticSource.4.3.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Diagnostics.DiagnosticSource.4.4.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.Diagnostics.Tracing, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Diagnostics.Tracing.4.3.0\lib\net462\System.Diagnostics.Tracing.dll</HintPath>
@@ -128,11 +128,12 @@
       <HintPath>..\..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.Standard, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Standard.1.1.0\lib\netstandard1.4\Xlent.Lever.Libraries2.Standard.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Standard.1.3.0\lib\netstandard1.4\Xlent.Lever.Libraries2.Standard.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProductLogicTests.cs" />
+    <Compile Include="Product\ProductMock.cs" />
+    <Compile Include="Product\ProductTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -140,9 +141,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Bll.Contract\FulcrumFacade.Bll.Contract.csproj">
+      <Project>{B5C92EA6-F20D-4576-A8EB-87B5A39EB0D3}</Project>
+      <Name>FulcrumFacade.Bll.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Bll\FulcrumFacade.Bll.csproj">
       <Project>{79BE6A98-3047-4A03-96D5-2754F025FEFD}</Project>
       <Name>FulcrumFacade.Bll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Dal.Contract\FulcrumFacade.Dal.Contract.csproj">
+      <Project>{062782e8-3e48-440e-a05f-0a97ebebab09}</Project>
+      <Name>FulcrumFacade.Dal.Contract</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

@@ -43,8 +43,8 @@
       <HintPath>..\..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Diagnostics.DiagnosticSource.4.3.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Diagnostics.DiagnosticSource.4.4.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.Diagnostics.Tracing, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Diagnostics.Tracing.4.3.0\lib\net462\System.Diagnostics.Tracing.dll</HintPath>
@@ -111,19 +111,27 @@
       <HintPath>..\..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.Standard, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Standard.1.1.0\lib\netstandard1.4\Xlent.Lever.Libraries2.Standard.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Standard.1.3.0\lib\netstandard1.4\Xlent.Lever.Libraries2.Standard.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contract\Bll\Interface\IProductLogic.cs" />
-    <Compile Include="Contract\Bll\Model\Product.cs" />
-    <Compile Include="Contract\Dal\IProductRepository.cs" />
-    <Compile Include="ProductLogic.cs" />
+    <Compile Include="Product\Product.cs" />
+    <Compile Include="Product\ProductLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bll.Contract\FulcrumFacade.Bll.Contract.csproj">
+      <Project>{b5c92ea6-f20d-4576-a8eb-87b5a39eb0d3}</Project>
+      <Name>FulcrumFacade.Bll.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dal.Contract\FulcrumFacade.Dal.Contract.csproj">
+      <Project>{062782e8-3e48-440e-a05f-0a97ebebab09}</Project>
+      <Name>FulcrumFacade.Dal.Contract</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

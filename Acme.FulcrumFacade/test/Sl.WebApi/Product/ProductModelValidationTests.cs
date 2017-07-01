@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xlent.Lever.Libraries2.Standard.Error.Logic;
 
-namespace Sl.WebApi.Tests.Product
+namespace Acme.FulcrumFacade.Sl.WebApi.Tests.Product
 {
     [TestClass]
     public class ProductModelValidationTests

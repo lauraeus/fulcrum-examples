@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Acme.FulcrumFacade.Dal.Memory")]
+[assembly: AssemblyTitle("Acme.FulcrumFacade.Bll.Contract")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Acme.FulcrumFacade.Dal.Memory")]
+[assembly: AssemblyProduct("Acme.FulcrumFacade.Bll.Contract")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c4bce2ff-7de6-4edc-90d6-7ec47b0b80d5")]
+[assembly: Guid("b5c92ea6-f20d-4576-a8eb-87b5a39eb0d3")]
 
 // Version information for an assembly consists of the following four values:
 //

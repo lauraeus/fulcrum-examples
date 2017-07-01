@@ -2,27 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Acme.FulcrumFacade.Bll.Product;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Acme.FulcrumFacade.Bll;
-using Acme.FulcrumFacade.Bll.Contract.Bll.Model;
-using Acme.FulcrumFacade.Bll.Contract.Dal;
+using DM = Acme.FulcrumFacade.Dal.Contract.Product;
+using BM = Acme.FulcrumFacade.Bll.Contract.Product;
 
-namespace Bll.Tests
+namespace Acme.FulcrumFacade.Bll.Tests.Product
 {
     [TestClass]
-    public class ProductLogicTests
+    public class ProductTests
     {
-        private ProductLogic _productLogic;
-        private Mock<IProductRepository> _productRepository;
+        private BM.IProductLogic _productLogic;
+        private Mock<DM.IProductStorage> _productRepository;
 
-        private Product _expectedProduct;
+        private BM.IProduct _expectedProduct;
 
         [TestInitialize]
         public void Initialize()
         {
             _expectedProduct = GenerateProduct();
-            _productRepository = new Mock<IProductRepository>();
+            _productRepository = new Mock<DM.IProductStorage>();
+            _productRepository.Setup(mock => mock.ProductFactory()).Returns(new ProductMock());
             _productLogic = new ProductLogic(_productRepository.Object);
         }
 
@@ -30,10 +31,12 @@ namespace Bll.Tests
         [TestMethod]
         public async Task GetProduct()
         {
-            _productRepository.Setup(mock => mock.GetProduct(_expectedProduct.Id)).ReturnsAsync(_expectedProduct);
+            _productRepository.Setup(mock => mock.GetProduct(_expectedProduct.Id)).ReturnsAsync(ToDal(_expectedProduct));
+
             var actualProduct = await _productLogic.GetProduct(_expectedProduct.Id.ToString());
             AssertProductsAreEqual(_expectedProduct, actualProduct);
         }
+
         #endregion
 
         #region GetAllProduct()
@@ -41,7 +44,7 @@ namespace Bll.Tests
         public async Task GetAllProducts()
         {
             var expectedProducts = GenerateProducts(3);
-            _productRepository.Setup(mockRepo => mockRepo.GetAllProducts()).ReturnsAsync(expectedProducts);
+            _productRepository.Setup(mockRepo => mockRepo.GetAllProducts()).ReturnsAsync(expectedProducts.Select(ToDal));
             var actualProducts = await _productLogic.GetAllProducts();
             AssertProductsAreEqual(expectedProducts.ToList(), actualProducts.ToList());
         }
@@ -51,7 +54,7 @@ namespace Bll.Tests
         [TestMethod]
         public async Task UpdateProduct()
         {
-            _productRepository.Setup(mockRepo => mockRepo.UpdateProduct(It.IsNotNull<Product>())).ReturnsAsync(_expectedProduct);
+            _productRepository.Setup(mockRepo => mockRepo.UpdateProduct(It.IsNotNull<DM.IProduct>())).ReturnsAsync(ToDal(_expectedProduct));
 
             var actualProduct = await _productLogic.UpdateProduct(_expectedProduct);
 
@@ -63,7 +66,7 @@ namespace Bll.Tests
         [TestMethod]
         public async Task CreateProduct()
         {
-            _productRepository.Setup(mockRepo => mockRepo.CreateProduct(It.IsNotNull<Product>())).ReturnsAsync(_expectedProduct);
+            _productRepository.Setup(mockRepo => mockRepo.CreateProduct(It.IsNotNull<DM.IProduct>())).ReturnsAsync(ToDal(_expectedProduct));
 
             var actualProduct = await _productLogic.CreateProduct(_expectedProduct);
 
@@ -75,16 +78,23 @@ namespace Bll.Tests
         [TestMethod]
         public async Task DeleteProduct()
         {
-            _productRepository.Setup(mock => mock.DeleteProduct(_expectedProduct.Id)).ReturnsAsync(_expectedProduct);
+            _productRepository.Setup(mock => mock.DeleteProduct(_expectedProduct.Id)).ReturnsAsync(ToDal(_expectedProduct));
             var actualProduct = await _productLogic.DeleteProduct(_expectedProduct.Id.ToString());
             AssertProductsAreEqual(_expectedProduct, actualProduct);
         }
         #endregion
 
-        #region FactoryMethods
-        private IList<Product> GenerateProducts(int numProducts)
+        #region Mapping
+        private DM.IProduct ToDal(BM.IProduct source)
         {
-            var result = new List<Product>();
+            return (DM.IProduct)_productLogic.UnitTest_ToDal(source);
+        }
+        #endregion
+
+        #region FactoryMethods
+        private IList<BM.IProduct> GenerateProducts(int numProducts)
+        {
+            var result = new List<BM.IProduct>();
             for (int i = 1; i <= numProducts; i++)
             {
                 result.Add(GenerateProduct(i));
@@ -93,9 +103,9 @@ namespace Bll.Tests
             return result;
         }
 
-        private Product GenerateProduct(int id = 1)
+        private BM.IProduct GenerateProduct(int id = 1)
         {
-            return new Product
+            return new Bll.Product.Product()
             {
                 Id = id,
                 Name = "sausage",
@@ -107,7 +117,7 @@ namespace Bll.Tests
 
         #region AssertionMethods
 
-        private void AssertProductsAreEqual(IList<Product> expected, IList<Product> actual)
+        private void AssertProductsAreEqual(IList<BM.IProduct> expected, IList<BM.IProduct> actual)
         {
             if (expected == null) throw new ArgumentNullException(nameof(expected));
             if (actual == null) throw new ArgumentNullException(nameof(actual));
@@ -120,13 +130,13 @@ namespace Bll.Tests
             }
         }
 
-        private void AssertProductsAreEqual(Product expected, Product actual)
+        private void AssertProductsAreEqual(BM.IProduct expected, BM.IProduct actual)
         {
-            Assert.AreEqual(expected.Id, actual.Id, "Product Id");
-            Assert.AreEqual(expected.Name, actual.Name, "Product name");
-            Assert.AreEqual(expected.Category, actual.Category, "Product Category");
-            Assert.AreEqual(expected.Price, actual.Price, "Product Price");
-            Assert.AreEqual(expected.DateAdded, actual.DateAdded, "Product DateAdded");
+            Assert.AreEqual(expected.Id, actual.Id, "IProduct Id");
+            Assert.AreEqual(expected.Name, actual.Name, "IProduct name");
+            Assert.AreEqual(expected.Category, actual.Category, "IProduct Category");
+            Assert.AreEqual(expected.Price, actual.Price, "IProduct Price");
+            Assert.AreEqual(expected.DateAdded, actual.DateAdded, "IProduct DateAdded");
         }
         #endregion
     }

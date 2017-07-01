@@ -1,13 +1,13 @@
 ﻿using System.Reflection;
 using System.Web.Http;
+using Acme.FulcrumFacade.Bll.Contract.Product;
+using Acme.FulcrumFacade.Bll.Product;
+using Acme.FulcrumFacade.Dal.Contract.Product;
+using Acme.FulcrumFacade.Dal.Memory;
 using Autofac;
 using Autofac.Integration.WebApi;
-using Acme.FulcrumFacade.Bll;
-using Acme.FulcrumFacade.Bll.Contract.Bll.Interface;
-using Acme.FulcrumFacade.Bll.Contract.Dal;
-using Acme.FulcrumFacade.Dal.Memory;
 
-namespace Acme.FulcrumFacade.Sl.WebApi
+namespace Acme.FulcrumFacade.CompositionRoot
 {
     public class AutofacConfig
     {
@@ -16,8 +16,8 @@ namespace Acme.FulcrumFacade.Sl.WebApi
             var builder = new ContainerBuilder();
 
             //Register Bll and Dal dependencies
-            builder.RegisterType<ProductLogic>().As<IProductLogic>();
-            builder.RegisterType<MockProductRepository>().As<IProductRepository>();
+            builder.RegisterType<ProductLogic>().As<Bll.Contract.Product.IProductLogic>();
+            builder.RegisterType<ProductStorage>().As<IProductStorage>();
 
             // Register your Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Sl.WebApi.Tests.Product
+namespace Acme.FulcrumFacade.Sl.WebApi.Tests.Product
 {
     internal static class ProductFactory
     {

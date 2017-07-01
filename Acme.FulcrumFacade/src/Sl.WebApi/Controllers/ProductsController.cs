@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Acme.FulcrumFacade.Bll.Contract.Product;
 using Xlent.Lever.Libraries2.Standard.Assert;
-using Acme.FulcrumFacade.Bll.Contract.Bll.Interface;
-using Acme.FulcrumFacade.Sl.WebApi.Model;
+using Product = Acme.FulcrumFacade.Sl.WebApi.Model.Product;
 
 namespace Acme.FulcrumFacade.Sl.WebApi.Controllers
 {
@@ -36,10 +38,8 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Controllers
         [Route("")]
         public async Task<IEnumerable<Product>> GetAllProducts()
         {
-            var domainModelProducts = await _productLogic.GetAllProducts();
-            var result = AutoMapper.Mapper.Map<IEnumerable<Product>>(domainModelProducts);
-
-            return result;
+            var bllProducts = await _productLogic.GetAllProducts();
+            return bllProducts.Select(FromBll);
         }
 
         /// <summary>
@@ -56,14 +56,10 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Controllers
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
 
-            var domainModelProduct = await _productLogic.GetProduct(id);
-            FulcrumAssert.IsNotNull(domainModelProduct, nameof(domainModelProduct));
-            FulcrumAssert.IsValidated(domainModelProduct, $"{Namespace}: A2AF61A8-A6BC-453C-9F29-5220F8592FEF");
-
-            var result = AutoMapper.Mapper.Map<Product>(domainModelProduct);
+            var bllProduct = await _productLogic.GetProduct(id);
+            var result = FromBll(bllProduct);
             FulcrumAssert.IsNotNull(result, nameof(result));
             FulcrumAssert.IsValidated(result, $"{Namespace}: 41042A82-2D71-427F-BBBF-9CDC7545E590");
-
             return result;
         }
 
@@ -82,12 +78,10 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Controllers
             ServiceContract.RequireNotNull(product, nameof(product));
             ServiceContract.RequireValidated(product, nameof(product));
 
-            var domainModelProduct = AutoMapper.Mapper.Map<Bll.Contract.Bll.Model.Product>(product);
-            FulcrumAssert.IsNotNull(domainModelProduct, nameof(domainModelProduct));
-            FulcrumAssert.IsValidated(domainModelProduct, $"{Namespace}: A2AF61A8-A6BC-453C-9F29-5220F8592FEF");
-            domainModelProduct = await _productLogic.CreateProduct(domainModelProduct);
+            var bllProduct = ToBll(product);
+            bllProduct = await _productLogic.CreateProduct(bllProduct);
 
-            var result = AutoMapper.Mapper.Map<Product>(domainModelProduct);
+            var result = FromBll(bllProduct);
             FulcrumAssert.IsNotNull(result, nameof(result));
             FulcrumAssert.IsValidated(result, $"{Namespace}: 41042A82-2D71-427F-BBBF-9CDC7545E590");
 
@@ -109,12 +103,10 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Controllers
             ServiceContract.RequireNotNull(product, nameof(product));
             ServiceContract.RequireValidated(product, nameof(product));
 
-            var domainModelProduct = AutoMapper.Mapper.Map<Bll.Contract.Bll.Model.Product>(product);
-            FulcrumAssert.IsNotNull(domainModelProduct, nameof(domainModelProduct));
-            FulcrumAssert.IsValidated(domainModelProduct, $"{Namespace}: 8980E968-8C9F-4704-ADF1-00871920F808");
-            domainModelProduct = await _productLogic.UpdateProduct(domainModelProduct);
+            var bllProduct = ToBll(product);
+            bllProduct = await _productLogic.UpdateProduct(bllProduct);
 
-            var result = AutoMapper.Mapper.Map<Product>(domainModelProduct);
+            var result = FromBll(bllProduct);
             FulcrumAssert.IsNotNull(result, nameof(result));
             FulcrumAssert.IsValidated(result, $"{Namespace}: 27A74E83-C31A-4A87-B8C6-1FE5A7FF9F85");
 
@@ -134,15 +126,46 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Controllers
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
 
-            var domainModelProduct = await _productLogic.DeleteProduct(id);
-            FulcrumAssert.IsNotNull(domainModelProduct, nameof(domainModelProduct));
-            FulcrumAssert.IsValidated(domainModelProduct, $"{Namespace}: 049D7F2A-A2DF-4CDA-BBD6-3EAD9C883E49");
+            var bllProduct = await _productLogic.DeleteProduct(id);
 
-            var result = AutoMapper.Mapper.Map<Product>(domainModelProduct);
+            var result = FromBll(bllProduct);
             FulcrumAssert.IsNotNull(result, nameof(result));
             FulcrumAssert.IsValidated(result, $"{Namespace}: 8278948E-33CE-4B27-82B1-83BD26CF3788");
 
             return result;
+        }
+
+        public object UnitTest_ToBll(Product source)
+        {
+            return ToBll(source);
+        }
+
+        internal IProduct ToBll(Product source)
+        {
+
+            if (source == null) return null;
+            var target = _productLogic.ProductFactory();
+            target.Id = int.Parse(source.Id);
+            target.Name = source.Name;
+            target.Category = source.Category;
+            target.DateAdded = source.DateAdded;
+            target.Price = source.Price;
+            return target;
+        }
+
+        internal Product FromBll(IProduct source)
+        {
+            if (source == null) return null;
+#pragma warning disable IDE0017 // Simplify object initialization
+            // ReSharper disable once UseObjectOrCollectionInitializer
+            var target = new Product();
+#pragma warning restore IDE0017 // Simplify object initialization
+            target.Id = source.Id.ToString();
+            target.Name = source.Name;
+            target.Category = source.Category;
+            target.DateAdded = source.DateAdded;
+            target.Price = source.Price;
+            return target;
         }
     }
 }

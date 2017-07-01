@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using Acme.FulcrumFacade.Dal.Contract.Product;
 using Xlent.Lever.Libraries2.Standard.Assert;
 
-namespace Acme.FulcrumFacade.Bll.Contract.Bll.Model
+namespace Acme.FulcrumFacade.Dal.Memory
 {
-    public class Product : IValidatable
+    public class Product : IProduct
     {
         public int Id { get; set; }
         public string Name { get; set; }

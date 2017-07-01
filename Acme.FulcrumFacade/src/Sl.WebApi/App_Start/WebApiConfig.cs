@@ -3,7 +3,6 @@ using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using Newtonsoft.Json;
 using Xlent.Lever.Libraries2.Standard.Context;
-using Xlent.Lever.Libraries2.Standard.MultiTenant.Context;
 using Xlent.Lever.Libraries2.WebApi.Pipe.Inbound;
 
 namespace Acme.FulcrumFacade.Sl.WebApi
