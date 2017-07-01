@@ -132,18 +132,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Product\StorableProductMock.cs" />
-    <Compile Include="Product\ProductTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GeocodingTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Bll.Contract\SystemFacade.Fulcrum.Contract.csproj">
+      <Project>{B5C92EA6-F20D-4576-A8EB-87B5A39EB0D3}</Project>
+      <Name>SystemFacade.Fulcrum.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Bll\SystemFacade.Bll.csproj">
       <Project>{79BE6A98-3047-4A03-96D5-2754F025FEFD}</Project>
       <Name>SystemFacade.Bll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Dal.RestClients\SystemFacade.Dal.RestClients.csproj">
+      <Project>{a39c40d5-ad5d-4ba2-9b2c-97fd2b2ef8e2}</Project>
+      <Name>SystemFacade.Dal.RestClients</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
