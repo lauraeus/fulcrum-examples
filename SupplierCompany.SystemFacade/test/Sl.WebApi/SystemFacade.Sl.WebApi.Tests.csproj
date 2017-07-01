@@ -151,10 +151,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Product\ProductMock.cs" />
-    <Compile Include="Product\ProductFactory.cs" />
-    <Compile Include="Product\ProductsControllerTests.cs" />
-    <Compile Include="Product\ProductModelValidationTests.cs" />
+    <Compile Include="Product\GeocodingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +159,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Bll.Contract\SystemFacade.Fulcrum.Contract.csproj">
+      <Project>{b5c92ea6-f20d-4576-a8eb-87b5a39eb0d3}</Project>
+      <Name>SystemFacade.Fulcrum.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Bll\SystemFacade.Bll.csproj">
+      <Project>{79be6a98-3047-4a03-96d5-2754f025fefd}</Project>
+      <Name>SystemFacade.Bll</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Sl.WebApi\SystemFacade.Sl.WebApi.csproj">
       <Project>{54C014CC-5F86-4E4B-B437-8F80BD5D2FE0}</Project>
       <Name>SystemFacade.Sl.WebApi</Name>
