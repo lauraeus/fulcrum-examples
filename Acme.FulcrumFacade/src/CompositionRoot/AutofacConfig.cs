@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using System.Web.Http;
-using Acme.FulcrumFacade.Bll.Contract.Product;
+using Acme.FulcrumFacade.Bll.Contract.Inbound.Product;
 using Acme.FulcrumFacade.Bll.Product;
 using Acme.FulcrumFacade.Dal.Contract.Product;
 using Acme.FulcrumFacade.Dal.Memory;
@@ -16,8 +16,8 @@ namespace Acme.FulcrumFacade.CompositionRoot
             var builder = new ContainerBuilder();
 
             //Register Bll and Dal dependencies
-            builder.RegisterType<ProductLogic>().As<Bll.Contract.Product.IProductLogic>();
-            builder.RegisterType<ProductStorage>().As<IProductStorage>();
+            builder.RegisterType<Bll.Product.ProductFunctionality>().As<IProductFunctionality>();
+            builder.RegisterType<ProductPersistance>().As<IProductPersistance>();
 
             // Register your Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());

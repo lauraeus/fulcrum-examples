@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Acme.FulcrumFacade.Bll.Contract.Product;
+using Acme.FulcrumFacade.Bll.Contract.Inbound.Product;
 using Acme.FulcrumFacade.Sl.WebApi.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -13,9 +13,9 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Tests.Product
     public class ProductsControllerTests
     {
         private ProductsController _controller;
-        private Mock<IProductLogic> _productLogic;
-        private Acme.FulcrumFacade.Sl.WebApi.Model.Product _slExpectedProduct;
-        private IProduct _bllExpectedProduct;
+        private Mock<IProductFunctionality> _productLogic;
+        private Model.Product _slExpectedProduct;
+        private IProduct _expectedProduct;
 
         [ClassInitialize()]
         public static void ClassInit(TestContext context)
@@ -26,12 +26,12 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Tests.Product
         public void Initialize()
         {
            
-            _productLogic = new Mock<IProductLogic>();
-            _productLogic.Setup(mock => mock.ProductFactory()).Returns(new ProductMock());
+            _productLogic = new Mock<IProductFunctionality>();
+            _productLogic.Setup(mock => mock.CreateItemFromFactory()).Returns(new ProductMock());
             _controller = new ProductsController(_productLogic.Object);
 
             _slExpectedProduct = ProductFactory.CreateProduct();
-            _bllExpectedProduct = ToBll(_slExpectedProduct);
+            _expectedProduct = ToBll(_slExpectedProduct);
         }
 
         private IProduct ToBll(Model.Product source)
@@ -39,11 +39,11 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Tests.Product
             return (IProduct) _controller.UnitTest_ToBll(source);
         }
 
-        #region GetProduct()
+        #region ReadAsync()
         [TestMethod]
         public async Task GetProduct()
         {
-            _productLogic.Setup(mock => mock.GetProduct(_bllExpectedProduct.Id.ToString())).ReturnsAsync(_bllExpectedProduct);
+            _productLogic.Setup(mock => mock.ReadAsync(_expectedProduct.Id.ToString())).ReturnsAsync(_expectedProduct);
             var actualProduct = await _controller.GetProduct(_slExpectedProduct.Id);
             AssertProductsAreEqual(_slExpectedProduct, actualProduct);
         }
@@ -55,17 +55,17 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Tests.Product
         {
             var expectedProducts = ProductFactory.CreateProducts(3);
             var bllExpectedProducts = expectedProducts.Select(ToBll);
-            _productLogic.Setup(mockRepo => mockRepo.GetAllProducts()).ReturnsAsync(bllExpectedProducts);
-            var actualProducts = await _controller.GetAllProducts();
+            _productLogic.Setup(mockRepo => mockRepo.ReadAllAsync()).ReturnsAsync(bllExpectedProducts);
+            var actualProducts = await _controller.GetAllAsync();
             AssertProductsAreEqual(expectedProducts.ToList(), actualProducts.ToList());
         }
         #endregion
 
-        #region UpdateProduct()
+        #region Update()
         [TestMethod]
         public async Task UpdateProduct()
         {
-            _productLogic.Setup(mockRepo => mockRepo.UpdateProduct(It.IsNotNull<IProduct>())).ReturnsAsync(_bllExpectedProduct);
+            _productLogic.Setup(mockRepo => mockRepo.Update(It.IsNotNull<IProduct>())).ReturnsAsync(_expectedProduct);
             _slExpectedProduct.Validate("err loc");
             var actualProduct = await _controller.UpdateProduct(_slExpectedProduct);
 
@@ -73,11 +73,11 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Tests.Product
         }
         #endregion
 
-        #region CreateProduct()
+        #region CreateAsync()
         [TestMethod]
         public async Task CreateProduct()
         {
-            _productLogic.Setup(mockRepo => mockRepo.CreateProduct(It.IsNotNull<IProduct>())).ReturnsAsync(_bllExpectedProduct);
+            _productLogic.Setup(mockRepo => mockRepo.CreateAsync(It.IsNotNull<IProduct>())).ReturnsAsync(_expectedProduct);
             _slExpectedProduct.Validate("err loc");
             var actualProduct = await _controller.CreateProduct(_slExpectedProduct);
 
@@ -85,11 +85,11 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Tests.Product
         }
         #endregion
 
-        #region DeleteProduct
+        #region Delete
         [TestMethod]
         public async Task DeleteProduct()
         {
-            _productLogic.Setup(mock => mock.DeleteProduct(_bllExpectedProduct.Id.ToString())).ReturnsAsync(_bllExpectedProduct);
+            _productLogic.Setup(mock => mock.Delete(_expectedProduct.Id.ToString())).ReturnsAsync(_expectedProduct);
             var actualProduct = await _controller.DeleteProduct(_slExpectedProduct.Id);
             AssertProductsAreEqual(_slExpectedProduct, actualProduct);
         }
@@ -97,7 +97,7 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Tests.Product
 
         #region AssertionMethods
 
-        private void AssertProductsAreEqual(IList<Acme.FulcrumFacade.Sl.WebApi.Model.Product> expected, IList<Acme.FulcrumFacade.Sl.WebApi.Model.Product> actual)
+        private void AssertProductsAreEqual(IList<Model.Product> expected, IList<Model.Product> actual)
         {
             if (expected == null) throw new ArgumentNullException(nameof(expected));
             if (actual == null) throw new ArgumentNullException(nameof(actual));
@@ -110,7 +110,7 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Tests.Product
             }
         }
 
-        private void AssertProductsAreEqual(Acme.FulcrumFacade.Sl.WebApi.Model.Product expected, Acme.FulcrumFacade.Sl.WebApi.Model.Product actual)
+        private void AssertProductsAreEqual(Model.Product expected, Model.Product actual)
         {
             Assert.AreEqual(expected.Id, actual.Id, "Product Id");
             Assert.AreEqual(expected.Name, actual.Name, "Product name");

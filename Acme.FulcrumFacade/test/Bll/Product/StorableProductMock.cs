@@ -3,7 +3,7 @@ using Acme.FulcrumFacade.Dal.Contract.Product;
 
 namespace Acme.FulcrumFacade.Bll.Tests.Product
 {
-    public class ProductMock : IProduct
+    public class StorableProductMock : IStorableProduct
     {
         public int Id { get; set; }
         public string Name { get; set; }

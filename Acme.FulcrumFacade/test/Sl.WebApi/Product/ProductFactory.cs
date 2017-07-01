@@ -5,9 +5,9 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Tests.Product
 {
     internal static class ProductFactory
     {
-        public static IList<Acme.FulcrumFacade.Sl.WebApi.Model.Product> CreateProducts(int numberOfProducts)
+        public static IList<Model.Product> CreateProducts(int numberOfProducts)
         {
-            IList<Acme.FulcrumFacade.Sl.WebApi.Model.Product> products = new List<Acme.FulcrumFacade.Sl.WebApi.Model.Product>();
+            IList<Model.Product> products = new List<Model.Product>();
             for (var i = 0; i < numberOfProducts; ++i)
             {
                 products.Add(CreateProduct($"{i + 1}"));
@@ -15,9 +15,9 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Tests.Product
             return products;
         }
 
-        public static Acme.FulcrumFacade.Sl.WebApi.Model.Product CreateProduct(string id = "1", string name = "mockName", string category = "mockCategory", double price = 123)
+        public static Model.Product CreateProduct(string id = "1", string name = "mockName", string category = "mockCategory", double price = 123)
         {
-            return new Acme.FulcrumFacade.Sl.WebApi.Model.Product
+            return new Model.Product
             {
                 Id = id,
                 Name = name,

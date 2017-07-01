@@ -67,7 +67,7 @@ namespace Acme.FulcrumFacade.Sl.WebApi.App_Start
                         //    //.TokenUrl("https://tempuri.org/token")
                         //    .Scopes(scopes =>
                         //    {
-                        //        scopes.Add("read", "Read access to protected resources");
+                        //        scopes.Add("read", "ReadAsync access to protected resources");
                         //        scopes.Add("write", "Write access to protected resources");
                         //    });
 

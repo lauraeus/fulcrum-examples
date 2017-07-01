@@ -6,7 +6,7 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Tests.Product
     [TestClass]
     public class ProductModelValidationTests
     {
-        private Acme.FulcrumFacade.Sl.WebApi.Model.Product _expectedProduct;
+        private Model.Product _expectedProduct;
 
         [TestInitialize]
         public void Initialize()

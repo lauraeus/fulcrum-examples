@@ -1,5 +1,5 @@
 ﻿using System;
-using Acme.FulcrumFacade.Bll.Contract.Product;
+using Acme.FulcrumFacade.Bll.Contract.Inbound.Product;
 
 namespace Acme.FulcrumFacade.Sl.WebApi.Tests.Product
 {

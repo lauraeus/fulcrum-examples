@@ -110,12 +110,12 @@
       <HintPath>..\..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.Standard, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Standard.1.3.0\lib\netstandard1.4\Xlent.Lever.Libraries2.Standard.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Standard.1.5.0\lib\netstandard1.4\Xlent.Lever.Libraries2.Standard.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProductStorage.cs" />
-    <Compile Include="Product.cs" />
+    <Compile Include="ProductPersistance.cs" />
+    <Compile Include="StorableProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

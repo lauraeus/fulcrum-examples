@@ -2,38 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Acme.FulcrumFacade.Bll.Contract.Inbound.Product;
 using Acme.FulcrumFacade.Bll.Product;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using DM = Acme.FulcrumFacade.Dal.Contract.Product;
-using BM = Acme.FulcrumFacade.Bll.Contract.Product;
 
 namespace Acme.FulcrumFacade.Bll.Tests.Product
 {
     [TestClass]
     public class ProductTests
     {
-        private BM.IProductLogic _productLogic;
-        private Mock<DM.IProductStorage> _productRepository;
+        private IProductFunctionality _productFunctionality;
+        private Mock<DM.IProductPersistance> _productRepository;
 
-        private BM.IProduct _expectedProduct;
+        private IProduct _expectedProduct;
 
         [TestInitialize]
         public void Initialize()
         {
             _expectedProduct = GenerateProduct();
-            _productRepository = new Mock<DM.IProductStorage>();
-            _productRepository.Setup(mock => mock.ProductFactory()).Returns(new ProductMock());
-            _productLogic = new ProductLogic(_productRepository.Object);
+            _productRepository = new Mock<DM.IProductPersistance>();
+            _productRepository.Setup(mock => mock.ProductFactory()).Returns(new StorableProductMock());
+            _productFunctionality = new ProductFunctionality(_productRepository.Object);
         }
 
-        #region GetProduct()
+        #region ReadAsync()
         [TestMethod]
         public async Task GetProduct()
         {
-            _productRepository.Setup(mock => mock.GetProduct(_expectedProduct.Id)).ReturnsAsync(ToDal(_expectedProduct));
+            _productRepository.Setup(mock => mock.ReadAsync(_expectedProduct.Id)).ReturnsAsync(ToDal(_expectedProduct));
 
-            var actualProduct = await _productLogic.GetProduct(_expectedProduct.Id.ToString());
+            var actualProduct = await _productFunctionality.ReadAsync(_expectedProduct.Id.ToString());
             AssertProductsAreEqual(_expectedProduct, actualProduct);
         }
 
@@ -44,57 +44,57 @@ namespace Acme.FulcrumFacade.Bll.Tests.Product
         public async Task GetAllProducts()
         {
             var expectedProducts = GenerateProducts(3);
-            _productRepository.Setup(mockRepo => mockRepo.GetAllProducts()).ReturnsAsync(expectedProducts.Select(ToDal));
-            var actualProducts = await _productLogic.GetAllProducts();
+            _productRepository.Setup(mockRepo => mockRepo.ReadAllAsync()).ReturnsAsync(expectedProducts.Select(ToDal));
+            var actualProducts = await _productFunctionality.ReadAllAsync();
             AssertProductsAreEqual(expectedProducts.ToList(), actualProducts.ToList());
         }
         #endregion
 
-        #region UpdateProduct()
+        #region UpdateAsync()
         [TestMethod]
         public async Task UpdateProduct()
         {
-            _productRepository.Setup(mockRepo => mockRepo.UpdateProduct(It.IsNotNull<DM.IProduct>())).ReturnsAsync(ToDal(_expectedProduct));
+            _productRepository.Setup(mockRepo => mockRepo.UpdateAsync(It.IsNotNull<DM.IStorableProduct>())).ReturnsAsync(ToDal(_expectedProduct));
 
-            var actualProduct = await _productLogic.UpdateProduct(_expectedProduct);
+            var actualProduct = await _productFunctionality.Update(_expectedProduct);
 
             AssertProductsAreEqual(_expectedProduct, actualProduct);
         }
         #endregion
 
-        #region CreateProduct
+        #region CreateAsync
         [TestMethod]
         public async Task CreateProduct()
         {
-            _productRepository.Setup(mockRepo => mockRepo.CreateProduct(It.IsNotNull<DM.IProduct>())).ReturnsAsync(ToDal(_expectedProduct));
+            _productRepository.Setup(mockRepo => mockRepo.CreateAsync(It.IsNotNull<DM.IStorableProduct>())).ReturnsAsync(ToDal(_expectedProduct));
 
-            var actualProduct = await _productLogic.CreateProduct(_expectedProduct);
+            var actualProduct = await _productFunctionality.CreateAsync(_expectedProduct);
 
             AssertProductsAreEqual(_expectedProduct, actualProduct);
         }
         #endregion
 
-        #region DeleteProduct
+        #region DeleteAsync
         [TestMethod]
         public async Task DeleteProduct()
         {
-            _productRepository.Setup(mock => mock.DeleteProduct(_expectedProduct.Id)).ReturnsAsync(ToDal(_expectedProduct));
-            var actualProduct = await _productLogic.DeleteProduct(_expectedProduct.Id.ToString());
+            _productRepository.Setup(mock => mock.DeleteAsync(_expectedProduct.Id)).ReturnsAsync(ToDal(_expectedProduct));
+            var actualProduct = await _productFunctionality.Delete(_expectedProduct.Id.ToString());
             AssertProductsAreEqual(_expectedProduct, actualProduct);
         }
         #endregion
 
         #region Mapping
-        private DM.IProduct ToDal(BM.IProduct source)
+        private DM.IStorableProduct ToDal(IProduct source)
         {
-            return (DM.IProduct)_productLogic.UnitTest_ToDal(source);
+            return (DM.IStorableProduct)_productFunctionality.UnitTest_ToDal(source);
         }
         #endregion
 
         #region FactoryMethods
-        private IList<BM.IProduct> GenerateProducts(int numProducts)
+        private IList<IProduct> GenerateProducts(int numProducts)
         {
-            var result = new List<BM.IProduct>();
+            var result = new List<IProduct>();
             for (int i = 1; i <= numProducts; i++)
             {
                 result.Add(GenerateProduct(i));
@@ -103,9 +103,9 @@ namespace Acme.FulcrumFacade.Bll.Tests.Product
             return result;
         }
 
-        private BM.IProduct GenerateProduct(int id = 1)
+        private IProduct GenerateProduct(int id = 1)
         {
-            return new Bll.Product.Product()
+            return new Bll.Product.ProductModel()
             {
                 Id = id,
                 Name = "sausage",
@@ -117,7 +117,7 @@ namespace Acme.FulcrumFacade.Bll.Tests.Product
 
         #region AssertionMethods
 
-        private void AssertProductsAreEqual(IList<BM.IProduct> expected, IList<BM.IProduct> actual)
+        private void AssertProductsAreEqual(IList<IProduct> expected, IList<IProduct> actual)
         {
             if (expected == null) throw new ArgumentNullException(nameof(expected));
             if (actual == null) throw new ArgumentNullException(nameof(actual));
@@ -130,7 +130,7 @@ namespace Acme.FulcrumFacade.Bll.Tests.Product
             }
         }
 
-        private void AssertProductsAreEqual(BM.IProduct expected, BM.IProduct actual)
+        private void AssertProductsAreEqual(IProduct expected, IProduct actual)
         {
             Assert.AreEqual(expected.Id, actual.Id, "IProduct Id");
             Assert.AreEqual(expected.Name, actual.Name, "IProduct name");

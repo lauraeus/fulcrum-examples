@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using Acme.FulcrumFacade.Dal.Contract.Product;
 using Xlent.Lever.Libraries2.Standard.Assert;
+using Xlent.Lever.Libraries2.Standard.Decoupling.Model;
+using Xlent.Lever.Libraries2.Standard.Storage.Model;
 
-namespace Acme.FulcrumFacade.Dal.Memory
+namespace Acme.FulcrumFacade.Bll.Product
 {
-    public class Product : IProduct
+    public class ProductModel : StorableItem<IConceptValue>
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
         public string Category { get; set; }
         public double Price { get; set; }
         public DateTimeOffset DateAdded { get; set; }
 
         /// <inheritdoc/>
-        public void Validate(string errorLocaction, string propertyPath = "")
+        public override void Validate(string errorLocaction, string propertyPath = "")
         {
-            FulcrumValidate.IsGreaterThan(0, Id, nameof(Id), errorLocaction);
+            FulcrumValidate.IsNotNull(Id, nameof(Id), errorLocaction);
+            FulcrumValidate.IsValidated(Id, propertyPath, nameof(Id), errorLocaction);
             FulcrumValidate.IsNotNullOrWhiteSpace(Name, nameof(Name), errorLocaction);
             FulcrumValidate.IsTrue(Regex.IsMatch(Name, "^[a-zA-Z]+$"), errorLocaction, $"Property {nameof(Name)} must only consist of upper or lower case a-z.");
             FulcrumValidate.IsNotNullOrWhiteSpace(Category, nameof(Category), errorLocaction);

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Acme.FulcrumFacade.Bll.Contract.Product;
+using Acme.FulcrumFacade.Bll.Contract.Inbound.Product;
 using Xlent.Lever.Libraries2.Standard.Assert;
+using Xlent.Lever.Libraries2.Standard.Storage.Model;
 using Product = Acme.FulcrumFacade.Sl.WebApi.Model.Product;
 
 namespace Acme.FulcrumFacade.Sl.WebApi.Controllers
@@ -16,15 +15,15 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Controllers
     public class ProductsController : ApiController
     {
         private static readonly string Namespace = typeof(ProductsController).Namespace;
-        private readonly IProductLogic _productLogic;
+        private readonly IProductFunctionality _productFunctionality;
 
         /// <summary>
         /// Constructor that takes a logic layer for product. 
         /// </summary>
-        /// <param name="productLogic">Dependency injected logic layer</param>
-        public ProductsController(IProductLogic productLogic)
+        /// <param name="productFunctionality">Dependency injected logic layer</param>
+        public ProductsController(IProductFunctionality productFunctionality)
         {
-            _productLogic = productLogic;
+            _productFunctionality = productFunctionality;
         }
 
         /// <summary>
@@ -36,10 +35,16 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Controllers
         /// <response code="500">Internal Server Error</response>
         [HttpGet]
         [Route("")]
-        public async Task<IEnumerable<Product>> GetAllProducts()
+        public async Task<PageEnvelope<Product, string>> GetAllAsync()
         {
-            var bllProducts = await _productLogic.GetAllProducts();
-            return bllProducts.Select(FromBll);
+            var bllEnvelope = await _productFunctionality.ReadAllAsync();
+
+            var slEnvelope = new PageEnvelope<int>
+            {
+                PageInfo = bllEnvelope.PageInfo,
+                Data = bllEnvelope.Data.Select(FromBll)
+            };
+            return slEnvelope;
         }
 
         /// <summary>
@@ -56,7 +61,7 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Controllers
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
 
-            var bllProduct = await _productLogic.GetProduct(id);
+            var bllProduct = await _productFunctionality.ReadAsync(id);
             var result = FromBll(bllProduct);
             FulcrumAssert.IsNotNull(result, nameof(result));
             FulcrumAssert.IsValidated(result, $"{Namespace}: 41042A82-2D71-427F-BBBF-9CDC7545E590");
@@ -79,7 +84,7 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Controllers
             ServiceContract.RequireValidated(product, nameof(product));
 
             var bllProduct = ToBll(product);
-            bllProduct = await _productLogic.CreateProduct(bllProduct);
+            bllProduct = await _productFunctionality.CreateAsync(bllProduct);
 
             var result = FromBll(bllProduct);
             FulcrumAssert.IsNotNull(result, nameof(result));
@@ -104,7 +109,7 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Controllers
             ServiceContract.RequireValidated(product, nameof(product));
 
             var bllProduct = ToBll(product);
-            bllProduct = await _productLogic.UpdateProduct(bllProduct);
+            bllProduct = await _productFunctionality.Update(bllProduct);
 
             var result = FromBll(bllProduct);
             FulcrumAssert.IsNotNull(result, nameof(result));
@@ -126,7 +131,7 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Controllers
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
 
-            var bllProduct = await _productLogic.DeleteProduct(id);
+            var bllProduct = await _productFunctionality.Delete(id);
 
             var result = FromBll(bllProduct);
             FulcrumAssert.IsNotNull(result, nameof(result));
@@ -135,6 +140,11 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Controllers
             return result;
         }
 
+        /// <summary>
+        /// This is for testing purposes only. Converts a product object from Service contract to Business Logic contrace
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public object UnitTest_ToBll(Product source)
         {
             return ToBll(source);
@@ -144,7 +154,7 @@ namespace Acme.FulcrumFacade.Sl.WebApi.Controllers
         {
 
             if (source == null) return null;
-            var target = _productLogic.ProductFactory();
+            var target = _productFunctionality.ProductFactory();
             target.Id = int.Parse(source.Id);
             target.Name = source.Name;
             target.Category = source.Category;

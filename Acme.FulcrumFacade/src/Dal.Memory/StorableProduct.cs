@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using Acme.FulcrumFacade.Bll.Contract.Product;
+using Acme.FulcrumFacade.Dal.Contract.Product;
 using Xlent.Lever.Libraries2.Standard.Assert;
+using Xlent.Lever.Libraries2.Standard.Storage.Model;
 
-namespace Acme.FulcrumFacade.Bll.Product
+namespace Acme.FulcrumFacade.Dal.Memory
 {
-    public class Product : IProduct
+    public class StorableProduct : StorableItem<int>, IStorableProduct
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
         public string Category { get; set; }
         public double Price { get; set; }
         public DateTimeOffset DateAdded { get; set; }
 
         /// <inheritdoc/>
-        public void Validate(string errorLocaction, string propertyPath = "")
+        public override void Validate(string errorLocaction, string propertyPath = "")
         {
             FulcrumValidate.IsGreaterThan(0, Id, nameof(Id), errorLocaction);
             FulcrumValidate.IsNotNullOrWhiteSpace(Name, nameof(Name), errorLocaction);
