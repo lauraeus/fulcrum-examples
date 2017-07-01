@@ -7,8 +7,8 @@
     <ProjectGuid>{352A1133-8560-4F8B-9487-A15073ED1AAF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SystemFacade.Dal.RestClients.Test</RootNamespace>
-    <AssemblyName>SystemFacade.Dal.RestClients.Test</AssemblyName>
+    <RootNamespace>SystemFacade.Dal.WebApi.Test</RootNamespace>
+    <AssemblyName>SystemFacade.Dal.WebApi.Test</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -147,9 +147,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Dal.RestClients\SystemFacade.Dal.RestClients.csproj">
+    <ProjectReference Include="..\..\src\Dal.WebApi\SystemFacade.Dal.WebApi.csproj">
       <Project>{a39c40d5-ad5d-4ba2-9b2c-97fd2b2ef8e2}</Project>
-      <Name>SystemFacade.Dal.RestClients</Name>
+      <Name>SystemFacade.Dal.WebApi</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

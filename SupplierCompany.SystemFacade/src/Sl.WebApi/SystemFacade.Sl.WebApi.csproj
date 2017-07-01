@@ -209,9 +209,9 @@
       <Project>{79be6a98-3047-4a03-96d5-2754f025fefd}</Project>
       <Name>SystemFacade.Bll</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Dal.RestClients\SystemFacade.Dal.RestClients.csproj">
+    <ProjectReference Include="..\Dal.WebApi\SystemFacade.Dal.WebApi.csproj">
       <Project>{a39c40d5-ad5d-4ba2-9b2c-97fd2b2ef8e2}</Project>
-      <Name>SystemFacade.Dal.RestClients</Name>
+      <Name>SystemFacade.Dal.WebApi</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

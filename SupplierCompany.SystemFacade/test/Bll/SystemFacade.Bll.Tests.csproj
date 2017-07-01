@@ -148,9 +148,9 @@
       <Project>{79BE6A98-3047-4A03-96D5-2754F025FEFD}</Project>
       <Name>SystemFacade.Bll</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Dal.RestClients\SystemFacade.Dal.RestClients.csproj">
+    <ProjectReference Include="..\..\src\Dal.WebApi\SystemFacade.Dal.WebApi.csproj">
       <Project>{a39c40d5-ad5d-4ba2-9b2c-97fd2b2ef8e2}</Project>
-      <Name>SystemFacade.Dal.RestClients</Name>
+      <Name>SystemFacade.Dal.WebApi</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

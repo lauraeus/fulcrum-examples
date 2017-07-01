@@ -19,11 +19,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemFacade.Sl.WebApi.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4C41FCC3-3EC4-41F7-8541-BC59EA8ED3F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemFacade.Dal.RestClients", "src\Dal.RestClients\SystemFacade.Dal.RestClients.csproj", "{A39C40D5-AD5D-4BA2-9B2C-97FD2B2EF8E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemFacade.Dal.WebApi", "src\Dal.WebApi\SystemFacade.Dal.WebApi.csproj", "{A39C40D5-AD5D-4BA2-9B2C-97FD2B2EF8E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemFacade.Fulcrum.Contract", "src\Bll.Contract\SystemFacade.Fulcrum.Contract.csproj", "{B5C92EA6-F20D-4576-A8EB-87B5A39EB0D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemFacade.Dal.RestClients.Test", "test\Dal.RestClients.Test\SystemFacade.Dal.RestClients.Test.csproj", "{352A1133-8560-4F8B-9487-A15073ED1AAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemFacade.Dal.WebApi.Test", "test\Dal.WebApi.Test\SystemFacade.Dal.WebApi.Test.csproj", "{352A1133-8560-4F8B-9487-A15073ED1AAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

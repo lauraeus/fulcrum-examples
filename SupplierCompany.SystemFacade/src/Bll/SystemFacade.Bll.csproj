@@ -132,9 +132,9 @@
       <Project>{B5C92EA6-F20D-4576-A8EB-87B5A39EB0D3}</Project>
       <Name>SystemFacade.Fulcrum.Contract</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Dal.RestClients\SystemFacade.Dal.RestClients.csproj">
+    <ProjectReference Include="..\Dal.WebApi\SystemFacade.Dal.WebApi.csproj">
       <Project>{a39c40d5-ad5d-4ba2-9b2c-97fd2b2ef8e2}</Project>
-      <Name>SystemFacade.Dal.RestClients</Name>
+      <Name>SystemFacade.Dal.WebApi</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

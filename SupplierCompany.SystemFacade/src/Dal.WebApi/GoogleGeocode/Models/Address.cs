@@ -1,6 +1,6 @@
 ﻿using Xlent.Lever.Libraries2.Standard.Assert;
 
-namespace SupplierCompany.SystemFacade.Dal.RestClients.GoogleGeocode.Models
+namespace SupplierCompany.SystemFacade.Dal.WebApi.GoogleGeocode.Models
 {
     public class Address : IValidatable
     {

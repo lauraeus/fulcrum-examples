@@ -1,11 +1,11 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("SystemFacade.Dal.RestClients.Test")]
+[assembly: AssemblyTitle("SystemFacade.Dal.WebApi.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SystemFacade.Dal.RestClients.Test")]
+[assembly: AssemblyProduct("SystemFacade.Dal.WebApi.Test")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -1,5 +1,5 @@
 // ReSharper disable All
-namespace SupplierCompany.SystemFacade.Dal.RestClients.GoogleGeocode.Models
+namespace SupplierCompany.SystemFacade.Dal.WebApi.GoogleGeocode.Models
 {
     /// <summary>
     /// A response from a geocode request, as specified at https://developers.google.com/maps/documentation/geocoding/intro#GeocodingResponses

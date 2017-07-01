@@ -3,9 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using SupplierCompany.SystemFacade.Dal.RestClients.GoogleGeocode.Clients;
+using SupplierCompany.SystemFacade.Dal.WebApi.GoogleGeocode.Clients;
 using SM = SupplierCompany.SystemFacade.Fulcrum.Contract;
-using DM = SupplierCompany.SystemFacade.Dal.RestClients.GoogleGeocode.Models;
+using DM = SupplierCompany.SystemFacade.Dal.WebApi.GoogleGeocode.Models;
 using Xlent.Lever.Libraries2.Standard.Assert;
 using Xlent.Lever.Libraries2.Standard.Error.Logic;
 

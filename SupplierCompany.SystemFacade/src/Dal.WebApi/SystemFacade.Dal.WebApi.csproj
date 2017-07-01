@@ -7,8 +7,8 @@
     <ProjectGuid>{A39C40D5-AD5D-4BA2-9B2C-97FD2B2EF8E2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SupplierCompany.SystemFacade.Dal.RestClients</RootNamespace>
-    <AssemblyName>SupplierCompany.SystemFacade.Dal.RestClients</AssemblyName>
+    <RootNamespace>SupplierCompany.SystemFacade.Dal.WebApi</RootNamespace>
+    <AssemblyName>SupplierCompany.SystemFacade.Dal.WebApi</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

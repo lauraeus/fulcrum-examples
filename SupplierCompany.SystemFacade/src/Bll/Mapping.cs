@@ -1,5 +1,5 @@
 ﻿using SM = SupplierCompany.SystemFacade.Fulcrum.Contract;
-using DM = SupplierCompany.SystemFacade.Dal.RestClients.GoogleGeocode.Models;
+using DM = SupplierCompany.SystemFacade.Dal.WebApi.GoogleGeocode.Models;
 
 namespace SupplierCompany.SystemFacade.Bll
 {

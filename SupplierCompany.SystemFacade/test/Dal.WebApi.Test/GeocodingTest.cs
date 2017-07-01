@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using SupplierCompany.SystemFacade.Dal.RestClients.GoogleGeocode.Clients;
-using DM = SupplierCompany.SystemFacade.Dal.RestClients.GoogleGeocode.Models;
+using SupplierCompany.SystemFacade.Dal.WebApi.GoogleGeocode.Clients;
+using DM = SupplierCompany.SystemFacade.Dal.WebApi.GoogleGeocode.Models;
 using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
 
-namespace SystemFacade.Dal.RestClients.Test
+namespace SystemFacade.Dal.WebApi.Test
 {
     [TestClass]
     public class GeocodingTest

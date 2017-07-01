@@ -3,7 +3,7 @@ using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
 using SupplierCompany.SystemFacade.Bll;
-using SupplierCompany.SystemFacade.Dal.RestClients.GoogleGeocode.Clients;
+using SupplierCompany.SystemFacade.Dal.WebApi.GoogleGeocode.Clients;
 using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
 
 namespace SupplierCompany.SystemFacade.Sl.WebApi

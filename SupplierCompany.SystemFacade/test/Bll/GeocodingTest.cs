@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using SupplierCompany.SystemFacade.Dal.RestClients.GoogleGeocode.Clients;
+using SupplierCompany.SystemFacade.Dal.WebApi.GoogleGeocode.Clients;
 using Xlent.Lever.Libraries2.Standard.Error.Logic;
 using SM = SupplierCompany.SystemFacade.Fulcrum.Contract;
-using DM = SupplierCompany.SystemFacade.Dal.RestClients.GoogleGeocode.Models;
+using DM = SupplierCompany.SystemFacade.Dal.WebApi.GoogleGeocode.Models;
 
 namespace SupplierCompany.SystemFacade.Bll.Tests
 {

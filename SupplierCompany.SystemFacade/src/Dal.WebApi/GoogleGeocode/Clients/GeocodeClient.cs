@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using SupplierCompany.SystemFacade.Dal.RestClients.GoogleGeocode.Models;
+using SupplierCompany.SystemFacade.Dal.WebApi.GoogleGeocode.Models;
 using Xlent.Lever.Libraries2.Standard.Assert;
 using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
 
-namespace SupplierCompany.SystemFacade.Dal.RestClients.GoogleGeocode.Clients
+namespace SupplierCompany.SystemFacade.Dal.WebApi.GoogleGeocode.Clients
 {
     /// <summary>
     /// A client for accessing the Google Geocoding API; https://developers.google.com/maps/documentation/geocoding/intro
