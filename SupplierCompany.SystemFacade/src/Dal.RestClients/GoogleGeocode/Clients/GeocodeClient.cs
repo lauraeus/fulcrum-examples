@@ -11,7 +11,7 @@ namespace SupplierCompany.SystemFacade.Dal.RestClients.GoogleGeocode.Clients
     /// </summary>
     public class GeocodeClient : IGeocodeClient
     {
-        private RestClient _restClient;
+        private readonly RestClient _restClient;
 
         public GeocodeClient()
         {

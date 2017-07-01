@@ -5,8 +5,7 @@ using SupplierCompany.SystemFacade.Dal.RestClients.GoogleGeocode.Models;
 namespace SystemFacade.Dal.RestClients.Test
 {
     [TestClass]
-    public class Geocoding
-
+    public class GeocodingTest
     {
         private IGeocodeClient _client;
 
