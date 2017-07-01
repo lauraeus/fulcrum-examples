@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SupplierCompany.SystemFacade.Dal.WebApi.GoogleGeocode.Clients;
+using SupplierCompany.SystemFacade.Fulcrum.Contract.Geocoding;
 using SM = SupplierCompany.SystemFacade.Fulcrum.Contract;
 using DM = SupplierCompany.SystemFacade.Dal.WebApi.GoogleGeocode.Models;
 using Xlent.Lever.Libraries2.Standard.Assert;
@@ -20,7 +21,7 @@ namespace SupplierCompany.SystemFacade.Bll
         {
             _client = client;
         }
-        public async Task<SM.Location> GeocodeAsync(SM.Address address, bool mustBeUnique)
+        public async Task<Location> GeocodeAsync(Address address, bool mustBeUnique)
         {
             InternalContract.RequireNotNull(address, nameof(address));
             InternalContract.RequireValidated(address, nameof(address));
@@ -55,7 +56,7 @@ namespace SupplierCompany.SystemFacade.Bll
             }
         }
 
-        public async Task<SM.Location> GeocodeAsync(SM.Address address)
+        public async Task<Location> GeocodeAsync(Address address)
         {
             return await GeocodeAsync(address, false);
         }

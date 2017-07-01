@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using SupplierCompany.SystemFacade.Dal.WebApi.GoogleGeocode.Clients;
+using SupplierCompany.SystemFacade.Fulcrum.Contract.Geocoding;
 using Xlent.Lever.Libraries2.Standard.Error.Logic;
 using SM = SupplierCompany.SystemFacade.Fulcrum.Contract;
 using DM = SupplierCompany.SystemFacade.Dal.WebApi.GoogleGeocode.Models;
@@ -26,7 +27,7 @@ namespace SupplierCompany.SystemFacade.Bll.Tests
         public async Task Success()
         {
             _geocodeClientMock.Setup(mock => mock.GeocodeAsync(It.IsAny<DM.Address>())).Returns(Task.FromResult(CreateResponse()));
-            var address = new SM.Address
+            var address = new Address
             {
                 Row1 = "Regeringsgatan 67",
                 PostCode = "11156",
@@ -43,7 +44,7 @@ namespace SupplierCompany.SystemFacade.Bll.Tests
         [ExpectedException(typeof(FulcrumContractException))]
         public async Task NoAddressCountry()
         {
-            var address = new SM.Address
+            var address = new Address
             {
                 Row1 = "Regeringsgatan 67",
                 PostCode = "11156",

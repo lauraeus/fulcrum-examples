@@ -2,6 +2,7 @@
 using System.Web.Http;
 using SupplierCompany.SystemFacade.Bll;
 using SupplierCompany.SystemFacade.Fulcrum.Contract;
+using SupplierCompany.SystemFacade.Fulcrum.Contract.Geocoding;
 using Xlent.Lever.Libraries2.Standard.Assert;
 
 namespace SupplierCompany.SystemFacade.Sl.WebApi.Controllers

@@ -1,11 +1,12 @@
-﻿using SM = SupplierCompany.SystemFacade.Fulcrum.Contract;
+﻿using SupplierCompany.SystemFacade.Fulcrum.Contract.Geocoding;
+using SM = SupplierCompany.SystemFacade.Fulcrum.Contract;
 using DM = SupplierCompany.SystemFacade.Dal.WebApi.GoogleGeocode.Models;
 
 namespace SupplierCompany.SystemFacade.Bll
 {
     public static class Mapping
     {
-        public static DM.Address ToStorage(SM.Address source)
+        public static DM.Address ToStorage(Address source)
         {
             if (source == null) return null;
             var target = new DM.Address
@@ -18,10 +19,10 @@ namespace SupplierCompany.SystemFacade.Bll
             };
             return target;
         }
-        public static SM.Location ToService(DM.Location source)
+        public static Location ToService(DM.Location source)
         {
             if (source == null) return null;
-            var target = new SM.Location
+            var target = new Location
             {
                 Longitude = source.lng,
                 Latitude = source.lat

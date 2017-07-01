@@ -6,6 +6,7 @@ using SupplierCompany.SystemFacade.Sl.WebApi.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using SupplierCompany.SystemFacade.Bll;
+using SupplierCompany.SystemFacade.Fulcrum.Contract.Geocoding;
 using Xlent.Lever.Libraries2.Standard.Error.Logic;
 using SM = SupplierCompany.SystemFacade.Fulcrum.Contract;
 
@@ -16,7 +17,7 @@ namespace SupplierCompany.SystemFacade.Sl.WebApi.Tests.Product
     {
         private GeocodesController _controller;
         private Mock<IGeocodingFunctionality> _geocodingFunctionality;
-        private SM.Location _bllLocation;
+        private Location _bllLocation;
 
         [ClassInitialize()]
         public static void ClassInit(TestContext context)
@@ -29,18 +30,18 @@ namespace SupplierCompany.SystemFacade.Sl.WebApi.Tests.Product
            
             _geocodingFunctionality = new Mock<IGeocodingFunctionality>();
             _controller = new GeocodesController(_geocodingFunctionality.Object);
-            _bllLocation = new SM.Location
+            _bllLocation = new Location
             {
                 Latitude = "1.23",
                 Longitude = "3.14"
             };
-            _geocodingFunctionality.Setup(mock => mock.GeocodeAsync(It.IsAny<SM.Address>())).ReturnsAsync(_bllLocation);
+            _geocodingFunctionality.Setup(mock => mock.GeocodeAsync(It.IsAny<Address>())).ReturnsAsync(_bllLocation);
         }
 
         [TestMethod]
         public async Task Successful()
         {
-            var address = new SM.Address
+            var address = new Address
             {
                 Row1 = "Regeringsgatan 67",
                 PostCode = "11156",
@@ -56,7 +57,7 @@ namespace SupplierCompany.SystemFacade.Sl.WebApi.Tests.Product
         [ExpectedException(typeof(FulcrumServiceContractException))]
         public async Task NoAddressCountry()
         {
-            var address = new SM.Address
+            var address = new Address
             {
                 Row1 = "Regeringsgatan 67",
                 PostCode = "11156",

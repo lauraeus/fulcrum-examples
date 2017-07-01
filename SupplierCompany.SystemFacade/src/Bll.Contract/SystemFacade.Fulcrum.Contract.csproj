@@ -113,9 +113,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Address.cs" />
-    <Compile Include="IGeocoding.cs" />
-    <Compile Include="Location.cs" />
+    <Compile Include="Geocoding\Address.cs" />
+    <Compile Include="Geocoding\IGeocoding.cs" />
+    <Compile Include="Geocoding\Location.cs" />
+    <Compile Include="Person\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
