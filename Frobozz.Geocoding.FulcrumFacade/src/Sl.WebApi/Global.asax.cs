@@ -1,7 +1,7 @@
 ﻿using System.Web.Http;
-using Frobozz.Geocoding.FulcrumFacade.Sl.WebApi;
+using Frobozz.Geocoding.FulcrumFacade.WebApi;
 
-namespace Frobozz.FulcrumFacade.Sl.WebApi
+namespace Frobozz.Geocoding.FulcrumFacade.WebApi
 {
     /// <summary>
     /// Starting point for the entire application. See https://stackoverflow.com/questions/2340572/what-is-the-purpose-of-global-asax-in-asp-net for more information.

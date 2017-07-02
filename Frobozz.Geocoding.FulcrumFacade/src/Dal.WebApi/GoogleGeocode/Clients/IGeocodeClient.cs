@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using Frobozz.FulcrumFacade.Dal.WebApi.GoogleGeocode.Models;
+using Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Models;
 
-namespace Frobozz.FulcrumFacade.Dal.WebApi.GoogleGeocode.Clients
+namespace Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Clients
 {
     public interface IGeocodeClient
     {

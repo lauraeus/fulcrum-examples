@@ -1,11 +1,11 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Frobozz.Geocode.FulcrumFacade.Dal.WebApi.Test")]
+[assembly: AssemblyTitle("Frobozz.Geocode.Geocoding.Dal.WebApi.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Frobozz.Geocode.FulcrumFacade.Dal.WebApi.Test")]
+[assembly: AssemblyProduct("Frobozz.Geocode.Geocoding.Dal.WebApi.Test")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

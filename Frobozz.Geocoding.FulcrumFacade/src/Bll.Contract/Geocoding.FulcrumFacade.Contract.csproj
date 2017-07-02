@@ -7,8 +7,8 @@
     <ProjectGuid>{B5C92EA6-F20D-4576-A8EB-87B5A39EB0D3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Frobozz.FulcrumFacade.Fulcrum.Contract</RootNamespace>
-    <AssemblyName>Frobozz.FulcrumFacade.Fulcrum.Contract</AssemblyName>
+    <RootNamespace>Frobozz.Geocoding.FulcrumFacade.Contract</RootNamespace>
+    <AssemblyName>Frobozz.Geocoding.FulcrumFacade.Contract</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,7 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Frobozz.FulcrumFacade.Fulcrum.Contract.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Frobozz.Geocoding.FulcrumFacade.Contract.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,7 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Frobozz.FulcrumFacade.Fulcrum.Contract.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Frobozz.Geocoding.FulcrumFacade.Contract.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">

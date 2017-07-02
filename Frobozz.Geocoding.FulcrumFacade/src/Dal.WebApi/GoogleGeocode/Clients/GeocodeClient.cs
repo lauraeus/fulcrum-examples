@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Frobozz.FulcrumFacade.Dal.WebApi.GoogleGeocode.Models;
+using Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Models;
 using Xlent.Lever.Libraries2.Standard.Assert;
 using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
 
-namespace Frobozz.FulcrumFacade.Dal.WebApi.GoogleGeocode.Clients
+namespace Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Clients
 {
     /// <summary>
     /// A client for accessing the Google Geocoding API; https://developers.google.com/maps/documentation/geocoding/intro

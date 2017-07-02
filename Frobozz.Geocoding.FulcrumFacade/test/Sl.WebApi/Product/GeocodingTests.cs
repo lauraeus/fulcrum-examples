@@ -1,12 +1,12 @@
 ﻿using System.Threading.Tasks;
-using Frobozz.FulcrumFacade.Bll;
-using Frobozz.FulcrumFacade.Fulcrum.Contract.Geocoding;
-using Frobozz.FulcrumFacade.Sl.WebApi.Controllers;
+using Frobozz.Geocoding.Bll;
+using Frobozz.Geocoding.FulcrumFacade.Contract.Geocoding;
+using Frobozz.Geocoding.FulcrumFacade.WebApi.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Xlent.Lever.Libraries2.Standard.Error.Logic;
 
-namespace Frobozz.FulcrumFacade.Sl.WebApi.Tests.Product
+namespace Frobozz.Geocoding.FulcrumFacade.WebApi.Tests.Product
 {
     [TestClass]
     public class GeocodingTests

@@ -1,12 +1,12 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Frobozz.FulcrumFacade.Dal.WebApi.GoogleGeocode.Clients;
-using Frobozz.FulcrumFacade.Dal.WebApi.GoogleGeocode.Models;
+using Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Clients;
+using Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
 
-namespace Frobozz.Geocode.FulcrumFacade.Dal.WebApi.Test
+namespace Frobozz.Geocode.Geocoding.Dal.WebApi.Test
 {
     [TestClass]
     public class GeocodingTest

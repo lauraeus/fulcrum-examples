@@ -2,11 +2,11 @@
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
-using Frobozz.FulcrumFacade.Bll;
-using Frobozz.FulcrumFacade.Dal.WebApi.GoogleGeocode.Clients;
+using Frobozz.Geocoding.Bll;
+using Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Clients;
 using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
 
-namespace Frobozz.FulcrumFacade.Sl.WebApi
+namespace Frobozz.Geocoding.FulcrumFacade.WebApi
 {
     /// <summary>
     /// Connect interfaces with implementations.

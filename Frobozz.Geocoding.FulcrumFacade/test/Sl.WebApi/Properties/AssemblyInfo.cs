@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Frobozz.Geocoding.FulcrumFacade.Sl.WebApi.Tests")]
+[assembly: AssemblyTitle("Frobozz.Geocoding.FulcrumFacade.WebApi.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Frobozz.Geocoding.FulcrumFacade.Sl.WebApi.Tests")]
+[assembly: AssemblyProduct("Frobozz.Geocoding.FulcrumFacade.WebApi.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

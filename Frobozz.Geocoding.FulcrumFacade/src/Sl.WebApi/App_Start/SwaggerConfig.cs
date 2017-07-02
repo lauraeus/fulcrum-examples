@@ -1,7 +1,7 @@
 using Swashbuckle.Application;
 using System.Web.Http;
 
-namespace Frobozz.Geocoding.FulcrumFacade.Sl.WebApi
+namespace Frobozz.Geocoding.FulcrumFacade.WebApi
 {
     /// <summary>
     /// This class is required by the Swashbuckle NuGet.
@@ -249,7 +249,7 @@ namespace Frobozz.Geocoding.FulcrumFacade.Sl.WebApi
 
         private static string GetXmlCommentsPath()
         {
-            return System.String.Format(@"{0}\bin\Frobozz.Geocoding.FulcrumFacade.Sl.WebApi.XML", System.AppDomain.CurrentDomain.BaseDirectory);
+            return System.String.Format(@"{0}\bin\Frobozz.Geocoding.FulcrumFacade.WebApi.XML", System.AppDomain.CurrentDomain.BaseDirectory);
         }
     }
 }

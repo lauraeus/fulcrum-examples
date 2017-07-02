@@ -12,8 +12,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Frobozz.FulcrumFacade.Sl.WebApi</RootNamespace>
-    <AssemblyName>Frobozz.FulcrumFacade.Sl.WebApi</AssemblyName>
+    <RootNamespace>Frobozz.Geocoding.FulcrumFacade.WebApi</RootNamespace>
+    <AssemblyName>Frobozz.Geocoding.FulcrumFacade.WebApi</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
@@ -33,7 +33,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Frobozz.FulcrumFacade.Sl.WebApi.xml</DocumentationFile>
+    <DocumentationFile>bin\Frobozz.Geocoding.FulcrumFacade.WebApi.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -201,17 +201,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bll.Contract\FulcrumFacade.Fulcrum.Contract.csproj">
+    <ProjectReference Include="..\Bll.Contract\Geocoding.FulcrumFacade.Contract.csproj">
       <Project>{b5c92ea6-f20d-4576-a8eb-87b5a39eb0d3}</Project>
-      <Name>FulcrumFacade.Fulcrum.Contract</Name>
+      <Name>Geocoding.FulcrumFacade.Contract</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bll\FulcrumFacade.Bll.csproj">
+    <ProjectReference Include="..\Bll\Geocoding.Bll.csproj">
       <Project>{79be6a98-3047-4a03-96d5-2754f025fefd}</Project>
-      <Name>FulcrumFacade.Bll</Name>
+      <Name>Geocoding.Bll</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Dal.WebApi\FulcrumFacade.Dal.WebApi.csproj">
+    <ProjectReference Include="..\Dal.WebApi\Geocoding.Dal.WebApi.csproj">
       <Project>{a39c40d5-ad5d-4ba2-9b2c-97fd2b2ef8e2}</Project>
-      <Name>FulcrumFacade.Dal.WebApi</Name>
+      <Name>Geocoding.Dal.WebApi</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -229,7 +229,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51350</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/Frobozz.FulcrumFacade.Sl.WebApi</IISUrl>
+          <IISUrl>http://localhost/Frobozz.Geocoding.FulcrumFacade.WebApi</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

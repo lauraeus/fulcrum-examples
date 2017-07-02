@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using Xlent.Lever.Libraries2.Standard.Context;
 using Xlent.Lever.Libraries2.WebApi.Pipe.Inbound;
 
-namespace Frobozz.FulcrumFacade.Sl.WebApi
+namespace Frobozz.Geocoding.FulcrumFacade.WebApi
 {
     /// <summary>
     /// Configuration class responsible for WebApi specific configurations.

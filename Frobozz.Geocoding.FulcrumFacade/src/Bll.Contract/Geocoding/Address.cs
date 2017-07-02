@@ -1,6 +1,6 @@
 ﻿using Xlent.Lever.Libraries2.Standard.Assert;
 
-namespace Frobozz.FulcrumFacade.Fulcrum.Contract.Geocoding
+namespace Frobozz.Geocoding.FulcrumFacade.Contract.Geocoding
 {
     /// <summary>
     /// A physical address.

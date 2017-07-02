@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Frobozz.FulcrumFacade.Fulcrum.Contract.Geocoding
+namespace Frobozz.Geocoding.FulcrumFacade.Contract.Geocoding
 {
     /// <summary>
     /// Services for geocoding

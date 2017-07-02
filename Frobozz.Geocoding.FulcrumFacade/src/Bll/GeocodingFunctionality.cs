@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Frobozz.FulcrumFacade.Dal.WebApi.GoogleGeocode.Clients;
-using Frobozz.FulcrumFacade.Fulcrum.Contract.Geocoding;
+using Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Clients;
+using Frobozz.Geocoding.FulcrumFacade.Contract.Geocoding;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xlent.Lever.Libraries2.Standard.Assert;
 using Xlent.Lever.Libraries2.Standard.Error.Logic;
 
-namespace Frobozz.FulcrumFacade.Bll
+namespace Frobozz.Geocoding.Bll
 {
     public class GeocodingFunctionality : IGeocodingFunctionality
     {

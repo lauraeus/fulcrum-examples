@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Http;
-using Frobozz.FulcrumFacade.Bll;
-using Frobozz.FulcrumFacade.Fulcrum.Contract.Geocoding;
+using Frobozz.Geocoding.Bll;
+using Frobozz.Geocoding.FulcrumFacade.Contract.Geocoding;
 using Xlent.Lever.Libraries2.Standard.Assert;
 
-namespace Frobozz.FulcrumFacade.Sl.WebApi.Controllers
+namespace Frobozz.Geocoding.FulcrumFacade.WebApi.Controllers
 {
     /// <summary>
     /// ApiController for Product that does inputcontrol. Logic is separated into another layer. 

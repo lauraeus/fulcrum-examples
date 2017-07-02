@@ -1,11 +1,12 @@
 ﻿using System.Threading.Tasks;
-using Frobozz.FulcrumFacade.Dal.WebApi.GoogleGeocode.Clients;
-using Frobozz.FulcrumFacade.Dal.WebApi.GoogleGeocode.Models;
+using Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Clients;
+using DM = Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Models;
+using SM = Frobozz.Geocoding.FulcrumFacade.Contract.Geocoding;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Xlent.Lever.Libraries2.Standard.Error.Logic;
 
-namespace Frobozz.FulcrumFacade.Bll.Tests
+namespace Frobozz.Geocoding.Bll.Tests
 {
     [TestClass]
     public class GeocodingTest
@@ -23,8 +24,8 @@ namespace Frobozz.FulcrumFacade.Bll.Tests
         [TestMethod]
         public async Task Success()
         {
-            _geocodeClientMock.Setup(mock => mock.GeocodeAsync(It.IsAny<Address>())).Returns(Task.FromResult(CreateResponse()));
-            var address = new Fulcrum.Contract.Geocoding.Address
+            _geocodeClientMock.Setup(mock => mock.GeocodeAsync(It.IsAny<DM.Address>())).ReturnsAsync(CreateResponseOk());
+            var address = new SM.Address
             {
                 Row1 = "Regeringsgatan 67",
                 PostCode = "11156",
@@ -41,7 +42,7 @@ namespace Frobozz.FulcrumFacade.Bll.Tests
         [ExpectedException(typeof(FulcrumContractException))]
         public async Task NoAddressCountry()
         {
-            var address = new Fulcrum.Contract.Geocoding.Address
+            var address = new SM.Address
             {
                 Row1 = "Regeringsgatan 67",
                 PostCode = "11156",
@@ -49,18 +50,18 @@ namespace Frobozz.FulcrumFacade.Bll.Tests
             var resultLocation = await _geocodeFunctionality.GeocodeAsync(address);
         }
 
-        private GeocodingResponse CreateResponse()
+        private DM.GeocodingResponse CreateResponseOk()
         {
-            return new GeocodingResponse
+            return new DM.GeocodingResponse
             {
                 status = "OK",
                 results = new []
                 {
-                    new Result
+                    new DM.Result
                     {
-                        geometry = new Geometry
+                        geometry = new DM.Geometry
                         {
-                            location = new Location
+                            location = new DM.Location
                             {
                                 lng = "-122.0842499",
                                 lat = "37.4224764"

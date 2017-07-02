@@ -1,14 +1,14 @@
-﻿using Frobozz.FulcrumFacade.Dal.WebApi.GoogleGeocode.Models;
-using Location = Frobozz.FulcrumFacade.Fulcrum.Contract.Geocoding.Location;
+﻿using DM = Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Models;
+using SM = Frobozz.Geocoding.FulcrumFacade.Contract.Geocoding;
 
-namespace Frobozz.FulcrumFacade.Bll
+namespace Frobozz.Geocoding.Bll
 {
     public static class Mapping
     {
-        public static Address ToStorage(Fulcrum.Contract.Geocoding.Address source)
+        public static DM.Address ToStorage(SM.Address source)
         {
             if (source == null) return null;
-            var target = new Address
+            var target = new DM.Address
             {
                 Row1 = source.Row1,
                 Row2 = source.Row2,
@@ -18,10 +18,10 @@ namespace Frobozz.FulcrumFacade.Bll
             };
             return target;
         }
-        public static Location ToService(Dal.WebApi.GoogleGeocode.Models.Location source)
+        public static SM.Location ToService(DM.Location source)
         {
             if (source == null) return null;
-            var target = new Location
+            var target = new SM.Location
             {
                 Longitude = source.lng,
                 Latitude = source.lat

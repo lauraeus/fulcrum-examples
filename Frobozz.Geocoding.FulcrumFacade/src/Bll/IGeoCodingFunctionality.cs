@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Frobozz.FulcrumFacade.Fulcrum.Contract.Geocoding;
+using Frobozz.Geocoding.FulcrumFacade.Contract.Geocoding;
 
-namespace Frobozz.FulcrumFacade.Bll
+namespace Frobozz.Geocoding.Bll
 {
     public interface IGeocodingFunctionality : IGeocodingService
     {
