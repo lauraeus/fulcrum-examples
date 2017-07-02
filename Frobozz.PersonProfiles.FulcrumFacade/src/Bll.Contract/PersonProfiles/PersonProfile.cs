@@ -7,7 +7,7 @@ namespace Frobozz.PersonProfiles.FulcrumFacade.Contract.PersonProfiles
     /// <summary>
     /// A physical address.
     /// </summary>
-    public class PersonProfile : StorableItem<string>
+    public partial class PersonProfile : StorableItem<string>
     {
         /// <summary>
         /// The given name (western "first name") for the person.
@@ -18,10 +18,25 @@ namespace Frobozz.PersonProfiles.FulcrumFacade.Contract.PersonProfiles
         /// The surname (western "last name") for the person.
         /// </summary>
         public string Surname { get; set; }
+    }
 
+    public partial class PersonProfile
+    {
+        #region INameProperty
         /// <inheritdoc />
         public override string Name => $"{GivenName} {Surname}";
+        #endregion
 
+        #region IValidatable
+        /// <inheritdoc />
+        public override void Validate(string errorLocation, string propertyPath = "")
+        {
+            FulcrumValidate.IsNotNullOrWhiteSpace(GivenName, nameof(GivenName), errorLocation);
+            FulcrumValidate.IsNotNullOrWhiteSpace(Surname, nameof(Surname), errorLocation);
+        }
+        #endregion
+
+        #region override object
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -47,12 +62,6 @@ namespace Frobozz.PersonProfiles.FulcrumFacade.Contract.PersonProfiles
             // ReSharper disable once NonReadonlyMemberInGetHashCode
             return Id.GetHashCode();
         }
-
-        /// <inheritdoc />
-        public override void Validate(string errorLocation, string propertyPath = "")
-        {
-            FulcrumValidate.IsNotNullOrWhiteSpace(GivenName, nameof(GivenName), errorLocation);
-            FulcrumValidate.IsNotNullOrWhiteSpace(Surname, nameof(Surname), errorLocation);
-        }
+        #endregion
     }
 }
