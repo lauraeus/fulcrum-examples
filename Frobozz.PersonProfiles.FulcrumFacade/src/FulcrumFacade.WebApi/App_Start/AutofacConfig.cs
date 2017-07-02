@@ -3,8 +3,7 @@ using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Frobozz.PersonProfiles.Bll;
-using Frobozz.PersonProfiles.Dal.WebApi.GooglePersonProfiles.Clients;
-using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
+using Frobozz.PersonProfiles.Dal.MemoryStorage.PersonProfile;
 
 namespace Frobozz.PersonProfiles.FulcrumFacade.WebApi
 {
@@ -23,9 +22,7 @@ namespace Frobozz.PersonProfiles.FulcrumFacade.WebApi
 
             //Register Bll and Dal dependencies
             builder.RegisterType<PersonProfilesFunctionality>().As<IPersonProfilesFunctionality>();
-            builder.RegisterType<PersonProfilesClient>().As<IPersonProfilesClient>();
-            builder.Register(ctx => new PersonProfilesClient(new RestClient("https://maps.googleapis.com/maps/api/geocode")))
-                .As<IPersonProfilesClient>().SingleInstance();
+            builder.RegisterType<PersonProfilePersistance>().As<IPersonProfilePersistance>();
 
             // Register your controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());

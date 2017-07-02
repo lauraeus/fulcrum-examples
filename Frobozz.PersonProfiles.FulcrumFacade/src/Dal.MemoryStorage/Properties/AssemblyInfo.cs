@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Frobozz.PersonProfiles.Dal.WebApi")]
+[assembly: AssemblyTitle("Frobozz.PersonProfiles.Dal.MemoryStorage")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Frobozz.PersonProfiles.Dal.WebApi")]
+[assembly: AssemblyProduct("Frobozz.PersonProfiles.Dal.MemoryStorage")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a39c40d5-ad5d-4ba2-9b2c-97fd2b2ef8e2")]
+[assembly: Guid("56dd0335-21ed-45bf-87d9-15852287b8e1")]
 
 // Version information for an assembly consists of the following four values:
 //

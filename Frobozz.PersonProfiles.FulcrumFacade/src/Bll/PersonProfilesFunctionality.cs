@@ -1,62 +1,79 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
-using Frobozz.PersonProfiles.Dal.WebApi.GooglePersonProfiles.Clients;
+using Frobozz.PersonProfiles.Dal.MemoryStorage.PersonProfile;
 using Frobozz.PersonProfiles.FulcrumFacade.Contract.PersonProfiles;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Xlent.Lever.Libraries2.Standard.Assert;
-using Xlent.Lever.Libraries2.Standard.Error.Logic;
+using Xlent.Lever.Libraries2.Standard.Storage.Model;
+using PersonProfile = Frobozz.PersonProfiles.FulcrumFacade.Contract.PersonProfiles.PersonProfile;
 
 namespace Frobozz.PersonProfiles.Bll
 {
     public class PersonProfilesFunctionality : IPersonProfilesFunctionality
     {
         private static readonly string Namespace = typeof(PersonProfilesFunctionality).Namespace;
-        private readonly IPersonProfilesClient _client;
+        private IPersonProfilePersistance _storage;
 
-        public PersonProfilesFunctionality(IPersonProfilesClient client)
+        public PersonProfilesFunctionality(IPersonProfilePersistance storage)
         {
-            _client = client;
+            _storage = storage;
         }
-        public async Task<Location> GeocodeAsync(Address address, bool mustBeUnique)
-        {
-            InternalContract.RequireNotNull(address, nameof(address));
-            InternalContract.RequireValidated(address, nameof(address));
 
-            var response = await _client.GeocodeAsync(Mapping.ToStorage(address));
-            FulcrumAssert.IsNotNull(response, $"{Namespace}: 9410F4F3-FCFB-4B82-9E9D-5061F41EB31B");
-            switch (response.status)
+        public async Task<PersonProfile> CreateAsync(PersonProfile item)
+        {
+            var dalPerson = await _storage.CreateAsync(ToDal(item));
+            return ToService(dalPerson);
+        }
+
+        public async Task<PersonProfile> ReadAsync(string id)
+        {
+            var dalPerson = await _storage.ReadAsync(ToGuid(id));
+            return ToService(dalPerson);
+        }
+
+        public async Task<PersonProfile> UpdateAsync(PersonProfile item)
+        {
+            var dalPerson = await _storage.UpdateAsync(ToDal(item));
+            return ToService(dalPerson);
+        }
+
+        public async Task DeleteAsync(string id)
+        {
+            await _storage.DeleteAsync(ToGuid(id));
+        }
+
+        private static PersonProfile ToService(IStorableItem<Guid> source)
+        {
+            if (source == null) return null;
+            var s = source as StorablePersonProfile;
+            InternalContract.Require(s != null, $"Expected parameter {nameof(source)} to be of type {typeof(StorablePersonProfile).Name}");
+            var target = new PersonProfile
             {
-                case "OK":
-                    FulcrumAssert.AreEqual(1, response.results.Length, $"{Namespace}: D7A969EE-B513-4093-ACB1-4D3B8168B4A6");
-                    var firstResult = response.results?.FirstOrDefault();
-                    FulcrumAssert.IsNotNull(firstResult?.geometry?.location, $"{Namespace}: D7A969EE-B513-4093-ACB1-4D3B8168B4A6", $"Google PersonProfiles returned an unexpected result: {JObject.FromObject(response).ToString(Formatting.Indented)}");
-                    if (mustBeUnique && response.results.Length > 1) throw new FulcrumContractException($"The geoconding was not unique. There were ({response.results.Length}) results in the response.");
-                    var location = Mapping.ToService(firstResult?.geometry?.location);
-                    FulcrumAssert.IsNotNull(location, $"{Namespace}: F21B761B-0CD4-4063-8780-70F2921301D1");
-                    FulcrumAssert.IsValidated(location, $"{Namespace}: 5DB577C2-C3EC-4C0A-AFF1-F018635CF8AF");
-                    return location;
-                case "ZERO_RESULTS":
-                    throw new FulcrumNotFoundException(response.error_message ?? $"PersonProfiles of Address {address} returned no results.");
-                case "OVER_QUERY_LIMIT":
-                    throw new FulcrumForbiddenAccessException(response.error_message ?? "Google PersonProfiles returned a status that says that the current API key is over the query limit.");
-                case "REQUEST_DENIED":
-                    throw new FulcrumForbiddenAccessException(response.error_message ?? "Google PersonProfiles returned a status that says that the request was denied. Invalid API key?");
-                case "INVALID_REQUEST":
-                    FulcrumAssert.Fail($"{Namespace}: D2268351-8B84-4CCE-B5AB-793A9C4C0366", response.error_message ?? "Google PersonProfiles returned a status that generally indicates that the query (address, components or latlng) is missing");
-                    throw new ApplicationException("Assertion failed to stop execution.");
-                case "UNKNOWN_ERROR":
-                    throw new FulcrumTryAgainException(response.error_message ?? "Google PersonProfiles returned a status that indicates that the request could not be processed due to a server error. The request may succeed if you try again.");
-                default:
-                    FulcrumAssert.Fail($"{Namespace}: 96D375F3-2D5A-42B3-9168-145AD0D68CA7", response.error_message ?? $"Google PersonProfiles returned a an unkown status code ({response.status})");
-                    throw new ApplicationException("Assertion failed to stop execution.");
-            }
+                Id = s.Id.ToString(),
+                ETag = s.ETag,
+                GivenName = s.GivenName,
+                Surname = s.Surname
+            };
+            return target;
         }
 
-        public async Task<Location> GeocodeAsync(Address address)
+        private static IStorableItem<Guid> ToDal(PersonProfile source)
         {
-            return await GeocodeAsync(address, false);
+            if (source == null) return null;
+            var target = new StorablePersonProfile
+            {
+                Id = ToGuid(source.Id),
+                ETag = source.ETag,
+                GivenName = source.GivenName,
+                Surname = source.Surname
+            };
+            return target;
+        }
+
+        private static Guid ToGuid(string id)
+        {
+            Guid guid;
+            InternalContract.Require(Guid.TryParse(id, out guid), $"Expected a Guid in {nameof(id)} but the value was ({id}).");
+            return guid;
         }
     }
 }

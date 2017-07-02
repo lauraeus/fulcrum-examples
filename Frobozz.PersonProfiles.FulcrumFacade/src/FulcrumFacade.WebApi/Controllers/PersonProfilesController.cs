@@ -9,10 +9,10 @@ namespace Frobozz.PersonProfiles.FulcrumFacade.WebApi.Controllers
     /// <summary>
     /// ApiController for Product that does inputcontrol. Logic is separated into another layer. 
     /// </summary>
-    [RoutePrefix("api/v1/Geocodes")]
-    public class GeocodesController : ApiController, IPersonProfilesService
+    [RoutePrefix("api/v1/PersonProfiles")]
+    public class PersonProfilesController : ApiController, IPersonProfilesService
     {
-        private static readonly string Namespace = typeof(GeocodesController).Namespace;
+        private static readonly string Namespace = typeof(PersonProfilesController).Namespace;
         /// <summary>
         /// The actual implementation
         /// </summary>
@@ -22,28 +22,68 @@ namespace Frobozz.PersonProfiles.FulcrumFacade.WebApi.Controllers
         /// Constructor that takes a logic layer for product. 
         /// </summary>
         /// <param name="personProfilesFunctionality">Dependency injected logic layer</param>
-        public GeocodesController(IPersonProfilesFunctionality personProfilesFunctionality)
+        public PersonProfilesController(IPersonProfilesFunctionality personProfilesFunctionality)
         {
             PersonProfilesFunctionality = personProfilesFunctionality;
         }
 
-        /// <summary>
-        /// Returnes the first found Location that matches the <paramref name="address"/>.
-        /// </summary>
-        /// <param name="address">The address to look for</param>
+        /// <inheritdoc />
+        /// <response code="200">OK</response>
+        /// <response code="400">Bad request</response>
+        /// <response code="500">Internal Server Error</response>
+        [HttpPost]
+        [Route("")]
+        public async Task<PersonProfile> CreateAsync(PersonProfile item)
+        {
+            ServiceContract.RequireNotNull(item, nameof(item));
+            ServiceContract.RequireValidated(item, nameof(item));
+            var personProfile = await PersonProfilesFunctionality.CreateAsync(item);
+            FulcrumAssert.IsNotNull(personProfile, $"{Namespace}: 56B82634-89A6-4EE4-969D-B7FFB4F9C016");
+            FulcrumAssert.IsValidated(personProfile, $"{Namespace}: 56B82634-89A6-4EE4-969D-B7FFB4F9C016");
+            return personProfile;
+        }
+
+        /// <inheritdoc />
         /// <response code="200">OK</response>
         /// <response code="400">Bad request</response>
         /// <response code="500">Internal Server Error</response>
         [HttpGet]
         [Route("")]
-        public async Task<Location> GeocodeAsync(Address address)
+        public async Task<PersonProfile> ReadAsync(string id)
         {
-            ServiceContract.RequireNotNull(address, nameof(address));
-            ServiceContract.RequireValidated(address, nameof(address));
-            var location = await PersonProfilesFunctionality.GeocodeAsync(address);
-            FulcrumAssert.IsNotNull(location, $"{Namespace}: 56B82634-89A6-4EE4-969D-B7FFB4F9C016");
-            FulcrumAssert.IsValidated(location, $"{Namespace}: 56B82634-89A6-4EE4-969D-B7FFB4F9C016");
-            return location;
+            ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
+            var personProfile = await PersonProfilesFunctionality.ReadAsync(id);
+            FulcrumAssert.IsNotNull(personProfile, $"{Namespace}: 56B82634-89A6-4EE4-969D-B7FFB4F9C016");
+            FulcrumAssert.IsValidated(personProfile, $"{Namespace}: 56B82634-89A6-4EE4-969D-B7FFB4F9C016");
+            return personProfile;
+        }
+
+        /// <inheritdoc />
+        /// <response code="200">OK</response>
+        /// <response code="400">Bad request</response>
+        /// <response code="500">Internal Server Error</response>
+        [HttpPut]
+        [Route("")]
+        public async Task<PersonProfile> UpdateAsync(PersonProfile item)
+        {
+            ServiceContract.RequireNotNull(item, nameof(item));
+            ServiceContract.RequireValidated(item, nameof(item));
+            var personProfile = await PersonProfilesFunctionality.UpdateAsync(item);
+            FulcrumAssert.IsNotNull(personProfile, $"{Namespace}: 56B82634-89A6-4EE4-969D-B7FFB4F9C016");
+            FulcrumAssert.IsValidated(personProfile, $"{Namespace}: 56B82634-89A6-4EE4-969D-B7FFB4F9C016");
+            return personProfile;
+        }
+
+        /// <inheritdoc />
+        /// <response code="200">OK</response>
+        /// <response code="400">Bad request</response>
+        /// <response code="500">Internal Server Error</response>
+        [HttpDelete]
+        [Route("")]
+        public async Task DeleteAsync(string id)
+        {
+            ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
+            await PersonProfilesFunctionality.DeleteAsync(id);
         }
     }
 }

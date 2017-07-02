@@ -167,7 +167,7 @@
       <HintPath>..\..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.Standard, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Standard.1.5.2\lib\netstandard1.4\Xlent.Lever.Libraries2.Standard.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Standard.1.7.3\lib\netstandard1.4\Xlent.Lever.Libraries2.Standard.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.WebApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xlent.Lever.Libraries2.WebApi.1.0.7\lib\Libraries2.WebApi\Xlent.Lever.Libraries2.WebApi.dll</HintPath>
@@ -209,9 +209,9 @@
       <Project>{79be6a98-3047-4a03-96d5-2754f025fefd}</Project>
       <Name>PersonProfiles.Bll</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Dal.WebApi\PersonProfiles.Dal.WebApi.csproj">
-      <Project>{a39c40d5-ad5d-4ba2-9b2c-97fd2b2ef8e2}</Project>
-      <Name>PersonProfiles.Dal.WebApi</Name>
+    <ProjectReference Include="..\Dal.MemoryStorage\PersonProfiles.Dal.MemoryStorage.csproj">
+      <Project>{56dd0335-21ed-45bf-87d9-15852287b8e1}</Project>
+      <Name>PersonProfiles.Dal.MemoryStorage</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

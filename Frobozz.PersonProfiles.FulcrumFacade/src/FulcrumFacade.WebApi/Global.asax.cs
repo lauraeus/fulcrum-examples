@@ -1,5 +1,4 @@
 ﻿using System.Web.Http;
-using Frobozz.PersonProfiles.FulcrumFacade.WebApi;
 
 namespace Frobozz.PersonProfiles.FulcrumFacade.WebApi
 {
