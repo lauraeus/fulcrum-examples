@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Clients;
+using Frobozz.Geocoding.Dal.WebApi.GoogleGeocoding.Clients;
 using Frobozz.Geocoding.FulcrumFacade.Contract.Geocoding;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -13,9 +13,9 @@ namespace Frobozz.Geocoding.Bll
     public class GeocodingFunctionality : IGeocodingFunctionality
     {
         private static readonly string Namespace = typeof(GeocodingFunctionality).Namespace;
-        private readonly IGeocodeClient _client;
+        private readonly IGeocodingClient _client;
 
-        public GeocodingFunctionality(IGeocodeClient client)
+        public GeocodingFunctionality(IGeocodingClient client)
         {
             _client = client;
         }

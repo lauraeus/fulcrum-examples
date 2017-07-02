@@ -1,6 +1,6 @@
 ﻿using Xlent.Lever.Libraries2.Standard.Assert;
 
-namespace Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Models
+namespace Frobozz.Geocoding.Dal.WebApi.GoogleGeocoding.Models
 {
     public class Address : IValidatable
     {

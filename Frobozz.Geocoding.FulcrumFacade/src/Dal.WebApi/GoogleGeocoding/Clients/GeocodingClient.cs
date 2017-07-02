@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Models;
+using Frobozz.Geocoding.Dal.WebApi.GoogleGeocoding.Models;
 using Xlent.Lever.Libraries2.Standard.Assert;
 using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
 
-namespace Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Clients
+namespace Frobozz.Geocoding.Dal.WebApi.GoogleGeocoding.Clients
 {
     /// <summary>
     /// A client for accessing the Google Geocoding API; https://developers.google.com/maps/documentation/geocoding/intro
     /// </summary>
-    public class GeocodeClient : IGeocodeClient
+    public class GeocodingClient : IGeocodingClient
     {
         private readonly IRestClient _restClient;
 
-        public GeocodeClient(IRestClient restClient)
+        public GeocodingClient(IRestClient restClient)
         {
             _restClient = restClient;
         }

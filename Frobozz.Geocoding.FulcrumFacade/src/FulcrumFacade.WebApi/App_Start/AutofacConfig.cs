@@ -3,7 +3,7 @@ using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Frobozz.Geocoding.Bll;
-using Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Clients;
+using Frobozz.Geocoding.Dal.WebApi.GoogleGeocoding.Clients;
 using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
 
 namespace Frobozz.Geocoding.FulcrumFacade.WebApi
@@ -23,9 +23,9 @@ namespace Frobozz.Geocoding.FulcrumFacade.WebApi
 
             //Register Bll and Dal dependencies
             builder.RegisterType<GeocodingFunctionality>().As<IGeocodingFunctionality>();
-            builder.RegisterType<GeocodeClient>().As<IGeocodeClient>();
-            builder.Register(ctx => new GeocodeClient(new RestClient("https://maps.googleapis.com/maps/api/geocode")))
-                .As<IGeocodeClient>().SingleInstance();
+            builder.RegisterType<GeocodingClient>().As<IGeocodingClient>();
+            builder.Register(ctx => new GeocodingClient(new RestClient("https://maps.googleapis.com/maps/api/geocode")))
+                .As<IGeocodingClient>().SingleInstance();
 
             // Register your controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());

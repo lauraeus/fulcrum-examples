@@ -1,6 +1,6 @@
 // ReSharper disable All
 #pragma warning disable IDE1006 // Naming Styles
-namespace Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Models
+namespace Frobozz.Geocoding.Dal.WebApi.GoogleGeocoding.Models
 {
     /// <summary>
     /// A response from a geocode request, as specified at https://developers.google.com/maps/documentation/geocoding/intro#GeocodingResponses

@@ -172,7 +172,7 @@
       <Project>{79be6a98-3047-4a03-96d5-2754f025fefd}</Project>
       <Name>Geocoding.Bll</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Sl.WebApi\Geocoding.FulcrumFacade.WebApi.csproj">
+    <ProjectReference Include="..\..\src\FulcrumFacade.WebApi\Geocoding.FulcrumFacade.WebApi.csproj">
       <Project>{54C014CC-5F86-4E4B-B437-8F80BD5D2FE0}</Project>
       <Name>Geocoding.FulcrumFacade.WebApi</Name>
     </ProjectReference>

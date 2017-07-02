@@ -123,10 +123,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="GoogleGeocode\Clients\GeocodeClient.cs" />
-    <Compile Include="GoogleGeocode\Clients\IGeocodeClient.cs" />
-    <Compile Include="GoogleGeocode\Models\Address.cs" />
-    <Compile Include="GoogleGeocode\Models\GeocodingResponse.cs" />
+    <Compile Include="GoogleGeocoding\Clients\GeocodingClient.cs" />
+    <Compile Include="GoogleGeocoding\Clients\IGeocodingClient.cs" />
+    <Compile Include="GoogleGeocoding\Models\Address.cs" />
+    <Compile Include="GoogleGeocoding\Models\GeocodingResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

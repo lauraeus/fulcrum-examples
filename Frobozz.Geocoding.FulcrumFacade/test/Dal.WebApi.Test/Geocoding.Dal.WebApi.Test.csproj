@@ -7,8 +7,8 @@
     <ProjectGuid>{352A1133-8560-4F8B-9487-A15073ED1AAF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Frobozz.Geocode.Geocoding.Dal.WebApi.Test</RootNamespace>
-    <AssemblyName>Frobozz.Geocode.Geocoding.Dal.WebApi.Test</AssemblyName>
+    <RootNamespace>Frobozz.Geocoding.Dal.WebApi.Test</RootNamespace>
+    <AssemblyName>Frobozz.Geocoding.Dal.WebApi.Test</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

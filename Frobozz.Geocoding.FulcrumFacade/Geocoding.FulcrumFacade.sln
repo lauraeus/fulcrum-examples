@@ -9,13 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		SolutionArchitectureBasic.png = SolutionArchitectureBasic.png
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geocoding.FulcrumFacade.WebApi", "src\Sl.WebApi\Geocoding.FulcrumFacade.WebApi.csproj", "{54C014CC-5F86-4E4B-B437-8F80BD5D2FE0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geocoding.FulcrumFacade.WebApi", "src\FulcrumFacade.WebApi\Geocoding.FulcrumFacade.WebApi.csproj", "{54C014CC-5F86-4E4B-B437-8F80BD5D2FE0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geocoding.Bll", "src\Bll\Geocoding.Bll.csproj", "{79BE6A98-3047-4A03-96D5-2754F025FEFD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geocoding.Bll.Tests", "test\Bll\Geocoding.Bll.Tests.csproj", "{BB32899F-0C41-4CED-95E4-F920D65E4404}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geocoding.FulcrumFacade.WebApi.Tests", "test\Sl.WebApi\Geocoding.FulcrumFacade.WebApi.Tests.csproj", "{2B3EF51E-65E3-4763-BD88-882B847AEF7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geocoding.FulcrumFacade.WebApi.Tests", "test\FulcrumFacade.WebApi\Geocoding.FulcrumFacade.WebApi.Tests.csproj", "{2B3EF51E-65E3-4763-BD88-882B847AEF7A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4C41FCC3-3EC4-41F7-8541-BC59EA8ED3F0}"
 EndProject

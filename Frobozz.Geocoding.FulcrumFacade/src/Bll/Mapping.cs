@@ -1,4 +1,4 @@
-﻿using DM = Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Models;
+﻿using DM = Frobozz.Geocoding.Dal.WebApi.GoogleGeocoding.Models;
 using SM = Frobozz.Geocoding.FulcrumFacade.Contract.Geocoding;
 
 namespace Frobozz.Geocoding.Bll

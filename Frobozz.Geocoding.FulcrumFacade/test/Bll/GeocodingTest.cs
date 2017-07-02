@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Clients;
-using DM = Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Models;
+using Frobozz.Geocoding.Dal.WebApi.GoogleGeocoding.Clients;
+using DM = Frobozz.Geocoding.Dal.WebApi.GoogleGeocoding.Models;
 using SM = Frobozz.Geocoding.FulcrumFacade.Contract.Geocoding;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -11,27 +11,27 @@ namespace Frobozz.Geocoding.Bll.Tests
     [TestClass]
     public class GeocodingTest
     {
-        private Mock<IGeocodeClient> _geocodeClientMock;
-        private IGeocodingFunctionality _geocodeFunctionality;
+        private Mock<IGeocodingClient> _GeocodingClientMock;
+        private IGeocodingFunctionality _geocodingFunctionality;
 
         [TestInitialize]
         public void Initialize()
         {
-            _geocodeClientMock = new Mock<IGeocodeClient>();
-            _geocodeFunctionality = new GeocodingFunctionality(_geocodeClientMock.Object);
+            _GeocodingClientMock = new Mock<IGeocodingClient>();
+            _geocodingFunctionality = new GeocodingFunctionality(_GeocodingClientMock.Object);
         }
 
         [TestMethod]
         public async Task Success()
         {
-            _geocodeClientMock.Setup(mock => mock.GeocodeAsync(It.IsAny<DM.Address>())).ReturnsAsync(CreateResponseOk());
+            _GeocodingClientMock.Setup(mock => mock.GeocodeAsync(It.IsAny<DM.Address>())).ReturnsAsync(CreateResponseOk());
             var address = new SM.Address
             {
                 Row1 = "Regeringsgatan 67",
                 PostCode = "11156",
                 Country = "Sweden"
             };
-            var location = await _geocodeFunctionality.GeocodeAsync(address);
+            var location = await _geocodingFunctionality.GeocodeAsync(address);
             Assert.IsNotNull(location);
             Assert.IsNotNull(location.Latitude);
             Assert.IsNotNull(location.Longitude);
@@ -47,7 +47,7 @@ namespace Frobozz.Geocoding.Bll.Tests
                 Row1 = "Regeringsgatan 67",
                 PostCode = "11156",
             };
-            var resultLocation = await _geocodeFunctionality.GeocodeAsync(address);
+            var resultLocation = await _geocodingFunctionality.GeocodeAsync(address);
         }
 
         private DM.GeocodingResponse CreateResponseOk()

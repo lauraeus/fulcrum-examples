@@ -1,17 +1,17 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Clients;
-using Frobozz.Geocoding.Dal.WebApi.GoogleGeocode.Models;
+using Frobozz.Geocoding.Dal.WebApi.GoogleGeocoding.Clients;
+using Frobozz.Geocoding.Dal.WebApi.GoogleGeocoding.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
 
-namespace Frobozz.Geocode.Geocoding.Dal.WebApi.Test
+namespace Frobozz.Geocoding.Dal.WebApi.Test
 {
     [TestClass]
     public class GeocodingTest
     {
-        private IGeocodeClient _client;
+        private IGeocodingClient _client;
         private Mock<IRestClient> _restClientMock;
         private Location _mockLocation;
         private string _mockMessage;
@@ -26,7 +26,7 @@ namespace Frobozz.Geocode.Geocoding.Dal.WebApi.Test
                 lat = "33.33333"
             };
             _restClientMock = new Mock<IRestClient>();
-            _client = new GeocodeClient(_restClientMock.Object);
+            _client = new GeocodingClient(_restClientMock.Object);
         }
 
         [TestMethod]
