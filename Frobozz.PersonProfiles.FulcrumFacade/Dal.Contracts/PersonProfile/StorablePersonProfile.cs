@@ -20,11 +20,11 @@ namespace Frobozz.PersonProfiles.Dal.Contracts.PersonProfile
         public string Surname { get; set; }
     }
 
-    public partial class StorablePersonProfile : StorableItem<Guid>
+    public partial class StorablePersonProfile : StorableItem<Guid>, INameProperty
     {
         #region INameProperty
         /// <inheritdoc />
-        public override string Name => $"{GivenName} {Surname}";
+        public string Name => $"{GivenName} {Surname}";
         #endregion
 
         #region IValidatable

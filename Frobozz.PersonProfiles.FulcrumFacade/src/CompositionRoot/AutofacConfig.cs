@@ -6,7 +6,7 @@ using Frobozz.PersonProfiles.Bll;
 using Frobozz.PersonProfiles.Dal.Contracts.PersonProfile;
 using Frobozz.PersonProfiles.Dal.MemoryStorage.PersonProfile;
 
-namespace Frobozz.PersonProfiles.FulcrumFacade.WebApi
+namespace Frobozz.PersonProfiles.CompositionRoot
 {
     /// <summary>
     /// Connect interfaces with implementations.

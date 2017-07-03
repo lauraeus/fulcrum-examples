@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using Frobozz.PersonProfiles.CompositionRoot;
 
 namespace Frobozz.PersonProfiles.FulcrumFacade.WebApi
 {

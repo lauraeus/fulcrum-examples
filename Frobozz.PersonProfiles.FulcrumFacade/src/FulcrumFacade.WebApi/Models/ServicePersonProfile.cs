@@ -1,23 +1,21 @@
 ﻿using System;
+using Frobozz.PersonProfiles.FulcrumFacade.Contract.PersonProfiles;
 using Xlent.Lever.Libraries2.Standard.Assert;
 using Xlent.Lever.Libraries2.Standard.Storage.Model;
 
-namespace Frobozz.PersonProfiles.FulcrumFacade.Contract.PersonProfiles
+namespace Frobozz.PersonProfiles.FulcrumFacade.WebApi.Models
 {
     /// <summary>
     /// A physical address.
     /// </summary>
-    public partial class PersonProfile : StorableItem<string>, IPersonProfile
+    public partial class ServicePersonProfile : StorableItem<string>, IPersonProfile
     {
         /// <inheritdoc />
         public string GivenName { get; set; }
 
         /// <inheritdoc />
         public string Surname { get; set; }
-    }
 
-    public partial class PersonProfile
-    {
         #region IValidatable
         /// <inheritdoc />
         public override void Validate(string errorLocation, string propertyPath = "")
@@ -28,10 +26,16 @@ namespace Frobozz.PersonProfiles.FulcrumFacade.Contract.PersonProfiles
         #endregion
     }
 
-    #region override object
-    public partial class PersonProfile
+    public partial class ServicePersonProfile
     {
-        
+        internal static ServicePersonProfile ToImplementation(IPersonProfile item)
+        {
+            var implementation = item as ServicePersonProfile;
+            InternalContract.RequireNotNull(implementation, nameof(item), $"Contract violation. Expected parameter {nameof(item)} to be of type {nameof(ServicePersonProfile)}, but was of type {item.GetType().Name}");
+            return implementation;
+        }
+
+        #region override object
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -41,7 +45,7 @@ namespace Frobozz.PersonProfiles.FulcrumFacade.Contract.PersonProfiles
         /// <inheritdoc />
         public override bool Equals(object obj)
         {
-            var person = obj as PersonProfile;
+            var person = obj as ServicePersonProfile;
             if (person == null) return false;
             if (!Equals(person.Id, Id)) return false;
             if (!string.Equals(person.ETag, ETag, StringComparison.OrdinalIgnoreCase)) return false;
@@ -57,6 +61,6 @@ namespace Frobozz.PersonProfiles.FulcrumFacade.Contract.PersonProfiles
             // ReSharper disable once NonReadonlyMemberInGetHashCode
             return Id.GetHashCode();
         }
+        #endregion
     }
-    #endregion
 }

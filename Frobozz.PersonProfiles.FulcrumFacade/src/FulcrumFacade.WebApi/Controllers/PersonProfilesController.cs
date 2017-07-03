@@ -2,7 +2,9 @@
 using System.Web.Http;
 using Frobozz.PersonProfiles.Bll;
 using Frobozz.PersonProfiles.FulcrumFacade.Contract.PersonProfiles;
+using Frobozz.PersonProfiles.FulcrumFacade.WebApi.Models;
 using Xlent.Lever.Libraries2.Standard.Assert;
+using Xlent.Lever.Libraries2.Standard.Storage.Model;
 
 namespace Frobozz.PersonProfiles.FulcrumFacade.WebApi.Controllers
 {
@@ -33,7 +35,7 @@ namespace Frobozz.PersonProfiles.FulcrumFacade.WebApi.Controllers
         /// <response code="500">Internal Server Error</response>
         [HttpPost]
         [Route("")]
-        public async Task<PersonProfile> CreateAsync(PersonProfile item)
+        public async Task<IPersonProfile> CreateAsync(ServicePersonProfile item)
         {
             ServiceContract.RequireNotNull(item, nameof(item));
             ServiceContract.RequireValidated(item, nameof(item));
@@ -43,13 +45,18 @@ namespace Frobozz.PersonProfiles.FulcrumFacade.WebApi.Controllers
             return personProfile;
         }
 
+        async Task<IPersonProfile> ICreate<IPersonProfile, string>.CreateAsync(IPersonProfile item)
+        {
+            return await CreateAsync(ServicePersonProfile.ToImplementation(item));
+        }
+
         /// <inheritdoc />
         /// <response code="200">OK</response>
         /// <response code="400">Bad request</response>
         /// <response code="500">Internal Server Error</response>
         [HttpGet]
         [Route("")]
-        public async Task<PersonProfile> ReadAsync(string id)
+        public async Task<IPersonProfile> ReadAsync(string id)
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
             var personProfile = await PersonProfilesFunctionality.ReadAsync(id);
@@ -64,7 +71,7 @@ namespace Frobozz.PersonProfiles.FulcrumFacade.WebApi.Controllers
         /// <response code="500">Internal Server Error</response>
         [HttpPut]
         [Route("")]
-        public async Task<PersonProfile> UpdateAsync(PersonProfile item)
+        public async Task<IPersonProfile> UpdateAsync(ServicePersonProfile item)
         {
             ServiceContract.RequireNotNull(item, nameof(item));
             ServiceContract.RequireValidated(item, nameof(item));
@@ -72,6 +79,11 @@ namespace Frobozz.PersonProfiles.FulcrumFacade.WebApi.Controllers
             FulcrumAssert.IsNotNull(personProfile, $"{Namespace}: 56B82634-89A6-4EE4-969D-B7FFB4F9C016");
             FulcrumAssert.IsValidated(personProfile, $"{Namespace}: 56B82634-89A6-4EE4-969D-B7FFB4F9C016");
             return personProfile;
+        }
+
+        async Task<IPersonProfile> IUpdate<IPersonProfile, string>.UpdateAsync(IPersonProfile item)
+        {
+            return await UpdateAsync(ServicePersonProfile.ToImplementation(item));
         }
 
         /// <inheritdoc />

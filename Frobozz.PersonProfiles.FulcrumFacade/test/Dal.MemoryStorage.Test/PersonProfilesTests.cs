@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Xlent.Lever.Libraries2.Standard.Assert;
 using Xlent.Lever.Libraries2.Standard.Storage.Logic;
-using Xlent.Lever.Libraries2.Standard.Storage.Model;
 using Xlent.Lever.Libraries2.Standard.Storage.Test;
 
 namespace Frobozz.PersonProfiles.Dal.MemoryStorage.Test

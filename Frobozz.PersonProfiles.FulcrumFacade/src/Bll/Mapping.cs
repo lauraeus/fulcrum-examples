@@ -7,21 +7,19 @@ namespace Frobozz.PersonProfiles.Bll
 {
     public static class Mapping
     {
-        public static StorablePersonProfile ToStorage(SM.PersonProfile source)
+        public static StorablePersonProfile ToStorage(SM.IPersonProfile source)
         {
             if (source == null) return null;
-            Guid guid;
-            InternalContract.Require(Guid.TryParse(source.Id, out guid), $"Expected a Guid for {nameof(source.Id)} ({source.Id}");
             var target = new StorablePersonProfile
             {
-                Id = guid,
+                Id = ToGuid(source.Id),
                 ETag = source.ETag,
                 GivenName = source.GivenName,
                 Surname = source.Surname
             };
             return target;
         }
-        public static SM.PersonProfile ToService(StorablePersonProfile source)
+        public static SM.IPersonProfile ToService(StorablePersonProfile source)
         {
             if (source == null) return null;
             var target = new SM.PersonProfile()
@@ -32,6 +30,15 @@ namespace Frobozz.PersonProfiles.Bll
                 Surname = source.Surname
             };
             return target;
+        }
+
+        private static Guid ToGuid(string id)
+        {
+#pragma warning disable IDE0018 // Inline variable declaration
+            Guid guid;
+#pragma warning restore IDE0018 // Inline variable declaration
+            InternalContract.Require(Guid.TryParse(id, out guid), $"Expected a Guid in {nameof(id)} but the value was ({id}).");
+            return guid;
         }
     }
 }

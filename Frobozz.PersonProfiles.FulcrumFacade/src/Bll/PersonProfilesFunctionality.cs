@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Frobozz.PersonProfiles.Dal.Contracts.PersonProfile;
+using Frobozz.PersonProfiles.FulcrumFacade.Contract.PersonProfiles;
 using Xlent.Lever.Libraries2.Standard.Assert;
-using PersonProfile = Frobozz.PersonProfiles.FulcrumFacade.Contract.PersonProfiles.PersonProfile;
 
 namespace Frobozz.PersonProfiles.Bll
 {
@@ -15,19 +15,19 @@ namespace Frobozz.PersonProfiles.Bll
             _storage = storage;
         }
 
-        public async Task<PersonProfile> CreateAsync(PersonProfile item)
+        public async Task<IPersonProfile> CreateAsync(IPersonProfile item)
         {
             var dalPerson = await _storage.CreateAsync(ToDal(item));
             return ToService(dalPerson);
         }
 
-        public async Task<PersonProfile> ReadAsync(string id)
+        public async Task<IPersonProfile> ReadAsync(string id)
         {
             var dalPerson = await _storage.ReadAsync(ToGuid(id));
             return ToService(dalPerson);
         }
 
-        public async Task<PersonProfile> UpdateAsync(PersonProfile item)
+        public async Task<IPersonProfile> UpdateAsync(IPersonProfile item)
         {
             var dalPerson = await _storage.UpdateAsync(ToDal(item));
             return ToService(dalPerson);
@@ -38,7 +38,7 @@ namespace Frobozz.PersonProfiles.Bll
             await _storage.DeleteAsync(ToGuid(id));
         }
 
-        private static PersonProfile ToService(IStorablePersonProfile source)
+        private static IPersonProfile ToService(IStorablePersonProfile source)
         {
             if (source == null) return null;
             var target = new PersonProfile
@@ -51,7 +51,7 @@ namespace Frobozz.PersonProfiles.Bll
             return target;
         }
 
-        private static IStorablePersonProfile ToDal(PersonProfile source)
+        private static IStorablePersonProfile ToDal(IPersonProfile source)
         {
             if (source == null) return null;
             var target = new StorablePersonProfile
@@ -66,7 +66,9 @@ namespace Frobozz.PersonProfiles.Bll
 
         private static Guid ToGuid(string id)
         {
+#pragma warning disable IDE0018 // Inline variable declaration
             Guid guid;
+#pragma warning restore IDE0018 // Inline variable declaration
             InternalContract.Require(Guid.TryParse(id, out guid), $"Expected a Guid in {nameof(id)} but the value was ({id}).");
             return guid;
         }

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Frobozz.PersonProfiles.Bll;
 using Frobozz.PersonProfiles.FulcrumFacade.Contract.PersonProfiles;
 using Frobozz.PersonProfiles.FulcrumFacade.WebApi.Controllers;
+using Frobozz.PersonProfiles.FulcrumFacade.WebApi.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Xlent.Lever.Libraries2.Standard.Assert;
@@ -13,9 +14,10 @@ namespace Frobozz.PersonProfiles.FulcrumFacade.WebApi.Tests
     public class PersonProfilesTests
     {
         private static readonly string Namespace = typeof(PersonProfilesTests).Namespace;
-        private PersonProfilesController _controller;
-        private Mock<IPersonProfilesFunctionality> _PersonProfilesFunctionality;
-        private PersonProfile _bllPerson;
+        private IPersonProfilesService _controller;
+        private Mock<IPersonProfilesFunctionality> _personProfilesFunctionality;
+        private IPersonProfile _bllPerson;
+        private IPersonProfile _servicePerson;
 
         [ClassInitialize()]
         public static void ClassInit(TestContext context)
@@ -26,26 +28,35 @@ namespace Frobozz.PersonProfiles.FulcrumFacade.WebApi.Tests
         public void Initialize()
         {
            
-            _PersonProfilesFunctionality = new Mock<IPersonProfilesFunctionality>();
-            _controller = new PersonProfilesController(_PersonProfilesFunctionality.Object);
+            _personProfilesFunctionality = new Mock<IPersonProfilesFunctionality>();
+            _controller = new PersonProfilesController(_personProfilesFunctionality.Object);
+            var id = Guid.NewGuid().ToString();
+            var eTag = Guid.NewGuid().ToString();
             _bllPerson = new PersonProfile
             {
-                Id = Guid.NewGuid().ToString(),
-                ETag = Guid.NewGuid().ToString(),
+                Id = id,
+                ETag = eTag,
+                GivenName = "Joe",
+                Surname = "Smith"
+            };
+            _servicePerson = new ServicePersonProfile
+            {
+                Id = id,
+                ETag = eTag,
                 GivenName = "Joe",
                 Surname = "Smith"
             };
             FulcrumAssert.IsValidated(_bllPerson, $"{Namespace}: C3A453C9-77AA-4FFD-9DEB-DDD3291947DA");
-            _PersonProfilesFunctionality.Setup(mock => mock.CreateAsync(It.IsAny<PersonProfile>())).ReturnsAsync(_bllPerson);
-            _PersonProfilesFunctionality.Setup(mock => mock.ReadAsync(It.IsAny<string>())).ReturnsAsync(_bllPerson);
-            _PersonProfilesFunctionality.Setup(mock => mock.UpdateAsync(It.IsAny<PersonProfile>())).ReturnsAsync(_bllPerson);
-            _PersonProfilesFunctionality.Setup(mock => mock.DeleteAsync(It.IsAny<string>())).Returns(Task.FromResult(0));
+            _personProfilesFunctionality.Setup(mock => mock.CreateAsync(It.IsAny<IPersonProfile>())).ReturnsAsync(_bllPerson);
+            _personProfilesFunctionality.Setup(mock => mock.ReadAsync(It.IsAny<string>())).ReturnsAsync(_bllPerson);
+            _personProfilesFunctionality.Setup(mock => mock.UpdateAsync(It.IsAny<IPersonProfile>())).ReturnsAsync(_bllPerson);
+            _personProfilesFunctionality.Setup(mock => mock.DeleteAsync(It.IsAny<string>())).Returns(Task.FromResult(0));
         }
 
         [TestMethod]
         public async Task Create()
         {
-            var createdPerson = await _controller.CreateAsync(_bllPerson);
+            var createdPerson = await _controller.CreateAsync(_servicePerson);
             Assert.IsNotNull(createdPerson);
             Assert.AreEqual(_bllPerson, createdPerson);
         }
@@ -62,7 +73,7 @@ namespace Frobozz.PersonProfiles.FulcrumFacade.WebApi.Tests
         [TestMethod]
         public async Task Update()
         {
-            var person = await _controller.UpdateAsync(_bllPerson);
+            var person = await _controller.UpdateAsync(_servicePerson);
             Assert.IsNotNull(person);
             Assert.AreEqual(_bllPerson, person);
 

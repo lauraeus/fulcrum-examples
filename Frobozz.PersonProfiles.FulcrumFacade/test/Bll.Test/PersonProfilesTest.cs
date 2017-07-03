@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using DM = Frobozz.PersonProfiles.Dal.Contracts.PersonProfile;
-using SM = Frobozz.PersonProfiles.FulcrumFacade.Contract.PersonProfiles;
+using CM = Frobozz.PersonProfiles.FulcrumFacade.Contract.PersonProfiles;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -12,14 +12,14 @@ namespace Frobozz.PersonProfiles.Bll.Tests
     {
         private Mock<DM.IPersonProfilePersistance<DM.IStorablePersonProfile>> _personProfilesClientMock;
         private IPersonProfilesFunctionality _personProfilesFunctionality;
-        private SM.PersonProfile _bllPerson;
+        private CM.IPersonProfile _bllPerson;
         private DM.IStorablePersonProfile _dalPerson;
 
         [TestInitialize]
         public void Initialize()
         {
             _personProfilesClientMock = new Mock<DM.IPersonProfilePersistance<DM.IStorablePersonProfile>>();
-            _personProfilesFunctionality = new PersonProfilesFunctionality(_personProfilesClientMock.Object);
+            _personProfilesFunctionality = new Bll.PersonProfilesFunctionality(_personProfilesClientMock.Object);
             var id = Guid.NewGuid();
             var eTag = Guid.NewGuid().ToString();
             _dalPerson = new DM.StorablePersonProfile
@@ -29,7 +29,7 @@ namespace Frobozz.PersonProfiles.Bll.Tests
                 GivenName = "Joe",
                 Surname = "Smith"
             };
-            _bllPerson = new SM.PersonProfile
+            _bllPerson = new CM.PersonProfile
             {
                 Id = id.ToString(),
                 ETag = eTag,
