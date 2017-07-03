@@ -45,12 +45,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.6.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Autofac.4.6.0\lib\net45\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Autofac.Integration.WebApi, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Autofac.WebApi.3.1.0\lib\net40\Autofac.Integration.WebApi.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -167,7 +161,7 @@
       <HintPath>..\..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.Standard, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Standard.1.7.3\lib\netstandard1.4\Xlent.Lever.Libraries2.Standard.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Standard.1.8.0\lib\netstandard1.4\Xlent.Lever.Libraries2.Standard.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.WebApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xlent.Lever.Libraries2.WebApi.1.0.7\lib\Libraries2.WebApi\Xlent.Lever.Libraries2.WebApi.dll</HintPath>
@@ -177,7 +171,6 @@
     <Content Include="Global.asax" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\PersonProfilesController.cs" />
@@ -201,6 +194,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Dal.Contracts\PersonProfiles.Dal.Contracts.csproj">
+      <Project>{90aef2f7-0b6b-41a0-8228-42dfcc24e56b}</Project>
+      <Name>PersonProfiles.Dal.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bll.Contract\PersonProfiles.FulcrumFacade.Contract.csproj">
       <Project>{b5c92ea6-f20d-4576-a8eb-87b5a39eb0d3}</Project>
       <Name>PersonProfiles.FulcrumFacade.Contract</Name>
@@ -208,6 +205,10 @@
     <ProjectReference Include="..\Bll\PersonProfiles.Bll.csproj">
       <Project>{79be6a98-3047-4a03-96d5-2754f025fefd}</Project>
       <Name>PersonProfiles.Bll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CompositionRoot\PersonProfiles.CompositionRoot.csproj">
+      <Project>{0ae20214-5cae-4802-a2fa-6678c46c3d8f}</Project>
+      <Name>PersonProfiles.CompositionRoot</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dal.MemoryStorage\PersonProfiles.Dal.MemoryStorage.csproj">
       <Project>{56dd0335-21ed-45bf-87d9-15852287b8e1}</Project>

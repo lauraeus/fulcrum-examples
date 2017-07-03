@@ -118,7 +118,7 @@
       <HintPath>..\..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.Standard, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Standard.1.7.3\lib\netstandard1.4\Xlent.Lever.Libraries2.Standard.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Standard.1.8.0\lib\netstandard1.4\Xlent.Lever.Libraries2.Standard.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +130,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Dal.Contracts\PersonProfiles.Dal.Contracts.csproj">
+      <Project>{90AEF2F7-0B6B-41A0-8228-42DFCC24E56B}</Project>
+      <Name>PersonProfiles.Dal.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Dal.MemoryStorage\PersonProfiles.Dal.MemoryStorage.csproj">
       <Project>{56dd0335-21ed-45bf-87d9-15852287b8e1}</Project>
       <Name>PersonProfiles.Dal.MemoryStorage</Name>

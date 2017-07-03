@@ -128,7 +128,7 @@
       <HintPath>..\..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.Standard, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Standard.1.7.3\lib\netstandard1.4\Xlent.Lever.Libraries2.Standard.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Standard.1.8.0\lib\netstandard1.4\Xlent.Lever.Libraries2.Standard.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +140,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Dal.Contracts\PersonProfiles.Dal.Contracts.csproj">
+      <Project>{90aef2f7-0b6b-41a0-8228-42dfcc24e56b}</Project>
+      <Name>PersonProfiles.Dal.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Bll.Contract\PersonProfiles.FulcrumFacade.Contract.csproj">
       <Project>{B5C92EA6-F20D-4576-A8EB-87B5A39EB0D3}</Project>
       <Name>PersonProfiles.FulcrumFacade.Contract</Name>

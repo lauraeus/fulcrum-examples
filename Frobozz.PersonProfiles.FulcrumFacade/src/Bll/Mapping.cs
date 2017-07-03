@@ -1,18 +1,18 @@
 ﻿using System;
+using Frobozz.PersonProfiles.Dal.Contracts.PersonProfile;
 using Xlent.Lever.Libraries2.Standard.Assert;
-using DM = Frobozz.PersonProfiles.Dal.MemoryStorage.PersonProfile;
 using SM = Frobozz.PersonProfiles.FulcrumFacade.Contract.PersonProfiles;
 
 namespace Frobozz.PersonProfiles.Bll
 {
     public static class Mapping
     {
-        public static DM.StorablePersonProfile ToStorage(SM.PersonProfile source)
+        public static StorablePersonProfile ToStorage(SM.PersonProfile source)
         {
             if (source == null) return null;
             Guid guid;
             InternalContract.Require(Guid.TryParse(source.Id, out guid), $"Expected a Guid for {nameof(source.Id)} ({source.Id}");
-            var target = new DM.StorablePersonProfile
+            var target = new StorablePersonProfile
             {
                 Id = guid,
                 ETag = source.ETag,
@@ -21,7 +21,7 @@ namespace Frobozz.PersonProfiles.Bll
             };
             return target;
         }
-        public static SM.PersonProfile ToService(DM.StorablePersonProfile source)
+        public static SM.PersonProfile ToService(StorablePersonProfile source)
         {
             if (source == null) return null;
             var target = new SM.PersonProfile()

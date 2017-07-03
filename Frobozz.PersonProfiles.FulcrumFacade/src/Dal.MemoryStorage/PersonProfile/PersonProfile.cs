@@ -1,4 +1,5 @@
 ﻿using System;
+using Frobozz.PersonProfiles.Dal.Contracts.PersonProfile;
 using Newtonsoft.Json;
 using Xlent.Lever.Libraries2.Standard.Assert;
 using Xlent.Lever.Libraries2.Standard.Misc.Models;
@@ -10,7 +11,7 @@ namespace Frobozz.PersonProfiles.Dal.MemoryStorage.PersonProfile
     /// <summary>
     /// A storable person profile class.
     /// </summary>
-    public partial class StorablePersonProfile : StorableItem<Guid>
+    public partial class PersonProfile : IStorablePersonProfile
     {
         /// <summary>
         /// The given name (western "first name") for the person.
@@ -22,7 +23,8 @@ namespace Frobozz.PersonProfiles.Dal.MemoryStorage.PersonProfile
         /// </summary>
         public string Surname { get; set; }
     }
-    public partial class StorablePersonProfile : IDeepCopy<StorablePersonProfile>, IStorableItemForTesting<StorablePersonProfile, Guid>
+
+    public partial class PersonProfile : StorableItem<Guid>
     {
         #region INameProperty
         /// <inheritdoc />
@@ -37,19 +39,22 @@ namespace Frobozz.PersonProfiles.Dal.MemoryStorage.PersonProfile
             FulcrumValidate.IsNotNullOrWhiteSpace(Surname, nameof(Surname), errorLocation);
         }
         #endregion
+    }
 
-        #region IDeepCopy
+    public partial class PersonProfile : IDeepCopy<PersonProfile>
+    {
         /// <inheritdoc />
-        public StorablePersonProfile DeepCopy()
+        public PersonProfile DeepCopy()
         {
             var serialized = JsonConvert.SerializeObject(this);
-            return JsonConvert.DeserializeObject<StorablePersonProfile>(serialized);
+            return JsonConvert.DeserializeObject<PersonProfile>(serialized);
         }
-        #endregion
+    }
 
-        #region IStorableItemForTesting
+    public partial class PersonProfile : IStorableItemForTesting<PersonProfile, Guid>
+    {
         /// <inheritdoc />
-        public StorablePersonProfile InitializeWithDataForTesting(TypeOfTestDataEnum typeOfTestData)
+        public PersonProfile InitializeWithDataForTesting(TypeOfTestDataEnum typeOfTestData)
         {
             switch (typeOfTestData)
             {
@@ -72,14 +77,15 @@ namespace Frobozz.PersonProfiles.Dal.MemoryStorage.PersonProfile
         }
 
         /// <inheritdoc />
-        public StorablePersonProfile ChangeDataToNotEqualForTesting()
+        public PersonProfile ChangeDataToNotEqualForTesting()
         {
             GivenName = Guid.NewGuid().ToString();
             return this;
         }
-        #endregion
+    }
 
-        #region override object
+    public partial class PersonProfile
+    { 
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -89,7 +95,7 @@ namespace Frobozz.PersonProfiles.Dal.MemoryStorage.PersonProfile
         /// <inheritdoc />
         public override bool Equals(object obj)
         {
-            var person = obj as StorablePersonProfile;
+            var person = obj as PersonProfile;
             if (person == null) return false;
             if (!Equals(person.Id, Id)) return false;
             if (!string.Equals(person.ETag, ETag, StringComparison.OrdinalIgnoreCase)) return false;
@@ -105,6 +111,5 @@ namespace Frobozz.PersonProfiles.Dal.MemoryStorage.PersonProfile
             // ReSharper disable once NonReadonlyMemberInGetHashCode
             return Id.GetHashCode();
         }
-        #endregion
     }
 }

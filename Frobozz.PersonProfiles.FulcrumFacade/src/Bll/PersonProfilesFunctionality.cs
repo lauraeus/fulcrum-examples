@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Frobozz.PersonProfiles.Dal.MemoryStorage.PersonProfile;
-using Frobozz.PersonProfiles.FulcrumFacade.Contract.PersonProfiles;
+using Frobozz.PersonProfiles.Dal.Contracts.PersonProfile;
 using Xlent.Lever.Libraries2.Standard.Assert;
-using Xlent.Lever.Libraries2.Standard.Storage.Model;
 using PersonProfile = Frobozz.PersonProfiles.FulcrumFacade.Contract.PersonProfiles.PersonProfile;
 
 namespace Frobozz.PersonProfiles.Bll
 {
     public class PersonProfilesFunctionality : IPersonProfilesFunctionality
     {
-        private static readonly string Namespace = typeof(PersonProfilesFunctionality).Namespace;
-        private IPersonProfilePersistance _storage;
+        private readonly IPersonProfilePersistance<IStorablePersonProfile> _storage;
 
-        public PersonProfilesFunctionality(IPersonProfilePersistance storage)
+        public PersonProfilesFunctionality(IPersonProfilePersistance<IStorablePersonProfile> storage)
         {
             _storage = storage;
         }
@@ -41,22 +38,20 @@ namespace Frobozz.PersonProfiles.Bll
             await _storage.DeleteAsync(ToGuid(id));
         }
 
-        private static PersonProfile ToService(IStorableItem<Guid> source)
+        private static PersonProfile ToService(IStorablePersonProfile source)
         {
             if (source == null) return null;
-            var s = source as StorablePersonProfile;
-            InternalContract.Require(s != null, $"Expected parameter {nameof(source)} to be of type {typeof(StorablePersonProfile).Name}");
             var target = new PersonProfile
             {
-                Id = s.Id.ToString(),
-                ETag = s.ETag,
-                GivenName = s.GivenName,
-                Surname = s.Surname
+                Id = source.Id.ToString(),
+                ETag = source.ETag,
+                GivenName = source.GivenName,
+                Surname = source.Surname
             };
             return target;
         }
 
-        private static IStorableItem<Guid> ToDal(PersonProfile source)
+        private static IStorablePersonProfile ToDal(PersonProfile source)
         {
             if (source == null) return null;
             var target = new StorablePersonProfile
