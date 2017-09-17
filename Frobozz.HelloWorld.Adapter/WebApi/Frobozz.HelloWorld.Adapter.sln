@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.HelloWorld.Adapter", "Frobozz.HelloWorld.Adapter.csproj", "{54C014CC-5F86-4E4B-B437-8F80BD5D2FE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		ci|Any CPU = ci|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		int|Any CPU = int|Any CPU
+		prd|Any CPU = prd|Any CPU
+		Release|Any CPU = Release|Any CPU
+		ver|Any CPU = ver|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54C014CC-5F86-4E4B-B437-8F80BD5D2FE0}.ci|Any CPU.ActiveCfg = ci|Any CPU
+		{54C014CC-5F86-4E4B-B437-8F80BD5D2FE0}.ci|Any CPU.Build.0 = ci|Any CPU
+		{54C014CC-5F86-4E4B-B437-8F80BD5D2FE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54C014CC-5F86-4E4B-B437-8F80BD5D2FE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54C014CC-5F86-4E4B-B437-8F80BD5D2FE0}.int|Any CPU.ActiveCfg = int|Any CPU
+		{54C014CC-5F86-4E4B-B437-8F80BD5D2FE0}.int|Any CPU.Build.0 = int|Any CPU
+		{54C014CC-5F86-4E4B-B437-8F80BD5D2FE0}.prd|Any CPU.ActiveCfg = prd|Any CPU
+		{54C014CC-5F86-4E4B-B437-8F80BD5D2FE0}.prd|Any CPU.Build.0 = prd|Any CPU
+		{54C014CC-5F86-4E4B-B437-8F80BD5D2FE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54C014CC-5F86-4E4B-B437-8F80BD5D2FE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54C014CC-5F86-4E4B-B437-8F80BD5D2FE0}.ver|Any CPU.ActiveCfg = ver|Any CPU
+		{54C014CC-5F86-4E4B-B437-8F80BD5D2FE0}.ver|Any CPU.Build.0 = ver|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CDA55CAD-AE91-40F1-863E-E097360384EE}
+	EndGlobalSection
+EndGlobal
