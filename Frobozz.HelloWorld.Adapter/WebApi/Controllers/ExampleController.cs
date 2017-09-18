@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Newtonsoft.Json.Linq;
 using Xlent.Lever.Authentication.Sdk.Attributes;
+using Xlent.Lever.Libraries2.Core.Assert;
+using Xlent.Lever.Libraries2.Core.Health.Logic;
+using Xlent.Lever.Libraries2.Core.Health.Model;
+using Xlent.Lever.Libraries2.Core.MultiTenant.Model;
 using Xlent.Lever.Libraries2.Core.Platform.Authentication;
 
 namespace Frobozz.HelloWorld.Adapter.Controllers
@@ -36,7 +40,7 @@ namespace Frobozz.HelloWorld.Adapter.Controllers
 
         [HttpPost]
         [Route("Post")]
-        public async Task<string> Post()
+        public async Task<HttpResponseMessage> Post()
         {
             //Retrieve a token using credentials
             var result = await HttpClient.PostAsJsonAsync("http://localhost/Bt.Fulcrum.Api.Sl.WebApi/api/v1/Authentication/Tokens",
@@ -46,7 +50,26 @@ namespace Frobozz.HelloWorld.Adapter.Controllers
           
             var obj = JObject.Parse(response);
             var token = obj["Token"].ToString();
-            return token;
+            HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            return await HttpClient.PostAsync("http://localhost/CapabilityTester/api/v1/Auth/Test", null);
+        }
+
+        [Route("ServiceHealth")]
+        [HttpGet]
+        public async Task<HealthResponse> ServiceHealthAsync(string organization, string environment)
+        {
+            ServiceContract.RequireNotNullOrWhitespace(organization, nameof(organization));
+            ServiceContract.RequireNotNullOrWhitespace(environment, nameof(environment));
+            var tenant = new Tenant(organization, environment);
+
+            //******Example to check health of resources******//
+            //******Expected return type is a HealthResponse or something castable to a HealthResponse******//
+
+            //var aggregator = new ResourceHealthAggregator(tenant, "ExampleAdapter");
+            //await aggregator.AddResourceHealthAsync("Database", _logicLayer);
+            //var result = aggregator.GetAggregatedHealthResponse();
+            //return result;
+            return new HealthResponse();
         }
 
 
