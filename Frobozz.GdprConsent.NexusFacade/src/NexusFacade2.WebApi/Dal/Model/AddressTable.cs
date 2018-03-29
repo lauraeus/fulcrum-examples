@@ -2,15 +2,8 @@
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
-namespace Frobozz.GdprConsent.NexusFacade.WebApi.DalModel
+namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model
 {
-    enum AddressTypeEnum
-    {
-        Public,
-        Invoice,
-        Delivery,
-        Postal
-    }
     public class AddressTable : StorableItem, ITimeStamped
     {
         public int Type;

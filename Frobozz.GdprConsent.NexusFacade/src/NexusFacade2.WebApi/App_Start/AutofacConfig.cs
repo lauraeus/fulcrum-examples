@@ -4,7 +4,7 @@ using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Frobozz.GdprConsent.NexusFacade.WebApi.Dal;
-using Frobozz.GdprConsent.NexusFacade.WebApi.DalModel;
+using Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model;
 using Xlent.Lever.Libraries2.Core.Storage.Logic;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 

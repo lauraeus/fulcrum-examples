@@ -4,6 +4,8 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.ServiceModel
 {
     enum AddressTypeEnum
     {
+
+        None,
         Public,
         Invoice,
         Delivery,

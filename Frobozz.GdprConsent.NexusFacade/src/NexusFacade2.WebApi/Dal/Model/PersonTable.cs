@@ -2,7 +2,7 @@
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
-namespace Frobozz.GdprConsent.NexusFacade.WebApi.DalModel
+namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model
 {
     public class PersonTable : StorableItem, ITimeStamped
     {
