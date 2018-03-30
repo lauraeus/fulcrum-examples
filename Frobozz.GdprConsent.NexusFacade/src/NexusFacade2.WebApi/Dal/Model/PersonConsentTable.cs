@@ -6,6 +6,9 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model
 {
     public class PersonConsentTable : StorableItem, ITimeStamped
     {
+        /// <summary>
+        /// True if the person has approved the consent
+        /// </summary>
         public bool HasGivenConsent { get; set; }
         /// <summary>
         ///  The person that this address is for

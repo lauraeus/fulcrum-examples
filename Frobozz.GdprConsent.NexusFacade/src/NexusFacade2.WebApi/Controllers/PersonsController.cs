@@ -45,14 +45,15 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Controllers
             return target;
         }
 
-        private Consent ToService(ConsentTable source, bool nullIsOk = false)
+        private Consent ToService(ConsentTable source, PersonConsentTable personConsent, bool nullIsOk = false)
         {
             if (nullIsOk && source == null) return null;
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
             var target = new Consent
             {
-                Name = source.Name
+                Name = source.Name,
+                HasGivenConsent = personConsent.HasGivenConsent
             };
             FulcrumAssert.IsValidated(target);
             return target;
@@ -93,7 +94,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Controllers
             switch (source)
             {
                 case 1: return AddressTypeEnum.Public.ToString();
-                case 2:  return AddressTypeEnum.Invoice.ToString();
+                case 2: return AddressTypeEnum.Invoice.ToString();
                 case 3:
                     return AddressTypeEnum.Delivery.ToString();
                 case 4: return AddressTypeEnum.Postal.ToString();
@@ -280,7 +281,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Controllers
                 {
                     Task task;
                     if (address == null)
-                    { 
+                    {
                         task = _storage.Address.DeleteAsync(addressDb.Id);
                     }
                     else
@@ -311,18 +312,23 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Controllers
         public async Task<IEnumerable<Consent>> ReadChildrenAsync(string personId, int limit = int.MaxValue)
         {
             var id = new Guid(personId);
-            var consentsDb = await _storage.PersonConsent.R(id, limit);
-            return consentsDb.Select(c => ToService(c));
+            var personConsents = await _storage.PersonConsent.ReadByReference1Async(id, limit);
+            var consentsDb = await _storage.PersonConsent.ReadReferencedItemsByReference1Async(id, limit);
+            var consents = new List<Consent>();
+            foreach (var consentDb in consentsDb)
+            {
+                var personConsent = personConsents.FirstOrDefault(pc => pc.ConsentId == consentDb.Id);
+                if (personConsent == null) continue;
+                var consent = ToService(consentDb, personConsent);
+                consents.Add(consent);
+                ;
+            }
+
+            return consents;
         }
 
         /// <inheritdoc />
-        public async Task<Person> ReadParentAsync(string childId)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <inheritdoc />
-        public async Task DeleteChildrenAsync(string parentId)
+        public Task DeleteChildrenAsync(string parentId)
         {
             throw new NotImplementedException();
         }

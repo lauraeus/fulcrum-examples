@@ -11,6 +11,11 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.ServiceModel
         /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// True if the person has approved the consent
+        /// </summary>
+        public bool HasGivenConsent { get; set; }
+
         /// <inheritdoc />
         public void Validate(string errorLocation, string propertyPath = "")
         {
