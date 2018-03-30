@@ -30,8 +30,14 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi
             builder.RegisterType<MemoryPersistance<PersonTable, Guid>>()
                 .As<ICrud<PersonTable, Guid>>()
                 .SingleInstance();
-            builder.RegisterType<MemoryManyToOnePersistance<AddressTable, PersonTable, Guid>>()
-                .As<IManyToOneRelationComplete<AddressTable, PersonTable, Guid>>()
+            builder.RegisterType<MemoryPersistance<ConsentTable, Guid>>()
+                .As<ICrud<ConsentTable, Guid>>()
+                .SingleInstance();
+            builder.RegisterType<MemoryManyToOnePersistance<AddressTable, Guid>>()
+                .As<IManyToOneRelationComplete<AddressTable, Guid>>()
+                .SingleInstance();
+            builder.RegisterType<MemoryManyToManyPersistance<PersonConsentTable, PersonTable, ConsentTable, Guid>>()
+                .As< IManyToManyRelation<PersonTable, ConsentTable, Guid>>()
                 .SingleInstance();
 
             // Register your controllers.

@@ -4,23 +4,18 @@ using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model
 {
-    public class AddressTable : StorableItem, ITimeStamped
+    public class PersonConsentTable : StorableItem, ITimeStamped
     {
-        public int Type;
-        /// <summary>
-        /// The street part of the address
-        /// </summary>
-        public string Street { get; set; }
-
-        /// <summary>
-        /// The city part of the address
-        /// </summary>
-        public string City { get; set; }
-
+        public bool HasGivenConsent { get; set; }
         /// <summary>
         ///  The person that this address is for
         /// </summary>
         public Guid PersonId { get; set; }
+
+        /// <summary>
+        ///  The person that this address is for
+        /// </summary>
+        public Guid ConsentId { get; set; }
 
         /// <inheritdoc />
         public DateTimeOffset RecordCreatedAt { get; set; }
@@ -31,8 +26,8 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model
         /// <inheritdoc />
         public override void Validate(string errorLocation, string propertyPath = "")
         {
-           FulcrumValidate.IsNotNullOrWhiteSpace(City, nameof(City), errorLocation);
             FulcrumValidate.IsNotDefaultValue(PersonId, nameof(PersonId), errorLocation);
+            FulcrumValidate.IsNotDefaultValue(ConsentId, nameof(ConsentId), errorLocation);
         }
     }
 }

@@ -6,7 +6,9 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal
 {
     public interface IStorage
     {
-        IManyToOneRelationComplete<AddressTable, PersonTable, Guid> Address { get; }
+        IManyToOneRelationComplete<AddressTable, Guid> Address { get; }
         ICrud<PersonTable, Guid> Person { get; }
+        ICrud<ConsentTable, Guid> Consent { get; }
+        IManyToManyRelationComplete<PersonConsentTable, PersonTable, ConsentTable, Guid> PersonConsent { get; }
     }
 }

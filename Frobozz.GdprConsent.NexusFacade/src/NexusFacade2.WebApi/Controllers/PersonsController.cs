@@ -45,6 +45,19 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Controllers
             return target;
         }
 
+        private Consent ToService(ConsentTable source, bool nullIsOk = false)
+        {
+            if (nullIsOk && source == null) return null;
+            InternalContract.RequireNotNull(source, nameof(source));
+            InternalContract.RequireValidated(source, nameof(source));
+            var target = new Consent
+            {
+                Name = source.Name
+            };
+            FulcrumAssert.IsValidated(target);
+            return target;
+        }
+
         private AddressTable ToDb(Guid personId, Address source, bool nullIsOk = false)
         {
             if (nullIsOk && source == null) return null;
@@ -281,6 +294,37 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Controllers
                 }
             }
             await Task.WhenAll(tasks);
+        }
+    }
+
+    public partial class PersonsController : IManyToOneRelation<Consent, string>
+    {
+        /// <inheritdoc />
+        public Task<PageEnvelope<Consent>> ReadChildrenWithPagingAsync(string parentId, int offset, int? limit = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc />
+        [HttpGet]
+        [Route("{id}/Consents")]
+        public async Task<IEnumerable<Consent>> ReadChildrenAsync(string personId, int limit = int.MaxValue)
+        {
+            var id = new Guid(personId);
+            var consentsDb = await _storage.PersonConsent.R(id, limit);
+            return consentsDb.Select(c => ToService(c));
+        }
+
+        /// <inheritdoc />
+        public async Task<Person> ReadParentAsync(string childId)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteChildrenAsync(string parentId)
+        {
+            throw new NotImplementedException();
         }
     }
 }
