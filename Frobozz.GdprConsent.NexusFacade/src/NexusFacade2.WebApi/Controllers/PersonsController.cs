@@ -29,113 +29,6 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Controllers
         {
             _storage = storage;
         }
-
-        private Address ToService(AddressTable source, bool nullIsOk = false)
-        {
-            if (nullIsOk && source == null) return null;
-            InternalContract.RequireNotNull(source, nameof(source));
-            InternalContract.RequireValidated(source, nameof(source));
-            var target = new Address
-            {
-                Type = source.Type.ToString(),
-                Street = source.Street,
-                City = source.City
-            };
-            FulcrumAssert.IsValidated(target);
-            return target;
-        }
-
-        private Consent ToService(ConsentTable source, PersonConsentTable personConsent, bool nullIsOk = false)
-        {
-            if (nullIsOk && source == null) return null;
-            InternalContract.RequireNotNull(source, nameof(source));
-            InternalContract.RequireValidated(source, nameof(source));
-            var target = new Consent
-            {
-                Name = source.Name,
-                HasGivenConsent = personConsent.HasGivenConsent
-            };
-            FulcrumAssert.IsValidated(target);
-            return target;
-        }
-
-        private AddressTable ToDb(Guid personId, Address source, bool nullIsOk = false)
-        {
-            if (nullIsOk && source == null) return null;
-            InternalContract.RequireNotNull(source, nameof(source));
-            InternalContract.RequireValidated(source, nameof(source));
-            var target = new AddressTable
-            {
-                Type = ToAddressTypeDb(source.Type),
-                Street = source.Street,
-                City = source.City,
-                PersonId = personId
-            };
-            FulcrumAssert.IsValidated(target);
-            return target;
-        }
-
-        private static int ToAddressTypeDb(string source)
-        {
-            switch (source)
-            {
-                case "Public": return 1;
-                case "Invoice": return 2;
-                case "Delivery": return 3;
-                case "Postal": return 4;
-                default:
-                    FulcrumAssert.Fail($"Unknown address type ({source}).");
-                    return 0;
-            }
-        }
-
-        private static string ToAddressTypeService(int source)
-        {
-            switch (source)
-            {
-                case 1: return AddressTypeEnum.Public.ToString();
-                case 2: return AddressTypeEnum.Invoice.ToString();
-                case 3:
-                    return AddressTypeEnum.Delivery.ToString();
-                case 4: return AddressTypeEnum.Postal.ToString();
-                default:
-                    FulcrumAssert.Fail($"Unknown address type ({source}).");
-                    return AddressTypeEnum.None.ToString();
-            }
-        }
-
-        private async Task<Person> ToServiceAsync(PersonTable source, bool nullIsOk = false)
-        {
-            if (nullIsOk && source == null) return null;
-            InternalContract.RequireNotNull(source, nameof(source));
-            InternalContract.RequireValidated(source, nameof(source));
-            var addressesDbTask = _storage.Address.ReadChildrenAsync(source.Id);
-            var target = new Person()
-            {
-                Id = source.Id.ToString(),
-                Name = source.Name,
-                Etag = source.Etag,
-                Addresses = (await addressesDbTask).Select(db => ToService(db))
-            };
-            FulcrumAssert.IsValidated(target);
-            return target;
-        }
-
-        private PersonTable ToDb(Person source, bool nullIsOk = false)
-        {
-            if (nullIsOk && source == null) return null;
-            InternalContract.RequireNotNull(source, nameof(source));
-            InternalContract.RequireValidated(source, nameof(source));
-            var id = new Guid(source.Id);
-            var target = new PersonTable()
-            {
-                Id = id,
-                Name = source.Name,
-                Etag = source.Etag
-            };
-            FulcrumAssert.IsValidated(target);
-            return target;
-        }
     }
 
     public partial class PersonsController : IReadAll<Person, string>
@@ -331,6 +224,119 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Controllers
         public Task DeleteChildrenAsync(string parentId)
         {
             throw new NotImplementedException();
+        }
+    }
+
+    public partial class PersonsController
+    {
+
+
+        private Address ToService(AddressTable source, bool nullIsOk = false)
+        {
+            if (nullIsOk && source == null) return null;
+            InternalContract.RequireNotNull(source, nameof(source));
+            InternalContract.RequireValidated(source, nameof(source));
+            var target = new Address
+            {
+                Type = ToAddressTypeService(source.Type),
+                Street = source.Street,
+                City = source.City
+            };
+            FulcrumAssert.IsValidated(target);
+            return target;
+        }
+
+        private Consent ToService(ConsentTable source, PersonConsentTable personConsent, bool nullIsOk = false)
+        {
+            if (nullIsOk && source == null) return null;
+            InternalContract.RequireNotNull(source, nameof(source));
+            InternalContract.RequireValidated(source, nameof(source));
+            var target = new Consent
+            {
+                Name = source.Name,
+                HasGivenConsent = personConsent.HasGivenConsent,
+                Id = source.Id.ToString()
+            };
+            FulcrumAssert.IsValidated(target);
+            return target;
+        }
+
+        private AddressTable ToDb(Guid personId, Address source, bool nullIsOk = false)
+        {
+            if (nullIsOk && source == null) return null;
+            InternalContract.RequireNotNull(source, nameof(source));
+            InternalContract.RequireValidated(source, nameof(source));
+            var target = new AddressTable
+            {
+                Type = ToAddressTypeDb(source.Type),
+                Street = source.Street,
+                City = source.City,
+                PersonId = personId
+            };
+            FulcrumAssert.IsValidated(target);
+            return target;
+        }
+
+        private static int ToAddressTypeDb(string source)
+        {
+            switch (source)
+            {
+                case "Public": return 1;
+                case "Invoice": return 2;
+                case "Delivery": return 3;
+                case "Postal": return 4;
+                default:
+                    FulcrumAssert.Fail($"Unknown address type ({source}).");
+                    return 0;
+            }
+        }
+
+        private static string ToAddressTypeService(int source)
+        {
+            switch (source)
+            {
+                case 1: return "Public";
+                case 2: return "Invoice";
+                case 3:
+                    return "Delivery";
+                case 4: return "Postal";
+                default:
+                    FulcrumAssert.Fail($"Unknown address type ({source}).");
+                    return AddressTypeEnum.None.ToString();
+            }
+        }
+
+        private async Task<Person> ToServiceAsync(PersonTable source, bool nullIsOk = false)
+        {
+            if (nullIsOk && source == null) return null;
+            InternalContract.RequireNotNull(source, nameof(source));
+            InternalContract.RequireValidated(source, nameof(source));
+            var addressesDbTask = _storage.Address.ReadChildrenAsync(source.Id);
+            var target = new Person()
+            {
+                Id = source.Id.ToString(),
+                Name = source.Name,
+                Etag = source.Etag,
+                Addresses = (await addressesDbTask).Select(db => ToService(db))
+            };
+            FulcrumAssert.IsValidated(target);
+            return target;
+        }
+
+        private PersonTable ToDb(Person source, bool nullIsOk = false)
+        {
+            if (nullIsOk && source == null) return null;
+            InternalContract.RequireNotNull(source, nameof(source));
+            InternalContract.RequireValidated(source, nameof(source));
+            var id = new Guid(source.Id);
+            var target = new PersonTable()
+            {
+                Id = id,
+                Name = source.Name,
+                Etag = source.Etag
+            };
+            FulcrumAssert.IsValidated(target);
+            return target;
         }
     }
 }

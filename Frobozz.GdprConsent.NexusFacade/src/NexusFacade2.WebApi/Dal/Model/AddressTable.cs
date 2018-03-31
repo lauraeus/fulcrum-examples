@@ -34,5 +34,11 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model
            FulcrumValidate.IsNotNullOrWhiteSpace(City, nameof(City), errorLocation);
             FulcrumValidate.IsNotDefaultValue(PersonId, nameof(PersonId), errorLocation);
         }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return $"{Street}, {City} ({Type})";
+        }
     }
 }

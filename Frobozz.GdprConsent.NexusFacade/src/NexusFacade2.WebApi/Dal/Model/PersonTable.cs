@@ -22,5 +22,11 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model
         {
            FulcrumValidate.IsNotNullOrWhiteSpace(Name, nameof(Name), errorLocation);
         }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
     }
 }
