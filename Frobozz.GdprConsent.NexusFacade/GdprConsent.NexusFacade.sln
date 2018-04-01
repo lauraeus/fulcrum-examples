@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GdprConsent.NexusFacade.Web
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GdprConsent.NexusFacade.WebApi.Test", "test\GdprConsent.NexusFacade.WebApi.Test\GdprConsent.NexusFacade.WebApi.Test.csproj", "{9A85514E-98CC-443F-B324-AF567D1B6960}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.CapabilityContracts", "..\Frobozz.NexusApi\src\Frobozz.CapabilityContracts\Frobozz.CapabilityContracts.csproj", "{21A7E0D3-ADE5-47DA-B295-14B487475CBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9A85514E-98CC-443F-B324-AF567D1B6960}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A85514E-98CC-443F-B324-AF567D1B6960}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A85514E-98CC-443F-B324-AF567D1B6960}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Frobozz.CapabilityContracts.Gdpr;
 using Frobozz.GdprConsent.NexusFacade.WebApi.Dal;
 using Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model;
-using Frobozz.GdprConsent.NexusFacade.WebApi.ServiceModel;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Error.Logic;
 using Xlent.Lever.Libraries2.Core.Storage.Logic;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
-using AddressTypeEnum = Frobozz.GdprConsent.NexusFacade.WebApi.ServiceModel.AddressTypeEnum;
 
 namespace Frobozz.GdprConsent.NexusFacade.WebApi.Controllers
 {
@@ -302,7 +301,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Controllers
                 case 4: return "Postal";
                 default:
                     FulcrumAssert.Fail($"Unknown address type ({source}).");
-                    return AddressTypeEnum.None.ToString();
+                    return "None";
             }
         }
 

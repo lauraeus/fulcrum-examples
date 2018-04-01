@@ -2,7 +2,7 @@
 
 namespace Frobozz.CapabilityContracts.Gdpr
 {
-    enum AddressTypeEnum
+    public enum AddressTypeEnum
     {
 
         None,
