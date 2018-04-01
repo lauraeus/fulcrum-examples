@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using Frobozz.CapabilityContracts.Gdpr;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
@@ -11,7 +8,7 @@ namespace Frobozz.NexusApi.Helpers
 {
     public class ApiCrudHelper<TModel> : ICrud<TModel, string>
     {
-        private ICrud<TModel, string> _storage;
+        private readonly ICrud<TModel, string> _storage;
 
         public ApiCrudHelper(ICrud<TModel, string> storage)
         {
