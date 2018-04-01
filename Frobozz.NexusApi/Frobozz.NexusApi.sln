@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.NexusApi", "src\Frobozz.NexusApi\Frobozz.NexusApi.csproj", "{409C5A9B-5C42-43CC-880D-E0EBF400F027}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.CapabilityContracts", "src\Frobozz.CapabilityContracts\Frobozz.CapabilityContracts.csproj", "{21A7E0D3-ADE5-47DA-B295-14B487475CBD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{409C5A9B-5C42-43CC-880D-E0EBF400F027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{409C5A9B-5C42-43CC-880D-E0EBF400F027}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{409C5A9B-5C42-43CC-880D-E0EBF400F027}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{409C5A9B-5C42-43CC-880D-E0EBF400F027}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5C96B704-2672-400A-941F-D023A9FCF320}
+	EndGlobalSection
+EndGlobal
