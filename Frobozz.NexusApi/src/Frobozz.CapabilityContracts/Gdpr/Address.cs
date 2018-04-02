@@ -1,4 +1,5 @@
-﻿using Xlent.Lever.Libraries2.Core.Assert;
+﻿using Frobozz.CapabilityContracts.Core.Translation;
+using Xlent.Lever.Libraries2.Core.Assert;
 
 namespace Frobozz.CapabilityContracts.Gdpr
 {
@@ -11,7 +12,7 @@ namespace Frobozz.CapabilityContracts.Gdpr
         Delivery,
         Postal
     }
-    public class Address : IValidatable
+    public class Address : IValidatable, ITranslatable
     {
         public string Type;
         /// <summary>
@@ -35,6 +36,12 @@ namespace Frobozz.CapabilityContracts.Gdpr
         public override string ToString()
         {
             return $"{Street}, {City} ({Type})";
+        }
+
+        /// <inheritdoc />
+        public void DecorateForTranslation(string clientName)
+        {
+            Type = TranslationHelper.Decorate("person.address.type", clientName, Type);
         }
     }
 }

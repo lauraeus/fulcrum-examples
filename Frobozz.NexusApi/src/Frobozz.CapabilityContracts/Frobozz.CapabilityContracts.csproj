@@ -46,7 +46,9 @@
     <Compile Include="Gdpr\Address.cs" />
     <Compile Include="Gdpr\Consent.cs" />
     <Compile Include="Gdpr\IGdprCapability.cs" />
+    <Compile Include="Core.Translation\ITranslatable.cs" />
     <Compile Include="Gdpr\Person.cs" />
+    <Compile Include="Core.Translation\TranslationHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Frobozz.CapabilityContracts.Core.Translation;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
@@ -21,6 +22,16 @@ namespace Frobozz.NexusApi.Helpers
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
             ServiceContract.RequireNotNull(item, nameof(item));
             ServiceContract.RequireValidated(item, nameof(item));
+            // TODO: Translation
+            //id = TranslationHelper.Decorate("person.id", "client.name", id);
+            //item.DecorateForTranslation("client.name");
+            //var translation = new TranslationHelper("target.name");
+            //translation
+            //    .Prepare(id)
+            //    .Prepare(item);
+            //translation.Execute();
+            //id = translation.Translate(id);
+            //item = translation.Translate(item);
             await _storage.UpdateAsync(id, item);
         }
 

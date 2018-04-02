@@ -64,7 +64,7 @@ namespace Frobozz.NexusApi.Controllers
         [Route("{id}")]
         public async Task<Person> ReadAsync(string id)
         {
-            throw new NotImplementedException();
+            return await _apiHelper.ReadAsync(id);
         }
 
         /// <inheritdoc />

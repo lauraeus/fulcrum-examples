@@ -28,7 +28,7 @@ namespace Frobozz.NexusApi.Controllers
     {
         /// <inheritdoc />
         [HttpGet]
-        [Route("{parentId}/Consents/WithPaging")]
+        [Route("WithPaging")]
         public async Task<PageEnvelope<Consent>> ReadChildrenWithPagingAsync(string parentId, int offset, int? limit = null)
         {
             return await _apiHelper.ReadChildrenWithPagingAsync(parentId, offset, limit);
@@ -36,15 +36,15 @@ namespace Frobozz.NexusApi.Controllers
 
         /// <inheritdoc />
         [HttpGet]
-        [Route("{parentId}/Consents")]
+        [Route("")]
         public async Task<IEnumerable<Consent>> ReadChildrenAsync(string parentId, int limit = int.MaxValue)
         {
             return await _apiHelper.ReadChildrenAsync(parentId, limit);
         }
 
         /// <inheritdoc />
-        [HttpGet]
-        [Route("{parentId}/Consents")]
+        [HttpDelete]
+        [Route("")]
         public async Task DeleteChildrenAsync(string parentId)
         {
             await _apiHelper.DeleteChildrenAsync(parentId);

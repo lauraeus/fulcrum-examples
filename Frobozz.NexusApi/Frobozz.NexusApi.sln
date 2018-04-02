@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.NexusApi", "src\Fro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.CapabilityContracts", "src\Frobozz.CapabilityContracts\Frobozz.CapabilityContracts.csproj", "{21A7E0D3-ADE5-47DA-B295-14B487475CBD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "src\WebApplication1\WebApplication1.csproj", "{962DB3FD-E1CC-4851-9BFE-81BDC660D019}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{962DB3FD-E1CC-4851-9BFE-81BDC660D019}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{962DB3FD-E1CC-4851-9BFE-81BDC660D019}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{962DB3FD-E1CC-4851-9BFE-81BDC660D019}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{962DB3FD-E1CC-4851-9BFE-81BDC660D019}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
