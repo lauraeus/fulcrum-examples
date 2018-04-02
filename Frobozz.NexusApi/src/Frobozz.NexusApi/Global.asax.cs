@@ -1,5 +1,7 @@
 ﻿using System.Web.Http;
 using Frobozz.GdprConsent.NexusFacade.WebApi;
+using Xlent.Lever.Libraries2.Core.Application;
+using FulcrumApplicationHelper = Xlent.Lever.Libraries2.WebApi.Application.FulcrumApplicationHelper;
 
 namespace Frobozz.NexusApi
 {
@@ -16,6 +18,7 @@ namespace Frobozz.NexusApi
         /// </remarks>
         protected void Application_Start()
         {
+            FulcrumApplicationHelper.WebApiBasicSetup(new ConfigurationManagerAppSettings());
             GlobalConfiguration.Configure(WebApiConfig.Register);
             GlobalConfiguration.Configure(SwaggerConfig.Register);
             GlobalConfiguration.Configure(AutofacConfig.Register);

@@ -5,8 +5,13 @@ namespace Frobozz.CapabilityContracts.Gdpr
 {
     public class Consent : IValidatable, IUniquelyIdentifiable<string>
     {
-
+        /// <inheritdoc />
         public string Id { get; set; }
+
+        /// <summary>
+        /// The id of the person that this consent is for.
+        /// </summary>
+        public string PersonId { get; set; }
         /// <summary>
         /// The name of the consent
         /// </summary>

@@ -23,18 +23,20 @@ namespace Frobozz.NexusApi
         {
             var builder = new ContainerBuilder();
 
+            var personStorage = new MemoryPersistance<Person, string>();
+            var consentStorage = new MemoryManyToOnePersistance<Consent, string>(consent => consent.PersonId);
             //Register Bll and Dal dependencies
             builder.RegisterType<GdprCapability>()
                 .As<IGdprCapability>()
                 .SingleInstance();
-            builder.RegisterType<MemoryPersistance<Person, string>>()
-                .As<ICrud<Person, Guid>>()
+            builder.Register(ctx => personStorage)
+                .As<ICrud<Person, string>>()
                 .SingleInstance();
-            builder.RegisterType<MemoryPersistance<Consent, string>>()
-                .As<ICrud<Consent, Guid>>()
+            builder.Register(ctx => consentStorage)
+                .As<ICrud<Consent, string>>()
                 .SingleInstance();
-            builder.RegisterType<MemoryManyToOnePersistance<Consent, string>>()
-                .As<IManyToOneRelationComplete<Consent, string>>()
+            builder.Register(ctx => consentStorage)
+                .As<IManyToOneRelation<Consent, string>>()
                 .SingleInstance();
 
             // Register your controllers.
