@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Web.Http;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.CapabilityContracts.ApiHelpers
 {
-    public class ApiManyToOneHelper<TModel> : IManyToOneRelation<TModel, string>
+    public class ApiManyToOneHelper<TModel> : ApiController, IManyToOneRelation<TModel, string>
     {
         private readonly IManyToOneRelation<TModel, string> _storage;
 
@@ -15,6 +16,8 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         }
 
         /// <inheritdoc />
+        [HttpGet]
+        [Route("WithPaging")]
         public async Task<PageEnvelope<TModel>> ReadChildrenWithPagingAsync(string parentId, int offset, int? limit = null)
         {
             ServiceContract.RequireNotNullOrWhitespace(parentId, nameof(parentId));
@@ -27,6 +30,8 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         }
 
         /// <inheritdoc />
+        [HttpGet]
+        [Route("")]
         public async Task<IEnumerable<TModel>> ReadChildrenAsync(string parentId, int limit = int.MaxValue)
         {
             ServiceContract.RequireNotNullOrWhitespace(parentId, nameof(parentId));
@@ -35,6 +40,8 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         }
 
         /// <inheritdoc />
+        [HttpDelete]
+        [Route("")]
         public async Task DeleteChildrenAsync(string parentId)
         {
             ServiceContract.RequireNotNullOrWhitespace(parentId, nameof(parentId));
