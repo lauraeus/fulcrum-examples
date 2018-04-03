@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Frobozz.CapabilityContracts.Core.Translation;
+﻿using System.Threading.Tasks;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
-namespace Frobozz.NexusApi.Helpers
+namespace Frobozz.CapabilityContracts.ApiHelpers
 {
     public class ApiCrudHelper<TModel> : ApiCrdHelper<TModel>, ICrud<TModel, string>
     where TModel : IValidatable

@@ -49,10 +49,10 @@
     <Compile Include="Core.Translation\ITranslatable.cs" />
     <Compile Include="Gdpr\Person.cs" />
     <Compile Include="Core.Translation\TranslationHelper.cs" />
-    <Compile Include="Helpers\ApiCrdHelper.cs" />
-    <Compile Include="Helpers\ApiCrudHelper.cs" />
-    <Compile Include="Helpers\ApiManyToOneHelper.cs" />
-    <Compile Include="Helpers\ApiReaderHelper.cs" />
+    <Compile Include="ApiHelpers\ApiCrdHelper.cs" />
+    <Compile Include="ApiHelpers\ApiCrudHelper.cs" />
+    <Compile Include="ApiHelpers\ApiManyToOneHelper.cs" />
+    <Compile Include="ApiHelpers\ApiReaderHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

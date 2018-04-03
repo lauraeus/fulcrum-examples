@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Frobozz.CapabilityContracts.ApiHelpers;
 using Frobozz.CapabilityContracts.Gdpr;
-using Frobozz.NexusApi.Helpers;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.NexusApi.Controllers
