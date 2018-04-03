@@ -5,12 +5,12 @@ using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.CapabilityContracts.ApiHelpers
 {
-    public class ApiCrudHelper<TModel> : ApiCrdHelper<TModel>, ICrud<TModel, string>
+    public abstract class ApiCrudController<TModel> : ApiCrdController<TModel>, ICrud<TModel, string>
     where TModel : IValidatable
     {
         private readonly ICrud<TModel, string> _storage;
 
-        public ApiCrudHelper(ICrud<TModel, string> storage)
+        public ApiCrudController(ICrud<TModel, string> storage)
         :base(storage)
         {
             _storage = storage;
@@ -18,7 +18,7 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         /// <inheritdoc />
         [HttpPut]
         [Route("{id}")]
-        public async Task UpdateAsync(string id, TModel item)
+        public virtual async Task UpdateAsync(string id, TModel item)
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
             ServiceContract.RequireNotNull(item, nameof(item));
@@ -39,7 +39,7 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         /// <inheritdoc />
         [HttpPut]
         [Route("{id}/ReturnUpdated")]
-        public async Task<TModel> UpdateAndReturnAsync(string id, TModel item)
+        public virtual async Task<TModel> UpdateAndReturnAsync(string id, TModel item)
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
             ServiceContract.RequireNotNull(item, nameof(item));

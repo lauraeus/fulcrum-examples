@@ -5,12 +5,12 @@ using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.CapabilityContracts.ApiHelpers
 {
-    public class ApiCrdHelper<TModel> : ApiReaderHelper<TModel>, ICrd<TModel, string>
+    public abstract class ApiCrdController<TModel> : ApiReaderController<TModel>, ICrd<TModel, string>
     where TModel : IValidatable
     {
         private readonly ICrd<TModel, string> _storage;
 
-        public ApiCrdHelper(ICrd<TModel, string> storage)
+        public ApiCrdController(ICrd<TModel, string> storage)
         :base(storage)
         {
             _storage = storage;
@@ -19,7 +19,7 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         /// <inheritdoc />
         [HttpPost]
         [Route("")]
-        public async Task<string> CreateAsync(TModel item)
+        public virtual async Task<string> CreateAsync(TModel item)
         {
             ServiceContract.RequireNotNull(item, nameof(item));
             ServiceContract.RequireValidated(item, nameof(item));
@@ -29,7 +29,7 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         /// <inheritdoc />
         [HttpPost]
         [Route("ReturnCreated")]
-        public async Task<TModel> CreateAndReturnAsync(TModel item)
+        public virtual async Task<TModel> CreateAndReturnAsync(TModel item)
         {
             ServiceContract.RequireNotNull(item, nameof(item));
             ServiceContract.RequireValidated(item, nameof(item));
@@ -39,7 +39,7 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         /// <inheritdoc />
         [HttpPost]
         [Route("{id}")]
-        public async Task CreateWithSpecifiedIdAsync(string id, TModel item)
+        public virtual async Task CreateWithSpecifiedIdAsync(string id, TModel item)
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
             ServiceContract.RequireNotNull(item, nameof(item));
@@ -50,7 +50,7 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         /// <inheritdoc />
         [HttpPost]
         [Route("{id}/ReturnCreated")]
-        public async Task<TModel> CreateWithSpecifiedIdAndReturnAsync(string id, TModel item)
+        public virtual async Task<TModel> CreateWithSpecifiedIdAndReturnAsync(string id, TModel item)
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
             ServiceContract.RequireNotNull(item, nameof(item));
@@ -62,7 +62,7 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         /// <inheritdoc />
         [HttpDelete]
         [Route("{id}")]
-        public async Task DeleteAsync(string id)
+        public virtual async Task DeleteAsync(string id)
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
             await _storage.DeleteAsync(id);
@@ -71,7 +71,7 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         /// <inheritdoc />
         [HttpDelete]
         [Route("{id}/ReturnUpdated")]
-        public async Task DeleteAllAsync()
+        public virtual async Task DeleteAllAsync()
         {
             await _storage.DeleteAllAsync();
         }

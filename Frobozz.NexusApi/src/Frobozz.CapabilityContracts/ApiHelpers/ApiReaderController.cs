@@ -6,12 +6,12 @@ using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.CapabilityContracts.ApiHelpers
 {
-    public class ApiReaderHelper<TModel> : ApiController, IReadAll<TModel, string>
+    public abstract class ApiReaderController<TModel> : ApiController, IReadAll<TModel, string>
     where TModel : IValidatable
     {
         private readonly IReadAll<TModel, string> _storage;
 
-        public ApiReaderHelper(IReadAll<TModel, string> storage)
+        public ApiReaderController(IReadAll<TModel, string> storage)
         {
             _storage = storage;
         }
@@ -19,7 +19,7 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         /// <inheritdoc />
         [HttpGet]
         [Route("{id}")]
-        public async Task<TModel> ReadAsync(string id)
+        public virtual async Task<TModel> ReadAsync(string id)
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
             return await _storage.ReadAsync(id);
@@ -28,7 +28,7 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         /// <inheritdoc />
         [HttpGet]
         [Route("WithPaging")]
-        public async Task<PageEnvelope<TModel>> ReadAllWithPagingAsync(int offset, int? limit = null)
+        public virtual async Task<PageEnvelope<TModel>> ReadAllWithPagingAsync(int offset, int? limit = null)
         {
             ServiceContract.RequireGreaterThanOrEqualTo(0, offset, nameof(offset));
             if (limit != null)
@@ -42,7 +42,7 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         /// <inheritdoc />
         [HttpGet]
         [Route("")]
-        public async Task<IEnumerable<TModel>> ReadAllAsync(int limit = int.MaxValue)
+        public virtual async Task<IEnumerable<TModel>> ReadAllAsync(int limit = int.MaxValue)
         {
             ServiceContract.RequireGreaterThan(0, limit, nameof(limit));
             return await _storage.ReadAllAsync(limit);

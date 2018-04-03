@@ -6,11 +6,11 @@ using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.CapabilityContracts.ApiHelpers
 {
-    public class ApiManyToOneHelper<TModel> : ApiController, IManyToOneRelation<TModel, string>
+    public abstract class ApiManyToOneController<TModel> : ApiController, IManyToOneRelation<TModel, string>
     {
         private readonly IManyToOneRelation<TModel, string> _storage;
 
-        public ApiManyToOneHelper(IManyToOneRelation<TModel, string> storage)
+        public ApiManyToOneController(IManyToOneRelation<TModel, string> storage)
         {
             _storage = storage;
         }
@@ -18,7 +18,7 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         /// <inheritdoc />
         [HttpGet]
         [Route("WithPaging")]
-        public async Task<PageEnvelope<TModel>> ReadChildrenWithPagingAsync(string parentId, int offset, int? limit = null)
+        public virtual async Task<PageEnvelope<TModel>> ReadChildrenWithPagingAsync(string parentId, int offset, int? limit = null)
         {
             ServiceContract.RequireNotNullOrWhitespace(parentId, nameof(parentId));
             ServiceContract.RequireGreaterThanOrEqualTo(0, offset, nameof(offset));
@@ -32,7 +32,7 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         /// <inheritdoc />
         [HttpGet]
         [Route("")]
-        public async Task<IEnumerable<TModel>> ReadChildrenAsync(string parentId, int limit = int.MaxValue)
+        public virtual async Task<IEnumerable<TModel>> ReadChildrenAsync(string parentId, int limit = int.MaxValue)
         {
             ServiceContract.RequireNotNullOrWhitespace(parentId, nameof(parentId));
             ServiceContract.RequireGreaterThan(0, limit, nameof(limit));
@@ -42,7 +42,7 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         /// <inheritdoc />
         [HttpDelete]
         [Route("")]
-        public async Task DeleteChildrenAsync(string parentId)
+        public virtual async Task DeleteChildrenAsync(string parentId)
         {
             ServiceContract.RequireNotNullOrWhitespace(parentId, nameof(parentId));
             await _storage.DeleteChildrenAsync(parentId);

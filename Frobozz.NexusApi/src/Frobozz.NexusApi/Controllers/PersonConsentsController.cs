@@ -8,7 +8,7 @@ namespace Frobozz.NexusApi.Controllers
     /// ApiController for Product that does inputcontrol. Logic is separated into another layer. 
     /// </summary>
     [RoutePrefix("api/Persons/{parentId}/Consents")]
-    public class PersonConsentsController : ApiManyToOneHelper<Consent>
+    public class PersonConsentsController : ApiManyToOneController<Consent>
     {
         /// <summary>
         /// Constructor 
