@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using System.Web.Http;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
@@ -15,6 +16,8 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
             _storage = storage;
         }
         /// <inheritdoc />
+        [HttpPut]
+        [Route("{id}")]
         public async Task UpdateAsync(string id, TModel item)
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
@@ -34,6 +37,8 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         }
 
         /// <inheritdoc />
+        [HttpPut]
+        [Route("{id}/ReturnUpdated")]
         public async Task<TModel> UpdateAndReturnAsync(string id, TModel item)
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));

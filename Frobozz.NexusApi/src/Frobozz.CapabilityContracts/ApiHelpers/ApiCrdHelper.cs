@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using System.Web.Http;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
@@ -16,6 +17,8 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         }
 
         /// <inheritdoc />
+        [HttpPost]
+        [Route("")]
         public async Task<string> CreateAsync(TModel item)
         {
             ServiceContract.RequireNotNull(item, nameof(item));
@@ -24,6 +27,8 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         }
 
         /// <inheritdoc />
+        [HttpPost]
+        [Route("ReturnCreated")]
         public async Task<TModel> CreateAndReturnAsync(TModel item)
         {
             ServiceContract.RequireNotNull(item, nameof(item));
@@ -32,6 +37,8 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         }
 
         /// <inheritdoc />
+        [HttpPost]
+        [Route("{id}")]
         public async Task CreateWithSpecifiedIdAsync(string id, TModel item)
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
@@ -41,6 +48,8 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         }
 
         /// <inheritdoc />
+        [HttpPost]
+        [Route("{id}/ReturnCreated")]
         public async Task<TModel> CreateWithSpecifiedIdAndReturnAsync(string id, TModel item)
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
@@ -48,9 +57,11 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
             ServiceContract.RequireValidated(item, nameof(item));
             return await _storage.CreateWithSpecifiedIdAndReturnAsync(id, item);
         }
-  
+
 
         /// <inheritdoc />
+        [HttpDelete]
+        [Route("{id}")]
         public async Task DeleteAsync(string id)
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
@@ -58,6 +69,8 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         }
 
         /// <inheritdoc />
+        [HttpDelete]
+        [Route("{id}/ReturnUpdated")]
         public async Task DeleteAllAsync()
         {
             await _storage.DeleteAllAsync();

@@ -15,7 +15,10 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         {
             _storage = storage;
         }
+
         /// <inheritdoc />
+        [HttpGet]
+        [Route("{id}")]
         public async Task<TModel> ReadAsync(string id)
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
@@ -23,6 +26,8 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         }
 
         /// <inheritdoc />
+        [HttpGet]
+        [Route("WithPaging")]
         public async Task<PageEnvelope<TModel>> ReadAllWithPagingAsync(int offset, int? limit = null)
         {
             ServiceContract.RequireGreaterThanOrEqualTo(0, offset, nameof(offset));
@@ -35,6 +40,8 @@ namespace Frobozz.CapabilityContracts.ApiHelpers
         }
 
         /// <inheritdoc />
+        [HttpGet]
+        [Route("")]
         public async Task<IEnumerable<TModel>> ReadAllAsync(int limit = int.MaxValue)
         {
             ServiceContract.RequireGreaterThan(0, limit, nameof(limit));
