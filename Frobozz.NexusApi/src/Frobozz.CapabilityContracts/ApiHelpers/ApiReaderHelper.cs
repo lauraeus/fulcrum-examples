@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Web.Http;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.CapabilityContracts.ApiHelpers
 {
-    public class ApiReaderHelper<TModel> : IReadAll<TModel, string>
+    public class ApiReaderHelper<TModel> : ApiController, IReadAll<TModel, string>
     where TModel : IValidatable
     {
         private readonly IReadAll<TModel, string> _storage;
