@@ -25,18 +25,10 @@ namespace Frobozz.NexusApi
 
             var personStorage = new MemoryPersistance<Person, string>();
             var consentStorage = new MemoryManyToOnePersistance<Consent, string>(consent => consent.PersonId);
+            var gdprCapability = new GdprCapability(personStorage, consentStorage, consentStorage);
             //Register Bll and Dal dependencies
-            builder.RegisterType<GdprCapability>()
+            builder.Register(ctxt => gdprCapability)
                 .As<IGdprCapability>()
-                .SingleInstance();
-            builder.Register(ctx => personStorage)
-                .As<ICrud<Person, string>>()
-                .SingleInstance();
-            builder.Register(ctx => consentStorage)
-                .As<ICrud<Consent, string>>()
-                .SingleInstance();
-            builder.Register(ctx => consentStorage)
-                .As<IManyToOneRelation<Consent, string>>()
                 .SingleInstance();
 
             // Register your controllers.

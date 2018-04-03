@@ -23,21 +23,19 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi
         {
             var builder = new ContainerBuilder();
 
+            var personStorage = new MemoryPersistance<PersonTable, Guid>();
+            var consentStorage = new MemoryPersistance<ConsentTable, Guid>();
+            var addressStorage = new MemoryManyToOnePersistance<AddressTable, Guid>(item => item.PersonId);
+            var personConsentStorage =
+                new MemoryManyToManyPersistance<PersonConsentTable, PersonTable, ConsentTable, Guid>(
+                    pc => pc.PersonId,
+                    pc => pc.ConsentId, 
+                    personStorage,
+                    consentStorage);
+            var storage = new Storage(personStorage, addressStorage, consentStorage, personConsentStorage);
             //Register Bll and Dal dependencies
-            builder.RegisterType<Storage>()
+            builder.Register(ctx => storage)
                 .As<IStorage>()
-                .SingleInstance();
-            builder.RegisterType<MemoryPersistance<PersonTable, Guid>>()
-                .As<ICrud<PersonTable, Guid>>()
-                .SingleInstance();
-            builder.RegisterType<MemoryPersistance<ConsentTable, Guid>>()
-                .As<ICrud<ConsentTable, Guid>>()
-                .SingleInstance();
-            builder.RegisterType<MemoryManyToOnePersistance<AddressTable, Guid>>()
-                .As<IManyToOneRelationComplete<AddressTable, Guid>>()
-                .SingleInstance();
-            builder.RegisterType<MemoryManyToManyPersistance<PersonConsentTable, PersonTable, ConsentTable, Guid>>()
-                .As< IManyToManyRelation<PersonTable, ConsentTable, Guid>>()
                 .SingleInstance();
 
             // Register your controllers.

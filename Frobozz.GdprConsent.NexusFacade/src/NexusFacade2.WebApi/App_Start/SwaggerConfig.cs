@@ -249,7 +249,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi
 
         private static string GetXmlCommentsPath()
         {
-            return System.String.Format(@"{0}\bin\Frobozz.GdprConsent.NexusFacade.WebApi.XML", System.AppDomain.CurrentDomain.BaseDirectory);
+            return System.String.Format(@"{0}\bin\Frobozz.GdprConsent.NexusFacade.WebApi.xml", System.AppDomain.CurrentDomain.BaseDirectory);
         }
     }
 }
