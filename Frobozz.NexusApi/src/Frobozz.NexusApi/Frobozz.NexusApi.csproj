@@ -114,20 +114,13 @@
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Capabilities\GdprCapability.cs" />
     <Compile Include="Controllers\ConsentsController.cs" />
     <Compile Include="Controllers\PersonConsentsController.cs" />
     <Compile Include="Controllers\PersonsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="MemoryServices\PersonConsentMemoryStorage.cs" />
-    <Compile Include="MemoryServices\ConsentMemoryStorage.cs" />
-    <Compile Include="MemoryServices\PersonMemoryStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RestServices\GdprCapability\PersonConsentService.cs" />
-    <Compile Include="RestServices\GdprCapability\ConsentService.cs" />
-    <Compile Include="RestServices\GdprCapability\PersonService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -145,6 +138,18 @@
     <ProjectReference Include="..\Frobozz.CapabilityContracts\Frobozz.CapabilityContracts.csproj">
       <Project>{21a7e0d3-ade5-47da-b295-14b487475cbd}</Project>
       <Name>Frobozz.CapabilityContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Frobozz.NexisApi.Dal.RestServices\Frobozz.NexusApi.Dal.RestServices.csproj">
+      <Project>{fa381f07-4c13-4d5b-9609-dcc609d5faee}</Project>
+      <Name>Frobozz.NexusApi.Dal.RestServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Frobozz.NexusApi.Dal.Mock\Frobozz.NexusApi.Dal.Mock.csproj">
+      <Project>{fd3aa5b5-1458-4b58-9df4-286c762e6d00}</Project>
+      <Name>Frobozz.NexusApi.Dal.Mock</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xlent.Lever.Libraries2.MoveTo\Xlent.Lever.Libraries2.MoveTo.csproj">
+      <Project>{6c5209c3-0307-4d74-80a4-d7af2ecd852f}</Project>
+      <Name>Xlent.Lever.Libraries2.MoveTo</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

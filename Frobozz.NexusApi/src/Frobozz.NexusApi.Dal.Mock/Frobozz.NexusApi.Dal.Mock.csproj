@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{21A7E0D3-ADE5-47DA-B295-14B487475CBD}</ProjectGuid>
+    <ProjectGuid>{FD3AA5B5-1458-4B58-9DF4-286C762E6D00}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Frobozz.CapabilityContracts</RootNamespace>
-    <AssemblyName>Frobozz.CapabilityContracts</AssemblyName>
+    <RootNamespace>Frobozz.NexusApi.Dal.Mock</RootNamespace>
+    <AssemblyName>Frobozz.NexusApi.Dal.Mock</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -42,23 +42,25 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="Xlent.Lever.Libraries2.Core.NetFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Core.NetFramework.1.20.11\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
+      <HintPath>..\packages\Xlent.Lever.Libraries2.Core.NetFramework.1.20.11\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Gdpr\Address.cs" />
-    <Compile Include="Gdpr\IConsentService.cs" />
-    <Compile Include="Gdpr\IPersonService.cs" />
-    <Compile Include="Gdpr\PersonConsent.cs" />
-    <Compile Include="Gdpr\Consent.cs" />
-    <Compile Include="Gdpr\IGdprCapability.cs" />
-    <Compile Include="Gdpr\IPersonConsentService.cs" />
-    <Compile Include="Gdpr\Person.cs" />
+    <Compile Include="Gdpr\ConsentMemoryStorage.cs" />
+    <Compile Include="Gdpr\GdprCapability.cs" />
+    <Compile Include="Gdpr\PersonConsentMemoryStorage.cs" />
+    <Compile Include="Gdpr\PersonMemoryStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Frobozz.CapabilityContracts\Frobozz.CapabilityContracts.csproj">
+      <Project>{21a7e0d3-ade5-47da-b295-14b487475cbd}</Project>
+      <Name>Frobozz.CapabilityContracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

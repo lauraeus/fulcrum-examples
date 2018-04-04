@@ -1,16 +1,16 @@
 ﻿using Frobozz.CapabilityContracts.Gdpr;
 
-namespace Frobozz.NexusApi.Capabilities
+namespace Frobozz.NexusApi.Dal.Mock.Gdpr
 {
     /// <inheritdoc />
     public class GdprCapability : IGdprCapability
     {
         /// <inheritdoc />
-        public GdprCapability(IPersonService personService, IConsentService consentService, IPersonConsentService personConsentService)
+        public GdprCapability()
         {
-            PersonService = personService;
-            ConsentService = consentService;
-            PersonConsentService = personConsentService;
+            PersonService = new PersonMemoryStorage();
+            ConsentService = new ConsentMemoryStorage();
+            PersonConsentService = new PersonConsentMemoryStorage();
         }
 
         /// <inheritdoc />

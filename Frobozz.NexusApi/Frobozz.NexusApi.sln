@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.NexusApi", "src\Fro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.CapabilityContracts", "src\Frobozz.CapabilityContracts\Frobozz.CapabilityContracts.csproj", "{21A7E0D3-ADE5-47DA-B295-14B487475CBD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.NexusApi.Dal.RestServices", "src\Frobozz.NexisApi.Dal.RestServices\Frobozz.NexusApi.Dal.RestServices.csproj", "{FA381F07-4C13-4D5B-9609-DCC609D5FAEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.NexusApi.Dal.Mock", "src\Frobozz.NexusApi.Dal.Mock\Frobozz.NexusApi.Dal.Mock.csproj", "{FD3AA5B5-1458-4B58-9DF4-286C762E6D00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xlent.Lever.Libraries2.MoveTo", "src\Xlent.Lever.Libraries2.MoveTo\Xlent.Lever.Libraries2.MoveTo.csproj", "{6C5209C3-0307-4D74-80A4-D7AF2ECD852F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +27,18 @@ Global
 		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA381F07-4C13-4D5B-9609-DCC609D5FAEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA381F07-4C13-4D5B-9609-DCC609D5FAEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA381F07-4C13-4D5B-9609-DCC609D5FAEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA381F07-4C13-4D5B-9609-DCC609D5FAEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD3AA5B5-1458-4B58-9DF4-286C762E6D00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD3AA5B5-1458-4B58-9DF4-286C762E6D00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD3AA5B5-1458-4B58-9DF4-286C762E6D00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD3AA5B5-1458-4B58-9DF4-286C762E6D00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C5209C3-0307-4D74-80A4-D7AF2ECD852F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C5209C3-0307-4D74-80A4-D7AF2ECD852F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C5209C3-0307-4D74-80A4-D7AF2ECD852F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C5209C3-0307-4D74-80A4-D7AF2ECD852F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

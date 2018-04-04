@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Xlent.Lever.Libraries2.Core.Storage.Model;
+﻿using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.CapabilityContracts.Gdpr
 {

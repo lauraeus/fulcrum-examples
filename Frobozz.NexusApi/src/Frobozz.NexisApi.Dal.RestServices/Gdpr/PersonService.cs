@@ -1,11 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Frobozz.CapabilityContracts.Gdpr;
 using Microsoft.Rest;
-using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Platform.Authentication;
 using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
 
-namespace Frobozz.NexusApi.RestServices.GdprCapability
+namespace Frobozz.NexusApi.Dal.RestServices.Gdpr
 {
     internal class PersonService : RestClientCrud<Person, string>, IPersonService
     {

@@ -3,10 +3,6 @@ using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Frobozz.CapabilityContracts.Gdpr;
-using Frobozz.NexusApi.Capabilities;
-using Frobozz.NexusApi.MemoryServices;
-using Frobozz.NexusApi.RestServices.GdprCapability;
-using Xlent.Lever.Libraries2.Core.Storage.Logic;
 
 namespace Frobozz.NexusApi
 {
@@ -22,16 +18,12 @@ namespace Frobozz.NexusApi
         public static void Register(HttpConfiguration config)
         {
             var builder = new ContainerBuilder();
+            IGdprCapability gdprCapability = null;
 #if true
-            var personStorage = new PersonMemoryStorage();
-            var consentStorage = new ConsentMemoryStorage();
-            var personConsentStorage = new PersonConsentMemoryStorage(); ;
+            gdprCapability = new Dal.Mock.Gdpr.GdprCapability();
 #else
-            var personStorage = new PersonService("http://localhost/GdprConsent.NexusFacade.WebApi/api/Persons");
-            var consentStorage = new ConsentService("http://localhost/GdprConsent.NexusFacade.WebApi/api/Consents");
-            var personConsentStorage = new PersonConsentService("http://localhost/GdprConsent.NexusFacade.WebApi/api/Persons");
+            gdprCapability = new Dal.RestServices.Gdpr.GdprCapability();
 #endif
-            var gdprCapability = new GdprCapability(personStorage, consentStorage, personConsentStorage);
             //Register Bll and Dal dependencies
             builder.Register(ctxt => gdprCapability)
                 .As<IGdprCapability>()
