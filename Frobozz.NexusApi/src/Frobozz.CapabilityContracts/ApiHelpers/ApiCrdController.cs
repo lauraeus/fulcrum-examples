@@ -5,7 +5,7 @@ using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.CapabilityContracts.ApiHelpers
 {
-    public abstract class ApiCrdController<TModel> : ApiReaderController<TModel>, ICrd<TModel, string>
+    public abstract class ApiCrdController<TModel> : ApiReadController<TModel>, ICrd<TModel, string>
     where TModel : IValidatable
     {
         private readonly ICrd<TModel, string> _storage;

@@ -1,11 +1,12 @@
-﻿using Frobozz.CapabilityContracts.Gdpr;
+﻿using System.Threading.Tasks;
+using Frobozz.CapabilityContracts.Gdpr;
 using Microsoft.Rest;
 using Xlent.Lever.Libraries2.Core.Platform.Authentication;
 using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
 
 namespace Frobozz.NexusApi.RestServices.GdprCapability
 {
-    internal class ConsentService : RestClientCrud<Consent, string>
+    internal class ConsentService : RestClientCrud<Consent, string>, IConsentService
     {
         /// <inheritdoc />
         public ConsentService(string baseUri, bool withLogging = true) : base(baseUri, withLogging)

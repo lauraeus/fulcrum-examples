@@ -6,12 +6,12 @@ using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.CapabilityContracts.ApiHelpers
 {
-    public abstract class ApiReaderController<TModel> : ApiController, IReadAll<TModel, string>
+    public abstract class ApiReadController<TModel> : ApiController, IReadAll<TModel, string>
     where TModel : IValidatable
     {
         private readonly IReadAll<TModel, string> _storage;
 
-        public ApiReaderController(IReadAll<TModel, string> storage)
+        protected ApiReadController(IReadAll<TModel, string> storage)
         {
             _storage = storage;
         }

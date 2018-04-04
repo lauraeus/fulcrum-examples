@@ -4,6 +4,8 @@ using Autofac;
 using Autofac.Integration.WebApi;
 using Frobozz.CapabilityContracts.Gdpr;
 using Frobozz.NexusApi.Capabilities;
+using Frobozz.NexusApi.Capabilities.Gdpr;
+using Frobozz.NexusApi.MemoryServices;
 using Frobozz.NexusApi.RestServices.GdprCapability;
 using Xlent.Lever.Libraries2.Core.Storage.Logic;
 
@@ -22,9 +24,9 @@ namespace Frobozz.NexusApi
         {
             var builder = new ContainerBuilder();
 #if true
-            var personStorage = new MemoryPersistance<Person, string>();
-            var consentStorage = new MemoryManyToOnePersistance<Consent, string>(consent => consent.PersonId);
-            var personConsentStorage = consentStorage;
+            var personStorage = new PersonMemoryStorage();
+            var consentStorage = new ConsentMemoryStorage();
+            var personConsentStorage = new PersonConsentMemoryStorage(); ;
 #else
             var personStorage = new PersonService("http://localhost/GdprConsent.NexusFacade.WebApi/api/Persons");
             var consentStorage = new ConsentService("http://localhost/GdprConsent.NexusFacade.WebApi/api/Consents");

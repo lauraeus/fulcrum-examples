@@ -1,11 +1,12 @@
-﻿using Frobozz.CapabilityContracts.Gdpr;
+﻿using System.Threading.Tasks;
+using Frobozz.CapabilityContracts.Gdpr;
 using Microsoft.Rest;
 using Xlent.Lever.Libraries2.Core.Platform.Authentication;
 using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
 
 namespace Frobozz.NexusApi.RestServices.GdprCapability
 {
-    internal class PersonConsentService : RestClientManyToOne<Consent, string>
+    internal class PersonConsentService : RestClientManyToOne<PersonConsent, string>, IPersonConsentService
     {
         private new const string ParentName = "Persons";
         private new const string ChildrenName = "Consents";

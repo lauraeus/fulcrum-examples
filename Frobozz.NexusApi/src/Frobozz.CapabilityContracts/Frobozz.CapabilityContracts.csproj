@@ -46,16 +46,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core.Mapping\ManyToOneMapper.cs" />
+    <Compile Include="Core.Mapping\CrudMapper.cs" />
+    <Compile Include="Core.Mapping\IMapper.cs" />
+    <Compile Include="Core.Mapping\MapHelper.cs" />
+    <Compile Include="Core.Mapping\CrdMapper.cs" />
+    <Compile Include="Core.Mapping\MapperBase.cs" />
+    <Compile Include="Core.Mapping\ReadMapper.cs" />
     <Compile Include="Gdpr\Address.cs" />
+    <Compile Include="Gdpr\IConsentService.cs" />
+    <Compile Include="Gdpr\IPersonService.cs" />
+    <Compile Include="Gdpr\PersonConsent.cs" />
     <Compile Include="Gdpr\Consent.cs" />
     <Compile Include="Gdpr\IGdprCapability.cs" />
     <Compile Include="Core.Translation\ITranslatable.cs" />
+    <Compile Include="Gdpr\IPersonConsentService.cs" />
     <Compile Include="Gdpr\Person.cs" />
     <Compile Include="Core.Translation\TranslationHelper.cs" />
     <Compile Include="ApiHelpers\ApiCrdController.cs" />
     <Compile Include="ApiHelpers\ApiCrudController.cs" />
     <Compile Include="ApiHelpers\ApiManyToOneController.cs" />
-    <Compile Include="ApiHelpers\ApiReaderController.cs" />
+    <Compile Include="ApiHelpers\ApiReadController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

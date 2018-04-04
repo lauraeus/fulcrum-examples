@@ -14,7 +14,7 @@ namespace Frobozz.NexusApi.Controllers
         /// Constructor 
         /// </summary>
         public ConsentsController(IGdprCapability gdprCapability)
-            : base(gdprCapability.Consent)
+            : base(gdprCapability.ConsentService)
         {
         }
     }

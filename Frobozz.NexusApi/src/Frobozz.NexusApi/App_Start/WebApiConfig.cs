@@ -54,6 +54,10 @@ namespace Frobozz.NexusApi
         }
         #endregion
     }
+
+    /// <summary>
+    /// Route provider that allows inheritance of routing attributes.
+    /// </summary>
     public class CustomDirectRouteProvider : DefaultDirectRouteProvider
     {
         /// <inheritdoc />

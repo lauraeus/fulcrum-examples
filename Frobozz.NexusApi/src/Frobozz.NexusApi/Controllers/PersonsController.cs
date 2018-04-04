@@ -14,7 +14,7 @@ namespace Frobozz.NexusApi.Controllers
         /// Constructor 
         /// </summary>
         public PersonsController(IGdprCapability gdprCapability)
-        :base(gdprCapability.Person)
+        :base(gdprCapability.PersonService)
         {
         }
     }
