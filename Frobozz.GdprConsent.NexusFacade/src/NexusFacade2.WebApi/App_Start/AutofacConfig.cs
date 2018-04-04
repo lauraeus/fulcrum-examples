@@ -3,8 +3,10 @@ using System.Reflection;
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
+using Frobozz.CapabilityContracts.Gdpr;
 using Frobozz.GdprConsent.NexusFacade.WebApi.Dal;
 using Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model;
+using Frobozz.GdprConsent.NexusFacade.WebApi.Logic;
 using Xlent.Lever.Libraries2.Core.Storage.Logic;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
@@ -36,6 +38,16 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi
             //Register Bll and Dal dependencies
             builder.Register(ctx => storage)
                 .As<IStorage>()
+                .SingleInstance();
+
+            var personLogic = new PersonLogic(storage);
+            var consentLogic = new MemoryManyToOnePersistance<Consent, string>(consent => consent.PersonId);
+            var personConsentLogic = consentLogic;
+
+            var gdprCapability = new GdprCapability(personLogic, consentLogic, personConsentLogic);
+            //Register Bll and Dal dependencies
+            builder.Register(ctxt => gdprCapability)
+                .As<IGdprCapability>()
                 .SingleInstance();
 
             // Register your controllers.

@@ -4,6 +4,9 @@ using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model
 {
+    /// <summary>
+    /// Many-to-many person-consent
+    /// </summary>
     public class PersonConsentTable : StorableItem, ITimeStamped
     {
         /// <summary>

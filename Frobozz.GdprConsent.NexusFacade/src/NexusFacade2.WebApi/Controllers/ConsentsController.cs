@@ -8,24 +8,15 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Controllers
     /// <summary>
     /// ApiController for Product that does inputcontrol. Logic is separated into another layer. 
     /// </summary>
-    [RoutePrefix("api/Persons")]
-    public class PersonsController : ApiCrudController<Person>, IPersonService
+    [RoutePrefix("api/Consents")]
+    public class ConsentsController : ApiCrudController<Consent>, IConsentService
     {
-        private readonly IGdprCapability _logic;
-
         /// <summary>
         /// Constructor 
         /// </summary>
-        public PersonsController(IGdprCapability logic)
-        :base(logic.PersonService)
+        public ConsentsController(IGdprCapability logic)
+        :base(logic.ConsentService)
         {
-            _logic = logic;
-        }
-
-        /// <inheritdoc />
-        public async Task<Person> GetRandomAsync()
-        {
-            return await _logic.PersonService.GetRandomAsync();
         }
     }
 }

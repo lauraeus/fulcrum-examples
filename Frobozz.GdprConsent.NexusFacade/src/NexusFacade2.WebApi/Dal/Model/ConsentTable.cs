@@ -4,6 +4,9 @@ using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model
 {
+    /// <summary>
+    /// Information about a consent
+    /// </summary>
     public class ConsentTable : StorableItem, ITimeStamped
     {
         /// <summary>

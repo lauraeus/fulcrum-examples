@@ -4,8 +4,14 @@ using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model
 {
+    /// <summary>
+    /// Addres information for a person
+    /// </summary>
     public class AddressTable : StorableItem, ITimeStamped
     {
+        /// <summary>
+        /// The type of address
+        /// </summary>
         public int Type;
         /// <summary>
         /// The street part of the address

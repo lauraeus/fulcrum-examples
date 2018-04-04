@@ -12,11 +12,13 @@ using Xlent.Lever.Libraries2.Core.Storage.Logic;
 namespace GdprConsent.NexusFacade.WebApi.Test
 {
     [TestClass]
-    public class PersonsControllerTest
+    public class PersonsContentsControllerTest
     {
         private IStorage _storage;
         private Guid _kalleAnka;
-        private PersonsController _personsController;
+        private PersonConsentsController _personConsentsController;
+        private Guid _profilingConsentId;
+        private Guid _marketingConsentId;
 
         [TestInitialize]
         public async Task Initialize()
@@ -27,39 +29,49 @@ namespace GdprConsent.NexusFacade.WebApi.Test
             var addressStorage = new MemoryManyToOnePersistance<AddressTable, Guid>(a => a.PersonId);
             var personConsentStorage = new MemoryManyToManyPersistance<PersonConsentTable, PersonTable, ConsentTable, Guid>(pc=>  pc.PersonId, pc=> pc.ConsentId, personStorage, consentStorage);
             _storage = new Storage(personStorage, addressStorage, consentStorage, personConsentStorage);
-            _kalleAnka = await CreateKalleAnkaAsync();
 
             var personLogic = new PersonLogic(_storage);
-            var consentLogic = new ConsLogic<PersonConsent, string>(consent => consent.PersonId);
+            var consentLogic = new MemoryPersistance<Consent, string>();
             var personConsentLogic = new MemoryManyToOnePersistance<PersonConsent, string>(consent => consent.PersonId);
-
             var gdprCapability = new GdprCapability(personLogic, consentLogic, personConsentLogic);
+            _personConsentsController = new PersonConsentsController(gdprCapability);
 
-            _personsController = new PersonsController(gdprCapability);
+            await CreateConsents();
+            _kalleAnka = await CreateKalleAnkaAsync();
         }
 
         [TestMethod]
-        public async Task ReadPerson()
+        public async Task ReadConsentsForAPerson()
         {
-            var person = await _personsController.ReadAsync(_kalleAnka.ToString());
-            VerifyKalleAnka(person);
+            var personConsents = (await _personConsentsController.ReadChildrenAsync(_kalleAnka.ToString())).ToArray();
+            VerifyConsents(personConsents, true, false);
         }
 
-        private void VerifyKalleAnka(Person person)
+        private void VerifyConsents(PersonConsent[] personConsents, bool profiling, bool marketing)
         {
-            Assert.IsNotNull(person);
-            Assert.AreEqual("Kalle Anka", person.Name);
-            Assert.IsNotNull(person.Addresses);
-            var addresses = person.Addresses.ToArray();
-            Assert.AreEqual(2, addresses.Length);
-            var address = addresses.FirstOrDefault(a => a.Type == "Public");
-            Assert.IsNotNull(address);
-            Assert.AreEqual("Kalles gata", address.Street);
-            Assert.AreEqual("Ankeborg", address.City);
-            address = addresses.FirstOrDefault(a => a.Type == "Postal");
-            Assert.IsNotNull(address);
-            Assert.AreEqual("Box 123", address.Street);
-            Assert.AreEqual("Ankeborg", address.City);
+            Assert.IsNotNull(personConsents);
+            Assert.AreEqual(2, personConsents.Length);
+            var personConsent = personConsents.FirstOrDefault(a => a.Name == "Profiling");
+            Assert.IsNotNull(personConsent);
+            Assert.AreEqual(profiling,  personConsent.HasGivenConsent);
+            personConsent = personConsents.FirstOrDefault(a => a.Name == "Marketing");
+            Assert.IsNotNull(personConsent);
+            Assert.AreEqual(marketing, personConsent.HasGivenConsent);
+        }
+
+        private async Task CreateConsents()
+        {
+            var consent = new ConsentTable
+            {
+                Name = "Profiling"
+            };
+            _profilingConsentId = await _storage.Consent.CreateAsync(consent);
+
+            consent = new ConsentTable
+            {
+                Name = "Marketing"
+            };
+            _marketingConsentId = await _storage.Consent.CreateAsync(consent);
         }
 
         private async Task<Guid> CreateKalleAnkaAsync()
@@ -86,7 +98,27 @@ namespace GdprConsent.NexusFacade.WebApi.Test
             };
             await _storage.Address.CreateAsync(address);
 
+            await CreatePersonConsentsAsync(personId, true, false);
+
             return personId;
+        }
+
+        private async Task CreatePersonConsentsAsync(Guid personId, bool profiling, bool marketing)
+        {
+            var personConsent = new PersonConsentTable
+            {
+                ConsentId = _profilingConsentId,
+                PersonId = personId,
+                HasGivenConsent = profiling
+            };
+            await _storage.PersonConsent.CreateAsync(personConsent);
+            personConsent = new PersonConsentTable
+            {
+                ConsentId = _marketingConsentId,
+                PersonId = personId,
+                HasGivenConsent = marketing
+            };
+            await _storage.PersonConsent.CreateAsync(personConsent);
         }
     }
 }
