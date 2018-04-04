@@ -6,6 +6,7 @@ using System.Web.Http;
 using Frobozz.CapabilityContracts.Gdpr;
 using Frobozz.GdprConsent.NexusFacade.WebApi.Dal;
 using Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model;
+using Frobozz.GdprConsent.NexusFacade.WebApi.ServiceModel;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Error.Logic;
 using Xlent.Lever.Libraries2.Core.Storage.Logic;
@@ -17,7 +18,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
     /// <summary>
     /// Logic for Product. 
     /// </summary>
-    public class PersonLogic : CrudMapper<Person, string, IStorage, PersonTable, Guid>, IPersonService
+    public class PersonLogic : CrudMapper<PersonX, string, IStorage, PersonTable, Guid>, IPersonService<PersonX>
     {
         private readonly IStorage _storage;
 
@@ -31,7 +32,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
         }
 
         /// <inheritdoc />
-        public async Task<Person> CreateAndReturnAsync(Person item)
+        public async Task<PersonX> CreateAndReturnAsync(PersonX item)
         {
             ServiceContract.RequireNotNull(item, nameof(item));
             ServiceContract.RequireValidated(item, nameof(item));
@@ -41,7 +42,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
             return await ToServiceAsync(personDb);
         }
 
-        private async Task CreateAddressesAsync(Guid personId, Person item)
+        private async Task CreateAddressesAsync(Guid personId, PersonX item)
         {
             var tasks = new List<Task<Guid>>();
             foreach (var address in item.Addresses)
@@ -54,7 +55,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
         }
 
         /// <inheritdoc />
-        public async Task<Person> UpdateAndReturnAsync(string id, Person item)
+        public async Task<PersonX> UpdateAndReturnAsync(string id, PersonX item)
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
             ServiceContract.RequireNotNull(item, nameof(item));
@@ -65,7 +66,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
             return await ToServiceAsync(personDb);
         }
 
-        private async Task UpdateAddressesAsync(Guid personId, Person person)
+        private async Task UpdateAddressesAsync(Guid personId, PersonX person)
         {
             var addressesDb = await _storage.Address.ReadChildrenAsync(personId);
             var addressTables = addressesDb as AddressTable[] ?? addressesDb.ToArray();
@@ -162,13 +163,13 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
             }
         }
 
-        private async Task<Person> ToServiceAsync(PersonTable source, bool nullIsOk = false)
+        private async Task<PersonX> ToServiceAsync(PersonTable source, bool nullIsOk = false)
         {
             if (nullIsOk && source == null) return null;
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
             var addressesDbTask = _storage.Address.ReadChildrenAsync(source.Id);
-            var target = new Person()
+            var target = new PersonX()
             {
                 Id = source.Id.ToString(),
                 Name = source.Name,
@@ -179,7 +180,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
             return target;
         }
 
-        private PersonTable ToDb(Person source, bool nullIsOk = false)
+        private PersonTable ToDb(PersonX source, bool nullIsOk = false)
         {
             if (nullIsOk && source == null) return null;
             InternalContract.RequireNotNull(source, nameof(source));

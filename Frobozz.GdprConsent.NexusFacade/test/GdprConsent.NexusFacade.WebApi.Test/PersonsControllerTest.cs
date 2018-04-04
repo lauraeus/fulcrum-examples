@@ -30,8 +30,8 @@ namespace GdprConsent.NexusFacade.WebApi.Test
             _kalleAnka = await CreateKalleAnkaAsync();
 
             var personLogic = new PersonLogic(_storage);
-            var consentLogic = new ConsLogic<PersonConsent, string>(consent => consent.PersonId);
-            var personConsentLogic = new MemoryManyToOnePersistance<PersonConsent, string>(consent => consent.PersonId);
+            var consentLogic = new ConsentLogic(_storage);
+            var personConsentLogic = new PersonConsentLogic(_storage);
 
             var gdprCapability = new GdprCapability(personLogic, consentLogic, personConsentLogic);
 

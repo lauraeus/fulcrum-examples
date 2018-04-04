@@ -3,8 +3,9 @@ using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.CapabilityContracts.Gdpr
 {
-    public interface IPersonService : ICrud<Person, string>
+    public interface IPersonService<TModel> : ICrud<TModel, string>
+    where TModel : Person
     {
-        Task<Person> GetRandomAsync();
+        Task<TModel> GetRandomAsync();
     }
 }

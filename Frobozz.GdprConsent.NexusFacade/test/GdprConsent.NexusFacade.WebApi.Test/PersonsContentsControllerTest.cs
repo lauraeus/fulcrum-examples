@@ -31,8 +31,8 @@ namespace GdprConsent.NexusFacade.WebApi.Test
             _storage = new Storage(personStorage, addressStorage, consentStorage, personConsentStorage);
 
             var personLogic = new PersonLogic(_storage);
-            var consentLogic = new MemoryPersistance<Consent, string>();
-            var personConsentLogic = new MemoryManyToOnePersistance<PersonConsent, string>(consent => consent.PersonId);
+            var consentLogic = new ConsentLogic(_storage);
+            var personConsentLogic = new PersonConsentLogic(_storage);
             var gdprCapability = new GdprCapability(personLogic, consentLogic, personConsentLogic);
             _personConsentsController = new PersonConsentsController(gdprCapability);
 

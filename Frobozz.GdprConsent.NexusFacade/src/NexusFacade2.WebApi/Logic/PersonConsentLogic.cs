@@ -14,7 +14,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
     /// <summary>
     /// Logic for Product. 
     /// </summary>
-    internal class PersonConsentLogic : IPersonConsentService
+    public class PersonConsentLogic : IPersonConsentService
     {
         private readonly IStorage _storage;
 

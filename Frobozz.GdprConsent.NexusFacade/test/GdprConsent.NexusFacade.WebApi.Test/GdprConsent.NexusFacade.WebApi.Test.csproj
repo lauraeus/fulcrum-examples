@@ -74,6 +74,10 @@
       <Project>{21A7E0D3-ADE5-47DA-B295-14B487475CBD}</Project>
       <Name>Frobozz.CapabilityContracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Frobozz.NexusApi\src\Xlent.Lever.Libraries2.MoveTo\Xlent.Lever.Libraries2.MoveTo.csproj">
+      <Project>{6c5209c3-0307-4d74-80a4-d7af2ecd852f}</Project>
+      <Name>Xlent.Lever.Libraries2.MoveTo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\NexusFacade2.WebApi\GdprConsent.NexusFacade.WebApi.csproj">
       <Project>{d811a208-b451-43b9-b4ce-07e6b883e9c5}</Project>
       <Name>GdprConsent.NexusFacade.WebApi</Name>

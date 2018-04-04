@@ -1,5 +1,6 @@
 ﻿using System.Web.Http;
 using Frobozz.CapabilityContracts.Gdpr;
+using Frobozz.GdprConsent.NexusFacade.WebApi.ServiceModel;
 using Xlent.Lever.Libraries2.MoveTo.WebApi.ApiControllerHelpers;
 
 namespace Frobozz.GdprConsent.NexusFacade.WebApi.Controllers
@@ -13,7 +14,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Controllers
         /// <summary>
         /// Constructor 
         /// </summary>
-        public PersonConsentsController(IGdprCapability logic)
+        public PersonConsentsController(IGdprCapability<PersonX> logic)
         :base(logic.PersonConsentService)
         {
         }
