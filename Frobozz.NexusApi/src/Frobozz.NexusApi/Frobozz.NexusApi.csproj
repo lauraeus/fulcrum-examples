@@ -114,8 +114,7 @@
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Capabilities\Gdpr\GdprCapability.cs" />
-    <Compile Include="Capabilities\Gdpr\PersonA.cs" />
+    <Compile Include="Capabilities\GdprCapability.cs" />
     <Compile Include="Controllers\ConsentsController.cs" />
     <Compile Include="Controllers\PersonConsentsController.cs" />
     <Compile Include="Controllers\PersonsController.cs" />

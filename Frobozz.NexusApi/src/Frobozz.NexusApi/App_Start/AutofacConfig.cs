@@ -4,7 +4,6 @@ using Autofac;
 using Autofac.Integration.WebApi;
 using Frobozz.CapabilityContracts.Gdpr;
 using Frobozz.NexusApi.Capabilities;
-using Frobozz.NexusApi.Capabilities.Gdpr;
 using Frobozz.NexusApi.MemoryServices;
 using Frobozz.NexusApi.RestServices.GdprCapability;
 using Xlent.Lever.Libraries2.Core.Storage.Logic;

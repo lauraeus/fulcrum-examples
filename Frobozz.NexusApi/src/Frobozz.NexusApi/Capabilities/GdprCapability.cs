@@ -1,7 +1,6 @@
 ﻿using Frobozz.CapabilityContracts.Gdpr;
-using Xlent.Lever.Libraries2.Core.Storage.Model;
 
-namespace Frobozz.NexusApi.Capabilities.Gdpr
+namespace Frobozz.NexusApi.Capabilities
 {
     /// <inheritdoc />
     public class GdprCapability : IGdprCapability
