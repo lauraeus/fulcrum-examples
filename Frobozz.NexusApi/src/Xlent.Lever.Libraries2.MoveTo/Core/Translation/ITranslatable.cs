@@ -1,4 +1,4 @@
-﻿namespace Frobozz.CapabilityContracts.Core.Translation
+﻿namespace Xlent.Lever.Libraries2.MoveTo.Core.Translation
 {
     public interface ITranslatable
     {

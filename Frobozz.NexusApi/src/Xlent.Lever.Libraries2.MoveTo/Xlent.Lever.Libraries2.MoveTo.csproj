@@ -58,6 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Mapping\MapperBase.cs" />
     <Compile Include="Core\Translation\ITranslatable.cs" />
     <Compile Include="Core\Translation\TranslationHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,7 +67,6 @@
     <Compile Include="Core\Mapping\IMapper.cs" />
     <Compile Include="Core\Mapping\ManyToOneMapper.cs" />
     <Compile Include="Core\Mapping\MapHelper.cs" />
-    <Compile Include="Core\Mapping\MapperBase.cs" />
     <Compile Include="Core\Mapping\ReadMapper.cs" />
     <Compile Include="WebApi\ApiControllerHelpers\ApiCrdController.cs" />
     <Compile Include="WebApi\ApiControllerHelpers\ApiCrudController.cs" />

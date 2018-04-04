@@ -2,10 +2,10 @@
 using System.Web.Http;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
-namespace Frobozz.CapabilityContracts.Core.Mapping
+namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
 {
     /// <summary>
-    /// Logic for Product. 
+    /// Mapping for ICrud.
     /// </summary>
     public class CrudMapper<TClientModel, TClientId, TLogic, TServerModel, TServerId> : CrdMapper<TClientModel, TClientId, TLogic, TServerModel, TServerId>, ICrud<TClientModel, TClientId>
     where TClientModel : IMapper<TServerModel, TLogic>, new()
@@ -21,7 +21,7 @@ namespace Frobozz.CapabilityContracts.Core.Mapping
         }
 
         /// <inheritdoc />
-        public async Task UpdateAsync(TClientId id, TClientModel item)
+        public virtual async Task UpdateAsync(TClientId id, TClientModel item)
         {
             var serverId = MapHelper.MapId<TServerId, TClientId>(id);
             var serverItem = await item.CreateAndMapTo(Logic);
@@ -31,7 +31,7 @@ namespace Frobozz.CapabilityContracts.Core.Mapping
         /// <inheritdoc />
         [HttpPut]
         [Route("{id}")]
-        public async Task<TClientModel> UpdateAndReturnAsync(TClientId id, TClientModel item)
+        public virtual async Task<TClientModel> UpdateAndReturnAsync(TClientId id, TClientModel item)
         {
             var serverId = MapHelper.MapId<TServerId, TClientId>(id);
             var serverItem = await item.CreateAndMapTo(Logic);

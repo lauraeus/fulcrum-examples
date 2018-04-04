@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
-namespace Frobozz.CapabilityContracts.Core.Mapping
+namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
 {
     /// <summary>
-    /// Logic for Product. 
+    /// Mapping for IReadAll.
     /// </summary>
     public class ReadMapper<TClientModel, TClientId, TLogic, TServerModel, TServerId> : MapperBase<TClientModel, TClientId, TLogic, TServerModel, TServerId>, IReadAll<TClientModel, TClientId>
     where TClientModel : IMapper<TServerModel, TLogic>, new()
@@ -23,7 +23,7 @@ namespace Frobozz.CapabilityContracts.Core.Mapping
         }
 
         /// <inheritdoc />
-        public async Task<TClientModel> ReadAsync(TClientId id)
+        public virtual async Task<TClientModel> ReadAsync(TClientId id)
         {
             var serverId = MapToServerId(id);
             var serverItem = await _server.ReadAsync(serverId);
@@ -31,7 +31,7 @@ namespace Frobozz.CapabilityContracts.Core.Mapping
         }
 
         /// <inheritdoc />
-        public async Task<PageEnvelope<TClientModel>> ReadAllWithPagingAsync(int offset, int? limit = null)
+        public virtual async Task<PageEnvelope<TClientModel>> ReadAllWithPagingAsync(int offset, int? limit = null)
         {
             var serverPage = await _server.ReadAllWithPagingAsync(offset, limit);
             FulcrumAssert.IsNotNull(serverPage);
@@ -39,7 +39,7 @@ namespace Frobozz.CapabilityContracts.Core.Mapping
         }
 
         /// <inheritdoc />
-        public async Task<IEnumerable<TClientModel>> ReadAllAsync(int limit = int.MaxValue)
+        public virtual async Task<IEnumerable<TClientModel>> ReadAllAsync(int limit = int.MaxValue)
         {
             var serverItems = await _server.ReadAllAsync(limit);
             return await MapToClientAsync(serverItems);

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Frobozz.CapabilityContracts.Core.Mapping
+namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
 {
     /// <summary>
     /// Base class for the mapper classes

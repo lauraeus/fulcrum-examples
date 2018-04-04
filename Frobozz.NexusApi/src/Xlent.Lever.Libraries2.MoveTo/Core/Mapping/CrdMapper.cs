@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
-namespace Frobozz.CapabilityContracts.Core.Mapping
+namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
 {
     /// <summary>
-    /// Logic for Product. 
+    /// Mapping for ICrd.
     /// </summary>
     public class CrdMapper<TClientModel, TClientId, TLogic, TServerModel, TServerId> : ReadMapper<TClientModel, TClientId, TLogic, TServerModel, TServerId>, ICrd<TClientModel, TClientId>
     where TClientModel : IMapper<TServerModel, TLogic>, new()
@@ -20,7 +20,7 @@ namespace Frobozz.CapabilityContracts.Core.Mapping
         }
 
         /// <inheritdoc />
-        public async Task<TClientId> CreateAsync(TClientModel item)
+        public virtual async Task<TClientId> CreateAsync(TClientModel item)
         {
             var serverItem = await item.CreateAndMapTo(Logic);
             var serverId = await _server.CreateAsync(serverItem);
@@ -28,7 +28,7 @@ namespace Frobozz.CapabilityContracts.Core.Mapping
         }
 
         /// <inheritdoc />
-        public async Task<TClientModel> CreateAndReturnAsync(TClientModel item)
+        public virtual async Task<TClientModel> CreateAndReturnAsync(TClientModel item)
         {
             var serverItem = await item.CreateAndMapTo(Logic);
             serverItem = await _server.CreateAndReturnAsync(serverItem);
@@ -36,7 +36,7 @@ namespace Frobozz.CapabilityContracts.Core.Mapping
         }
 
         /// <inheritdoc />
-        public async Task CreateWithSpecifiedIdAsync(TClientId id, TClientModel item)
+        public virtual async Task CreateWithSpecifiedIdAsync(TClientId id, TClientModel item)
         {
             var serverId = MapToServerId(id);
             var serverItem = await item.CreateAndMapTo(Logic);
@@ -44,7 +44,7 @@ namespace Frobozz.CapabilityContracts.Core.Mapping
         }
 
         /// <inheritdoc />
-        public async Task<TClientModel> CreateWithSpecifiedIdAndReturnAsync(TClientId id, TClientModel item)
+        public virtual async Task<TClientModel> CreateWithSpecifiedIdAndReturnAsync(TClientId id, TClientModel item)
         {
             var serverId = MapToServerId(id);
             var serverItem = await item.CreateAndMapTo(Logic);
@@ -53,14 +53,14 @@ namespace Frobozz.CapabilityContracts.Core.Mapping
         }
 
         /// <inheritdoc />
-        public async Task DeleteAsync(TClientId id)
+        public virtual async Task DeleteAsync(TClientId id)
         {
             var serverId = MapToServerId(id);
             await _server.DeleteAsync(serverId);
         }
 
         /// <inheritdoc />
-        public async Task DeleteAllAsync()
+        public virtual async Task DeleteAllAsync()
         {
             await _server.DeleteAllAsync();
         }

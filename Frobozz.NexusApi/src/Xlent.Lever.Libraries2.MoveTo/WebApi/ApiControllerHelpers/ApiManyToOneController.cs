@@ -4,7 +4,7 @@ using System.Web.Http;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
-namespace Frobozz.CapabilityContracts.ApiHelpers
+namespace Xlent.Lever.Libraries2.MoveTo.WebApi.ApiControllerHelpers
 {
     public abstract class ApiManyToOneController<TModel> : ApiController, IManyToOneRelation<TModel, string>
     {

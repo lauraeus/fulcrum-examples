@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Frobozz.CapabilityContracts.Core.Mapping
+namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
 {
     public interface IMapper<TModel, in TLogic>
     {
