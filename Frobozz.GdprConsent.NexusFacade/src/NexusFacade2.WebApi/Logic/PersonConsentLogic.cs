@@ -7,6 +7,7 @@ using System.Web.Http;
 using Frobozz.CapabilityContracts.Gdpr;
 using Frobozz.GdprConsent.NexusFacade.WebApi.Dal;
 using Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model;
+using Frobozz.GdprConsent.NexusFacade.WebApi.Mappers;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
@@ -19,12 +20,15 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
     {
         private readonly IStorage _storage;
 
+        protected PersonConsentConsentMapper Mapper { get; }
+
         /// <summary>
         /// Constructor 
         /// </summary>
         public PersonConsentLogic(IStorage storage)
         {
             _storage = storage;
+            Mapper = new PersonConsentConsentMapper();
         }
 
         /// <inheritdoc />
@@ -39,41 +43,17 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
         public async Task<IEnumerable<PersonConsent>> ReadChildrenAsync(string parentId, int limit = int.MaxValue, CancellationToken token = default(CancellationToken))
         {
             var id = new Guid(parentId);
-            var personConsents = await _storage.PersonConsent.ReadByReference1Async(id, limit, token);
-            var consentsDb = await _storage.PersonConsent.ReadReferencedItemsByReference1Async(id, limit, token);
-            var consents = new List<PersonConsent>();
-            var personConsentDbArray = personConsents as PersonConsentTable[] ?? personConsents.ToArray();
-            foreach (var consentDb in consentsDb)
-            {
-                var personConsent = personConsentDbArray.FirstOrDefault(pc => pc.ConsentId == consentDb.Id);
-                if (personConsent == null) continue;
-                var consent = ToService(consentDb, personConsent);
-                consents.Add(consent);
-                ;
-            }
-
-            return consents;
+            var personConsentsDb = await _storage.PersonConsent.ReadByReference1Async(id, limit, token);
+            var personConsentDbArray = personConsentsDb as PersonConsentTable[] ?? personConsentsDb.ToArray();
+            var personConsentTasks =
+                personConsentDbArray.Select(async pc => await Mapper.CreateAndMapFromServerAsync(pc, _storage, token));
+            return await Task.WhenAll(personConsentTasks);
         }
 
         /// <inheritdoc />
         public Task DeleteChildrenAsync(string parentId, CancellationToken token = default(CancellationToken))
         {
             throw new NotImplementedException();
-        }
-
-        private PersonConsent ToService(ConsentTable source, PersonConsentTable personConsent, bool nullIsOk = false)
-        {
-            if (nullIsOk && source == null) return null;
-            InternalContract.RequireNotNull(source, nameof(source));
-            InternalContract.RequireValidated(source, nameof(source));
-            var target = new PersonConsent
-            {
-                Name = source.Name,
-                HasGivenConsent = personConsent.HasGivenConsent,
-                Id = source.Id.ToString()
-            };
-            FulcrumAssert.IsValidated(target);
-            return target;
         }
     }
 }
