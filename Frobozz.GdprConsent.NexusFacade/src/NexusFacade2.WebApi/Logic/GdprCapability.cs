@@ -1,5 +1,4 @@
 ﻿using Frobozz.CapabilityContracts.Gdpr;
-using Frobozz.GdprConsent.NexusFacade.WebApi.ServiceModel;
 
 namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
 {

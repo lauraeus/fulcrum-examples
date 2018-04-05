@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 
 namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
 {
-    public interface IMapper<TModel, in TLogic>
+    public interface IMapper<TClientModel, in TLogic, TServerModel>
     {
-        Task MapFromAsync(TModel source, TLogic logic, CancellationToken token = default(CancellationToken));
+        Task<TClientModel> CreateAndMapFromServerAsync(TServerModel source, TLogic logic, CancellationToken token = default(CancellationToken));
 
-        Task<TModel> CreateAndMapToAsync(TLogic logic, CancellationToken token = default(CancellationToken));
+        Task<TServerModel> CreateAndMapToServerAsync(TClientModel source, TLogic logic, CancellationToken token = default(CancellationToken));
     }
 }

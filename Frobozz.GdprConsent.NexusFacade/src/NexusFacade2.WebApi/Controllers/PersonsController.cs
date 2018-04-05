@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Web.Http;
 using Frobozz.CapabilityContracts.Gdpr;
-using Frobozz.GdprConsent.NexusFacade.WebApi.ServiceModel;
 using Xlent.Lever.Libraries2.MoveTo.WebApi.ApiControllerHelpers;
 
 namespace Frobozz.GdprConsent.NexusFacade.WebApi.Controllers

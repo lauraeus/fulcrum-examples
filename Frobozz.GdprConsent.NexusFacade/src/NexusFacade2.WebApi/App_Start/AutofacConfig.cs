@@ -41,8 +41,8 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi
                 .SingleInstance();
 
             var personLogic = new PersonLogic(storage);
-            var consentLogic = new MemoryManyToOnePersistance<Consent, string>(consent => consent.PersonId);
-            var personConsentLogic = consentLogic;
+            var consentLogic = new ConsentLogic(storage);
+            var personConsentLogic = new PersonConsentLogic(storage);
 
             var gdprCapability = new GdprCapability(personLogic, consentLogic, personConsentLogic);
             //Register Bll and Dal dependencies

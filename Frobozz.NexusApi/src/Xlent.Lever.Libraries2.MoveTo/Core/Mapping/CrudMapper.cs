@@ -9,14 +9,13 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
     /// Mapping for ICrud.
     /// </summary>
     public class CrudMapper<TClientModel, TClientId, TLogic, TServerModel, TServerId> : CrdMapper<TClientModel, TClientId, TLogic, TServerModel, TServerId>, ICrud<TClientModel, TClientId>
-    where TClientModel : IMapper<TServerModel, TLogic>, new()
     {
         private readonly ICrud<TServerModel, TServerId> _server;
         /// <summary>
         /// Constructor 
         /// </summary>
-        public CrudMapper(ICrud<TServerModel, TServerId> server, TLogic logic)
-        :base(server, logic)
+        public CrudMapper(ICrud<TServerModel, TServerId> server, TLogic logic, IMapper<TClientModel, TLogic, TServerModel> mapper)
+        :base(server, logic, mapper)
         {
             _server = server;
         }
@@ -24,8 +23,8 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
         /// <inheritdoc />
         public virtual async Task UpdateAsync(TClientId id, TClientModel item, CancellationToken token = default(CancellationToken))
         {
-            var serverId = MapHelper.MapId<TServerId, TClientId>(id);
-            var serverItem = await item.CreateAndMapToAsync(Logic, token);
+            var serverId = MapToServerId(id);
+            var serverItem = await CreateAndMapToServerAsync(item, token);
             await _server.UpdateAsync(serverId, serverItem, token);
         }
 
@@ -34,10 +33,10 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
         [Route("{id}")]
         public virtual async Task<TClientModel> UpdateAndReturnAsync(TClientId id, TClientModel item, CancellationToken token = default(CancellationToken))
         {
-            var serverId = MapHelper.MapId<TServerId, TClientId>(id);
-            var serverItem = await item.CreateAndMapToAsync(Logic, token);
+            var serverId = MapToServerId(id);
+            var serverItem = await CreateAndMapToServerAsync(item, token);
             serverItem = await _server.UpdateAndReturnAsync(serverId, serverItem, token);
-            return await MapToClientAsync(serverItem, token);
+            return await CreateAndMapFromServerAsync(serverItem, token);
         }
     }
 }

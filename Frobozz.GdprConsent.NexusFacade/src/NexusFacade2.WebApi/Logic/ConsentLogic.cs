@@ -2,6 +2,7 @@
 using Frobozz.CapabilityContracts.Gdpr;
 using Frobozz.GdprConsent.NexusFacade.WebApi.Dal;
 using Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model;
+using Frobozz.GdprConsent.NexusFacade.WebApi.Mappers;
 using Xlent.Lever.Libraries2.MoveTo.Core.Mapping;
 
 namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
@@ -17,7 +18,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
         /// Constructor 
         /// </summary>
         public ConsentLogic(IStorage storage)
-        :base(storage.Consent, storage)
+        :base(storage.Consent, storage, new ConsentMapper())
         {
             _storage = storage;
         }

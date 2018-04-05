@@ -132,8 +132,10 @@
     <Compile Include="Logic\GdprCapability.cs" />
     <Compile Include="Logic\ConsentLogic.cs" />
     <Compile Include="Logic\PersonLogic.cs" />
+    <Compile Include="Mappers\ConsentMapper.cs" />
+    <Compile Include="Mappers\PersonConsentMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceModel\PersonX.cs" />
+    <Compile Include="Mappers\PersonMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

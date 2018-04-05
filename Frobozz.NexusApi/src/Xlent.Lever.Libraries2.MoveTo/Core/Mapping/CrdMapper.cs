@@ -8,14 +8,13 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
     /// Mapping for ICrd.
     /// </summary>
     public class CrdMapper<TClientModel, TClientId, TLogic, TServerModel, TServerId> : ReadMapper<TClientModel, TClientId, TLogic, TServerModel, TServerId>, ICrd<TClientModel, TClientId>
-    where TClientModel : IMapper<TServerModel, TLogic>, new()
     {
         private readonly ICrd<TServerModel, TServerId> _server;
         /// <summary>
         /// Constructor 
         /// </summary>
-        public CrdMapper(ICrd<TServerModel, TServerId> server, TLogic logic)
-        :base(server, logic)
+        public CrdMapper(ICrd<TServerModel, TServerId> server, TLogic logic, IMapper<TClientModel, TLogic, TServerModel> mapper)
+        :base(server, logic, mapper)
         {
             _server = server;
         }
@@ -23,7 +22,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
         /// <inheritdoc />
         public virtual async Task<TClientId> CreateAsync(TClientModel item, CancellationToken token = default(CancellationToken))
         {
-            var serverItem = await item.CreateAndMapToAsync(Logic, token);
+            var serverItem = await CreateAndMapToServerAsync(item, token);
             var serverId = await _server.CreateAsync(serverItem, token);
             return MapToClientId(serverId);
         }
@@ -31,16 +30,16 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
         /// <inheritdoc />
         public virtual async Task<TClientModel> CreateAndReturnAsync(TClientModel item, CancellationToken token = default(CancellationToken))
         {
-            var serverItem = await item.CreateAndMapToAsync(Logic, token);
+            var serverItem = await CreateAndMapToServerAsync(item, token);
             serverItem = await _server.CreateAndReturnAsync(serverItem, token);
-            return await MapToClientAsync(serverItem, token);
+            return await CreateAndMapFromServerAsync(serverItem, token);
         }
 
         /// <inheritdoc />
         public virtual async Task CreateWithSpecifiedIdAsync(TClientId id, TClientModel item, CancellationToken token = default(CancellationToken))
         {
             var serverId = MapToServerId(id);
-            var serverItem = await item.CreateAndMapToAsync(Logic, token);
+            var serverItem = await CreateAndMapToServerAsync(item, token);
             await _server.CreateWithSpecifiedIdAsync(serverId, serverItem, token);
         }
 
@@ -48,9 +47,9 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
         public virtual async Task<TClientModel> CreateWithSpecifiedIdAndReturnAsync(TClientId id, TClientModel item, CancellationToken token = default(CancellationToken))
         {
             var serverId = MapToServerId(id);
-            var serverItem = await item.CreateAndMapToAsync(Logic, token);
+            var serverItem = await CreateAndMapToServerAsync(item, token);
             serverItem = await _server.CreateWithSpecifiedIdAndReturnAsync(serverId, serverItem, token);
-            return await MapToClientAsync(serverItem, token);
+            return await CreateAndMapFromServerAsync(serverItem, token);
         }
 
         /// <inheritdoc />

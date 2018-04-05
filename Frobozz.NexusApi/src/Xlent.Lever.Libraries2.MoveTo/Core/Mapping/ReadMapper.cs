@@ -10,15 +10,14 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
     /// Mapping for IReadAll.
     /// </summary>
     public class ReadMapper<TClientModel, TClientId, TLogic, TServerModel, TServerId> : MapperBase<TClientModel, TClientId, TLogic, TServerModel, TServerId>, IReadAll<TClientModel, TClientId>
-    where TClientModel : IMapper<TServerModel, TLogic>, new()
     {
         private readonly IReadAll<TServerModel, TServerId> _server;
         
         /// <summary>
         /// Constructor 
         /// </summary>
-        public ReadMapper(IReadAll<TServerModel, TServerId> server, TLogic logic)
-        :base(logic)
+        public ReadMapper(IReadAll<TServerModel, TServerId> server, TLogic logic, IMapper<TClientModel, TLogic, TServerModel> mapper)
+        :base(logic, mapper)
         {
             _server = server;
         }
@@ -28,7 +27,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
         {
             var serverId = MapToServerId(id);
             var serverItem = await _server.ReadAsync(serverId, token);
-            return await MapToClientAsync(serverItem, token);
+            return await CreateAndMapFromServerAsync(serverItem, token);
         }
 
         /// <inheritdoc />
@@ -36,14 +35,14 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
         {
             var serverPage = await _server.ReadAllWithPagingAsync(offset, limit, token);
             FulcrumAssert.IsNotNull(serverPage);
-            return new PageEnvelope<TClientModel>(serverPage.PageInfo, await MapToClientAsync(serverPage.Data, token));
+            return new PageEnvelope<TClientModel>(serverPage.PageInfo, await CreateAndMapFromServerAsync(serverPage.Data, token));
         }
 
         /// <inheritdoc />
         public virtual async Task<IEnumerable<TClientModel>> ReadAllAsync(int limit = int.MaxValue, CancellationToken token = default(CancellationToken))
         {
             var serverItems = await _server.ReadAllAsync(limit, token);
-            return await MapToClientAsync(serverItems, token);
+            return await CreateAndMapFromServerAsync(serverItems, token);
         }
     }
 }
