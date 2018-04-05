@@ -20,6 +20,11 @@ namespace Frobozz.CapabilityContracts.Gdpr
         /// </summary>
         public bool HasGivenConsent { get; set; }
 
+        /// <summary>
+        /// The id of the consent.
+        /// </summary>
+        public string ConsentId { get; set; }
+
         /// <inheritdoc />
         public override void Validate(string errorLocation, string propertyPath = "")
         {

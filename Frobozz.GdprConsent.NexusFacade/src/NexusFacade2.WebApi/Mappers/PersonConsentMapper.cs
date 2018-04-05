@@ -19,10 +19,15 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Mappers
         {
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
+            var consentDb = await logic.Consent.ReadAsync(source.ConsentId, token);
             var target = new PersonConsent
             {
                 Id = MapperHelper.MapId<string, Guid>(source.Id),
+                ConsentId = MapperHelper.MapId<string, Guid>(source.ConsentId),
+                Name = consentDb.Name,
                 Etag = source.Etag,
+                PersonId = MapperHelper.MapId<string, Guid>(source.PersonId),
+                HasGivenConsent = source.HasGivenConsent
             };
             FulcrumAssert.IsValidated(target);
             return target;
@@ -33,14 +38,16 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Mappers
         {
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
-            var id = MapperHelper.MapId<Guid, string>(source.Id);
             var target = new PersonConsentTable
             {
-                Id = id,
+                Id = MapperHelper.MapId<Guid, string>(source.Id),
                 Etag = source.Etag,
+                HasGivenConsent = source.HasGivenConsent,
+                PersonId = MapperHelper.MapId<Guid, string>(source.PersonId),
+                ConsentId = MapperHelper.MapId<Guid, string>(source.ConsentId),
             };
             FulcrumAssert.IsValidated(target);
-            return target;
+            return await Task.FromResult(target);
         }
     }
 }
