@@ -4,12 +4,12 @@ using Frobozz.GdprConsent.NexusFacade.WebApi.ServiceModel;
 namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
 {
     /// <inheritdoc />
-    public class GdprCapability : IGdprCapability<PersonX>
+    public class GdprCapability : IGdprCapability
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public GdprCapability(IPersonService<PersonX> personService, IConsentService consentService, IPersonConsentService personConsent)
+        public GdprCapability(IPersonService personService, IConsentService consentService, IPersonConsentService personConsent)
         {
             PersonService = personService;
             ConsentService = consentService;
@@ -17,7 +17,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
         }
 
         /// <inheritdoc />
-        public IPersonService<PersonX> PersonService { get; }
+        public IPersonService PersonService { get; }
 
         /// <inheritdoc />
         public IConsentService ConsentService { get; }

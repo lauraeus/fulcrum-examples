@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Frobozz.CapabilityContracts.Gdpr;
 using Xlent.Lever.Libraries2.MoveTo.WebApi.ApiControllerHelpers;
@@ -23,9 +24,9 @@ namespace Frobozz.NexusApi.Controllers
         }
 
         /// <inheritdoc />
-        public async Task<Person> GetRandomAsync()
+        public async Task<Person> FindFirstOrDefaultByNameAsync(string name, CancellationToken token = default(CancellationToken))
         {
-            return await _gdprCapability.PersonService.GetRandomAsync();
+            return await _gdprCapability.PersonService.FindFirstOrDefaultByNameAsync(name, token);
         }
     }
 }

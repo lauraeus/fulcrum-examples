@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
@@ -19,61 +20,61 @@ namespace Xlent.Lever.Libraries2.MoveTo.WebApi.ApiControllerHelpers
         /// <inheritdoc />
         [HttpPost]
         [Route("")]
-        public virtual async Task<string> CreateAsync(TModel item)
+        public virtual async Task<string> CreateAsync(TModel item, CancellationToken token = default(CancellationToken))
         {
             ServiceContract.RequireNotNull(item, nameof(item));
             ServiceContract.RequireValidated(item, nameof(item));
-            return await _storage.CreateAsync(item);
+            return await _storage.CreateAsync(item, token);
         }
 
         /// <inheritdoc />
         [HttpPost]
         [Route("ReturnCreated")]
-        public virtual async Task<TModel> CreateAndReturnAsync(TModel item)
+        public virtual async Task<TModel> CreateAndReturnAsync(TModel item, CancellationToken token = default(CancellationToken))
         {
             ServiceContract.RequireNotNull(item, nameof(item));
             ServiceContract.RequireValidated(item, nameof(item));
-            return await _storage.CreateAndReturnAsync(item);
+            return await _storage.CreateAndReturnAsync(item, token);
         }
 
         /// <inheritdoc />
         [HttpPost]
         [Route("{id}")]
-        public virtual async Task CreateWithSpecifiedIdAsync(string id, TModel item)
+        public virtual async Task CreateWithSpecifiedIdAsync(string id, TModel item, CancellationToken token = default(CancellationToken))
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
             ServiceContract.RequireNotNull(item, nameof(item));
             ServiceContract.RequireValidated(item, nameof(item));
-            await _storage.CreateWithSpecifiedIdAsync(id, item);
+            await _storage.CreateWithSpecifiedIdAsync(id, item, token);
         }
 
         /// <inheritdoc />
         [HttpPost]
         [Route("{id}/ReturnCreated")]
-        public virtual async Task<TModel> CreateWithSpecifiedIdAndReturnAsync(string id, TModel item)
+        public virtual async Task<TModel> CreateWithSpecifiedIdAndReturnAsync(string id, TModel item, CancellationToken token = default(CancellationToken))
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
             ServiceContract.RequireNotNull(item, nameof(item));
             ServiceContract.RequireValidated(item, nameof(item));
-            return await _storage.CreateWithSpecifiedIdAndReturnAsync(id, item);
+            return await _storage.CreateWithSpecifiedIdAndReturnAsync(id, item, token);
         }
 
 
         /// <inheritdoc />
         [HttpDelete]
         [Route("{id}")]
-        public virtual async Task DeleteAsync(string id)
+        public virtual async Task DeleteAsync(string id, CancellationToken token = default(CancellationToken))
         {
             ServiceContract.RequireNotNullOrWhitespace(id, nameof(id));
-            await _storage.DeleteAsync(id);
+            await _storage.DeleteAsync(id, token);
         }
 
         /// <inheritdoc />
         [HttpDelete]
         [Route("{id}/ReturnUpdated")]
-        public virtual async Task DeleteAllAsync()
+        public virtual async Task DeleteAllAsync(CancellationToken token = default(CancellationToken))
         {
-            await _storage.DeleteAllAsync();
+            await _storage.DeleteAllAsync(token);
         }
     }
 }

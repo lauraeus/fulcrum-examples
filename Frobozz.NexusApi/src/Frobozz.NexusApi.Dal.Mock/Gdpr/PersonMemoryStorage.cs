@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Frobozz.CapabilityContracts.Gdpr;
+using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Logic;
 
 namespace Frobozz.NexusApi.Dal.Mock.Gdpr
@@ -10,11 +12,17 @@ namespace Frobozz.NexusApi.Dal.Mock.Gdpr
     public class PersonMemoryStorage : MemoryPersistance<Person, string>, IPersonService
     {
         /// <inheritdoc />
-        public async Task<Person> GetRandomAsync()
+        public async Task<Person> FindFirstOrDefaultByNameAsync(string name, CancellationToken token = default(CancellationToken))
         {
-            var items = (await ReadAllAsync(100)).ToArray();
-            var random = DateTimeOffset.Now.ToUnixTimeMilliseconds() % items.Length;
-            return items[random];
+            InternalContract.RequireNotNullOrWhitespace(name, nameof(name));
+            var enumerator =
+                new PageEnvelopeEnumeratorAsync<Person>((offset, t) => ReadAllWithPagingAsync(offset, null, t), token);
+            while (await enumerator.MoveNextAsync())
+            {
+                if (enumerator.Current.Name == name) return enumerator.Current;
+            }
+
+            return null;
         }
     }
 }

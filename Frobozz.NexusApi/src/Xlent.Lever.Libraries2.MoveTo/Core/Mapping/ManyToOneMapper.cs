@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Xlent.Lever.Libraries2.Core.Assert;
@@ -23,29 +24,29 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
         }
 
         /// h<inheritdoc />
-        public virtual async Task<PageEnvelope<TClientModel>> ReadChildrenWithPagingAsync(TClientId parentId, int offset, int? limit = null)
+        public virtual async Task<PageEnvelope<TClientModel>> ReadChildrenWithPagingAsync(TClientId parentId, int offset, int? limit = null, CancellationToken token = default(CancellationToken))
         {
             var serverId = MapToServerId(parentId);
-            var serverPage = await _server.ReadChildrenWithPagingAsync(serverId, offset, limit);
+            var serverPage = await _server.ReadChildrenWithPagingAsync(serverId, offset, limit, token);
             FulcrumAssert.IsNotNull(serverPage);
-            return new PageEnvelope<TClientModel>(serverPage.PageInfo, await MapToClientAsync(serverPage.Data));
+            return new PageEnvelope<TClientModel>(serverPage.PageInfo, await MapToClientAsync(serverPage.Data, token));
         }
 
         /// <inheritdoc />
         [HttpGet]
         [Route("{id}/Consents")]
-        public virtual async Task<IEnumerable<TClientModel>> ReadChildrenAsync(TClientId parentId, int limit = int.MaxValue)
+        public virtual async Task<IEnumerable<TClientModel>> ReadChildrenAsync(TClientId parentId, int limit = int.MaxValue, CancellationToken token = default(CancellationToken))
         {
             var serverId = MapToServerId(parentId);
-            var serverItems = await _server.ReadChildrenAsync(serverId, limit);
-            return await MapToClientAsync(serverItems);
+            var serverItems = await _server.ReadChildrenAsync(serverId, limit, token);
+            return await MapToClientAsync(serverItems, token);
         }
 
         /// <inheritdoc />
-        public virtual async Task DeleteChildrenAsync(TClientId parentId)
+        public virtual async Task DeleteChildrenAsync(TClientId parentId, CancellationToken token = default(CancellationToken))
         {
             var serverId = MapToServerId(parentId);
-            await _server.DeleteChildrenAsync(serverId);
+            await _server.DeleteChildrenAsync(serverId, token);
         }
     }
 }

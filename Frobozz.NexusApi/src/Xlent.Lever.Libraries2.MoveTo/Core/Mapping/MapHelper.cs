@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Error.Logic;
@@ -26,12 +27,12 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
             throw new FulcrumNotImplementedException($"There is currently no rule on how to convert an id from type {sourceType.Name} to type {targetType.Name}.");
         }
 
-        public static async Task<TTarget> CreateAndMapToAsync<TTarget, TSource, TLogic>(TSource source, TLogic logic) 
+        public static async Task<TTarget> CreateAndMapToAsync<TTarget, TSource, TLogic>(TSource source, TLogic logic, CancellationToken token = default(CancellationToken)) 
             where TTarget : IMapper<TSource, TLogic>, new()
         {
             if (Equals(source, default(TSource))) return default(TTarget);
             var target = new TTarget();
-            await target.MapFromAsync(source, logic);
+            await target.MapFromAsync(source, logic, token);
             return target;
         }
     }

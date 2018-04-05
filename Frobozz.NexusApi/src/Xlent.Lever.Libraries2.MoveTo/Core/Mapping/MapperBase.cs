@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
@@ -25,16 +26,16 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
             Logic = logic;
         }
 
-        protected async Task<TClientModel[]> MapToClientAsync(IEnumerable<TServerModel> serverItems)
+        protected async Task<TClientModel[]> MapToClientAsync(IEnumerable<TServerModel> serverItems, CancellationToken token = default(CancellationToken))
         {
             if (serverItems == null) return null;
-            var clientItemTasks = serverItems.Select(async si => await MapToClientAsync(si));
+            var clientItemTasks = serverItems.Select(async si => await MapToClientAsync(si, token));
             return await Task.WhenAll(clientItemTasks);
         }
 
-        protected async Task<TClientModel> MapToClientAsync(TServerModel serverItem)
+        protected async Task<TClientModel> MapToClientAsync(TServerModel serverItem, CancellationToken token = default(CancellationToken))
         {
-            return await MapHelper.CreateAndMapToAsync<TClientModel, TServerModel, TLogic>(serverItem, Logic);
+            return await MapHelper.CreateAndMapToAsync<TClientModel, TServerModel, TLogic>(serverItem, Logic, token);
         }
 
         protected static TClientId MapToClientId(TServerId id)

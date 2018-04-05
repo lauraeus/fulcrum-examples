@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Web;
 using Frobozz.CapabilityContracts.Gdpr;
 using Microsoft.Rest;
 using Xlent.Lever.Libraries2.Core.Platform.Authentication;
@@ -24,9 +27,10 @@ namespace Frobozz.NexusApi.Dal.RestServices.Gdpr
         }
 
         /// <inheritdoc />
-        public async Task<Person> GetRandomAsync()
+        public async Task<Person> FindFirstOrDefaultByNameAsync(string name, CancellationToken token = default(CancellationToken))
         {
-            return await GetAsync<Person>("GetRandom");
+            var safeName = HttpUtility.UrlEncode(name);
+            return await GetAsync<Person>($"?name={safeName}", cancellationToken: token);
         }
     }
 }

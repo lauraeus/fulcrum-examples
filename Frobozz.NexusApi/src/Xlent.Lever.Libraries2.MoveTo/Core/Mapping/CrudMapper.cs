@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
@@ -21,22 +22,22 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
         }
 
         /// <inheritdoc />
-        public virtual async Task UpdateAsync(TClientId id, TClientModel item)
+        public virtual async Task UpdateAsync(TClientId id, TClientModel item, CancellationToken token = default(CancellationToken))
         {
             var serverId = MapHelper.MapId<TServerId, TClientId>(id);
-            var serverItem = await item.CreateAndMapTo(Logic);
-            await _server.UpdateAsync(serverId, serverItem);
+            var serverItem = await item.CreateAndMapToAsync(Logic, token);
+            await _server.UpdateAsync(serverId, serverItem, token);
         }
 
         /// <inheritdoc />
         [HttpPut]
         [Route("{id}")]
-        public virtual async Task<TClientModel> UpdateAndReturnAsync(TClientId id, TClientModel item)
+        public virtual async Task<TClientModel> UpdateAndReturnAsync(TClientId id, TClientModel item, CancellationToken token = default(CancellationToken))
         {
             var serverId = MapHelper.MapId<TServerId, TClientId>(id);
-            var serverItem = await item.CreateAndMapTo(Logic);
-            serverItem = await _server.UpdateAndReturnAsync(serverId, serverItem);
-            return await MapToClientAsync(serverItem);
+            var serverItem = await item.CreateAndMapToAsync(Logic, token);
+            serverItem = await _server.UpdateAndReturnAsync(serverId, serverItem, token);
+            return await MapToClientAsync(serverItem, token);
         }
     }
 }

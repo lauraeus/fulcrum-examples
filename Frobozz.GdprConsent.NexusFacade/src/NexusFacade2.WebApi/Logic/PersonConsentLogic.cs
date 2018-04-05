@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Frobozz.CapabilityContracts.Gdpr;
@@ -27,7 +28,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
         }
 
         /// <inheritdoc />
-        public Task<PageEnvelope<PersonConsent>> ReadChildrenWithPagingAsync(string parentId, int offset, int? limit = null)
+        public Task<PageEnvelope<PersonConsent>> ReadChildrenWithPagingAsync(string parentId, int offset, int? limit = null, CancellationToken token = default(CancellationToken))
         {
             throw new NotImplementedException();
         }
@@ -35,11 +36,11 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
         /// <inheritdoc />
         [HttpGet]
         [Route("{id}/Consents")]
-        public async Task<IEnumerable<PersonConsent>> ReadChildrenAsync(string parentId, int limit = int.MaxValue)
+        public async Task<IEnumerable<PersonConsent>> ReadChildrenAsync(string parentId, int limit = int.MaxValue, CancellationToken token = default(CancellationToken))
         {
             var id = new Guid(parentId);
-            var personConsents = await _storage.PersonConsent.ReadByReference1Async(id, limit);
-            var consentsDb = await _storage.PersonConsent.ReadReferencedItemsByReference1Async(id, limit);
+            var personConsents = await _storage.PersonConsent.ReadByReference1Async(id, limit, token);
+            var consentsDb = await _storage.PersonConsent.ReadReferencedItemsByReference1Async(id, limit, token);
             var consents = new List<PersonConsent>();
             var personConsentDbArray = personConsents as PersonConsentTable[] ?? personConsents.ToArray();
             foreach (var consentDb in consentsDb)
@@ -55,7 +56,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
         }
 
         /// <inheritdoc />
-        public Task DeleteChildrenAsync(string parentId)
+        public Task DeleteChildrenAsync(string parentId, CancellationToken token = default(CancellationToken))
         {
             throw new NotImplementedException();
         }

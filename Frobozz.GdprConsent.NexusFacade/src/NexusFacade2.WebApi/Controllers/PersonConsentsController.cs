@@ -14,7 +14,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Controllers
         /// <summary>
         /// Constructor 
         /// </summary>
-        public PersonConsentsController(IGdprCapability<PersonX> logic)
+        public PersonConsentsController(IGdprCapability logic)
         :base(logic.PersonConsentService)
         {
         }

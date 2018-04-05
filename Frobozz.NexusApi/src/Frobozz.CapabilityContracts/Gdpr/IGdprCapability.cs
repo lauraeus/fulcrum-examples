@@ -1,9 +1,8 @@
 ﻿namespace Frobozz.CapabilityContracts.Gdpr
 {
-    public interface IGdprCapability<TPerson> 
-        where TPerson : Person
+    public interface IGdprCapability 
     {
-        IPersonService<TPerson> PersonService { get; }
+        IPersonService PersonService { get; }
 
         IConsentService ConsentService { get; }
 

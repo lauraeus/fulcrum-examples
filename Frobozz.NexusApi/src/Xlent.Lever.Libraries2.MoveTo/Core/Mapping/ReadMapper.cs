@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
@@ -23,26 +24,26 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
         }
 
         /// <inheritdoc />
-        public virtual async Task<TClientModel> ReadAsync(TClientId id)
+        public virtual async Task<TClientModel> ReadAsync(TClientId id, CancellationToken token = default(CancellationToken))
         {
             var serverId = MapToServerId(id);
-            var serverItem = await _server.ReadAsync(serverId);
-            return await MapToClientAsync(serverItem);
+            var serverItem = await _server.ReadAsync(serverId, token);
+            return await MapToClientAsync(serverItem, token);
         }
 
         /// <inheritdoc />
-        public virtual async Task<PageEnvelope<TClientModel>> ReadAllWithPagingAsync(int offset, int? limit = null)
+        public virtual async Task<PageEnvelope<TClientModel>> ReadAllWithPagingAsync(int offset, int? limit = null, CancellationToken token = default(CancellationToken))
         {
-            var serverPage = await _server.ReadAllWithPagingAsync(offset, limit);
+            var serverPage = await _server.ReadAllWithPagingAsync(offset, limit, token);
             FulcrumAssert.IsNotNull(serverPage);
-            return new PageEnvelope<TClientModel>(serverPage.PageInfo, await MapToClientAsync(serverPage.Data));
+            return new PageEnvelope<TClientModel>(serverPage.PageInfo, await MapToClientAsync(serverPage.Data, token));
         }
 
         /// <inheritdoc />
-        public virtual async Task<IEnumerable<TClientModel>> ReadAllAsync(int limit = int.MaxValue)
+        public virtual async Task<IEnumerable<TClientModel>> ReadAllAsync(int limit = int.MaxValue, CancellationToken token = default(CancellationToken))
         {
-            var serverItems = await _server.ReadAllAsync(limit);
-            return await MapToClientAsync(serverItems);
+            var serverItems = await _server.ReadAllAsync(limit, token);
+            return await MapToClientAsync(serverItems, token);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Xlent.Lever.Libraries2.Core.Assert;
@@ -18,7 +19,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.WebApi.ApiControllerHelpers
         /// <inheritdoc />
         [HttpGet]
         [Route("WithPaging")]
-        public virtual async Task<PageEnvelope<TModel>> ReadChildrenWithPagingAsync(string parentId, int offset, int? limit = null)
+        public virtual async Task<PageEnvelope<TModel>> ReadChildrenWithPagingAsync(string parentId, int offset, int? limit = null, CancellationToken token = default(CancellationToken))
         {
             ServiceContract.RequireNotNullOrWhitespace(parentId, nameof(parentId));
             ServiceContract.RequireGreaterThanOrEqualTo(0, offset, nameof(offset));
@@ -26,26 +27,26 @@ namespace Xlent.Lever.Libraries2.MoveTo.WebApi.ApiControllerHelpers
             {
                 ServiceContract.RequireGreaterThan(0, limit.Value, nameof(limit));
             }
-            return await _storage.ReadChildrenWithPagingAsync(parentId, offset, limit);
+            return await _storage.ReadChildrenWithPagingAsync(parentId, offset, limit, token);
         }
 
         /// <inheritdoc />
         [HttpGet]
         [Route("")]
-        public virtual async Task<IEnumerable<TModel>> ReadChildrenAsync(string parentId, int limit = int.MaxValue)
+        public virtual async Task<IEnumerable<TModel>> ReadChildrenAsync(string parentId, int limit = int.MaxValue, CancellationToken token = default(CancellationToken))
         {
             ServiceContract.RequireNotNullOrWhitespace(parentId, nameof(parentId));
             ServiceContract.RequireGreaterThan(0, limit, nameof(limit));
-            return await _storage.ReadChildrenAsync(parentId, limit);
+            return await _storage.ReadChildrenAsync(parentId, limit, token);
         }
 
         /// <inheritdoc />
         [HttpDelete]
         [Route("")]
-        public virtual async Task DeleteChildrenAsync(string parentId)
+        public virtual async Task DeleteChildrenAsync(string parentId, CancellationToken token = default(CancellationToken))
         {
             ServiceContract.RequireNotNullOrWhitespace(parentId, nameof(parentId));
-            await _storage.DeleteChildrenAsync(parentId);
+            await _storage.DeleteChildrenAsync(parentId, token);
         }
     }
 }
