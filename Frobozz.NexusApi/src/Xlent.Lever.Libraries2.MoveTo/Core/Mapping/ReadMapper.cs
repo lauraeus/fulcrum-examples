@@ -9,31 +9,31 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
     /// <summary>
     /// Mapping for IReadAll.
     /// </summary>
-    public class ReadMapper<TClientModel, TClientId, TLogic, TServerModel, TServerId> : MapperBase<TClientModel, TClientId, TLogic, TServerModel, TServerId>, IReadAll<TClientModel, TClientId>
+    public class ReadMapper<TClientModel, TClientId, TServerLogic, TServerModel, TServerId> : MapperBase<TClientModel, TClientId, TServerLogic, TServerModel, TServerId>, IReadAll<TClientModel, TClientId>
     {
-        private readonly IReadAll<TServerModel, TServerId> _server;
+        private readonly IReadAll<TServerModel, TServerId> _service;
         
         /// <summary>
         /// Constructor 
         /// </summary>
-        public ReadMapper(IReadAll<TServerModel, TServerId> server, TLogic logic, IMapper<TClientModel, TLogic, TServerModel> mapper)
-        :base(logic, mapper)
+        public ReadMapper(TServerLogic storage, IReadAll<TServerModel, TServerId> service, IMapper<TClientModel, TServerLogic, TServerModel> mapper)
+        : base(storage, mapper)
         {
-            _server = server;
+            _service = service;
         }
 
         /// <inheritdoc />
         public virtual async Task<TClientModel> ReadAsync(TClientId id, CancellationToken token = default(CancellationToken))
         {
             var serverId = MapToServerId(id);
-            var serverItem = await _server.ReadAsync(serverId, token);
+            var serverItem = await _service.ReadAsync(serverId, token);
             return await CreateAndMapFromServerAsync(serverItem, token);
         }
 
         /// <inheritdoc />
         public virtual async Task<PageEnvelope<TClientModel>> ReadAllWithPagingAsync(int offset, int? limit = null, CancellationToken token = default(CancellationToken))
         {
-            var serverPage = await _server.ReadAllWithPagingAsync(offset, limit, token);
+            var serverPage = await _service.ReadAllWithPagingAsync(offset, limit, token);
             FulcrumAssert.IsNotNull(serverPage);
             return new PageEnvelope<TClientModel>(serverPage.PageInfo, await CreateAndMapFromServerAsync(serverPage.Data, token));
         }
@@ -41,7 +41,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
         /// <inheritdoc />
         public virtual async Task<IEnumerable<TClientModel>> ReadAllAsync(int limit = int.MaxValue, CancellationToken token = default(CancellationToken))
         {
-            var serverItems = await _server.ReadAllAsync(limit, token);
+            var serverItems = await _service.ReadAllAsync(limit, token);
             return await CreateAndMapFromServerAsync(serverItems, token);
         }
     }

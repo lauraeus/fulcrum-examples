@@ -10,6 +10,6 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal
         IManyToOneRelationComplete<AddressTable, Guid> Address { get; }
         ICrud<PersonTable, Guid> Person { get; }
         ICrud<ConsentTable, Guid> Consent { get; }
-        IManyToManyRelationComplete<PersonConsentTable, PersonTable, ConsentTable, Guid> PersonConsent { get; }
+        IManyToOneRelationComplete<PersonConsentTable, Guid> PersonConsent { get; }
     }
 }

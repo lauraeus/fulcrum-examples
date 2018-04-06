@@ -17,7 +17,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal
         public IManyToOneRelationComplete<AddressTable, Guid> Address { get; }
 
         /// <inheritdoc />
-        public IManyToManyRelationComplete<PersonConsentTable, PersonTable, ConsentTable, Guid> PersonConsent { get; }
+        public IManyToOneRelationComplete<PersonConsentTable, Guid> PersonConsent { get; }
 
         /// <summary>
         /// Constructor
@@ -26,7 +26,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal
             ICrud<PersonTable, Guid> personStorage,
             IManyToOneRelationComplete<AddressTable, Guid> addressStorage,
             ICrud<ConsentTable, Guid> consent,
-            IManyToManyRelationComplete<PersonConsentTable, PersonTable, ConsentTable, Guid> personConsent)
+            IManyToOneRelationComplete<PersonConsentTable, Guid> personConsent)
         {
             Person = personStorage;
             Address = addressStorage;

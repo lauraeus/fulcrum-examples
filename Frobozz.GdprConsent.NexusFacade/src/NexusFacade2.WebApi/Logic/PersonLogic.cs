@@ -24,7 +24,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
         /// Constructor 
         /// </summary>
         public PersonLogic(IStorage storage)
-        :base(storage.Person, storage, new PersonMapper())
+        :base(storage, storage.Person, new PersonMapper())
         {
             _storage = storage;
         }

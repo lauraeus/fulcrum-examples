@@ -13,20 +13,20 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
     /// </summary>
     /// <typeparam name="TClientModel"></typeparam>
     /// <typeparam name="TClientId"></typeparam>
-    /// <typeparam name="TLogic"></typeparam>
+    /// <typeparam name="TServerLogic"></typeparam>
     /// <typeparam name="TServerModel"></typeparam>
     /// <typeparam name="TServerId"></typeparam>
-    public abstract class MapperBase<TClientModel, TClientId, TLogic, TServerModel, TServerId>
+    public abstract class MapperBase<TClientModel, TClientId, TServerLogic, TServerModel, TServerId>
     {
-        protected TLogic Logic { get; }
-        public IMapper<TClientModel, TLogic, TServerModel> Mapper { get; }
+        protected TServerLogic Storage { get; }
+        public IMapper<TClientModel, TServerLogic, TServerModel> Mapper { get; }
 
         /// <summary>
         /// Constructor 
         /// </summary>
-        protected MapperBase(TLogic logic, IMapper<TClientModel, TLogic, TServerModel> mapper)
+        protected MapperBase(TServerLogic storage, IMapper<TClientModel, TServerLogic, TServerModel> mapper)
         {
-            Logic = logic;
+            Storage = storage;
             Mapper = mapper;
         }
 
@@ -39,12 +39,12 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
 
         protected async Task<TClientModel> CreateAndMapFromServerAsync(TServerModel serverItem, CancellationToken token = default(CancellationToken))
         {
-            return await Mapper.CreateAndMapFromServerAsync(serverItem, Logic, token);
+            return await Mapper.CreateAndMapFromServerAsync(serverItem, Storage, token);
         }
 
         protected async Task<TServerModel> CreateAndMapToServerAsync(TClientModel clientItem, CancellationToken token = default(CancellationToken))
         {
-            return await Mapper.CreateAndMapToServerAsync(clientItem, Logic, token);
+            return await Mapper.CreateAndMapToServerAsync(clientItem, Storage, token);
         }
 
         protected static TClientId MapToClientId(TServerId id)

@@ -18,7 +18,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
         /// Constructor 
         /// </summary>
         public ConsentLogic(IStorage storage)
-        :base(storage.Consent, storage, new ConsentMapper())
+        :base(storage, storage.Consent, new ConsentMapper())
         {
             _storage = storage;
         }

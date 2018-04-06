@@ -29,11 +29,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi
             var consentStorage = new MemoryPersistance<ConsentTable, Guid>();
             var addressStorage = new MemoryManyToOnePersistance<AddressTable, Guid>(item => item.PersonId);
             var personConsentStorage =
-                new MemoryManyToManyPersistance<PersonConsentTable, PersonTable, ConsentTable, Guid>(
-                    pc => pc.PersonId,
-                    pc => pc.ConsentId, 
-                    personStorage,
-                    consentStorage);
+                new MemoryManyToOnePersistance<PersonConsentTable, Guid>(item => item.PersonId);
             var storage = new Storage(personStorage, addressStorage, consentStorage, personConsentStorage);
             //Register Bll and Dal dependencies
             builder.Register(ctx => storage)

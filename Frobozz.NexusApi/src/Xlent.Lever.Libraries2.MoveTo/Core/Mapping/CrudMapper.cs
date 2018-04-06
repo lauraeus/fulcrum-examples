@@ -8,16 +8,16 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
     /// <summary>
     /// Mapping for ICrud.
     /// </summary>
-    public class CrudMapper<TClientModel, TClientId, TLogic, TServerModel, TServerId> : CrdMapper<TClientModel, TClientId, TLogic, TServerModel, TServerId>, ICrud<TClientModel, TClientId>
+    public class CrudMapper<TClientModel, TClientId, TServerLogic, TServerModel, TServerId> : CrdMapper<TClientModel, TClientId, TServerLogic, TServerModel, TServerId>, ICrud<TClientModel, TClientId>
     {
-        private readonly ICrud<TServerModel, TServerId> _server;
+        private readonly ICrud<TServerModel, TServerId> _service;
         /// <summary>
         /// Constructor 
         /// </summary>
-        public CrudMapper(ICrud<TServerModel, TServerId> server, TLogic logic, IMapper<TClientModel, TLogic, TServerModel> mapper)
-        :base(server, logic, mapper)
+        public CrudMapper(TServerLogic storage, ICrud<TServerModel, TServerId> service, IMapper<TClientModel, TServerLogic, TServerModel> mapper)
+        : base(storage, service, mapper)
         {
-            _server = server;
+            _service = service;
         }
 
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
         {
             var serverId = MapToServerId(id);
             var serverItem = await CreateAndMapToServerAsync(item, token);
-            await _server.UpdateAsync(serverId, serverItem, token);
+            await _service.UpdateAsync(serverId, serverItem, token);
         }
 
         /// <inheritdoc />
@@ -35,7 +35,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
         {
             var serverId = MapToServerId(id);
             var serverItem = await CreateAndMapToServerAsync(item, token);
-            serverItem = await _server.UpdateAndReturnAsync(serverId, serverItem, token);
+            serverItem = await _service.UpdateAndReturnAsync(serverId, serverItem, token);
             return await CreateAndMapFromServerAsync(serverItem, token);
         }
     }

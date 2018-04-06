@@ -11,7 +11,7 @@ using Xlent.Lever.Libraries2.MoveTo.Core.Mapping;
 namespace Frobozz.GdprConsent.NexusFacade.WebApi.Mappers
 {
     /// <inheritdoc />
-    public class PersonConsentConsentMapper : IMapper<PersonConsent, IStorage, PersonConsentTable>
+    public class PersonConsentMapper : IMapper<PersonConsent, IStorage, PersonConsentTable>
     {
         /// <inheritdoc />
         public async Task<PersonConsent> CreateAndMapFromServerAsync(PersonConsentTable source, IStorage logic,

@@ -27,7 +27,7 @@ namespace GdprConsent.NexusFacade.WebApi.Test
             var personStorage = new MemoryPersistance<PersonTable, Guid>();
             var consentStorage = new MemoryPersistance<ConsentTable, Guid>();
             var addressStorage = new MemoryManyToOnePersistance<AddressTable, Guid>(a => a.PersonId);
-            var personConsentStorage = new MemoryManyToManyPersistance<PersonConsentTable, PersonTable, ConsentTable, Guid>(pc=>  pc.PersonId, pc=> pc.ConsentId, personStorage, consentStorage);
+            var personConsentStorage = new MemoryManyToOnePersistance<PersonConsentTable, Guid>(pc=>  pc.PersonId);
             _storage = new Storage(personStorage, addressStorage, consentStorage, personConsentStorage);
 
             var personLogic = new PersonLogic(_storage);
