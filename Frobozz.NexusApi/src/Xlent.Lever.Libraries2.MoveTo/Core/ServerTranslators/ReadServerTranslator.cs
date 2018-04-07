@@ -24,7 +24,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ServerTranslators
         [Route("{id}")]
         public virtual async Task<TModel> ReadAsync(string id, CancellationToken token = default(CancellationToken))
         {
-            var translator = new TranslationHelper(ServerName);
+            var translator = new Translator(ServerName);
             await translator.Add(id).ExecuteAsync();
             id = translator.Translate(id);
             var result = await _storage.ReadAsync(id, token);
@@ -36,7 +36,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ServerTranslators
         [Route("WithPaging")]
         public virtual async Task<PageEnvelope<TModel>> ReadAllWithPagingAsync(int offset, int? limit = null, CancellationToken token = default(CancellationToken))
         {
-            var translator = new TranslationHelper(ServerName);
+            var translator = new Translator(ServerName);
             var result =  await _storage.ReadAllWithPagingAsync(offset, limit, token);
             return translator.DecoratePage(result);
         }
@@ -46,7 +46,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ServerTranslators
         [Route("")]
         public virtual async Task<IEnumerable<TModel>> ReadAllAsync(int limit = int.MaxValue, CancellationToken token = default(CancellationToken))
         {
-            var translator = new TranslationHelper(ServerName);
+            var translator = new Translator(ServerName);
             var result = await _storage.ReadAllAsync(limit, token);
             return translator.DecorateItems(result);
         }

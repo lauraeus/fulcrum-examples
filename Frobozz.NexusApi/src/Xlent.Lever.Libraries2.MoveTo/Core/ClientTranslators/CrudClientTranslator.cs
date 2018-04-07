@@ -20,8 +20,8 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ClientTranslators
         /// <inheritdoc />
         public async Task UpdateAsync(string id, TModel item, CancellationToken token = new CancellationToken())
         {
-            var translator = new TranslationHelper(ClientName);
-            id = translator.DecorateId(IdConceptName, id);
+            var translator = new Translator(ClientName);
+            id = translator.Decorate(IdConceptName, id);
             item = translator.DecorateItem(item);
             await _storage.UpdateAsync(id, item, token);
         }
@@ -29,8 +29,8 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ClientTranslators
         /// <inheritdoc />
         public async Task<TModel> UpdateAndReturnAsync(string id, TModel item, CancellationToken token = new CancellationToken())
         {
-            var translator = new TranslationHelper(ClientName);
-            id = translator.DecorateId(IdConceptName, id);
+            var translator = new Translator(ClientName);
+            id = translator.Decorate(IdConceptName, id);
             item = translator.DecorateItem(item);
             var decoratedResult = await _storage.UpdateAndReturnAsync(id, item, token);
             await translator.Add(decoratedResult).ExecuteAsync();

@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xlent.Lever.Libraries2.Move
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.NexusApi.Bll", "src\Frobozz.NexusApi.Bll\Frobozz.NexusApi.Bll.csproj", "{075645CB-90C4-421D-B16F-BDD37628EB88}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.NexusApi.Bll.Test", "test\Frobozz.NexusApi.Bll.Test\Frobozz.NexusApi.Bll.Test.csproj", "{EAE81702-1B47-44AA-8CCD-8832F9E8773C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{C4C3166D-BD80-4AFC-BDAD-EC9A44409E2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,9 +49,16 @@ Global
 		{075645CB-90C4-421D-B16F-BDD37628EB88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{075645CB-90C4-421D-B16F-BDD37628EB88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{075645CB-90C4-421D-B16F-BDD37628EB88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAE81702-1B47-44AA-8CCD-8832F9E8773C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAE81702-1B47-44AA-8CCD-8832F9E8773C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAE81702-1B47-44AA-8CCD-8832F9E8773C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAE81702-1B47-44AA-8CCD-8832F9E8773C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EAE81702-1B47-44AA-8CCD-8832F9E8773C} = {C4C3166D-BD80-4AFC-BDAD-EC9A44409E2C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5C96B704-2672-400A-941F-D023A9FCF320}

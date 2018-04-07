@@ -25,7 +25,7 @@ namespace Frobozz.NexusApi.Bll.Gdpr.ClientTranslators
         /// <inheritdoc />
         public async Task<Person> FindFirstOrDefaultByNameAsync(string name, CancellationToken token = default(CancellationToken))
         {
-            var translator = new TranslationHelper(ClientName);
+            var translator = new Translator(ClientName);
             var decoratedResult = await _gdprCapability.PersonService.FindFirstOrDefaultByNameAsync(name, token);
             await translator.Add(decoratedResult).ExecuteAsync();
             return translator.Translate(decoratedResult);

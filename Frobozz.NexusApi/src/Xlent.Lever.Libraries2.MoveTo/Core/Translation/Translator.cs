@@ -8,21 +8,30 @@ using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Xlent.Lever.Libraries2.MoveTo.Core.Translation
 {
-    public class TranslationHelper
+    public class Translator
     {
-        private string _clientName;
+        private readonly string _clientName;
 
-        public TranslationHelper(string clientName)
+        public Translator(string clientName)
         {
             _clientName = clientName;
         }
 
-        public string DecorateId(string conceptName, string value)
+        public string Decorate(string conceptName, string value)
         {
-            throw new System.NotImplementedException();
+            return IsDecorated(value) ? value : Decorate(conceptName, _clientName, value);
         }
 
-        public TranslationHelper Add<TModel>(TModel result)
+        private bool IsDecorated(string value)
+        {
+            // TODO: Check if value matches "(!!)"
+            return false;
+        }
+
+        private string Decorate(string conceptName, string clientName, string value) =>
+            $"({conceptName}!~{clientName}!{value})";
+
+        public Translator Add<TModel>(TModel result)
         {
             // TODO: Find all decorated strings and add them to the translation batch.
             return this;
@@ -45,7 +54,11 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Translation
         public TModel DecorateItem<TModel>(TModel item) where TModel : IValidatable
         {
             if (item == null) return default(TModel);
-            throw new NotImplementedException();
+            if (item is ITranslatable translatable)
+            {
+                translatable.DecorateForTranslation(this);
+            }
+            return item;
         }
 
         public IEnumerable<TModel> DecorateItems<TModel>(IEnumerable<TModel> items) where TModel : IValidatable

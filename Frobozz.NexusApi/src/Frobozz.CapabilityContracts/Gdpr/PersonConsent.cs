@@ -1,9 +1,10 @@
 ﻿using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
+using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
 
 namespace Frobozz.CapabilityContracts.Gdpr
 {
-    public class PersonConsent : StorableItem<string>
+    public class PersonConsent : StorableItem<string>, ITranslatable
     {
         /// <summary>
         /// The name of the consent
@@ -36,6 +37,14 @@ namespace Frobozz.CapabilityContracts.Gdpr
         public override string ToString()
         {
             return $"{ConsentName} ({PersonId})";
+        }
+
+        /// <inheritdoc />
+        public void DecorateForTranslation(Translator translator)
+        {
+            Id = translator.Decorate("person-consent.id", Id);
+            PersonId = translator.Decorate("person.id", PersonId);
+            ConsentId = translator.Decorate("consent.id", ConsentId);
         }
     }
 }

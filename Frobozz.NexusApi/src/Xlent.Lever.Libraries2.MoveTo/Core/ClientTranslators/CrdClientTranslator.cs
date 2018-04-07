@@ -20,7 +20,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ClientTranslators
         /// <inheritdoc />
         public async Task<string> CreateAsync(TModel item, CancellationToken token = new CancellationToken())
         {
-            var translator = new TranslationHelper(ClientName);
+            var translator = new Translator(ClientName);
             item = translator.DecorateItem(item);
             var decoratedId = await _storage.CreateAsync(item, token);
             // This is a new id, so there is no purpose in translating it.
@@ -30,7 +30,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ClientTranslators
         /// <inheritdoc />
         public async Task<TModel> CreateAndReturnAsync(TModel item, CancellationToken token = new CancellationToken())
         {
-            var translator = new TranslationHelper(ClientName);
+            var translator = new Translator(ClientName);
             item = translator.DecorateItem(item);
             var decoratedResult = await _storage.CreateAndReturnAsync(item, token);
             await translator.Add(decoratedResult).ExecuteAsync();
@@ -40,8 +40,8 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ClientTranslators
         /// <inheritdoc />
         public async Task CreateWithSpecifiedIdAsync(string id, TModel item, CancellationToken token = new CancellationToken())
         {
-            var translator = new TranslationHelper(ClientName);
-            id = translator.DecorateId(IdConceptName, id);
+            var translator = new Translator(ClientName);
+            id = translator.Decorate(IdConceptName, id);
             item = translator.DecorateItem(item);
             await _storage.CreateWithSpecifiedIdAsync(id, item, token);
         }
@@ -49,8 +49,8 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ClientTranslators
         /// <inheritdoc />
         public async Task<TModel> CreateWithSpecifiedIdAndReturnAsync(string id, TModel item, CancellationToken token = new CancellationToken())
         {
-            var translator = new TranslationHelper(ClientName);
-            id = translator.DecorateId(IdConceptName, id);
+            var translator = new Translator(ClientName);
+            id = translator.Decorate(IdConceptName, id);
             item = translator.DecorateItem(item);
             var decoratedResult = await _storage.CreateWithSpecifiedIdAndReturnAsync(id, item, token);
             await translator.Add(decoratedResult).ExecuteAsync();
@@ -60,8 +60,8 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ClientTranslators
         /// <inheritdoc />
         public async Task DeleteAsync(string id, CancellationToken token = new CancellationToken())
         {
-            var translator = new TranslationHelper(ClientName);
-            id = translator.DecorateId(IdConceptName, id);
+            var translator = new Translator(ClientName);
+            id = translator.Decorate(IdConceptName, id);
             await _storage.DeleteAsync(id, token);
         }
 

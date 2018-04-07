@@ -2,6 +2,6 @@
 {
     public interface ITranslatable
     {
-        void DecorateForTranslation(string clientName);
+        void DecorateForTranslation(Translator translator);
     }
 }

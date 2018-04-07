@@ -20,7 +20,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ServerTranslators
         /// <inheritdoc />
         public async Task UpdateAsync(string id, TModel item, CancellationToken token = new CancellationToken())
         {
-            var translator = new TranslationHelper(ServerName);
+            var translator = new Translator(ServerName);
             await translator.Add(id).Add(item).ExecuteAsync();
             id = translator.Translate(id);
             item = translator.Translate(item);
@@ -30,7 +30,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ServerTranslators
         /// <inheritdoc />
         public async Task<TModel> UpdateAndReturnAsync(string id, TModel item, CancellationToken token = new CancellationToken())
         {
-            var translator = new TranslationHelper(ServerName);
+            var translator = new Translator(ServerName);
             await translator.Add(id).Add(item).ExecuteAsync();
             id = translator.Translate(id);
             item = translator.Translate(item);

@@ -1,4 +1,5 @@
 ﻿using Xlent.Lever.Libraries2.Core.Assert;
+using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
 
 namespace Frobozz.CapabilityContracts.Gdpr
 {
@@ -11,7 +12,7 @@ namespace Frobozz.CapabilityContracts.Gdpr
         Delivery,
         Postal
     }
-    public class Address : IValidatable
+    public class Address : IValidatable, ITranslatable
     {
         public string Type;
         /// <summary>
@@ -29,6 +30,12 @@ namespace Frobozz.CapabilityContracts.Gdpr
         {
             FulcrumValidate.IsNotNullOrWhiteSpace(Type, nameof(Type), errorLocation);
             FulcrumValidate.IsNotNullOrWhiteSpace(City, nameof(City), errorLocation);
+        }
+
+        /// <inheritdoc />
+        public void DecorateForTranslation(Translator translator)
+        {
+            Type = translator.Decorate("person.address.type.code", Type);
         }
 
         /// <inheritdoc />

@@ -20,17 +20,17 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ServerTranslators
         /// <inheritdoc />
         public async Task<string> CreateAsync(TModel item, CancellationToken token = new CancellationToken())
         {
-            var translator = new TranslationHelper(ServerName);
+            var translator = new Translator(ServerName);
             await translator.Add(item).ExecuteAsync();
             item = translator.Translate(item);
             var id = await _storage.CreateAsync(item, token);
-            return translator.DecorateId(IdConceptName, id);
+            return translator.Decorate(IdConceptName, id);
         }
 
         /// <inheritdoc />
         public async Task<TModel> CreateAndReturnAsync(TModel item, CancellationToken token = new CancellationToken())
         {
-            var translator = new TranslationHelper(ServerName);
+            var translator = new Translator(ServerName);
             await translator.Add(item).ExecuteAsync();
             item = translator.Translate(item);
             var decoratedResult = await _storage.CreateAndReturnAsync(item, token);
@@ -40,7 +40,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ServerTranslators
         /// <inheritdoc />
         public async Task CreateWithSpecifiedIdAsync(string id, TModel item, CancellationToken token = new CancellationToken())
         {
-            var translator = new TranslationHelper(ServerName);
+            var translator = new Translator(ServerName);
             await translator.Add(id).Add(item).ExecuteAsync();
             id = translator.Translate(id);
             item = translator.Translate(item);
@@ -50,7 +50,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ServerTranslators
         /// <inheritdoc />
         public async Task<TModel> CreateWithSpecifiedIdAndReturnAsync(string id, TModel item, CancellationToken token = new CancellationToken())
         {
-            var translator = new TranslationHelper(ServerName);
+            var translator = new Translator(ServerName);
             await translator.Add(id).Add(item).ExecuteAsync();
             id = translator.Translate(id);
             item = translator.Translate(item);
@@ -61,7 +61,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ServerTranslators
         /// <inheritdoc />
         public async Task DeleteAsync(string id, CancellationToken token = new CancellationToken())
         {
-            var translator = new TranslationHelper(ServerName);
+            var translator = new Translator(ServerName);
             await translator.Add(id).ExecuteAsync();
             id = translator.Translate(id);
             await _storage.DeleteAsync(id, token);
