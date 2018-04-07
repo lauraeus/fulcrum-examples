@@ -11,7 +11,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.WebApi.ApiControllerHelpers
     {
         private readonly ICrd<TModel, string> _storage;
 
-        public CrdApiController(ICrd<TModel, string> storage)
+        protected CrdApiController(ICrd<TModel, string> storage)
         :base(storage)
         {
             _storage = storage;

@@ -11,7 +11,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.WebApi.ApiControllerHelpers
     {
         private readonly ICrud<TModel, string> _storage;
 
-        public CrudApiController(ICrud<TModel, string> storage)
+        protected CrudApiController(ICrud<TModel, string> storage)
         :base(storage)
         {
             _storage = storage;

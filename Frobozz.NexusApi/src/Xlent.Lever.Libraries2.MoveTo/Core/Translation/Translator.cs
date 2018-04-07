@@ -21,35 +21,6 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Translation
             return IsDecorated(value) ? value : Decorate(conceptName, _clientName, value);
         }
 
-        private bool IsDecorated(string value)
-        {
-            // TODO: Check if value matches "(!!)"
-            return false;
-        }
-
-        private string Decorate(string conceptName, string clientName, string value) =>
-            $"({conceptName}!~{clientName}!{value})";
-
-        public Translator Add<TModel>(TModel result)
-        {
-            // TODO: Find all decorated strings and add them to the translation batch.
-            return this;
-        }
-
-        public async Task ExecuteAsync()
-        {
-            // TODO: Send to translation
-            await Task.Yield();
-        }
-
-        public T Translate<T>(T item)
-        {
-            if (item == null) return default(T);
-            var json = JsonConvert.SerializeObject(item);
-            // TODO: Translate
-            return JsonConvert.DeserializeObject<T>(json);
-        }
-
         public TModel DecorateItem<TModel>(TModel item) where TModel : IValidatable
         {
             if (item == null) return default(TModel);
@@ -70,6 +41,35 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Translation
             }
 
             return array;
+        }
+
+        private bool IsDecorated(string value)
+        {
+            // TODO: Check if value matches "(!!)"
+            return false;
+        }
+
+        private static string Decorate(string conceptName, string clientName, string value) =>
+            $"({conceptName}!~{clientName}!{value})";
+
+        public Translator Add<TModel>(TModel result)
+        {
+            // TODO: Find all decorated strings and add them to the translation batch.
+            return this;
+        }
+
+        public async Task ExecuteAsync()
+        {
+            // TODO: Send to translation
+            await Task.Yield();
+        }
+
+        public T Translate<T>(T item)
+        {
+            if (item == null) return default(T);
+            var json = JsonConvert.SerializeObject(item);
+            // TODO: Translate
+            return JsonConvert.DeserializeObject<T>(json);
         }
 
         public PageEnvelope<TModel> DecoratePage<TModel>(PageEnvelope<TModel> page) where TModel : IValidatable

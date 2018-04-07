@@ -11,7 +11,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.WebApi.ApiControllerHelpers
     {
         private readonly IManyToOneRelation<TModel, string> _storage;
 
-        public ManyToOneApiController(IManyToOneRelation<TModel, string> storage)
+        protected ManyToOneApiController(IManyToOneRelation<TModel, string> storage)
         {
             _storage = storage;
         }
