@@ -1,4 +1,6 @@
 ﻿using Frobozz.CapabilityContracts.Gdpr;
+using Xlent.Lever.Libraries2.Core.Storage.Model;
+using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
 
 namespace Frobozz.NexusApi.Dal.RestServices.Gdpr
 {
@@ -9,17 +11,17 @@ namespace Frobozz.NexusApi.Dal.RestServices.Gdpr
         public GdprCapability()
         {
             PersonService = new PersonService("http://localhost/GdprConsent.NexusFacade.WebApi/api/Persons");
-            ConsentService = new ConsentService("http://localhost/GdprConsent.NexusFacade.WebApi/api/Consents");
-            PersonConsentService = new PersonConsentService("http://localhost/GdprConsent.NexusFacade.WebApi/api/Persons");
+            ConsentService = new RestClientCrud<Consent, string>("http://localhost/GdprConsent.NexusFacade.WebApi/api/Consents");
+            PersonConsentService = new RestClientManyToOne<PersonConsent, string>("http://localhost/GdprConsent.NexusFacade.WebApi/api/Persons", "Persons", "Consents");
         }
 
         /// <inheritdoc />
         public IPersonService PersonService { get; }
 
         /// <inheritdoc />
-        public IConsentService ConsentService { get; }
+        public ICrud<Consent, string> ConsentService { get; }
 
         /// <inheritdoc />
-        public IPersonConsentService PersonConsentService { get; }
+        public IManyToOneRelation<PersonConsent, string> PersonConsentService { get; }
     }
 }

@@ -56,9 +56,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Gdpr\ConsentService.cs" />
     <Compile Include="Gdpr\GdprCapability.cs" />
-    <Compile Include="Gdpr\PersonConsentService.cs" />
     <Compile Include="Gdpr\PersonService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

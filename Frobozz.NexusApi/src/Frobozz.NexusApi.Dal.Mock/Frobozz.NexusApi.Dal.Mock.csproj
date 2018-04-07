@@ -46,9 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Gdpr\ConsentMemoryStorage.cs" />
     <Compile Include="Gdpr\GdprCapability.cs" />
-    <Compile Include="Gdpr\PersonConsentMemoryStorage.cs" />
     <Compile Include="Gdpr\PersonMemoryStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

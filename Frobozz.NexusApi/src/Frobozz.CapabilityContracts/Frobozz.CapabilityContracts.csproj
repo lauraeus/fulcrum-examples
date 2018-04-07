@@ -47,12 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Gdpr\Address.cs" />
-    <Compile Include="Gdpr\IConsentService.cs" />
     <Compile Include="Gdpr\IPersonService.cs" />
     <Compile Include="Gdpr\PersonConsent.cs" />
     <Compile Include="Gdpr\Consent.cs" />
     <Compile Include="Gdpr\IGdprCapability.cs" />
-    <Compile Include="Gdpr\IPersonConsentService.cs" />
     <Compile Include="Gdpr\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

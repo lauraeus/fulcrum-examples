@@ -1,4 +1,6 @@
 ﻿using Frobozz.CapabilityContracts.Gdpr;
+using Xlent.Lever.Libraries2.Core.Storage.Logic;
+using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.NexusApi.Dal.Mock.Gdpr
 {
@@ -9,17 +11,17 @@ namespace Frobozz.NexusApi.Dal.Mock.Gdpr
         public GdprCapability()
         {
             PersonService = new PersonMemoryStorage();
-            ConsentService = new ConsentMemoryStorage();
-            PersonConsentService = new PersonConsentMemoryStorage();
+            ConsentService = new MemoryPersistance<Consent, string>();
+            PersonConsentService = new MemoryManyToOnePersistance<PersonConsent, string>(consent => consent.PersonId);
         }
 
         /// <inheritdoc />
         public IPersonService PersonService { get; }
 
         /// <inheritdoc />
-        public IConsentService ConsentService { get; }
+        public ICrud<Consent, string> ConsentService { get; }
 
         /// <inheritdoc />
-        public IPersonConsentService PersonConsentService { get; }
+        public IManyToOneRelation<PersonConsent, string> PersonConsentService { get; }
     }
 }

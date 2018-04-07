@@ -8,7 +8,7 @@ namespace Frobozz.CapabilityContracts.Gdpr
         /// <summary>
         /// The name of the consent
         /// </summary>
-        public string Name { get; set; }
+        public string ConsentName { get; set; }
 
         /// <summary>
         /// The id of the person that this consent is for.
@@ -28,14 +28,14 @@ namespace Frobozz.CapabilityContracts.Gdpr
         /// <inheritdoc />
         public override void Validate(string errorLocation, string propertyPath = "")
         {
-            FulcrumValidate.IsNotNullOrWhiteSpace(Name, nameof(Name), errorLocation);
+            FulcrumValidate.IsNotNullOrWhiteSpace(ConsentName, nameof(ConsentName), errorLocation);
             FulcrumValidate.IsNotNull(PersonId, nameof(PersonId), errorLocation);
         }
 
         /// <inheritdoc />
         public override string ToString()
         {
-            return $"{Name} ({PersonId})";
+            return $"{ConsentName} ({PersonId})";
         }
     }
 }

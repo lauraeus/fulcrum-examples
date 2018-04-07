@@ -73,6 +73,16 @@
     <Compile Include="WebApi\ApiControllerHelpers\ApiCrudController.cs" />
     <Compile Include="WebApi\ApiControllerHelpers\ApiManyToOneController.cs" />
     <Compile Include="WebApi\ApiControllerHelpers\ApiReadController.cs" />
+    <Compile Include="Core\ServerTranslators\CrdServerTranslator.cs" />
+    <Compile Include="Core\ServerTranslators\CrudServerTranslator.cs" />
+    <Compile Include="Core\ServerTranslators\ManyToOneServerTranslator.cs" />
+    <Compile Include="Core\ServerTranslators\ReadServerTranslator.cs" />
+    <Compile Include="Core\ServerTranslators\ServerTranslatorBase.cs" />
+    <Compile Include="Core\ClientTranslators\CrudClientTranslator.cs" />
+    <Compile Include="Core\ClientTranslators\CrdClientTranslator.cs" />
+    <Compile Include="Core\ClientTranslators\ManyToOneClientTranslator.cs" />
+    <Compile Include="Core\ClientTranslators\ClientTranslatorBase.cs" />
+    <Compile Include="Core\ClientTranslators\ReadClientTranslator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

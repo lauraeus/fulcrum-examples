@@ -2,36 +2,34 @@
 using System.Threading.Tasks;
 using System.Web.Http;
 using Frobozz.CapabilityContracts.Gdpr;
-using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.MoveTo.WebApi.ApiControllerHelpers;
+using Xlent.Lever.Libraries2.MoveTo.Core.ClientTranslators;
+using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
 
-namespace Frobozz.NexusApi.Controllers
+namespace Frobozz.NexusApi.TranslateServer
 {
     /// <summary>
-    /// ApiController for Product that does inputcontrol. Logic is separated into another layer. 
+    /// Client translator
     /// </summary>
     [RoutePrefix("api/Persons")]
-    public class PersonsController : ApiCrudController<Person>, IPersonService
+    public class PersonServerClientTranslator : CrudClientTranslator<Person>, IPersonService
     {
         private readonly IGdprCapability _gdprCapability;
 
         /// <summary>
         /// Constructor 
         /// </summary>
-        public PersonsController(IGdprCapability gdprCapability)
-        :base(gdprCapability.PersonService)
+        public PersonServerClientTranslator(IGdprCapability gdprCapability)
+        :base(gdprCapability.PersonService, "person.id")
         {
             _gdprCapability = gdprCapability;
         }
 
         /// <inheritdoc />
-        [HttpGet]
-        [Route("FindByName")]
         public async Task<Person> FindFirstOrDefaultByNameAsync(string name, CancellationToken token = default(CancellationToken))
         {
-            ServiceContract.RequireNotNullOrWhitespace(name, nameof(name));
+            var translator = new TranslationHelper(ClientName);
             var result = await _gdprCapability.PersonService.FindFirstOrDefaultByNameAsync(name, token);
-            return result;
+            return translator.DecorateItem(result);
         }
     }
 }

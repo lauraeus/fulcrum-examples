@@ -1,11 +1,13 @@
-﻿namespace Frobozz.CapabilityContracts.Gdpr
+﻿using Xlent.Lever.Libraries2.Core.Storage.Model;
+
+namespace Frobozz.CapabilityContracts.Gdpr
 {
     public interface IGdprCapability 
     {
         IPersonService PersonService { get; }
 
-        IConsentService ConsentService { get; }
+        ICrud<Consent, string> ConsentService { get; }
 
-        IPersonConsentService PersonConsentService { get; }
+        IManyToOneRelation<PersonConsent, string> PersonConsentService { get; }
     }
 }
