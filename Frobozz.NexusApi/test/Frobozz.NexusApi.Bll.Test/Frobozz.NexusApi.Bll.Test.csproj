@@ -67,7 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Gdpr\ClientTranslators\PersonClientTranslatorTest.cs" />
+    <Compile Include="Gdpr\ServerTranslators\PersonServerTranslatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +87,9 @@
       <Project>{6C5209C3-0307-4D74-80A4-D7AF2ECD852F}</Project>
       <Name>Xlent.Lever.Libraries2.MoveTo</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Gdpr\ClientTranslators\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

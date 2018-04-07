@@ -2,25 +2,25 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Frobozz.CapabilityContracts.Gdpr;
-using Frobozz.NexusApi.Bll.Gdpr.ClientTranslators;
+using Frobozz.NexusApi.Bll.Gdpr.ServerTranslators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
 
-namespace Frobozz.NexusApi.Bll.Test.Gdpr.ClientTranslators
+namespace Frobozz.NexusApi.Bll.Test.Gdpr.ServerTranslators
 {
     [TestClass]
-    public class PersonClientTranslatorTest
+    public class PersonServerTranslatorTest
     {
         private Mock<IGdprCapability> _mock;
-        private PersonClientTranslator _clientTranslator;
+        private PersonServerTranslator _serverTranslator;
         private Person _person;
 
         [TestInitialize]
         public void Initialize()
         {
             _mock = new Mock<IGdprCapability>();
-            _clientTranslator = new PersonClientTranslator(_mock.Object);
+            _serverTranslator = new PersonServerTranslator(_mock.Object);
             _person = new Person
             {
                 Id = Guid.NewGuid().ToString(),
@@ -33,12 +33,13 @@ namespace Frobozz.NexusApi.Bll.Test.Gdpr.ClientTranslators
         public async Task FindFirstOrDefaultByNameAsync()
         {
             var name = _person.Name;
+            var id = _person.Id;
             _mock.Setup(capability =>
                 capability.PersonService.FindFirstOrDefaultByNameAsync(It.Is<string>(s => s == name),
                     CancellationToken.None)).ReturnsAsync(_person);
-            var person = await _clientTranslator.FindFirstOrDefaultByNameAsync("Name");
+            var person = await _serverTranslator.FindFirstOrDefaultByNameAsync(_person.Name);
             var translator = new Translator("server.name");
-            Assert.AreEqual(translator.Decorate("person.id", _person.Id), person.Id);
+            Assert.AreEqual(translator.Decorate("person.id", id), person.Id);
             _mock.Verify();
         }
     }
