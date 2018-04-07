@@ -7,11 +7,11 @@ using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Xlent.Lever.Libraries2.MoveTo.WebApi.ApiControllerHelpers
 {
-    public abstract class ApiManyToOneController<TModel> : ApiController, IManyToOneRelation<TModel, string>
+    public abstract class ManyToOneApiController<TModel> : ApiController, IManyToOneRelation<TModel, string>
     {
         private readonly IManyToOneRelation<TModel, string> _storage;
 
-        public ApiManyToOneController(IManyToOneRelation<TModel, string> storage)
+        public ManyToOneApiController(IManyToOneRelation<TModel, string> storage)
         {
             _storage = storage;
         }

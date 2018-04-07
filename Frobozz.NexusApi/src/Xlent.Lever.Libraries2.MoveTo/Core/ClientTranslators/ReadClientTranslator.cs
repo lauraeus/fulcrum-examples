@@ -14,7 +14,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ClientTranslators
     {
         private readonly IReadAll<TModel, string> _storage;
 
-        protected ReadClientTranslator(IReadAll<TModel, string> storage, string idConceptName)
+        public ReadClientTranslator(IReadAll<TModel, string> storage, string idConceptName)
         :base(idConceptName)
         {
             _storage = storage;

@@ -6,12 +6,12 @@ using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Xlent.Lever.Libraries2.MoveTo.WebApi.ApiControllerHelpers
 {
-    public abstract class ApiCrudController<TModel> : ApiCrdController<TModel>, ICrud<TModel, string>
+    public abstract class CrudApiController<TModel> : CrdApiController<TModel>, ICrud<TModel, string>
     where TModel : IValidatable
     {
         private readonly ICrud<TModel, string> _storage;
 
-        public ApiCrudController(ICrud<TModel, string> storage)
+        public CrudApiController(ICrud<TModel, string> storage)
         :base(storage)
         {
             _storage = storage;

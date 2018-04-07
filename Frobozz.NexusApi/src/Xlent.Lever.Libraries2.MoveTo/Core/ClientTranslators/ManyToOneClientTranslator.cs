@@ -13,7 +13,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ClientTranslators
     {
         private readonly IManyToOneRelation<TModel, string> _storage;
 
-        protected ManyToOneClientTranslator(IManyToOneRelation<TModel, string> storage, string idConceptName)
+        public ManyToOneClientTranslator(IManyToOneRelation<TModel, string> storage, string idConceptName)
         :base(idConceptName)
         {
             _storage = storage;

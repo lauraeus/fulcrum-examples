@@ -11,7 +11,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ClientTranslators
     {
         private readonly ICrd<TModel, string> _storage;
 
-        protected CrdClientTranslator(ICrd<TModel, string> storage, string idConceptName)
+        public CrdClientTranslator(ICrd<TModel, string> storage, string idConceptName)
         :base(storage, idConceptName)
         {
             _storage = storage;

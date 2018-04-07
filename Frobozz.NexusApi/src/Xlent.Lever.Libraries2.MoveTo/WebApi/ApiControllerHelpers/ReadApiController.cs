@@ -7,12 +7,12 @@ using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Xlent.Lever.Libraries2.MoveTo.WebApi.ApiControllerHelpers
 {
-    public abstract class ApiReadController<TModel> : ApiController, IReadAll<TModel, string>
+    public abstract class ReadApiController<TModel> : ApiController, IReadAll<TModel, string>
     where TModel : IValidatable
     {
         private readonly IReadAll<TModel, string> _storage;
 
-        protected ApiReadController(IReadAll<TModel, string> storage)
+        protected ReadApiController(IReadAll<TModel, string> storage)
         {
             _storage = storage;
         }

@@ -12,7 +12,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ServerTranslators
     {
         private readonly IManyToOneRelation<TModel, string> _storage;
 
-        protected ManyToOneServerTranslator(IManyToOneRelation<TModel, string> storage, string idConceptName)
+        public ManyToOneServerTranslator(IManyToOneRelation<TModel, string> storage, string idConceptName)
         :base(idConceptName)
         {
             _storage = storage;

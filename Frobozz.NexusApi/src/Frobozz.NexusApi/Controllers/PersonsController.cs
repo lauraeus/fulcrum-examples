@@ -11,7 +11,7 @@ namespace Frobozz.NexusApi.Controllers
     /// ApiController for Product that does inputcontrol. Logic is separated into another layer. 
     /// </summary>
     [RoutePrefix("api/Persons")]
-    public class PersonsController : ApiCrudController<Person>, IPersonService
+    public class PersonsController : CrudApiController<Person>, IPersonService
     {
         private readonly IGdprCapability _gdprCapability;
 

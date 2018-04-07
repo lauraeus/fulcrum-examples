@@ -11,7 +11,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ServerTranslators
     {
         private readonly ICrud<TModel, string> _storage;
 
-        protected CrudServerTranslator(ICrud<TModel, string> storage, string idConceptName)
+        public CrudServerTranslator(ICrud<TModel, string> storage, string idConceptName)
         :base(storage, idConceptName)
         {
             _storage = storage;

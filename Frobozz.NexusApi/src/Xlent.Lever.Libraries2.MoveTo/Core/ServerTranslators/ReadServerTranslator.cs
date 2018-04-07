@@ -13,7 +13,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ServerTranslators
     {
         private readonly IReadAll<TModel, string> _storage;
 
-        protected ReadServerTranslator(IReadAll<TModel, string> storage, string idConceptName)
+        public ReadServerTranslator(IReadAll<TModel, string> storage, string idConceptName)
         :base(idConceptName)
         {
             _storage = storage;

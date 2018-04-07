@@ -1,24 +1,22 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using System.Web.Http;
 using Frobozz.CapabilityContracts.Gdpr;
 using Xlent.Lever.Libraries2.MoveTo.Core.ClientTranslators;
 using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
 
-namespace Frobozz.NexusApi.TranslateServer
+namespace Frobozz.NexusApi.Bll.Gdpr.ClientTranslators
 {
     /// <summary>
     /// Client translator
     /// </summary>
-    [RoutePrefix("api/Persons")]
-    public class PersonServerClientTranslator : CrudClientTranslator<Person>, IPersonService
+    public class PersonClientTranslator : CrudClientTranslator<Person>, IPersonService
     {
         private readonly IGdprCapability _gdprCapability;
 
         /// <summary>
         /// Constructor 
         /// </summary>
-        public PersonServerClientTranslator(IGdprCapability gdprCapability)
+        public PersonClientTranslator(IGdprCapability gdprCapability)
         :base(gdprCapability.PersonService, "person.id")
         {
             _gdprCapability = gdprCapability;
@@ -28,8 +26,9 @@ namespace Frobozz.NexusApi.TranslateServer
         public async Task<Person> FindFirstOrDefaultByNameAsync(string name, CancellationToken token = default(CancellationToken))
         {
             var translator = new TranslationHelper(ClientName);
-            var result = await _gdprCapability.PersonService.FindFirstOrDefaultByNameAsync(name, token);
-            return translator.DecorateItem(result);
+            var decoratedResult = await _gdprCapability.PersonService.FindFirstOrDefaultByNameAsync(name, token);
+            await translator.Add(decoratedResult).ExecuteAsync();
+            return translator.Translate(decoratedResult);
         }
     }
 }

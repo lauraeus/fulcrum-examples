@@ -3,6 +3,8 @@ using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Frobozz.CapabilityContracts.Gdpr;
+using Frobozz.NexusApi.Bll.Gdpr.ClientTranslators;
+using Frobozz.NexusApi.Bll.Gdpr.ServerTranslators;
 
 namespace Frobozz.NexusApi
 {
@@ -18,23 +20,29 @@ namespace Frobozz.NexusApi
         public static void Register(HttpConfiguration config)
         {
             var builder = new ContainerBuilder();
-            IGdprCapability gdprCapability = null;
-#if true
-            gdprCapability = new Dal.Mock.Gdpr.GdprCapability();
-#else
-            gdprCapability = new Dal.RestServices.Gdpr.GdprCapability();
-#endif
-            //Register Bll and Dal dependencies
+
+            // Register GDPR capability
+            var gdprCapability = CreateGdprCapability(useMock: true);
             builder.Register(ctxt => gdprCapability)
                 .As<IGdprCapability>()
                 .SingleInstance();
 
-            // Register your controllers.
+            // Register controllers
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
             //Register a IDependencyResolver used by WebApi 
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+        }
+
+        private static IGdprCapability CreateGdprCapability(bool useMock = false)
+        {
+            IGdprCapability dataAccess;
+            if (useMock) dataAccess = new Dal.Mock.Gdpr.GdprCapability();
+            else dataAccess = new Dal.RestServices.Gdpr.GdprCapability();
+            var serverTranslator = new ServerTranslator(dataAccess);
+            var clientTranslator = new ClientTranslator(serverTranslator);
+            return clientTranslator;
         }
     }
 }

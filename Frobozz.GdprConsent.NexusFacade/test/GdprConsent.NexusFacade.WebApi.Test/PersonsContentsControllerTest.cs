@@ -51,10 +51,10 @@ namespace GdprConsent.NexusFacade.WebApi.Test
         {
             Assert.IsNotNull(personConsents);
             Assert.AreEqual(2, personConsents.Length);
-            var personConsent = personConsents.FirstOrDefault(a => a.Name == "Profiling");
+            var personConsent = personConsents.FirstOrDefault(a => a.ConsentName == "Profiling");
             Assert.IsNotNull(personConsent);
             Assert.AreEqual(profiling,  personConsent.HasGivenConsent);
-            personConsent = personConsents.FirstOrDefault(a => a.Name == "Marketing");
+            personConsent = personConsents.FirstOrDefault(a => a.ConsentName == "Marketing");
             Assert.IsNotNull(personConsent);
             Assert.AreEqual(marketing, personConsent.HasGivenConsent);
         }

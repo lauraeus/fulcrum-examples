@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FA381F07-4C13-4D5B-9609-DCC609D5FAEE}</ProjectGuid>
+    <ProjectGuid>{075645CB-90C4-421D-B16F-BDD37628EB88}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Frobozz.NexusApi.Dal.RestServices</RootNamespace>
-    <AssemblyName>Frobozz.NexusApi.Dal.RestServices</AssemblyName>
+    <RootNamespace>Frobozz.NexusApi.Bll</RootNamespace>
+    <AssemblyName>Frobozz.NexusApi.Bll</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,18 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Rest.ClientRuntime.2.3.11\lib\net452\Microsoft.Rest.ClientRuntime.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,19 +44,22 @@
     <Reference Include="Xlent.Lever.Libraries2.Core.NetFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xlent.Lever.Libraries2.Core.NetFramework.1.21.2\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Xlent.Lever.Libraries2.WebApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.WebApi.4.7.0\lib\net46\Xlent.Lever.Libraries2.WebApi.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Gdpr\GdprCapability.cs" />
-    <Compile Include="Gdpr\PersonService.cs" />
+    <Compile Include="Gdpr\ClientTranslators\ClientTranslator.cs" />
+    <Compile Include="Gdpr\ClientTranslators\PersonClientTranslator.cs" />
+    <Compile Include="Gdpr\ServerTranslators\ServerTranslator.cs" />
+    <Compile Include="Gdpr\ServerTranslators\PersonServerTranslator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Frobozz.CapabilityContracts\Frobozz.CapabilityContracts.csproj">
       <Project>{21a7e0d3-ade5-47da-b295-14b487475cbd}</Project>
       <Name>Frobozz.CapabilityContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xlent.Lever.Libraries2.MoveTo\Xlent.Lever.Libraries2.MoveTo.csproj">
+      <Project>{6c5209c3-0307-4d74-80a4-d7af2ecd852f}</Project>
+      <Name>Xlent.Lever.Libraries2.MoveTo</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -45,7 +45,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
         public virtual async Task DeleteChildrenAsync(TClientId parentId, CancellationToken token = default(CancellationToken))
         {
             var serverId = MapToServerId(parentId);
-            await _service.DeleteReferencesByReference1(serverId, token);
+            await _service.DeleteReferencedItemsByReference1(serverId, token);
         }
     }
 }
