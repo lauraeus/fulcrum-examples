@@ -1,6 +1,7 @@
 ﻿using Frobozz.CapabilityContracts.Gdpr;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 using Xlent.Lever.Libraries2.MoveTo.Core.ClientTranslators;
+using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
 
 namespace Frobozz.NexusApi.Bll.Gdpr.ClientTranslators
 {
@@ -8,11 +9,11 @@ namespace Frobozz.NexusApi.Bll.Gdpr.ClientTranslators
     public class ClientTranslator : IGdprCapability
     {
         /// <inheritdoc />
-        public ClientTranslator(IGdprCapability capablity)
+        public ClientTranslator(IGdprCapability capablity, ITranslatorService translatorService)
         {
-            PersonService = new PersonClientTranslator(capablity);
-            ConsentService = new CrudClientTranslator<Consent>(capablity.ConsentService, "consent.id");
-            PersonConsentService = new ManyToOneClientTranslator<PersonConsent>(capablity.PersonConsentService, "person-consent.id");
+            PersonService = new PersonClientTranslator(capablity, translatorService);
+            ConsentService = new CrudClientTranslator<Consent>(capablity.ConsentService, "consent.id", translatorService);
+            PersonConsentService = new ManyToOneClientTranslator<PersonConsent>(capablity.PersonConsentService, "person-consent.id", translatorService);
         }
 
         /// <inheritdoc />

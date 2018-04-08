@@ -11,8 +11,8 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ServerTranslators
     {
         private readonly ICrud<TModel, string> _storage;
 
-        public CrudServerTranslator(ICrud<TModel, string> storage, string idConceptName)
-        :base(storage, idConceptName)
+        public CrudServerTranslator(ICrud<TModel, string> storage, string idConceptName, ITranslatorService translatorService)
+        :base(storage, idConceptName, translatorService)
         {
             _storage = storage;
         }
@@ -20,7 +20,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ServerTranslators
         /// <inheritdoc />
         public async Task UpdateAsync(string id, TModel item, CancellationToken token = new CancellationToken())
         {
-            var translator = new Translator(ServerName);
+            var translator = CreateTranslator();
             await translator.Add(id).Add(item).ExecuteAsync();
             id = translator.Translate(id);
             item = translator.Translate(item);
@@ -30,7 +30,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ServerTranslators
         /// <inheritdoc />
         public async Task<TModel> UpdateAndReturnAsync(string id, TModel item, CancellationToken token = new CancellationToken())
         {
-            var translator = new Translator(ServerName);
+            var translator = CreateTranslator();
             await translator.Add(id).Add(item).ExecuteAsync();
             id = translator.Translate(id);
             item = translator.Translate(item);

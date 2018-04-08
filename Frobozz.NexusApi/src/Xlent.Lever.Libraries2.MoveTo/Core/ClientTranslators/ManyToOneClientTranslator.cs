@@ -13,8 +13,8 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ClientTranslators
     {
         private readonly IManyToOneRelation<TModel, string> _storage;
 
-        public ManyToOneClientTranslator(IManyToOneRelation<TModel, string> storage, string idConceptName)
-        :base(idConceptName)
+        public ManyToOneClientTranslator(IManyToOneRelation<TModel, string> storage, string idConceptName, ITranslatorService translatorService)
+        :base(idConceptName, translatorService)
         {
             _storage = storage;
         }
@@ -23,7 +23,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ClientTranslators
         public async Task<PageEnvelope<TModel>> ReadChildrenWithPagingAsync(string parentId, int offset, int? limit = null,
             CancellationToken token = new CancellationToken())
         {
-            var translator = new Translator(ClientName);
+            var translator = CreateTranslator();
             parentId = translator.Decorate(IdConceptName, parentId);
             var result = await _storage.ReadChildrenWithPagingAsync(parentId, offset, limit, token);
             await translator.Add(result).ExecuteAsync();
@@ -33,7 +33,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ClientTranslators
         /// <inheritdoc />
         public async Task<IEnumerable<TModel>> ReadChildrenAsync(string parentId, int limit = int.MaxValue, CancellationToken token = new CancellationToken())
         {
-            var translator = new Translator(ClientName);
+            var translator = CreateTranslator();
             parentId = translator.Decorate(IdConceptName, parentId);
             var result = await _storage.ReadChildrenAsync(parentId, limit, token);
             var array = result as TModel[] ?? result.ToArray();
@@ -44,7 +44,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.ClientTranslators
         /// <inheritdoc />
         public async Task DeleteChildrenAsync(string parentId, CancellationToken token = new CancellationToken())
         {
-            var translator = new Translator(ClientName);
+            var translator = CreateTranslator();
             parentId = translator.Decorate(IdConceptName, parentId);
             await _storage.DeleteChildrenAsync(parentId, token);
         }

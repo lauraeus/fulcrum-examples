@@ -16,8 +16,8 @@ namespace Frobozz.NexusApi.Bll.Gdpr.ClientTranslators
         /// <summary>
         /// Constructor 
         /// </summary>
-        public PersonClientTranslator(IGdprCapability gdprCapability)
-        :base(gdprCapability.PersonService, "person.id")
+        public PersonClientTranslator(IGdprCapability gdprCapability, ITranslatorService translatorService)
+        :base(gdprCapability.PersonService, "person.id", translatorService)
         {
             _gdprCapability = gdprCapability;
         }
@@ -25,7 +25,7 @@ namespace Frobozz.NexusApi.Bll.Gdpr.ClientTranslators
         /// <inheritdoc />
         public async Task<Person> FindFirstOrDefaultByNameAsync(string name, CancellationToken token = default(CancellationToken))
         {
-            var translator = new Translator(ClientName);
+            var translator = CreateTranslator();
             var decoratedResult = await _gdprCapability.PersonService.FindFirstOrDefaultByNameAsync(name, token);
             await translator.Add(decoratedResult).ExecuteAsync();
             return translator.Translate(decoratedResult);

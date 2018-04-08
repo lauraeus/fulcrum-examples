@@ -49,6 +49,7 @@
     <Compile Include="Gdpr\GdprCapability.cs" />
     <Compile Include="Gdpr\PersonMemoryStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Translator\TranslatorServiceMock.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -58,6 +59,10 @@
     <ProjectReference Include="..\Frobozz.CapabilityContracts\Frobozz.CapabilityContracts.csproj">
       <Project>{21a7e0d3-ade5-47da-b295-14b487475cbd}</Project>
       <Name>Frobozz.CapabilityContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xlent.Lever.Libraries2.MoveTo\Xlent.Lever.Libraries2.MoveTo.csproj">
+      <Project>{6c5209c3-0307-4d74-80a4-d7af2ecd852f}</Project>
+      <Name>Xlent.Lever.Libraries2.MoveTo</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

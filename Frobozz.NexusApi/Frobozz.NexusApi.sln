@@ -18,6 +18,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.NexusApi.Bll.Test", "test\Frobozz.NexusApi.Bll.Test\Frobozz.NexusApi.Bll.Test.csproj", "{EAE81702-1B47-44AA-8CCD-8832F9E8773C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{C4C3166D-BD80-4AFC-BDAD-EC9A44409E2C}"
+	ProjectSection(SolutionItems) = preProject
+		src\Frobozz.NexusApi.Bll\Support\TranslatorService.cs = src\Frobozz.NexusApi.Bll\Support\TranslatorService.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

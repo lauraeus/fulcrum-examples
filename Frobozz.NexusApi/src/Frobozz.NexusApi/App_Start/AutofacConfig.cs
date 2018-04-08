@@ -5,6 +5,7 @@ using Autofac.Integration.WebApi;
 using Frobozz.CapabilityContracts.Gdpr;
 using Frobozz.NexusApi.Bll.Gdpr.ClientTranslators;
 using Frobozz.NexusApi.Bll.Gdpr.ServerTranslators;
+using Frobozz.NexusApi.Dal.Mock.Translator;
 
 namespace Frobozz.NexusApi
 {
@@ -37,11 +38,12 @@ namespace Frobozz.NexusApi
 
         private static IGdprCapability CreateGdprCapability(bool useMock = false)
         {
+            var translationService = new TranslatorServiceMock();
             IGdprCapability dataAccess;
             if (useMock) dataAccess = new Dal.Mock.Gdpr.GdprCapability();
             else dataAccess = new Dal.RestServices.Gdpr.GdprCapability();
-            var serverTranslator = new ServerTranslator(dataAccess);
-            var clientTranslator = new ClientTranslator(serverTranslator);
+            var serverTranslator = new ServerTranslator(dataAccess, translationService);
+            var clientTranslator = new ClientTranslator(serverTranslator, translationService);
             return clientTranslator;
         }
     }

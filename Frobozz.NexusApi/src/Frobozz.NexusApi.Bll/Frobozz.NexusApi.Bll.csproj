@@ -51,6 +51,7 @@
     <Compile Include="Gdpr\ServerTranslators\ServerTranslator.cs" />
     <Compile Include="Gdpr\ServerTranslators\PersonServerTranslator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Support\TranslatorService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Frobozz.CapabilityContracts\Frobozz.CapabilityContracts.csproj">
