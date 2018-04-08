@@ -24,7 +24,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Mappers
             {
                 Id = MapperHelper.MapId<string, Guid>(source.Id),
                 ConsentId = MapperHelper.MapId<string, Guid>(source.ConsentId),
-                Name = consentDb.Name,
+                ConsentName = consentDb.Name,
                 Etag = source.Etag,
                 PersonId = MapperHelper.MapId<string, Guid>(source.PersonId),
                 HasGivenConsent = source.HasGivenConsent

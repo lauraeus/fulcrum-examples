@@ -11,8 +11,8 @@ namespace Frobozz.NexusApi.Dal.Mock.Gdpr
         public GdprCapability()
         {
             PersonService = new PersonMemoryStorage();
-            ConsentService = new MemoryPersistance<Consent, string>();
-            PersonConsentService = new MemoryManyToOnePersistance<PersonConsent, string>(consent => consent.PersonId);
+            ConsentService = new CrudMemory<Consent, string>();
+            PersonConsentService = new ManyToOneMemory<PersonConsent, string>(consent => consent.PersonId);
         }
 
         /// <inheritdoc />

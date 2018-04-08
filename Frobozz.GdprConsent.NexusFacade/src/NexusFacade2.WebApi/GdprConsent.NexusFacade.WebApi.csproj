@@ -100,7 +100,7 @@
       <HintPath>..\..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.Core.NetFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Core.NetFramework.1.21.1\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Core.NetFramework.1.21.3\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.WebApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xlent.Lever.Libraries2.WebApi.4.7.0\lib\net46\Xlent.Lever.Libraries2.WebApi.dll</HintPath>
@@ -128,9 +128,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Logic\PersonConsentLogic.cs" />
     <Compile Include="Logic\GdprCapability.cs" />
-    <Compile Include="Logic\ConsentLogic.cs" />
     <Compile Include="Logic\PersonLogic.cs" />
     <Compile Include="Mappers\ConsentMapper.cs" />
     <Compile Include="Mappers\PersonConsentMapper.cs" />

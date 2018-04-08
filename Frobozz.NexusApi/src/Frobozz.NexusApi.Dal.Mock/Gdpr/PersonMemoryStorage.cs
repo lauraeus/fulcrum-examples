@@ -7,7 +7,7 @@ using Xlent.Lever.Libraries2.Core.Storage.Logic;
 namespace Frobozz.NexusApi.Dal.Mock.Gdpr
 {
     /// <inheritdoc cref="IPersonService" />
-    public class PersonMemoryStorage : MemoryPersistance<Person, string>, IPersonService
+    public class PersonMemoryStorage : CrudMemory<Person, string>, IPersonService
     {
         /// <inheritdoc />
         public async Task<Person> FindFirstOrDefaultByNameAsync(string name, CancellationToken token = default(CancellationToken))

@@ -6,9 +6,12 @@ using Frobozz.GdprConsent.NexusFacade.WebApi.Controllers;
 using Frobozz.GdprConsent.NexusFacade.WebApi.Dal;
 using Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model;
 using Frobozz.GdprConsent.NexusFacade.WebApi.Logic;
+using Frobozz.GdprConsent.NexusFacade.WebApi.Mappers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xlent.Lever.Libraries2.Core.Application;
 using Xlent.Lever.Libraries2.Core.Storage.Logic;
+using Xlent.Lever.Libraries2.MoveTo.Core.Mapping;
+
 namespace GdprConsent.NexusFacade.WebApi.Test
 {
     [TestClass]
@@ -22,16 +25,18 @@ namespace GdprConsent.NexusFacade.WebApi.Test
         public async Task Initialize()
         {
             FulcrumApplicationHelper.UnitTestSetup(typeof(PersonsControllerTest).FullName);
-            var personStorage = new MemoryPersistance<PersonTable, Guid>();
-            var consentStorage = new MemoryPersistance<ConsentTable, Guid>();
-            var addressStorage = new MemoryManyToOnePersistance<AddressTable, Guid>(a => a.PersonId);
-            var personConsentStorage = new MemoryManyToOnePersistance<PersonConsentTable, Guid>(pc=>  pc.PersonId);
+            var personStorage = new CrudMemory<PersonTable, Guid>();
+            var consentStorage = new CrudMemory<ConsentTable, Guid>();
+            var addressStorage = new ManyToOneMemory<AddressTable, Guid>(a => a.PersonId);
+            var personConsentStorage = new ManyToOneMemory<PersonConsentTable, Guid>(pc => pc.PersonId);
             _storage = new Storage(personStorage, addressStorage, consentStorage, personConsentStorage);
             _kalleAnka = await CreateKalleAnkaAsync();
 
             var personLogic = new PersonLogic(_storage);
-            var consentLogic = new ConsentLogic(_storage);
-            var personConsentLogic = new PersonConsentLogic(_storage);
+            var consentLogic = new CrudMapper<Consent, string, IStorage, ConsentTable, Guid>(_storage, _storage.Consent, new ConsentMapper());
+            var personConsentLogic =
+                new ManyToOneMapper<PersonConsent, string, IStorage, PersonConsentTable, Guid>(_storage,
+                    _storage.PersonConsent, new PersonConsentMapper());
 
             var gdprCapability = new GdprCapability(personLogic, consentLogic, personConsentLogic);
 

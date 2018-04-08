@@ -1,4 +1,5 @@
 ﻿using Frobozz.CapabilityContracts.Gdpr;
+using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
 {
@@ -8,7 +9,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
         /// <summary>
         /// Constructor
         /// </summary>
-        public GdprCapability(IPersonService personService, IConsentService consentService, IPersonConsentService personConsent)
+        public GdprCapability(IPersonService personService, ICrud<Consent, string> consentService, IManyToOneRelation<PersonConsent, string> personConsent)
         {
             PersonService = personService;
             ConsentService = consentService;
@@ -19,9 +20,9 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
         public IPersonService PersonService { get; }
 
         /// <inheritdoc />
-        public IConsentService ConsentService { get; }
+        public ICrud<Consent, string> ConsentService { get; }
 
         /// <inheritdoc />
-        public IPersonConsentService PersonConsentService { get; }
+        public IManyToOneRelation<PersonConsent, string> PersonConsentService { get; }
     }
 }

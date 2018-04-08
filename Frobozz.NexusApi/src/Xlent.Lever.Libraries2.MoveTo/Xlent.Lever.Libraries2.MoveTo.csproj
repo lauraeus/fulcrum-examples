@@ -51,13 +51,29 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="Xlent.Lever.Libraries2.Core.NetFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Core.NetFramework.1.21.2\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
+      <HintPath>..\..\..\Frobozz.GdprConsent.NexusFacade\packages\Xlent.Lever.Libraries2.Core.NetFramework.1.21.3\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.WebApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\Frobozz.GdprConsent.NexusFacade\packages\Xlent.Lever.Libraries2.WebApi.4.7.0\lib\net46\Xlent.Lever.Libraries2.WebApi.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Cache\AutoCacheOptions.cs" />
+    <Compile Include="Core\Cache\CachedItemInformation.cs" />
+    <Compile Include="Core\Cache\CacheEnvelope.cs" />
+    <Compile Include="Core\Cache\CrdAutoCache.cs" />
+    <Compile Include="Core\Cache\CrudAutoCache.cs" />
+    <Compile Include="Core\Cache\IDistributedCacheFactory.cs" />
+    <Compile Include="Core\Cache\IFlushableCache.cs" />
+    <Compile Include="Core\Cache\ManyToOneAutoCache.cs" />
+    <Compile Include="Core\Cache\ManyToOneAutoCacheComplete.cs" />
+    <Compile Include="Core\Cache\DistributedCacheMemory.cs" />
+    <Compile Include="Core\Cache\DistributedCacheFactoryMemory.cs" />
+    <Compile Include="Core\Cache\Microsoft.Extensions.Caching.Distributed\DistributedCacheEntryOptions.cs" />
+    <Compile Include="Core\Cache\Microsoft.Extensions.Caching.Distributed\IDistributedCache.cs" />
+    <Compile Include="Core\Cache\AutoCacheBase.cs" />
+    <Compile Include="Core\Cache\ReadAutoCache.cs" />
+    <Compile Include="Core\Cache\SerializingSupport.cs" />
     <Compile Include="Core\Mapping\ManyToOneBiased1Mapper.cs" />
     <Compile Include="Core\Mapping\MapperBase.cs" />
     <Compile Include="Core\Mapping\MapperHelper.cs" />

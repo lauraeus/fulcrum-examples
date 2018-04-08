@@ -8,7 +8,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Controllers
     /// ApiController for Product that does inputcontrol. Logic is separated into another layer. 
     /// </summary>
     [RoutePrefix("api/Persons/{parentId}/Consents")]
-    public class PersonConsentsController : ApiManyToOneController<PersonConsent>, IPersonConsentService
+    public class PersonConsentsController : ManyToOneApiController<PersonConsent>
     {
         /// <summary>
         /// Constructor 
