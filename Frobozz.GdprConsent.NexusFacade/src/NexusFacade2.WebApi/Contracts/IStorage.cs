@@ -1,9 +1,9 @@
 ﻿using System;
-using Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
+
 #pragma warning disable 1591
 
-namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal
+namespace Frobozz.GdprConsent.NexusFacade.WebApi.Contracts
 {
     public interface IStorage
     {

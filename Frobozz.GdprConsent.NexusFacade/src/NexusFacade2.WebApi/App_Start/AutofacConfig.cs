@@ -1,16 +1,12 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Frobozz.CapabilityContracts.Gdpr;
-using Frobozz.GdprConsent.NexusFacade.WebApi.Dal;
-using Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model;
-using Frobozz.GdprConsent.NexusFacade.WebApi.Logic;
-using Frobozz.GdprConsent.NexusFacade.WebApi.Mappers;
-using Xlent.Lever.Libraries2.Core.Storage.Logic;
-using Xlent.Lever.Libraries2.Core.Storage.Model;
-using Xlent.Lever.Libraries2.MoveTo.Core.Mapping;
+using Frobozz.GdprConsent.NexusFacade.WebApi.Contracts;
+using Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Mock;
+using Frobozz.GdprConsent.NexusFacade.WebApi.Dal.SqlServer;
+using Frobozz.GdprConsent.NexusFacade.WebApi.Gdpr.Mappers;
 
 namespace Frobozz.GdprConsent.NexusFacade.WebApi
 {
@@ -27,24 +23,8 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi
         {
             var builder = new ContainerBuilder();
 
-            var personStorage = new CrudMemory<PersonTable, Guid>();
-            var consentStorage = new CrudMemory<ConsentTable, Guid>();
-            var addressStorage = new ManyToOneMemory<AddressTable, Guid>(item => item.PersonId);
-            var personConsentStorage =
-                new ManyToOneMemory<PersonConsentTable, Guid>(item => item.PersonId);
-            var storage = new Storage(personStorage, addressStorage, consentStorage, personConsentStorage);
-            //Register Bll and Dal dependencies
-            builder.Register(ctx => storage)
-                .As<IStorage>()
-                .SingleInstance();
-
-            var personLogic = new PersonLogic(storage);
-            var consentLogic = new CrudMapper<Consent,string,IStorage,ConsentTable,Guid>(storage, storage.Consent, new ConsentMapper());
-            var personConsentLogic =
-                new ManyToOneMapper<PersonConsent, string, IStorage, PersonConsentTable, Guid>(storage,
-                    storage.PersonConsent, new PersonConsentMapper());
-            var gdprCapability = new GdprCapability(personLogic, consentLogic, personConsentLogic);
-            //Register Bll and Dal dependencies
+            // Register GDPR capability
+            var gdprCapability = CreateGdprCapability(useMock: true);
             builder.Register(ctxt => gdprCapability)
                 .As<IGdprCapability>()
                 .SingleInstance();
@@ -55,6 +35,21 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi
            //Register a IDependencyResolver used by WebApi 
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+        }
+
+        private static IGdprCapability CreateGdprCapability(bool useMock = false)
+        {
+            IStorage storage;
+            if (useMock)
+            {
+                storage = new MemoryStorage();
+            }
+            else
+            {
+                storage = new SqlServerStorage(null);
+            }
+
+            return new Mapper(storage);
         }
     }
 }

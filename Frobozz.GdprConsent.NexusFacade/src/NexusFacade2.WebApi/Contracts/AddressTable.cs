@@ -2,26 +2,31 @@
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
-namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model
+namespace Frobozz.GdprConsent.NexusFacade.WebApi.Contracts
 {
     /// <summary>
-    /// Many-to-many person-consent
+    /// Addres information for a person
     /// </summary>
-    public class PersonConsentTable : StorableItem, ITimeStamped
+    public class AddressTable : StorableItem, ITimeStamped
     {
         /// <summary>
-        /// True if the person has approved the consent
+        /// The type of address
         /// </summary>
-        public bool HasGivenConsent { get; set; }
+        public int Type;
         /// <summary>
-        ///  The person that this address is for
+        /// The street part of the address
         /// </summary>
-        public Guid PersonId { get; set; }
+        public string Street { get; set; }
+
+        /// <summary>
+        /// The city part of the address
+        /// </summary>
+        public string City { get; set; }
 
         /// <summary>
         ///  The person that this address is for
         /// </summary>
-        public Guid ConsentId { get; set; }
+        public Guid PersonId { get; set; }
 
         /// <inheritdoc />
         public DateTimeOffset RecordCreatedAt { get; set; }
@@ -32,8 +37,14 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model
         /// <inheritdoc />
         public override void Validate(string errorLocation, string propertyPath = "")
         {
+           FulcrumValidate.IsNotNullOrWhiteSpace(City, nameof(City), errorLocation);
             FulcrumValidate.IsNotDefaultValue(PersonId, nameof(PersonId), errorLocation);
-            FulcrumValidate.IsNotDefaultValue(ConsentId, nameof(ConsentId), errorLocation);
+        }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return $"{Street}, {City} ({Type})";
         }
     }
 }

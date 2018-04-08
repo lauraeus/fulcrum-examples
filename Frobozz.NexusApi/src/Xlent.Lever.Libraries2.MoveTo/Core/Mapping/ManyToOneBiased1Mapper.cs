@@ -16,8 +16,8 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
         /// <summary>
         /// Constructor 
         /// </summary>
-        public ManyToOneBiased1Mapper(TServerLogic storage, IManyToManyBiased1<TServerModel, TServerId> service, IMapper<TClientModel, TServerLogic, TServerModel> mapper)
-        : base(storage, mapper)
+        public ManyToOneBiased1Mapper(TServerLogic storage, IManyToManyBiased1<TServerModel, TServerId> service, IModelMapper<TClientModel, TServerLogic, TServerModel> modelMapper)
+        : base(storage, modelMapper)
         {
             _service = service;
         }

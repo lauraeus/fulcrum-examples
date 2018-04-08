@@ -1,13 +1,14 @@
 ﻿using System;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
+using Xlent.Lever.Libraries2.SqlServer.Model;
 
-namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model
+namespace Frobozz.GdprConsent.NexusFacade.WebApi.Contracts
 {
     /// <summary>
     /// Information about a person
     /// </summary>
-    public class PersonTable : StorableItem, ITimeStamped
+    public class PersonTable : StorableItem, ITimeStamped, ITableItem
     {
         /// <summary>
         /// The name of the person

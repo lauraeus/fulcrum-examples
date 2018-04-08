@@ -1,11 +1,12 @@
 ﻿using System;
-using Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model;
+using Frobozz.GdprConsent.NexusFacade.WebApi.Contracts;
+using Xlent.Lever.Libraries2.Core.Storage.Logic;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
-namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal
+namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Mock
 {
     /// <inheritdoc />
-    public class Storage : IStorage
+    public class MemoryStorage : IStorage
     {
         /// <inheritdoc />
         public ICrud<PersonTable, Guid> Person { get; }
@@ -22,16 +23,13 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal
         /// <summary>
         /// Constructor
         /// </summary>
-        public Storage(
-            ICrud<PersonTable, Guid> personStorage,
-            IManyToOneRelationComplete<AddressTable, Guid> addressStorage,
-            ICrud<ConsentTable, Guid> consent,
-            IManyToOneRelationComplete<PersonConsentTable, Guid> personConsent)
+        public MemoryStorage()
         {
-            Person = personStorage;
-            Address = addressStorage;
-            Consent = consent;
-            PersonConsent = personConsent;
+            Person = new CrudMemory<PersonTable, Guid>();
+            Consent = new CrudMemory<ConsentTable, Guid>();
+            Address = new ManyToOneMemory<AddressTable, Guid>(item => item.PersonId);
+            PersonConsent =
+                new ManyToOneMemory<PersonConsentTable, Guid>(item => item.PersonId);
         }
     }
 }

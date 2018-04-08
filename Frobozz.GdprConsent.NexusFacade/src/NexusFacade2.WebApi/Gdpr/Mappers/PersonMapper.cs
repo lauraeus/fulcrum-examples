@@ -1,30 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Frobozz.CapabilityContracts.Gdpr;
-using Frobozz.GdprConsent.NexusFacade.WebApi.Dal;
-using Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model;
-using Frobozz.GdprConsent.NexusFacade.WebApi.Mappers;
-using Xlent.Lever.Libraries2.Core.Assert;
+using Frobozz.GdprConsent.NexusFacade.WebApi.Contracts;
 using Xlent.Lever.Libraries2.Core.Storage.Logic;
 using Xlent.Lever.Libraries2.MoveTo.Core.Mapping;
 
-namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
+namespace Frobozz.GdprConsent.NexusFacade.WebApi.Gdpr.Mappers
 {
     /// <summary>
     /// Logic for Product. 
     /// </summary>
-    public class PersonLogic : CrudMapper<Person, string, IStorage, PersonTable, Guid>, IPersonService
+    public class PersonMapper : CrudMapper<Person, string, IStorage, PersonTable, Guid>, IPersonService
     {
         private readonly IStorage _storage;
 
         /// <summary>
         /// Constructor 
         /// </summary>
-        public PersonLogic(IStorage storage)
-        :base(storage, storage.Person, new PersonMapper())
+        public PersonMapper(IStorage storage)
+        :base(storage, storage.Person, new PersonModelMapper())
         {
             _storage = storage;
         }
@@ -35,7 +30,7 @@ namespace Frobozz.GdprConsent.NexusFacade.WebApi.Logic
             var enumerator = new PageEnvelopeEnumeratorAsync<PersonTable>((o, t) => _storage.Person.ReadAllWithPagingAsync(o, null, t), token);
             while (await enumerator.MoveNextAsync())
             {
-                if (enumerator.Current.Name == name) return await Mapper.CreateAndMapFromServerAsync(enumerator.Current, _storage, token);
+                if (enumerator.Current.Name == name) return await ModelMapper.CreateAndMapFromServerAsync(enumerator.Current, _storage, token);
             }
             return null;
         }

@@ -16,8 +16,8 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
         /// <summary>
         /// Constructor 
         /// </summary>
-        public ReadMapper(TServerLogic storage, IReadAll<TServerModel, TServerId> service, IMapper<TClientModel, TServerLogic, TServerModel> mapper)
-        : base(storage, mapper)
+        public ReadMapper(TServerLogic storage, IReadAll<TServerModel, TServerId> service, IModelMapper<TClientModel, TServerLogic, TServerModel> modelMapper)
+        : base(storage, modelMapper)
         {
             _service = service;
         }

@@ -1,13 +1,14 @@
 ﻿using System;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
+using Xlent.Lever.Libraries2.SqlServer.Model;
 
-namespace Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model
+namespace Frobozz.GdprConsent.NexusFacade.WebApi.Contracts
 {
     /// <summary>
     /// Information about a consent
     /// </summary>
-    public class ConsentTable : StorableItem, ITimeStamped
+    public class ConsentTable : StorableItem, ITimeStamped, ITableItem
     {
         /// <summary>
         /// The name of the person

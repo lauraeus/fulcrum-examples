@@ -4,15 +4,14 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Frobozz.CapabilityContracts.Gdpr;
-using Frobozz.GdprConsent.NexusFacade.WebApi.Dal;
-using Frobozz.GdprConsent.NexusFacade.WebApi.Dal.Model;
+using Frobozz.GdprConsent.NexusFacade.WebApi.Contracts;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.MoveTo.Core.Mapping;
 
-namespace Frobozz.GdprConsent.NexusFacade.WebApi.Mappers
+namespace Frobozz.GdprConsent.NexusFacade.WebApi.Gdpr.Mappers
 {
     /// <inheritdoc />
-    public class PersonMapper : IMapper<Person, IStorage, PersonTable>
+    public class PersonModelMapper : IModelMapper<Person, IStorage, PersonTable>
     {
         /// <inheritdoc />
         public async Task<Person> CreateAndMapFromServerAsync(PersonTable source, IStorage logic,
