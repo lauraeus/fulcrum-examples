@@ -78,6 +78,10 @@
       <Project>{6c5209c3-0307-4d74-80a4-d7af2ecd852f}</Project>
       <Name>Xlent.Lever.Libraries2.MoveTo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\NexusAdapter.WebApi\GdprConsent.NexusAdapter.WebApi.csproj">
+      <Project>{d811a208-b451-43b9-b4ce-07e6b883e9c5}</Project>
+      <Name>GdprConsent.NexusAdapter.WebApi</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
