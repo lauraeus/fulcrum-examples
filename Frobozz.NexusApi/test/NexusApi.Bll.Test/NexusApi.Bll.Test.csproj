@@ -81,9 +81,9 @@
       <Project>{21a7e0d3-ade5-47da-b295-14b487475cbd}</Project>
       <Name>Frobozz.CapabilityContracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Frobozz.NexusApi.Bll\Frobozz.NexusApi.Bll.csproj">
+    <ProjectReference Include="..\..\src\NexusApi.Bll\NexusApi.Bll.csproj">
       <Project>{075645cb-90c4-421d-b16f-bdd37628eb88}</Project>
-      <Name>Frobozz.NexusApi.Bll</Name>
+      <Name>NexusApi.Bll</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Xlent.Lever.Libraries2.MoveTo\Xlent.Lever.Libraries2.MoveTo.csproj">
       <Project>{6C5209C3-0307-4D74-80A4-D7AF2ECD852F}</Project>

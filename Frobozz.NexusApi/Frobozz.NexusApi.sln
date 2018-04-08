@@ -3,23 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.NexusApi", "src\Frobozz.NexusApi\Frobozz.NexusApi.csproj", "{409C5A9B-5C42-43CC-880D-E0EBF400F027}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusApi", "src\NexusApi\NexusApi.csproj", "{409C5A9B-5C42-43CC-880D-E0EBF400F027}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.CapabilityContracts", "src\Frobozz.CapabilityContracts\Frobozz.CapabilityContracts.csproj", "{21A7E0D3-ADE5-47DA-B295-14B487475CBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.NexusApi.Dal.RestServices", "src\Frobozz.NexisApi.Dal.RestServices\Frobozz.NexusApi.Dal.RestServices.csproj", "{FA381F07-4C13-4D5B-9609-DCC609D5FAEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusApi.Dal.RestServices", "src\NexusApi.Dal.RestServices\NexusApi.Dal.RestServices.csproj", "{FA381F07-4C13-4D5B-9609-DCC609D5FAEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.NexusApi.Dal.Mock", "src\Frobozz.NexusApi.Dal.Mock\Frobozz.NexusApi.Dal.Mock.csproj", "{FD3AA5B5-1458-4B58-9DF4-286C762E6D00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusApi.Dal.Mock", "src\NexusApi.Dal.Mock\NexusApi.Dal.Mock.csproj", "{FD3AA5B5-1458-4B58-9DF4-286C762E6D00}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xlent.Lever.Libraries2.MoveTo", "src\Xlent.Lever.Libraries2.MoveTo\Xlent.Lever.Libraries2.MoveTo.csproj", "{6C5209C3-0307-4D74-80A4-D7AF2ECD852F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.NexusApi.Bll", "src\Frobozz.NexusApi.Bll\Frobozz.NexusApi.Bll.csproj", "{075645CB-90C4-421D-B16F-BDD37628EB88}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusApi.Bll", "src\NexusApi.Bll\NexusApi.Bll.csproj", "{075645CB-90C4-421D-B16F-BDD37628EB88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.NexusApi.Bll.Test", "test\Frobozz.NexusApi.Bll.Test\Frobozz.NexusApi.Bll.Test.csproj", "{EAE81702-1B47-44AA-8CCD-8832F9E8773C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusApi.Bll.Test", "test\NexusApi.Bll.Test\NexusApi.Bll.Test.csproj", "{EAE81702-1B47-44AA-8CCD-8832F9E8773C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{C4C3166D-BD80-4AFC-BDAD-EC9A44409E2C}"
 	ProjectSection(SolutionItems) = preProject
-		src\Frobozz.NexusApi.Bll\Support\TranslatorService.cs = src\Frobozz.NexusApi.Bll\Support\TranslatorService.cs
+		src\Frobozz.NexusApi.Bll\Support\TranslatorService.cs = src\NexusApi.Bll\Support\TranslatorService.cs
 	EndProjectSection
 EndProject
 Global

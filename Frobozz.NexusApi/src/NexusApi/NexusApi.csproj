@@ -139,17 +139,17 @@
       <Project>{21a7e0d3-ade5-47da-b295-14b487475cbd}</Project>
       <Name>Frobozz.CapabilityContracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Frobozz.NexisApi.Dal.RestServices\Frobozz.NexusApi.Dal.RestServices.csproj">
+    <ProjectReference Include="..\NexusApi.Dal.RestServices\NexusApi.Dal.RestServices.csproj">
       <Project>{fa381f07-4c13-4d5b-9609-dcc609d5faee}</Project>
-      <Name>Frobozz.NexusApi.Dal.RestServices</Name>
+      <Name>NexusApi.Dal.RestServices</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Frobozz.NexusApi.Bll\Frobozz.NexusApi.Bll.csproj">
+    <ProjectReference Include="..\NexusApi.Bll\NexusApi.Bll.csproj">
       <Project>{075645cb-90c4-421d-b16f-bdd37628eb88}</Project>
-      <Name>Frobozz.NexusApi.Bll</Name>
+      <Name>NexusApi.Bll</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Frobozz.NexusApi.Dal.Mock\Frobozz.NexusApi.Dal.Mock.csproj">
+    <ProjectReference Include="..\NexusApi.Dal.Mock\NexusApi.Dal.Mock.csproj">
       <Project>{fd3aa5b5-1458-4b58-9df4-286c762e6d00}</Project>
-      <Name>Frobozz.NexusApi.Dal.Mock</Name>
+      <Name>NexusApi.Dal.Mock</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xlent.Lever.Libraries2.MoveTo\Xlent.Lever.Libraries2.MoveTo.csproj">
       <Project>{6c5209c3-0307-4d74-80a4-d7af2ecd852f}</Project>
