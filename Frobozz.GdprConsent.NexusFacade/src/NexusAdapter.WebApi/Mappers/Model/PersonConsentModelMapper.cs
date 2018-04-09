@@ -17,12 +17,12 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
         {
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
-            var consentDb = await logic.Consent.ReadAsync(source.ConsentId, token);
+            var serverConsent = await logic.Consent.ReadAsync(source.ConsentId, token);
             var target = new PersonConsent
             {
                 Id = MapperHelper.MapId<string, Guid>(source.Id),
                 ConsentId = MapperHelper.MapId<string, Guid>(source.ConsentId),
-                ConsentName = consentDb.Name,
+                ConsentName = serverConsent.Name,
                 Etag = source.Etag,
                 PersonId = MapperHelper.MapId<string, Guid>(source.PersonId),
                 HasGivenConsent = source.HasGivenConsent

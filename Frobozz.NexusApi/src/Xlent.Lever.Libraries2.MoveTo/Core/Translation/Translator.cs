@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Xlent.Lever.Libraries2.Core.Assert;
+using Xlent.Lever.Libraries2.Core.Decoupling.Model;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Xlent.Lever.Libraries2.MoveTo.Core.Translation
@@ -50,8 +51,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Translation
 
         private bool IsDecorated(string value)
         {
-            // TODO: Check if value matches "(!!)"
-            return false;
+            return ConceptValue.TryParse(value, out _);
         }
 
         private static string Decorate(string conceptName, string clientName, string value) =>

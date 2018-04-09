@@ -13,14 +13,13 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
     /// <inheritdoc />
     public class PersonModelMapper : IModelMapper<Person, IServerLogic, PersonTable>
     {
-        // TODO: Change from db to server
         /// <inheritdoc />
-        public async Task<Person> CreateAndMapFromServerAsync(PersonTable source, IServerLogic logic,
+        public async Task<Person> CreateAndMapFromServerAsync(PersonTable source, IServerLogic serverLogic,
             CancellationToken token = default(CancellationToken))
         {
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
-            var serverAddresses = await logic.Address.ReadChildrenAsync(source.Id, token: token);
+            var serverAddresses = await serverLogic.Address.ReadChildrenAsync(source.Id, token: token);
             var target = new Person
             {
                 Id = MapperHelper.MapId<string, Guid>(source.Id),
@@ -33,7 +32,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
         }
 
         /// <inheritdoc />
-        public async Task<PersonTable> CreateAndMapToServerAsync(Person source, IServerLogic logic, CancellationToken token = default(CancellationToken))
+        public async Task<PersonTable> CreateAndMapToServerAsync(Person source, IServerLogic serverLogic, CancellationToken token = default(CancellationToken))
         {
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
@@ -45,25 +44,25 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
                 Etag = source.Etag
             };
             FulcrumAssert.IsValidated(target);
-            await UpdateAddressesAsync(id, source, logic, token);
+            await UpdateAddressesAsync(id, source, serverLogic, token);
             return target;
         }
 
-        private async Task UpdateAddressesAsync(Guid personId, Person person, IServerLogic logic, CancellationToken token)
+        private async Task UpdateAddressesAsync(Guid personId, Person person, IServerLogic serverLogic, CancellationToken token)
         {
-            var addressesDb = await logic.Address.ReadChildrenAsync(personId, token: token);
-            var addressDbArray = addressesDb as AddressTable[] ?? addressesDb.ToArray();
+            var serverAddresses = await serverLogic.Address.ReadChildrenAsync(personId, token: token);
+            var serverAddressArray = serverAddresses as AddressTable[] ?? serverAddresses.ToArray();
             var tasks = new List<Task>();
             for (var typeInt = 1; typeInt < 5; typeInt++)
             {
                 var typeString = ToAddressTypeClient(typeInt);
-                var addressDb = addressDbArray.FirstOrDefault(a => a.Type == typeInt);
+                var serverAddress = serverAddressArray.FirstOrDefault(a => a.Type == typeInt);
                 var address = person.Addresses.FirstOrDefault(a => a.Type == typeString);
-                if (addressDb == null)
+                if (serverAddress == null)
                 {
                     if (address == null) continue;
-                    addressDb = ToServer(personId, address);
-                    var task = logic.Address.CreateAsync(addressDb, token);
+                    serverAddress = ToServer(personId, address);
+                    var task = serverLogic.Address.CreateAsync(serverAddress, token);
                     tasks.Add(task);
                 }
                 else
@@ -71,14 +70,14 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
                     Task task;
                     if (address == null)
                     {
-                        task = logic.Address.DeleteAsync(addressDb.Id, token);
+                        task = serverLogic.Address.DeleteAsync(serverAddress.Id, token);
                     }
                     else
                     {
-                        var updatedAddressDb = ToServer(personId, address);
-                        updatedAddressDb.Id = addressDb.Id;
-                        updatedAddressDb.Etag = addressDb.Etag;
-                        task = logic.Address.UpdateAsync(updatedAddressDb.Id, updatedAddressDb, token);
+                        var updatedServerAddress = ToServer(personId, address);
+                        updatedServerAddress.Id = serverAddress.Id;
+                        updatedServerAddress.Etag = serverAddress.Etag;
+                        task = serverLogic.Address.UpdateAsync(updatedServerAddress.Id, updatedServerAddress, token);
                     }
                     tasks.Add(task);
                 }
