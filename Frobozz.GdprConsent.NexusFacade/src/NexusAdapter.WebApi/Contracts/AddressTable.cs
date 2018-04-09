@@ -1,13 +1,14 @@
 ﻿using System;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
+using Xlent.Lever.Libraries2.SqlServer.Model;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts
 {
     /// <summary>
     /// Addres information for a person
     /// </summary>
-    public class AddressTable : StorableItem, ITimeStamped
+    public class AddressTable : ITableItem, ITimeStamped, IValidatable
     {
         /// <summary>
         /// The type of address
@@ -35,7 +36,13 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts
         public DateTimeOffset RecordUpdatedAt { get; set; }
 
         /// <inheritdoc />
-        public override void Validate(string errorLocation, string propertyPath = "")
+        public Guid Id { get; set; }
+
+        /// <inheritdoc />
+        public string Etag { get; set; }
+
+        /// <inheritdoc />
+        public void Validate(string errorLocation, string propertyPath = "")
         {
            FulcrumValidate.IsNotNullOrWhiteSpace(City, nameof(City), errorLocation);
             FulcrumValidate.IsNotDefaultValue(PersonId, nameof(PersonId), errorLocation);

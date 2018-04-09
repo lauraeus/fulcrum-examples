@@ -14,8 +14,8 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
         /// <summary>
         /// Constructor 
         /// </summary>
-        public CrudMapper(TServerLogic storage, ICrud<TServerModel, TServerId> service, IModelMapper<TClientModel, TServerLogic, TServerModel> modelMapper)
-        : base(storage, service, modelMapper)
+        public CrudMapper(TServerLogic serverLogic, ICrud<TServerModel, TServerId> service, IModelMapper<TClientModel, TServerLogic, TServerModel> modelMapper)
+        : base(serverLogic, service, modelMapper)
         {
             _service = service;
         }

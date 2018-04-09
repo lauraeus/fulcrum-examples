@@ -13,8 +13,8 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
         /// <summary>
         /// Constructor 
         /// </summary>
-        public CrdMapper(TServerLogic storage, ICrd<TServerModel, TServerId> service, IModelMapper<TClientModel, TServerLogic, TServerModel> modelMapper)
-        : base(storage, service, modelMapper)
+        public CrdMapper(TServerLogic serverLogic, ICrd<TServerModel, TServerId> service, IModelMapper<TClientModel, TServerLogic, TServerModel> modelMapper)
+        : base(serverLogic, service, modelMapper)
         {
             _service = service;
         }

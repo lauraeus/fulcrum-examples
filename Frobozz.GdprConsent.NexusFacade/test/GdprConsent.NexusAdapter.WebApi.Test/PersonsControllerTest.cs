@@ -2,21 +2,22 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Frobozz.CapabilityContracts.Gdpr;
+using Frobozz.CapabilityContracts.Gdpr.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Controllers;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Mock;
-using Frobozz.GdprConsent.NexusAdapter.WebApi.Gdpr.Mappers;
+using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer;
+using Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers;
+using Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Logic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xlent.Lever.Libraries2.Core.Application;
-using Xlent.Lever.Libraries2.Core.Storage.Logic;
-using Xlent.Lever.Libraries2.MoveTo.Core.Mapping;
 
 namespace GdprConsent.NexusAdapter.WebApi.Test
 {
     [TestClass]
     public class PersonsControllerTest
     {
-        private IStorage _storage;
+        private IServerLogic _serverLogic;
         private Guid _kalleAnka;
         private PersonsController _personsController;
 
@@ -24,8 +25,9 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
         public async Task Initialize()
         {
             FulcrumApplicationHelper.UnitTestSetup(typeof(PersonsControllerTest).FullName);
-            _storage = new MemoryStorage();
-            var gdprCapability = new Mapper(_storage);
+            _serverLogic = new SqlServerStorage("Data Source=WIN-7B74C50VA4D;Initial Catalog=LeverExampleGdpr;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            //_storage = new MemoryStorage();
+            var gdprCapability = new Mapper(_serverLogic);
             _kalleAnka = await CreateKalleAnkaAsync();
             _personsController = new PersonsController(gdprCapability);
         }
@@ -60,7 +62,7 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
             {
                 Name = "Kalle Anka"
             };
-            var personId = await _storage.Person.CreateAsync(person);
+            var personId = await _serverLogic.Person.CreateAsync(person);
             var address = new AddressTable
             {
                 Type = 1,
@@ -68,7 +70,7 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
                 City = "Ankeborg",
                 PersonId = personId
             };
-            await _storage.Address.CreateAsync(address);
+            await _serverLogic.Address.CreateAsync(address);
             address = new AddressTable
             {
                 Type = 4,
@@ -76,7 +78,7 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
                 City = "Ankeborg",
                 PersonId = personId
             };
-            await _storage.Address.CreateAsync(address);
+            await _serverLogic.Address.CreateAsync(address);
 
             return personId;
         }

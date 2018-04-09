@@ -2,10 +2,13 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Frobozz.CapabilityContracts.Gdpr;
+using Frobozz.CapabilityContracts.Gdpr.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Controllers;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Mock;
-using Frobozz.GdprConsent.NexusAdapter.WebApi.Gdpr.Mappers;
+using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer;
+using Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers;
+using Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Logic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xlent.Lever.Libraries2.Core.Application;
 
@@ -14,7 +17,7 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
     [TestClass]
     public class PersonsContentsControllerTest
     {
-        private IStorage _storage;
+        private IServerLogic _serverLogic;
         private Guid _kalleAnka;
         private PersonConsentsController _personConsentsController;
         private Guid _profilingConsentId;
@@ -24,8 +27,9 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
         public async Task Initialize()
         {
             FulcrumApplicationHelper.UnitTestSetup(typeof(PersonsControllerTest).FullName);
-            _storage = new MemoryStorage();
-            var gdprCapability = new Mapper(_storage);
+            _serverLogic = new SqlServerStorage("Data Source=WIN-7B74C50VA4D;Initial Catalog=LeverExampleGdpr;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            //_storage = new MemoryStorage();
+            var gdprCapability = new Mapper(_serverLogic);
             _personConsentsController = new PersonConsentsController(gdprCapability);
 
             await CreateConsents();
@@ -57,13 +61,13 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
             {
                 Name = "Profiling"
             };
-            _profilingConsentId = await _storage.Consent.CreateAsync(consent);
+            _profilingConsentId = await _serverLogic.Consent.CreateAsync(consent);
 
             consent = new ConsentTable
             {
                 Name = "Marketing"
             };
-            _marketingConsentId = await _storage.Consent.CreateAsync(consent);
+            _marketingConsentId = await _serverLogic.Consent.CreateAsync(consent);
         }
 
         private async Task<Guid> CreateKalleAnkaAsync()
@@ -72,7 +76,7 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
             {
                 Name = "Kalle Anka"
             };
-            var personId = await _storage.Person.CreateAsync(person);
+            var personId = await _serverLogic.Person.CreateAsync(person);
             var address = new AddressTable
             {
                 Type = 1,
@@ -80,7 +84,7 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
                 City = "Ankeborg",
                 PersonId = personId
             };
-            await _storage.Address.CreateAsync(address);
+            await _serverLogic.Address.CreateAsync(address);
             address = new AddressTable
             {
                 Type = 4,
@@ -88,7 +92,7 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
                 City = "Ankeborg",
                 PersonId = personId
             };
-            await _storage.Address.CreateAsync(address);
+            await _serverLogic.Address.CreateAsync(address);
 
             await CreatePersonConsentsAsync(personId, true, false);
 
@@ -103,14 +107,14 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
                 PersonId = personId,
                 HasGivenConsent = profiling
             };
-            await _storage.PersonConsent.CreateAsync(personConsent);
+            await _serverLogic.PersonConsent.CreateAsync(personConsent);
             personConsent = new PersonConsentTable
             {
                 ConsentId = _marketingConsentId,
                 PersonId = personId,
                 HasGivenConsent = marketing
             };
-            await _storage.PersonConsent.CreateAsync(personConsent);
+            await _serverLogic.PersonConsent.CreateAsync(personConsent);
         }
     }
 }

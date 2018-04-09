@@ -1,6 +1,7 @@
-﻿using Xlent.Lever.Libraries2.Core.Storage.Model;
+﻿using Frobozz.CapabilityContracts.Gdpr.Model;
+using Xlent.Lever.Libraries2.Core.Storage.Model;
 
-namespace Frobozz.CapabilityContracts.Gdpr
+namespace Frobozz.CapabilityContracts.Gdpr.Logic
 {
     public interface IGdprCapability 
     {

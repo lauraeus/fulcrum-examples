@@ -15,15 +15,15 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
     /// <typeparam name="TServerId"></typeparam>
     public abstract class MapperBase<TClientModel, TClientId, TServerLogic, TServerModel, TServerId>
     {
-        protected TServerLogic Storage { get; }
+        protected TServerLogic ServerLogic { get; }
         public IModelMapper<TClientModel, TServerLogic, TServerModel> ModelMapper { get; }
 
         /// <summary>
         /// Constructor 
         /// </summary>
-        protected MapperBase(TServerLogic storage, IModelMapper<TClientModel, TServerLogic, TServerModel> modelMapper)
+        protected MapperBase(TServerLogic serverLogic, IModelMapper<TClientModel, TServerLogic, TServerModel> modelMapper)
         {
-            Storage = storage;
+            ServerLogic = serverLogic;
             ModelMapper = modelMapper;
         }
 
@@ -36,12 +36,12 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Mapping
 
         protected async Task<TClientModel> CreateAndMapFromServerAsync(TServerModel serverItem, CancellationToken token = default(CancellationToken))
         {
-            return await ModelMapper.CreateAndMapFromServerAsync(serverItem, Storage, token);
+            return await ModelMapper.CreateAndMapFromServerAsync(serverItem, ServerLogic, token);
         }
 
         protected async Task<TServerModel> CreateAndMapToServerAsync(TClientModel clientItem, CancellationToken token = default(CancellationToken))
         {
-            return await ModelMapper.CreateAndMapToServerAsync(clientItem, Storage, token);
+            return await ModelMapper.CreateAndMapToServerAsync(clientItem, ServerLogic, token);
         }
 
         protected static TClientId MapToClientId(TServerId id)

@@ -1,13 +1,14 @@
 ﻿using System;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
+using Xlent.Lever.Libraries2.SqlServer.Model;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts
 {
     /// <summary>
     /// Many-to-many person-consent
     /// </summary>
-    public class PersonConsentTable : StorableItem, ITimeStamped
+    public class PersonConsentTable : ITableItem, ITimeStamped, IValidatable
     {
         /// <summary>
         /// True if the person has approved the consent
@@ -24,13 +25,19 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts
         public Guid ConsentId { get; set; }
 
         /// <inheritdoc />
+        public Guid Id { get; set; }
+
+        /// <inheritdoc />
+        public string Etag { get; set; }
+
+        /// <inheritdoc />
         public DateTimeOffset RecordCreatedAt { get; set; }
 
         /// <inheritdoc />
         public DateTimeOffset RecordUpdatedAt { get; set; }
 
         /// <inheritdoc />
-        public override void Validate(string errorLocation, string propertyPath = "")
+        public void Validate(string errorLocation, string propertyPath = "")
         {
             FulcrumValidate.IsNotDefaultValue(PersonId, nameof(PersonId), errorLocation);
             FulcrumValidate.IsNotDefaultValue(ConsentId, nameof(ConsentId), errorLocation);

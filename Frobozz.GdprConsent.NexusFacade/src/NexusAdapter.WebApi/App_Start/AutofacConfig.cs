@@ -3,10 +3,12 @@ using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Frobozz.CapabilityContracts.Gdpr;
+using Frobozz.CapabilityContracts.Gdpr.Logic;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Mock;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer;
-using Frobozz.GdprConsent.NexusAdapter.WebApi.Gdpr.Mappers;
+using Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers;
+using Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Logic;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi
 {
@@ -39,17 +41,17 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi
 
         private static IGdprCapability CreateGdprCapability(bool useMock = false)
         {
-            IStorage storage;
+            IServerLogic serverLogic;
             if (useMock)
             {
-                storage = new MemoryStorage();
+                serverLogic = new MemoryStorage();
             }
             else
             {
-                storage = new SqlServerStorage(null);
+                serverLogic = new SqlServerStorage(null);
             }
 
-            return new Mapper(storage);
+            return new Mapper(serverLogic);
         }
     }
 }

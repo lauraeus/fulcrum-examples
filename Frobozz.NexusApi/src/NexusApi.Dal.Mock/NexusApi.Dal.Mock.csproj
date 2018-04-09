@@ -46,7 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Gdpr\GdprCapability.cs" />
+    <Compile Include="Gdpr\GdprMemoryMock.cs" />
     <Compile Include="Gdpr\PersonMemoryStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Translator\TranslatorServiceMock.cs" />

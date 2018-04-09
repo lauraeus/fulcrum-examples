@@ -1,6 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Frobozz.CapabilityContracts.Gdpr;
+using Frobozz.CapabilityContracts.Gdpr.Logic;
+using Frobozz.CapabilityContracts.Gdpr.Model;
 using Xlent.Lever.Libraries2.MoveTo.Core.ServerTranslators;
 using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
 

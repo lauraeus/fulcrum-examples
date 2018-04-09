@@ -6,7 +6,7 @@ using Xlent.Lever.Libraries2.Core.Storage.Model;
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Mock
 {
     /// <inheritdoc />
-    public class MemoryStorage : IStorage
+    public class MemoryStorage : IServerLogic
     {
         /// <inheritdoc />
         public ICrud<PersonTable, Guid> Person { get; }

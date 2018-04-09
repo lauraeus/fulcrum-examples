@@ -126,6 +126,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Dal\SqlServer\scripts\01 Create schema.sql" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -137,7 +138,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Contracts\AddressTable.cs" />
     <Compile Include="Contracts\ConsentTable.cs" />
-    <Compile Include="Contracts\IStorage.cs" />
+    <Compile Include="Contracts\IServerLogic.cs" />
     <Compile Include="Contracts\PersonConsentTable.cs" />
     <Compile Include="Contracts\PersonTable.cs" />
     <Compile Include="Controllers\PersonConsentsController.cs" />
@@ -148,12 +149,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Gdpr\Mappers\Mapper.cs" />
-    <Compile Include="Gdpr\Mappers\PersonMapper.cs" />
-    <Compile Include="Gdpr\Mappers\ConsentModelMapper.cs" />
-    <Compile Include="Gdpr\Mappers\PersonConsentModelMapper.cs" />
+    <Compile Include="Mappers\Logic\Mapper.cs" />
+    <Compile Include="Mappers\Logic\PersonMapper.cs" />
+    <Compile Include="Mappers\Model\ConsentModelMapper.cs" />
+    <Compile Include="Mappers\Model\PersonConsentModelMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Gdpr\Mappers\PersonModelMapper.cs" />
+    <Compile Include="Mappers\Model\PersonModelMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

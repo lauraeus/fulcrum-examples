@@ -3,9 +3,9 @@ using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
 
-namespace Frobozz.CapabilityContracts.Gdpr
+namespace Frobozz.CapabilityContracts.Gdpr.Model
 {
-    public class Person : StorableItem<string>, ITranslatable
+    public class Person : IRecommendedStorableItem<string>, IValidatable, ITranslatable
     {
         /// <summary>
         /// The name of the person
@@ -17,8 +17,16 @@ namespace Frobozz.CapabilityContracts.Gdpr
         /// </summary>
         public IEnumerable<Address> Addresses { get; set; }
 
+        #region Interface implementations
         /// <inheritdoc />
-        public override void Validate(string errorLocation, string propertyPath = "")
+        [TranslationConcept("person.id")]
+        public string Id { get; set; }
+
+        /// <inheritdoc />
+        public string Etag { get; set; }
+
+        /// <inheritdoc />
+        public void Validate(string errorLocation, string propertyPath = "")
         {
            FulcrumValidate.IsNotNullOrWhiteSpace(Name, nameof(Name), errorLocation);
         }
@@ -35,5 +43,6 @@ namespace Frobozz.CapabilityContracts.Gdpr
         {
             return $"{Name}";
         }
+        #endregion
     }
 }

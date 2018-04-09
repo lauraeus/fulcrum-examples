@@ -2,19 +2,10 @@
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
 
-namespace Frobozz.CapabilityContracts.Gdpr
+namespace Frobozz.CapabilityContracts.Gdpr.Model
 {
-    public class PersonConsent : StorableItem<string>, ITranslatable
+    public class PersonConsent : IRecommendedStorableItem<string>, IValidatable, ITranslatable
     {
-        /// <summary>
-        /// The name of the consent
-        /// </summary>
-        public string ConsentName { get; set; }
-
-        /// <summary>
-        /// The id of the person that this consent is for.
-        /// </summary>
-        public string PersonId { get; set; }
 
         /// <summary>
         /// True if the person has approved the consent
@@ -22,12 +13,31 @@ namespace Frobozz.CapabilityContracts.Gdpr
         public bool HasGivenConsent { get; set; }
 
         /// <summary>
-        /// The id of the consent.
+        /// The id of the person that this person-consent is for.
         /// </summary>
+        [TranslationConcept("person.id")]
+        public string PersonId { get; set; }
+
+        /// <summary>
+        /// The id of the consent that this person-consent is for.
+        /// </summary>
+        [TranslationConcept("consent.id")]
         public string ConsentId { get; set; }
 
+        /// <summary>
+        /// The name of the consent.
+        /// </summary>
+        public string ConsentName { get; set; }
+
+        #region Interface implementations
         /// <inheritdoc />
-        public override void Validate(string errorLocation, string propertyPath = "")
+        [TranslationConcept("person-consent.id")]
+        public string Id { get; set; }
+        /// <inheritdoc />
+        public string Etag { get; set; }
+
+        /// <inheritdoc />
+        public void Validate(string errorLocation, string propertyPath = "")
         {
             FulcrumValidate.IsNotNullOrWhiteSpace(ConsentName, nameof(ConsentName), errorLocation);
             FulcrumValidate.IsNotNull(PersonId, nameof(PersonId), errorLocation);
@@ -46,5 +56,6 @@ namespace Frobozz.CapabilityContracts.Gdpr
             PersonId = translator.Decorate("person.id", PersonId);
             ConsentId = translator.Decorate("consent.id", ConsentId);
         }
+        #endregion
     }
 }

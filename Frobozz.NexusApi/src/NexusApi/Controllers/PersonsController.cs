@@ -1,8 +1,12 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Frobozz.CapabilityContracts.Gdpr;
+using Frobozz.CapabilityContracts.Gdpr.Logic;
+using Frobozz.CapabilityContracts.Gdpr.Model;
 using Xlent.Lever.Libraries2.Core.Assert;
+using Xlent.Lever.Libraries2.Core.Error.Logic;
 using Xlent.Lever.Libraries2.MoveTo.WebApi.ApiControllerHelpers;
 
 namespace Frobozz.NexusApi.Controllers
@@ -33,5 +37,9 @@ namespace Frobozz.NexusApi.Controllers
             var result = await _gdprCapability.PersonService.FindFirstOrDefaultByNameAsync(name, token);
             return result;
         }
+
+        /// <inheritdoc />
+        /// Intentionally disabled.
+        public override Task DeleteAllAsync(CancellationToken token = default(CancellationToken)) => throw new FulcrumNotImplementedException(nameof(DeleteAllAsync));
     }
 }

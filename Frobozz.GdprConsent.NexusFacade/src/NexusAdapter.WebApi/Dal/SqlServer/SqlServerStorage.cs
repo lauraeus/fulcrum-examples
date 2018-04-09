@@ -7,7 +7,7 @@ using Xlent.Lever.Libraries2.SqlServer.Model;
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer
 {
     /// <inheritdoc />
-    public class SqlServerStorage : IStorage
+    public class SqlServerStorage : IServerLogic
     {
         /// <inheritdoc />
         public ICrud<PersonTable, Guid> Person { get; }
@@ -31,6 +31,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer
             {
                 TableName = "Person",
                 CustomColumnNames = new [] {"Name"},
+                OrderBy = new []{"Name"},
                 EtagColumnName = "Etag",
             };
             var person = new SimpleTableHandler<PersonTable>(connectionString,tableMetadata);
@@ -41,6 +42,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer
             {
                 TableName = "Consent",
                 CustomColumnNames = new[] { "Name" },
+                OrderBy = new[] { "Name" },
                 EtagColumnName = "Etag",
             };
             var consent = new SimpleTableHandler<ConsentTable>(connectionString, tableMetadata);
@@ -50,7 +52,8 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer
             tableMetadata = new SqlTableMetadata
             {
                 TableName = "Address",
-                CustomColumnNames = new[] { "Street", "City" },
+                CustomColumnNames = new[] { "Type, Street", "City" },
+                OrderBy = new[] { "Type" },
                 EtagColumnName = "Etag",
                 ForeignKeyColumnName = "ParentId"
             };
@@ -61,6 +64,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer
             {
                 TableName = "PersonContent",
                 CustomColumnNames = new[] { "HasGivenConsent", "PersonId", "ConsentId" },
+                OrderBy = new string[] { },
                 EtagColumnName = "Etag"
             };
             PersonConsent =

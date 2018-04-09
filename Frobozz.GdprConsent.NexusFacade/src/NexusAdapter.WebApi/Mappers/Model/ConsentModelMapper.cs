@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Frobozz.CapabilityContracts.Gdpr;
+using Frobozz.CapabilityContracts.Gdpr.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.MoveTo.Core.Mapping;
 
-namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Gdpr.Mappers
+namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
 {
     /// <inheritdoc />
-    public class ConsentModelMapper : IModelMapper<Consent, IStorage, ConsentTable>
+    public class ConsentModelMapper : IModelMapper<Consent, IServerLogic, ConsentTable>
     {
         /// <inheritdoc />
-        public async Task<Consent> CreateAndMapFromServerAsync(ConsentTable source, IStorage logic,
+        public async Task<Consent> CreateAndMapFromServerAsync(ConsentTable source, IServerLogic logic,
             CancellationToken token = default(CancellationToken))
         {
             InternalContract.RequireNotNull(source, nameof(source));
@@ -28,7 +28,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Gdpr.Mappers
         }
 
         /// <inheritdoc />
-        public async Task<ConsentTable> CreateAndMapToServerAsync(Consent source, IStorage logic, CancellationToken token = default(CancellationToken))
+        public async Task<ConsentTable> CreateAndMapToServerAsync(Consent source, IServerLogic logic, CancellationToken token = default(CancellationToken))
         {
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));

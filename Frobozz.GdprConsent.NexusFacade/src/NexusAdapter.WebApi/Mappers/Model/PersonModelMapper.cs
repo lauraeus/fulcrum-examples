@@ -3,36 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Frobozz.CapabilityContracts.Gdpr;
+using Frobozz.CapabilityContracts.Gdpr.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.MoveTo.Core.Mapping;
 
-namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Gdpr.Mappers
+namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
 {
     /// <inheritdoc />
-    public class PersonModelMapper : IModelMapper<Person, IStorage, PersonTable>
+    public class PersonModelMapper : IModelMapper<Person, IServerLogic, PersonTable>
     {
+        // TODO: Change from db to server
         /// <inheritdoc />
-        public async Task<Person> CreateAndMapFromServerAsync(PersonTable source, IStorage logic,
+        public async Task<Person> CreateAndMapFromServerAsync(PersonTable source, IServerLogic logic,
             CancellationToken token = default(CancellationToken))
         {
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
-            var addressesDbTask = logic.Address.ReadChildrenAsync(source.Id, token: token);
+            var serverAddresses = await logic.Address.ReadChildrenAsync(source.Id, token: token);
             var target = new Person
             {
                 Id = MapperHelper.MapId<string, Guid>(source.Id),
                 Name = source.Name,
                 Etag = source.Etag,
-                Addresses = (await addressesDbTask).Select(CreateAndMapFromServer)
+                Addresses = serverAddresses.Select(CreateAndMapFromServer)
             };
             FulcrumAssert.IsValidated(target);
             return target;
         }
 
         /// <inheritdoc />
-        public async Task<PersonTable> CreateAndMapToServerAsync(Person source, IStorage logic, CancellationToken token = default(CancellationToken))
+        public async Task<PersonTable> CreateAndMapToServerAsync(Person source, IServerLogic logic, CancellationToken token = default(CancellationToken))
         {
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
@@ -48,7 +49,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Gdpr.Mappers
             return target;
         }
 
-        private async Task UpdateAddressesAsync(Guid personId, Person person, IStorage logic, CancellationToken token)
+        private async Task UpdateAddressesAsync(Guid personId, Person person, IServerLogic logic, CancellationToken token)
         {
             var addressesDb = await logic.Address.ReadChildrenAsync(personId, token: token);
             var addressDbArray = addressesDb as AddressTable[] ?? addressesDb.ToArray();

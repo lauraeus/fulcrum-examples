@@ -1,19 +1,11 @@
 ﻿using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
 
-namespace Frobozz.CapabilityContracts.Gdpr
+namespace Frobozz.CapabilityContracts.Gdpr.Model
 {
-    public enum AddressTypeEnum
-    {
-
-        None,
-        Public,
-        Invoice,
-        Delivery,
-        Postal
-    }
     public class Address : IValidatable, ITranslatable
     {
+        [TranslationConcept("person.address.type.code")]
         public string Type;
         /// <summary>
         /// The street part of the address
@@ -24,6 +16,8 @@ namespace Frobozz.CapabilityContracts.Gdpr
         /// The city part of the address
         /// </summary>
         public string City { get; set; }
+
+        #region Interface implementations
 
         /// <inheritdoc />
         public void Validate(string errorLocation, string propertyPath = "")
@@ -43,5 +37,7 @@ namespace Frobozz.CapabilityContracts.Gdpr
         {
             return $"{Street}, {City} ({Type})";
         }
+
+        #endregion
     }
 }

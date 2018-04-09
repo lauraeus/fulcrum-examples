@@ -1,14 +1,16 @@
 ﻿using Frobozz.CapabilityContracts.Gdpr;
+using Frobozz.CapabilityContracts.Gdpr.Logic;
+using Frobozz.CapabilityContracts.Gdpr.Model;
 using Xlent.Lever.Libraries2.Core.Storage.Logic;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.NexusApi.Dal.Mock.Gdpr
 {
     /// <inheritdoc />
-    public class GdprCapability : IGdprCapability
+    public class GdprMemoryMock : IGdprCapability
     {
         /// <inheritdoc />
-        public GdprCapability()
+        public GdprMemoryMock()
         {
             PersonService = new PersonMemoryStorage();
             ConsentService = new CrudMemory<Consent, string>();

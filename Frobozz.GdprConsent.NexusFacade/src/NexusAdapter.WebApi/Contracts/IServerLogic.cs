@@ -5,7 +5,7 @@ using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts
 {
-    public interface IStorage
+    public interface IServerLogic
     {
         IManyToOneRelationComplete<AddressTable, Guid> Address { get; }
         ICrud<PersonTable, Guid> Person { get; }

@@ -8,12 +8,18 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts
     /// <summary>
     /// Information about a person
     /// </summary>
-    public class PersonTable : StorableItem, ITimeStamped, ITableItem
+    public class PersonTable : ITableItem, ITimeStamped, IValidatable
     {
         /// <summary>
         /// The name of the person
         /// </summary>
         public string Name { get; set; }
+
+        /// <inheritdoc />
+        public Guid Id { get; set; }
+
+        /// <inheritdoc />
+        public string Etag { get; set; }
 
         /// <inheritdoc />
         public DateTimeOffset RecordCreatedAt { get; set; }
@@ -22,9 +28,9 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts
         public DateTimeOffset RecordUpdatedAt { get; set; }
 
         /// <inheritdoc />
-        public override void Validate(string errorLocation, string propertyPath = "")
+        public void Validate(string errorLocation, string propertyPath = "")
         {
-           FulcrumValidate.IsNotNullOrWhiteSpace(Name, nameof(Name), errorLocation);
+            FulcrumValidate.IsNotNullOrWhiteSpace(Name, nameof(Name), errorLocation);
         }
 
         /// <inheritdoc />

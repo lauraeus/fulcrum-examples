@@ -2,17 +2,25 @@
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
 
-namespace Frobozz.CapabilityContracts.Gdpr
+namespace Frobozz.CapabilityContracts.Gdpr.Model
 {
-    public class Consent : StorableItem<string>, ITranslatable
+    public class Consent : IRecommendedStorableItem<string>, IValidatable, ITranslatable
     {
         /// <summary>
         /// The name of the consent
         /// </summary>
         public string Name { get; set; }
 
+        #region Interface implementations
         /// <inheritdoc />
-        public override void Validate(string errorLocation, string propertyPath = "")
+        [TranslationConcept("consent.id")]
+        public string Id { get; set; }
+
+        /// <inheritdoc />
+        public string Etag { get; set; }
+
+        /// <inheritdoc />
+        public void Validate(string errorLocation, string propertyPath = "")
         {
            FulcrumValidate.IsNotNullOrWhiteSpace(Name, nameof(Name), errorLocation);
         }
@@ -28,5 +36,6 @@ namespace Frobozz.CapabilityContracts.Gdpr
         {
             return $"{Name}";
         }
+        #endregion
     }
 }

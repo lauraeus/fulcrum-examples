@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using System.Web.Http;
 using Frobozz.CapabilityContracts.Gdpr;
+using Frobozz.CapabilityContracts.Gdpr.Logic;
+using Frobozz.CapabilityContracts.Gdpr.Model;
 using Xlent.Lever.Libraries2.MoveTo.WebApi.ApiControllerHelpers;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Controllers
@@ -24,6 +26,8 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Controllers
         }
 
         /// <inheritdoc />
+        [HttpGet]
+        [Route("FindByName")]
         public async Task<Person> FindFirstOrDefaultByNameAsync(string name, CancellationToken token = default(CancellationToken))
         {
             return await _logic.PersonService.FindFirstOrDefaultByNameAsync(name, token);

@@ -2,6 +2,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Frobozz.CapabilityContracts.Gdpr;
+using Frobozz.CapabilityContracts.Gdpr.Logic;
+using Frobozz.CapabilityContracts.Gdpr.Model;
 using Frobozz.NexusApi.Bll.Gdpr.ClientTranslators;
 using Frobozz.NexusApi.Bll.Test.Support;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

@@ -79,6 +79,7 @@
     <Compile Include="Core\Mapping\MapperHelper.cs" />
     <Compile Include="Core\Translation\ITranslatable.cs" />
     <Compile Include="Core\Translation\ITranslatorService.cs" />
+    <Compile Include="Core\Translation\TranslationConceptAttribute.cs" />
     <Compile Include="Core\Translation\Translator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\Mapping\CrdMapper.cs" />
