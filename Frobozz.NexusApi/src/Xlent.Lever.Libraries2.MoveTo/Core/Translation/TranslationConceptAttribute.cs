@@ -4,11 +4,11 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Translation
 {
     public class TranslationConceptAttribute : Attribute
     {
-        public string PersonContentId { get; }
+        public string ConceptName { get; }
 
-        public TranslationConceptAttribute(string personContentId)
+        public TranslationConceptAttribute(string conceptName)
         {
-            PersonContentId = personContentId;
+            ConceptName = conceptName;
         }
     }
 }

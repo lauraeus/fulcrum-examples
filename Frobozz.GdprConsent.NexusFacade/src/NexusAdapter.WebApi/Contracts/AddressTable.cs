@@ -13,7 +13,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts
         /// <summary>
         /// The type of address
         /// </summary>
-        public int Type;
+        public int Type { get; set; }
         /// <summary>
         /// The street part of the address
         /// </summary>
@@ -44,7 +44,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts
         /// <inheritdoc />
         public void Validate(string errorLocation, string propertyPath = "")
         {
-           FulcrumValidate.IsNotNullOrWhiteSpace(City, nameof(City), errorLocation);
+            FulcrumValidate.IsNotNullOrWhiteSpace(City, nameof(City), errorLocation);
             FulcrumValidate.IsNotDefaultValue(PersonId, nameof(PersonId), errorLocation);
         }
 

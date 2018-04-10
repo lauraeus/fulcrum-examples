@@ -28,8 +28,17 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
             _serverLogic = new SqlServerStorage("Data Source=WIN-7B74C50VA4D;Initial Catalog=LeverExampleGdpr;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             //_storage = new MemoryStorage();
             var gdprCapability = new Mapper(_serverLogic);
+            await DeleteAll();
             _kalleAnka = await CreateKalleAnkaAsync();
             _personsController = new PersonsController(gdprCapability);
+        }
+
+        private async Task DeleteAll()
+        {
+            await _serverLogic.PersonConsent.DeleteAllAsync();
+            await _serverLogic.Address.DeleteAllAsync();
+            await _serverLogic.Consent.DeleteAllAsync();
+            await _serverLogic.Person.DeleteAllAsync();
         }
 
         [TestMethod]

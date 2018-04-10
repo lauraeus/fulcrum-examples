@@ -34,7 +34,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer
                 OrderBy = new []{"Name"},
                 EtagColumnName = "Etag",
             };
-            var person = new SimpleTableHandler<PersonTable>(connectionString,tableMetadata);
+            var person = new CrudSql<PersonTable>(connectionString,tableMetadata);
             Person = person;
 
             // Consent
@@ -45,30 +45,31 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer
                 OrderBy = new[] { "Name" },
                 EtagColumnName = "Etag",
             };
-            var consent = new SimpleTableHandler<ConsentTable>(connectionString, tableMetadata);
+            var consent = new CrudSql<ConsentTable>(connectionString, tableMetadata);
             Consent = consent;
 
             // Address
             tableMetadata = new SqlTableMetadata
             {
                 TableName = "Address",
-                CustomColumnNames = new[] { "Type, Street", "City" },
+                CustomColumnNames = new[] { "Type", "Street", "City", "PersonId" },
                 OrderBy = new[] { "Type" },
                 EtagColumnName = "Etag",
-                ForeignKeyColumnName = "ParentId"
+                ForeignKeyColumnName = "PersonId"
             };
-            Address = new ManyToOneTableHandler<AddressTable,PersonTable>(connectionString, tableMetadata, "ParentId", person);
+            Address = new ManyToOneSql<AddressTable,PersonTable>(connectionString, tableMetadata, "PersonId", person);
 
-            // PersonContent
+            // PersonConsent
             tableMetadata = new SqlTableMetadata
             {
-                TableName = "PersonContent",
+                TableName = "PersonConsent",
                 CustomColumnNames = new[] { "HasGivenConsent", "PersonId", "ConsentId" },
                 OrderBy = new string[] { },
-                EtagColumnName = "Etag"
+                EtagColumnName = "Etag",
+                ForeignKeyColumnName = "PersonId"
             };
             PersonConsent =
-                new ManyToOneTableHandler<PersonConsentTable, PersonTable>(connectionString, tableMetadata, "ParentId", person);
+                new ManyToOneSql<PersonConsentTable, PersonTable>(connectionString, tableMetadata, "PersonId", person);
         }
     }
 }
