@@ -25,7 +25,7 @@ namespace Frobozz.NexusApi
             var builder = new ContainerBuilder();
 
             // Register GDPR capability
-            var gdprCapability = CreateGdprCapability(useMock: true);
+            var gdprCapability = CreateGdprCapability(useMock: false);
             builder.Register(ctxt => gdprCapability)
                 .As<IGdprCapability>()
                 .SingleInstance();

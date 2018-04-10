@@ -125,7 +125,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dal\SqlServer\scripts\01 Create schema.sql" />
+    <Content Include="Dal\SqlServer\scripts\01 Create local database.sql" />
+    <Content Include="Dal\SqlServer\scripts\02 Create schema.sql" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

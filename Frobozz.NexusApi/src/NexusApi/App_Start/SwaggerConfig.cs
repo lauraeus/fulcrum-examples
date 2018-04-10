@@ -1,7 +1,7 @@
 using Swashbuckle.Application;
 using System.Web.Http;
 
-namespace Frobozz.GdprConsent.NexusFacade.WebApi
+namespace Frobozz.NexusApi
 {
     /// <summary>
     /// This class is required by the Swashbuckle NuGet.

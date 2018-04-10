@@ -1,5 +1,4 @@
 ﻿using System.Web.Http;
-using Frobozz.GdprConsent.NexusFacade.WebApi;
 using Xlent.Lever.Libraries2.Core.Application;
 using FulcrumApplicationHelper = Xlent.Lever.Libraries2.WebApi.Application.FulcrumApplicationHelper;
 

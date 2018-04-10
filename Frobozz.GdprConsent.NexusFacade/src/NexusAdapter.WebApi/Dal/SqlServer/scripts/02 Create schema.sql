@@ -58,6 +58,7 @@ GO
 CREATE TABLE dbo.Address
 	(
 	Id uniqueidentifier NOT NULL ROWGUIDCOL,
+	Type int NOT NULL DEFAULT (0),
 	Street nvarchar(50) NULL,
 	City nvarchar(50) NULL,
 	PersonId uniqueidentifier NULL,

@@ -71,7 +71,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.WebApi.ApiControllerHelpers
 
         /// <inheritdoc />
         [HttpDelete]
-        [Route("{id}/ReturnUpdated")]
+        [Route("")]
         public virtual async Task DeleteAllAsync(CancellationToken token = default(CancellationToken))
         {
             await _storage.DeleteAllAsync(token);

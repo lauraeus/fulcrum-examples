@@ -12,9 +12,9 @@ namespace Frobozz.NexusApi.Dal.RestServices.Gdpr
         /// <inheritdoc />
         public GdprCapability()
         {
-            PersonService = new PersonService("http://localhost/GdprConsent.NexusFacade.WebApi/api/Persons");
-            ConsentService = new RestClientCrud<Consent, string>("http://localhost/GdprConsent.NexusFacade.WebApi/api/Consents");
-            PersonConsentService = new RestClientManyToOne<PersonConsent, string>("http://localhost/GdprConsent.NexusFacade.WebApi/api/Persons", "Persons", "Consents");
+            PersonService = new PersonService("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Persons");
+            ConsentService = new RestClientCrud<Consent, string>("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Consents");
+            PersonConsentService = new RestClientManyToOne<PersonConsent, string>("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Persons", "Persons", "Consents");
         }
 
         /// <inheritdoc />

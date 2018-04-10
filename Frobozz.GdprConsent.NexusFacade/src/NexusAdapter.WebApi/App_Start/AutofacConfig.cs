@@ -26,7 +26,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi
             var builder = new ContainerBuilder();
 
             // Register GDPR capability
-            var gdprCapability = CreateGdprCapability(useMock: true);
+            var gdprCapability = CreateGdprCapability(useMock: false);
             builder.Register(ctxt => gdprCapability)
                 .As<IGdprCapability>()
                 .SingleInstance();
@@ -48,7 +48,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi
             }
             else
             {
-                serverLogic = new SqlServerStorage(null);
+                serverLogic = new SqlServerStorage("Data Source=localhost;Initial Catalog=LeverExampleGdpr;Persist Security Info=True;User ID=LeverExampleGdprUser;Password=Password123!;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True");
             }
 
             return new Mapper(serverLogic);

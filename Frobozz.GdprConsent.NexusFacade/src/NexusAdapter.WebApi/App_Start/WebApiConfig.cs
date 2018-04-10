@@ -1,6 +1,9 @@
-﻿using System.Net.Http.Headers;
+﻿using System.Collections.Generic;
+using System.Net.Http.Headers;
 using System.Web.Http;
+using System.Web.Http.Controllers;
 using System.Web.Http.ExceptionHandling;
+using System.Web.Http.Routing;
 using Newtonsoft.Json;
 using Xlent.Lever.Libraries2.Core.Context;
 using Xlent.Lever.Libraries2.WebApi.Pipe.Inbound;
@@ -19,7 +22,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi
         public static void Register(HttpConfiguration config)
         {
             //Routing will be correspond to the specified Route attribute for each method
-            config.MapHttpAttributeRoutes();
+            config.MapHttpAttributeRoutes(new CustomDirectRouteProvider());
             //Declare the project to return JSON instead of XML
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
             //If a null value exists, ignore value
@@ -50,5 +53,20 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi
             config.MessageHandlers.Add(new SaveCorrelationId());
         }
         #endregion
+
+        /// <summary>
+        /// Route provider that allows inheritance of routing attributes.
+        /// </summary>
+        public class CustomDirectRouteProvider : DefaultDirectRouteProvider
+        {
+            /// <inheritdoc />
+            protected override IReadOnlyList<IDirectRouteFactory>
+                GetActionRouteFactories(HttpActionDescriptor actionDescriptor)
+            {
+                // inherit route attributes decorated on base class controller's actions
+                return actionDescriptor.GetCustomAttributes<IDirectRouteFactory>
+                    (inherit: true);
+            }
+        }
     }
 }
