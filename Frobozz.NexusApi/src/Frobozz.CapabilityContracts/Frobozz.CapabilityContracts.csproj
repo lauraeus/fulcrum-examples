@@ -46,12 +46,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Gdpr\Model\Address.cs" />
     <Compile Include="Gdpr\Logic\IPersonService.cs" />
-    <Compile Include="Gdpr\Model\PersonConsent.cs" />
+    <Compile Include="Gdpr\Model\Address.cs" />
     <Compile Include="Gdpr\Model\Consent.cs" />
     <Compile Include="Gdpr\Logic\IGdprCapability.cs" />
     <Compile Include="Gdpr\Model\Person.cs" />
+    <Compile Include="Gdpr\Model\PersonConsent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
