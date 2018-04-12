@@ -1,12 +1,9 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Frobozz.CapabilityContracts.Gdpr;
 using Frobozz.CapabilityContracts.Gdpr.Logic;
 using Frobozz.CapabilityContracts.Gdpr.Model;
-using Xlent.Lever.Libraries2.MoveTo.Core.Cache;
-using Xlent.Lever.Libraries2.MoveTo.Core.Cache.Microsoft.Extensions.Caching.Distributed;
-using Xlent.Lever.Libraries2.MoveTo.Core.ClientTranslators;
-using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
+using Microsoft.Extensions.Caching.Distributed;
+using Xlent.Lever.Libraries2.MoveTo.Core.Crud.Cache;
 
 namespace Frobozz.NexusApi.Bll.Gdpr.Caches
 {

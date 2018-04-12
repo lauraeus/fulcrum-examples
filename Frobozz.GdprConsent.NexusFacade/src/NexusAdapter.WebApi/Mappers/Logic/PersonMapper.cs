@@ -6,7 +6,7 @@ using Frobozz.CapabilityContracts.Gdpr.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model;
 using Xlent.Lever.Libraries2.Core.Storage.Logic;
-using Xlent.Lever.Libraries2.MoveTo.Core.Mapping;
+using Xlent.Lever.Libraries2.MoveTo.Core.Crud.Mapping;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Logic
 {
@@ -32,7 +32,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Logic
             var enumerator = new PageEnvelopeEnumeratorAsync<PersonTable>((o, t) => _serverLogic.Person.ReadAllWithPagingAsync(o, null, t), token);
             while (await enumerator.MoveNextAsync())
             {
-                if (enumerator.Current.Name == name) return await ModelMapper.CreateAndMapFromServerAsync(enumerator.Current, _serverLogic, token);
+                if (enumerator.Current.Name == name) return await ModelMapper.MapFromServerAsync(enumerator.Current, _serverLogic, token);
             }
             return null;
         }

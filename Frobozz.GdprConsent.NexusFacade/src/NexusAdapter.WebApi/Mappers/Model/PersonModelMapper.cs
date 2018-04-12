@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Frobozz.CapabilityContracts.Gdpr.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts;
 using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.MoveTo.Core.Mapping;
+using Xlent.Lever.Libraries2.MoveTo.Core.Crud.Mapping;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
 {
@@ -14,7 +14,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
     public class PersonModelMapper : IModelMapper<Person, IServerLogic, PersonTable>
     {
         /// <inheritdoc />
-        public async Task<Person> CreateAndMapFromServerAsync(PersonTable source, IServerLogic serverLogic,
+        public async Task<Person> MapFromServerAsync(PersonTable source, IServerLogic serverLogic,
             CancellationToken token = default(CancellationToken))
         {
             InternalContract.RequireNotNull(source, nameof(source));
@@ -32,19 +32,29 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
         }
 
         /// <inheritdoc />
-        public async Task<PersonTable> CreateAndMapToServerAsync(Person source, IServerLogic serverLogic, CancellationToken token = default(CancellationToken))
+        public async Task<PersonTable> MapToServerAsync(Person source, IServerLogic serverLogic, CancellationToken token = default(CancellationToken))
         {
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
-            var id = MapperHelper.MapId<Guid, string>(source.Id);
+            var target = MapToServer(source);
+            FulcrumAssert.IsValidated(target);
+            FulcrumAssert.IsNotDefaultValue(target.Id);
+            await UpdateAddressesAsync(target.Id, source, serverLogic, token);
+            return target;
+        }
+
+        /// <inheritdoc />
+        public PersonTable MapToServer(Person source)
+        {
+            InternalContract.RequireNotNull(source, nameof(source));
+            InternalContract.RequireValidated(source, nameof(source));
             var target = new PersonTable
             {
-                Id = id,
+                Id = MapperHelper.MapId<Guid, string>(source.Id),
                 Name = source.Name,
                 Etag = source.Etag
             };
             FulcrumAssert.IsValidated(target);
-            await UpdateAddressesAsync(id, source, serverLogic, token);
             return target;
         }
 
@@ -97,7 +107,6 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
                 City = source.City,
                 PersonId = personId
             };
-            FulcrumAssert.IsValidated(target);
             return target;
         }
 

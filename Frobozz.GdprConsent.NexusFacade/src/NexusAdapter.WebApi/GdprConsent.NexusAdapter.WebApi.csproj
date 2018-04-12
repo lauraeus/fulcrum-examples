@@ -141,8 +141,8 @@
     <Compile Include="Contracts\IServerLogic.cs" />
     <Compile Include="Contracts\PersonConsentTable.cs" />
     <Compile Include="Contracts\PersonTable.cs" />
-    <Compile Include="Controllers\PersonConsentsController.cs" />
     <Compile Include="Controllers\ConsentsController.cs" />
+    <Compile Include="Controllers\PersonConsentsController.cs" />
     <Compile Include="Controllers\PersonsController.cs" />
     <Compile Include="Dal\Mock\MemoryStorage.cs" />
     <Compile Include="Dal\SqlServer\SqlServerStorage.cs" />

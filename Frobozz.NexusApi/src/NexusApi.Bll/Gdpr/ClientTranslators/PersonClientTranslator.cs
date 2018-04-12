@@ -1,9 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Frobozz.CapabilityContracts.Gdpr;
 using Frobozz.CapabilityContracts.Gdpr.Logic;
 using Frobozz.CapabilityContracts.Gdpr.Model;
-using Xlent.Lever.Libraries2.MoveTo.Core.ClientTranslators;
+using Xlent.Lever.Libraries2.MoveTo.Core.Crud.ClientTranslators;
 using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
 
 namespace Frobozz.NexusApi.Bll.Gdpr.ClientTranslators
@@ -18,8 +17,8 @@ namespace Frobozz.NexusApi.Bll.Gdpr.ClientTranslators
         /// <summary>
         /// Constructor 
         /// </summary>
-        public PersonClientTranslator(IGdprCapability gdprCapability, ITranslatorService translatorService)
-        :base(gdprCapability.PersonService, "person.id", translatorService)
+        public PersonClientTranslator(IGdprCapability gdprCapability, System.Func<string> getclientNameMethod, ITranslatorService translatorService)
+        :base(gdprCapability.PersonService, "person.id", getclientNameMethod, translatorService)
         {
             _gdprCapability = gdprCapability;
         }

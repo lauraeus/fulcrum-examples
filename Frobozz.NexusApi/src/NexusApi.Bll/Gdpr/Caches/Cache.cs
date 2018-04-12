@@ -1,9 +1,8 @@
-﻿using Frobozz.CapabilityContracts.Gdpr;
-using Frobozz.CapabilityContracts.Gdpr.Logic;
+﻿using Frobozz.CapabilityContracts.Gdpr.Logic;
 using Frobozz.CapabilityContracts.Gdpr.Model;
 using Xlent.Lever.Libraries2.Core.Storage.Logic;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
-using Xlent.Lever.Libraries2.MoveTo.Core.Cache;
+using Xlent.Lever.Libraries2.MoveTo.Core.Crud.Cache;
 
 namespace Frobozz.NexusApi.Bll.Gdpr.Caches
 {

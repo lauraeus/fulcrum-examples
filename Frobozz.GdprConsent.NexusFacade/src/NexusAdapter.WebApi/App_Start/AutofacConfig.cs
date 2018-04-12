@@ -2,12 +2,10 @@
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
-using Frobozz.CapabilityContracts.Gdpr;
 using Frobozz.CapabilityContracts.Gdpr.Logic;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Mock;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer;
-using Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Logic;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi

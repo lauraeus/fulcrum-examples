@@ -50,8 +50,10 @@
     <Compile Include="Gdpr\Caches\PersonCache.cs" />
     <Compile Include="Gdpr\ClientTranslators\ClientTranslator.cs" />
     <Compile Include="Gdpr\ClientTranslators\PersonClientTranslator.cs" />
-    <Compile Include="Gdpr\ServerTranslators\ServerTranslator.cs" />
-    <Compile Include="Gdpr\ServerTranslators\PersonServerTranslator.cs" />
+    <Compile Include="Gdpr\ServerTranslators\From\ServerTranslatorFrom.cs" />
+    <Compile Include="Gdpr\ServerTranslators\From\PersonServerTranslatorFrom.cs" />
+    <Compile Include="Gdpr\ServerTranslators\To\PersonServerTranslatorTo.cs" />
+    <Compile Include="Gdpr\ServerTranslators\To\ServerTranslatorTo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\TranslatorService.cs" />
   </ItemGroup>

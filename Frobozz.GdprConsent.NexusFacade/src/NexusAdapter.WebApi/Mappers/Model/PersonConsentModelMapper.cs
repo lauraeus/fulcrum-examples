@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Frobozz.CapabilityContracts.Gdpr.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts;
 using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.MoveTo.Core.Mapping;
+using Xlent.Lever.Libraries2.MoveTo.Core.Crud.Mapping;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
 {
@@ -12,7 +12,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
     public class PersonConsentModelMapper : IModelMapper<PersonConsent, IServerLogic, PersonConsentTable>
     {
         /// <inheritdoc />
-        public async Task<PersonConsent> CreateAndMapFromServerAsync(PersonConsentTable source, IServerLogic logic,
+        public async Task<PersonConsent> MapFromServerAsync(PersonConsentTable source, IServerLogic logic,
             CancellationToken token = default(CancellationToken))
         {
             InternalContract.RequireNotNull(source, nameof(source));
@@ -32,7 +32,16 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
         }
 
         /// <inheritdoc />
-        public async Task<PersonConsentTable> CreateAndMapToServerAsync(PersonConsent source, IServerLogic logic, CancellationToken token = default(CancellationToken))
+        public async Task<PersonConsentTable> MapToServerAsync(PersonConsent source, IServerLogic logic, CancellationToken token = default(CancellationToken))
+        {
+            InternalContract.RequireNotNull(source, nameof(source));
+            InternalContract.RequireValidated(source, nameof(source));
+            var target = MapToServer(source);
+            return await Task.FromResult(target);
+        }
+
+        /// <inheritdoc />
+        public PersonConsentTable MapToServer(PersonConsent source)
         {
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
@@ -45,7 +54,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
                 ConsentId = MapperHelper.MapId<Guid, string>(source.ConsentId),
             };
             FulcrumAssert.IsValidated(target);
-            return await Task.FromResult(target);
+            return target;
         }
     }
 }

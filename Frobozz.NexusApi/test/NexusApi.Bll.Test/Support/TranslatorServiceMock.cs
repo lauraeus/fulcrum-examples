@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Xlent.Lever.Libraries2.Core.Decoupling.Model;
 using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
 
 namespace Frobozz.NexusApi.Bll.Test.Support
@@ -8,9 +7,9 @@ namespace Frobozz.NexusApi.Bll.Test.Support
     public class TranslatorServiceMock : ITranslatorService
     {
         /// <inheritdoc />
-        public async Task TranslateAsync(IDictionary<string, string> translations)
+        public async Task TranslateAsync(IEnumerable<string> conceptValues, IDictionary<string, string> translations)
         {
-            foreach (var path in translations.Keys)
+            foreach (var path in conceptValues)
             {
                 if (!ConceptValue.TryParse(path, out var conceptValue))
                 {

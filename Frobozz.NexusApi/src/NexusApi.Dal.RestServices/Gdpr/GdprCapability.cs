@@ -1,5 +1,4 @@
-﻿using Frobozz.CapabilityContracts.Gdpr;
-using Frobozz.CapabilityContracts.Gdpr.Logic;
+﻿using Frobozz.CapabilityContracts.Gdpr.Logic;
 using Frobozz.CapabilityContracts.Gdpr.Model;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 using Xlent.Lever.Libraries2.WebApi.RestClientHelper;

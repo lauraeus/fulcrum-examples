@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Frobozz.CapabilityContracts.Gdpr.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts;
 using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.MoveTo.Core.Mapping;
+using Xlent.Lever.Libraries2.MoveTo.Core.Crud.Mapping;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
 {
@@ -12,8 +12,16 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
     public class ConsentModelMapper : IModelMapper<Consent, IServerLogic, ConsentTable>
     {
         /// <inheritdoc />
-        public async Task<Consent> CreateAndMapFromServerAsync(ConsentTable source, IServerLogic logic,
+        public async Task<Consent> MapFromServerAsync(ConsentTable source, IServerLogic logic,
             CancellationToken token = default(CancellationToken))
+        {
+            InternalContract.RequireNotNull(source, nameof(source));
+            InternalContract.RequireValidated(source, nameof(source));
+            var target = MapFromServer(source);
+            return await Task.FromResult(target);
+        }
+
+        private Consent MapFromServer(ConsentTable source)
         {
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
@@ -24,11 +32,20 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
                 Etag = source.Etag
             };
             FulcrumAssert.IsValidated(target);
+            return target;
+        }
+
+        /// <inheritdoc />
+        public async Task<ConsentTable> MapToServerAsync(Consent source, IServerLogic logic, CancellationToken token = default(CancellationToken))
+        {
+            InternalContract.RequireNotNull(source, nameof(source));
+            InternalContract.RequireValidated(source, nameof(source));
+            var target = MapToServer(source);
             return await Task.FromResult(target);
         }
 
         /// <inheritdoc />
-        public async Task<ConsentTable> CreateAndMapToServerAsync(Consent source, IServerLogic logic, CancellationToken token = default(CancellationToken))
+        public ConsentTable MapToServer(Consent source)
         {
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
@@ -40,7 +57,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
                 Etag = source.Etag
             };
             FulcrumAssert.IsValidated(target);
-            return await Task.FromResult(target);
+            return target;
         }
     }
 }

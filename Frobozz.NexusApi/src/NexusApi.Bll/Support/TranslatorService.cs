@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xlent.Lever.Libraries2.Core.Decoupling.Model;
 using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
+using ConceptValue = Xlent.Lever.Libraries2.MoveTo.Core.Translation.ConceptValue;
 
 namespace Frobozz.NexusApi.Bll.Support
 {
     public class TranslatorService : ITranslatorService
     {
         /// <inheritdoc />
-        public async Task TranslateAsync(IDictionary<string, string> translations)
+        public async Task TranslateAsync(IEnumerable<string> conceptValues, IDictionary<string, string> translations)
         {
-            foreach (var path in translations.Keys)
+            foreach (var path in conceptValues)
             {
                 if (!ConceptValue.TryParse(path, out var conceptValue))
                 {
