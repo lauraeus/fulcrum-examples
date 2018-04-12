@@ -43,6 +43,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Translation
         public static bool TryParse(string path, out IConceptValue conceptValue)
         {
             conceptValue = null;
+            if (string.IsNullOrWhiteSpace(path)) return false;
             try
             {
                 var result = PathRegex.Matches(path);

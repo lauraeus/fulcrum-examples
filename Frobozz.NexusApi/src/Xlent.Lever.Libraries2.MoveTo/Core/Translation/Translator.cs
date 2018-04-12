@@ -34,6 +34,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Translation
         /// </summary>
         public string Decorate(string conceptName, string value)
         {
+            if (value == null) return null;
             return IsDecorated(value) ? value : Decorate(conceptName, _clientName, value);
         }
 
