@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Frobozz.CapabilityContracts.Gdpr.Logic;
 using Frobozz.CapabilityContracts.Gdpr.Model;
-using Xlent.Lever.Libraries2.MoveTo.WebApi.ApiControllerHelpers;
+using Xlent.Lever.Libraries2.WebApi.Crud.ApiControllers;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Controllers
 {

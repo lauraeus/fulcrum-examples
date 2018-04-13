@@ -118,9 +118,8 @@
     <Reference Include="Xlent.Lever.Libraries2.SqlServer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xlent.Lever.Libraries2.SqlServer.2.0.1\lib\net46\Xlent.Lever.Libraries2.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Xlent.Lever.Libraries2.WebApi">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.WebApi.4.7.0\lib\net46\Xlent.Lever.Libraries2.WebApi.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Xlent.Lever.Libraries2.WebApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.WebApi.4.8.0-rc\lib\net46\Xlent.Lever.Libraries2.WebApi.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
