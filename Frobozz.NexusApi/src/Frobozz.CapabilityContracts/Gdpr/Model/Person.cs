@@ -5,7 +5,7 @@ using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
 
 namespace Frobozz.CapabilityContracts.Gdpr.Model
 {
-    public class Person : IRecommendedStorableItem<string>, IValidatable, ITranslatable
+    public class Person : IRecommendedStorableItem<string>, IValidatable
     {
         /// <summary>
         /// The name of the person
@@ -29,13 +29,6 @@ namespace Frobozz.CapabilityContracts.Gdpr.Model
         public void Validate(string errorLocation, string propertyPath = "")
         {
            FulcrumValidate.IsNotNullOrWhiteSpace(Name, nameof(Name), errorLocation);
-        }
-
-        /// <inheritdoc />
-        public void DecorateForTranslation(Translator translator)
-        {
-            Id = translator.Decorate("person.id", Id);
-            translator.DecorateItems(Addresses);
         }
 
         /// <inheritdoc />

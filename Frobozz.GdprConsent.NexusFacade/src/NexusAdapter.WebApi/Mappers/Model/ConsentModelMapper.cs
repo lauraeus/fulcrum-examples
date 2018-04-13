@@ -27,7 +27,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
             InternalContract.RequireValidated(source, nameof(source));
             var target = new Consent
             {
-                Id = MapperHelper.MapId<string, Guid>(source.Id),
+                Id = MapperHelper.MapToType<string, Guid>(source.Id),
                 Name = source.Name,
                 Etag = source.Etag
             };
@@ -49,7 +49,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
         {
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
-            var id = MapperHelper.MapId<Guid, string>(source.Id);
+            var id = MapperHelper.MapToType<Guid, string>(source.Id);
             var target = new ConsentTable
             {
                 Id = id,

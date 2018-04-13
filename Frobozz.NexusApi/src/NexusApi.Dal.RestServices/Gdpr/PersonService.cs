@@ -30,7 +30,7 @@ namespace Frobozz.NexusApi.Dal.RestServices.Gdpr
         public async Task<Person> FindFirstOrDefaultByNameAsync(string name, CancellationToken token = default(CancellationToken))
         {
             var safeName = HttpUtility.UrlEncode(name);
-            return await GetAsync<Person>($"?name={safeName}", cancellationToken: token);
+            return await GetAsync<Person>($"FindByName?name={safeName}", cancellationToken: token);
         }
     }
 }

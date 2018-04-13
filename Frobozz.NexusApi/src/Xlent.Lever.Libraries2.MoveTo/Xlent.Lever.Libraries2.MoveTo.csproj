@@ -105,7 +105,6 @@
     <Compile Include="Core\Crud\ServerTranslators\To\ReadServerTranslatorTo.cs" />
     <Compile Include="Core\Translation\ConceptValue.cs" />
     <Compile Include="Core\Translation\IConceptValue.cs" />
-    <Compile Include="Core\Translation\ITranslatable.cs" />
     <Compile Include="Core\Translation\ITranslatorService.cs" />
     <Compile Include="Core\Translation\TranslationConceptAttribute.cs" />
     <Compile Include="Core\Translation\Translator.cs" />

@@ -28,8 +28,8 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Crud.ServerTranslators
         /// </summary>
         /// <param name="idConceptName">The <see cref="IdConceptName"/>.</param>
         /// <param name="getServerNameMethod">The <see cref="GetServerNameMethod"/>.</param>
-        /// <param name="translatorService">The <see cref="TranslatorService"/>.</param>
-        protected ServerTranslatorBase(string idConceptName, System.Func<string> getServerNameMethod, ITranslatorService translatorService)
+        /// <param name="translatorService">The <see cref="TranslatorService"/>. Expected to be null for translators from the server</param>
+        protected ServerTranslatorBase(string idConceptName, System.Func<string> getServerNameMethod, ITranslatorService translatorService = null)
         {
             IdConceptName = idConceptName;
             GetServerNameMethod = getServerNameMethod;

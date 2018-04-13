@@ -76,7 +76,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Crud.Mapping
         /// </summary>
         protected static TClientId MapToClientId(TServerId id)
         {
-            return MapperHelper.MapId<TClientId, TServerId>(id);
+            return MapperHelper.MapToType<TClientId, TServerId>(id);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Crud.Mapping
         /// </summary>
         protected static TServerId MapToServerId(TClientId id)
         {
-            return MapperHelper.MapId<TServerId, TClientId>(id);
+            return MapperHelper.MapToType<TServerId, TClientId>(id);
         }
     }
 }

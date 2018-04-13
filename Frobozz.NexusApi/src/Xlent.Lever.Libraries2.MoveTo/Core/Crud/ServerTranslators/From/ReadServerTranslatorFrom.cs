@@ -16,8 +16,8 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Crud.ServerTranslators.From
         private readonly IReadAll<TModel, string> _storage;
 
         /// <inheritdoc />
-        public ReadServerTranslatorFrom(IReadAll<TModel, string> storage, string idConceptName, System.Func<string> getServerNameMethod, ITranslatorService translatorService)
-        :base(idConceptName, getServerNameMethod, translatorService)
+        public ReadServerTranslatorFrom(IReadAll<TModel, string> storage, string idConceptName, System.Func<string> getServerNameMethod)
+        :base(idConceptName, getServerNameMethod)
         {
             _storage = storage;
         }

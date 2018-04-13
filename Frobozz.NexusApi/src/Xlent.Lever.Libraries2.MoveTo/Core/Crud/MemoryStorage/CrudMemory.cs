@@ -61,7 +61,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Crud.MemoryStorage
 
             lock (MemoryItems)
             {
-                var itemCopy = GetMemoryItem(id);
+                var itemCopy = GetMemoryItem(id, false);
                 return Task.FromResult(itemCopy);
             }
         }
@@ -80,7 +80,6 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Crud.MemoryStorage
 
             lock (MemoryItems)
             {
-                ValidateExists(id);
                 SetMemoryItem(id, itemCopy);
             }
         }
@@ -110,7 +109,7 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Crud.MemoryStorage
             lock (MemoryItems)
             {
                 var keys = MemoryItems.Keys.Skip(offset).Take(limit.Value);
-                var list = keys.Select(GetMemoryItem).ToList();
+                var list = keys.Select(id => GetMemoryItem(id, false)).ToList();
                 var page = new PageEnvelope<TModel>(offset, limit.Value, MemoryItems.Count, list);
                 return Task.FromResult(page);
             }
@@ -130,16 +129,14 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Crud.MemoryStorage
 
         private void ValidateNotExists(TId id)
         {
-            if (!MemoryItems.ContainsKey(id)) return;
+            if (!Exists(id)) return;
             throw new FulcrumConflictException(
                 $"An item of type {typeof(TModel).Name} with id \"{id}\" already exists.");
         }
 
-        private void ValidateExists(TId id)
+        private bool Exists(TId id)
         {
-            if (MemoryItems.ContainsKey(id)) return;
-            throw new FulcrumNotFoundException(
-                $"Could not find an item of type {typeof(TModel).Name} with id \"{id}\".");
+            return (MemoryItems.ContainsKey(id));
         }
 
         private static TModel CopyItem(TModel source)
@@ -156,10 +153,16 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Crud.MemoryStorage
             MemoryItems[id] = CopyItem(item);
         }
 
-        private TModel GetMemoryItem(TId id)
+        private TModel GetMemoryItem(TId id, bool okIfNotExists)
         {
-            ValidateExists(id);
             InternalContract.RequireNotDefaultValue(id, nameof(id));
+            if (!Exists(id))
+            {
+                if (!okIfNotExists)
+                    throw new FulcrumNotFoundException(
+                        $"Could not find an item of type {typeof(TModel).Name} with id \"{id}\".");
+                return default(TModel);
+            }
             var item = MemoryItems[id];
             FulcrumAssert.IsNotNull(item, $"{Namespace}: B431A6BB-4A76-4672-9607-65E1C6EBFBC9");
             return CopyItem(item);

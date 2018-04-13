@@ -72,8 +72,6 @@
     <Compile Include="Gdpr\ServerTranslatorsFrom\PersonServerTranslatorFromTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\MockTestContext.cs" />
-    <Compile Include="Support\TranslatorServiceMock.cs" />
-    <Compile Include="TranslatorServiceMock.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -87,6 +85,10 @@
     <ProjectReference Include="..\..\src\NexusApi.Bll\NexusApi.Bll.csproj">
       <Project>{075645cb-90c4-421d-b16f-bdd37628eb88}</Project>
       <Name>NexusApi.Bll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\NexusApi.Dal.Mock\NexusApi.Dal.Mock.csproj">
+      <Project>{fd3aa5b5-1458-4b58-9df4-286c762e6d00}</Project>
+      <Name>NexusApi.Dal.Mock</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Xlent.Lever.Libraries2.MoveTo\Xlent.Lever.Libraries2.MoveTo.csproj">
       <Project>{6C5209C3-0307-4D74-80A4-D7AF2ECD852F}</Project>

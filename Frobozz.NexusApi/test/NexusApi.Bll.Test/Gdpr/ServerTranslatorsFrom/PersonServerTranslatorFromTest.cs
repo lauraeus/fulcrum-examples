@@ -5,6 +5,7 @@ using Frobozz.CapabilityContracts.Gdpr.Logic;
 using Frobozz.CapabilityContracts.Gdpr.Model;
 using Frobozz.NexusApi.Bll.Gdpr.ServerTranslators.From;
 using Frobozz.NexusApi.Bll.Test.Support;
+using Frobozz.NexusApi.Dal.Mock.Translator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
@@ -17,15 +18,15 @@ namespace Frobozz.NexusApi.Bll.Test.Gdpr.ServerTranslatorsFrom
         private Mock<IGdprCapability> _serviceMock;
         private PersonServerTranslatorFrom _serverTranslator;
         private Person _clientPerson;
-        private Support.TranslatorServiceMock _translationServiceMock;
+        private TranslatorServiceMock _translationServiceMock;
         private Person _serverPerson;
 
         [TestInitialize]
         public void Initialize()
         {
-            _translationServiceMock = new Support.TranslatorServiceMock();
+            _translationServiceMock = new TranslatorServiceMock(MockTestContext.GetClientName(), true);
             _serviceMock = new Mock<IGdprCapability>();
-            _serverTranslator = new PersonServerTranslatorFrom(_serviceMock.Object, MockTestContext.GetServerName, _translationServiceMock);
+            _serverTranslator = new PersonServerTranslatorFrom(_serviceMock.Object, MockTestContext.GetServerName);
             var name = "Kalle Anka";
             var addresses = new Address[] { };
             var etag = Guid.NewGuid().ToString();
@@ -38,7 +39,7 @@ namespace Frobozz.NexusApi.Bll.Test.Gdpr.ServerTranslatorsFrom
             };
             _serverPerson = new Person
             {
-                Id = $"{MockTestContext.GetServerName()}-1",
+                Id = $"1",
                 Name = name,
                 Addresses = addresses,
                 Etag = etag

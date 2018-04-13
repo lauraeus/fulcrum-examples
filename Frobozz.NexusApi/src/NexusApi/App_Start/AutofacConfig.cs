@@ -40,14 +40,17 @@ namespace Frobozz.NexusApi
         #region Capabilities
         private static IGdprCapability CreateGdprCapability(bool useMock = false)
         {
-            var translationService = new TranslatorServiceMock();
+            const string clientName = "client";
+            const string serverName = "server";
+            var translationServiceToServer = new TranslatorServiceMock(clientName, false);
+            var translationServiceFromServer = new TranslatorServiceMock(clientName, true);
             IGdprCapability dataAccess;
             if (useMock) dataAccess = new Dal.Mock.Gdpr.GdprMemoryMock();
             else dataAccess = new Dal.RestServices.Gdpr.GdprCapability();
-            var serverTranslatorFrom = new ServerTranslatorFrom(dataAccess, () => "server", translationService);
+            var serverTranslatorFrom = new ServerTranslatorFrom(dataAccess, () => serverName);
             var cacheTranslator = new Cache(serverTranslatorFrom);
-            var serverTranslatorTo = new ServerTranslatorTo(cacheTranslator, () => "server", translationService);
-            var clientTranslator = new ClientTranslator(serverTranslatorTo, () => "client", translationService);
+            var serverTranslatorTo = new ServerTranslatorTo(cacheTranslator, () => serverName, translationServiceToServer);
+            var clientTranslator = new ClientTranslator(serverTranslatorTo, () => clientName, translationServiceFromServer);
             return clientTranslator;
         }
         #endregion

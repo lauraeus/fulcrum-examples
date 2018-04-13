@@ -13,8 +13,8 @@ namespace Xlent.Lever.Libraries2.MoveTo.Core.Crud.ServerTranslators.From
         private readonly ICrud<TModel, string> _storage;
 
         /// <inheritdoc />
-        public CrudServerTranslatorFrom(ICrud<TModel, string> storage, string idConceptName, System.Func<string> getServerNameMethod, ITranslatorService translatorService)
-        :base(storage, idConceptName, getServerNameMethod, translatorService)
+        public CrudServerTranslatorFrom(ICrud<TModel, string> storage, string idConceptName, System.Func<string> getServerNameMethod)
+        :base(storage, idConceptName, getServerNameMethod)
         {
             _storage = storage;
         }

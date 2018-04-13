@@ -10,11 +10,11 @@ namespace Frobozz.NexusApi.Bll.Gdpr.ServerTranslators.From
     public class ServerTranslatorFrom : IGdprCapability
     {
         /// <inheritdoc />
-        public ServerTranslatorFrom(IGdprCapability capablity, System.Func<string> getServerNameMethod, ITranslatorService translatorService)
+        public ServerTranslatorFrom(IGdprCapability capablity, System.Func<string> getServerNameMethod)
         {
-            PersonService = new PersonServerTranslatorFrom(capablity, getServerNameMethod, translatorService);
-            ConsentService = new CrudServerTranslatorFrom<Consent>(capablity.ConsentService, "consent.id", getServerNameMethod, translatorService);
-            PersonConsentService = new ManyToOneServerTranslatorFrom<PersonConsent>(capablity.PersonConsentService, "person-consent.id", getServerNameMethod, translatorService);
+            PersonService = new PersonServerTranslatorFrom(capablity, getServerNameMethod);
+            ConsentService = new CrudServerTranslatorFrom<Consent>(capablity.ConsentService, "consent.id", getServerNameMethod);
+            PersonConsentService = new ManyToOneServerTranslatorFrom<PersonConsent>(capablity.PersonConsentService, "person-consent.id", getServerNameMethod);
         }
 
         /// <inheritdoc />

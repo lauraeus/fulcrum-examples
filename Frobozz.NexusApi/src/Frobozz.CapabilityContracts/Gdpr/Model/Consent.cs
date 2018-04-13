@@ -4,7 +4,7 @@ using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
 
 namespace Frobozz.CapabilityContracts.Gdpr.Model
 {
-    public class Consent : IRecommendedStorableItem<string>, IValidatable, ITranslatable
+    public class Consent : IRecommendedStorableItem<string>, IValidatable
     {
         /// <summary>
         /// The name of the consent
@@ -23,12 +23,6 @@ namespace Frobozz.CapabilityContracts.Gdpr.Model
         public void Validate(string errorLocation, string propertyPath = "")
         {
            FulcrumValidate.IsNotNullOrWhiteSpace(Name, nameof(Name), errorLocation);
-        }
-
-        /// <inheritdoc />
-        public void DecorateForTranslation(Translator translator)
-        {
-            Id = translator.Decorate("consent.id", Id);
         }
 
         /// <inheritdoc />

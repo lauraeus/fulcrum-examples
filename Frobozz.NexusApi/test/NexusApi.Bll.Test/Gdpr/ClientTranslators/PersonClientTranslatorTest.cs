@@ -5,6 +5,7 @@ using Frobozz.CapabilityContracts.Gdpr.Logic;
 using Frobozz.CapabilityContracts.Gdpr.Model;
 using Frobozz.NexusApi.Bll.Gdpr.ClientTranslators;
 using Frobozz.NexusApi.Bll.Test.Support;
+using Frobozz.NexusApi.Dal.Mock.Translator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
@@ -18,14 +19,14 @@ namespace Frobozz.NexusApi.Bll.Test.Gdpr.ClientTranslators
         private PersonClientTranslator _clientTranslator;
         private Person _serverPerson;
         private Person _clientPerson;
-        private Support.TranslatorServiceMock _translationServiceMock;
+        private TranslatorServiceMock _translationServiceFromServerMock;
 
         [TestInitialize]
         public void Initialize()
         {
-            _translationServiceMock = new Support.TranslatorServiceMock();
+            _translationServiceFromServerMock = new TranslatorServiceMock(MockTestContext.GetClientName(), true);
             _serviceMock = new Mock<IGdprCapability>();
-            _clientTranslator = new PersonClientTranslator(_serviceMock.Object, MockTestContext.GetClientName, _translationServiceMock);
+            _clientTranslator = new PersonClientTranslator(_serviceMock.Object, MockTestContext.GetClientName, _translationServiceFromServerMock);
             var name = "Kalle Anka";
             var addresses = new Address[] { };
             var etag = Guid.NewGuid().ToString();
@@ -38,7 +39,7 @@ namespace Frobozz.NexusApi.Bll.Test.Gdpr.ClientTranslators
             };
             _serverPerson = new Person
             {
-                Id = $"{MockTestContext.GetServerName()}-1",
+                Id = $"1",
                 Name = name,
                 Addresses = addresses,
                 Etag = etag
@@ -53,7 +54,7 @@ namespace Frobozz.NexusApi.Bll.Test.Gdpr.ClientTranslators
                 capability.PersonService.FindFirstOrDefaultByNameAsync(It.Is<string>(s => s == name),
                     CancellationToken.None)).ReturnsAsync(_clientPerson);
             var person = await _clientTranslator.FindFirstOrDefaultByNameAsync(_clientPerson.Name);
-            var translator = new Translator(MockTestContext.GetClientName(), _translationServiceMock);
+            var translator = new Translator(MockTestContext.GetClientName(), _translationServiceFromServerMock);
             Assert.AreEqual(id, person.Id);
             _serviceMock.Verify();
         }

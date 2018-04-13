@@ -22,7 +22,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
             var serverAddresses = await serverLogic.Address.ReadChildrenAsync(source.Id, token: token);
             var target = new Person
             {
-                Id = MapperHelper.MapId<string, Guid>(source.Id),
+                Id = MapperHelper.MapToType<string, Guid>(source.Id),
                 Name = source.Name,
                 Etag = source.Etag,
                 Addresses = serverAddresses.Select(CreateAndMapFromServer)
@@ -50,7 +50,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
             InternalContract.RequireValidated(source, nameof(source));
             var target = new PersonTable
             {
-                Id = MapperHelper.MapId<Guid, string>(source.Id),
+                Id = MapperHelper.MapToType<Guid, string>(source.Id),
                 Name = source.Name,
                 Etag = source.Etag
             };
@@ -65,7 +65,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
             var tasks = new List<Task>();
             for (var typeInt = 1; typeInt < 5; typeInt++)
             {
-                var typeString = ToAddressTypeClient(typeInt);
+                var typeString = MapperHelper.MapToType<string, int>(typeInt);
                 var serverAddress = serverAddressArray.FirstOrDefault(a => a.Type == typeInt);
                 var address = person.Addresses.FirstOrDefault(a => a.Type == typeString);
                 if (serverAddress == null)
@@ -102,7 +102,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
             InternalContract.RequireValidated(source, nameof(source));
             var target = new AddressTable
             {
-                Type = ToAddressTypeServer(source.Type),
+                Type = MapperHelper.MapToType<int, string>(source.Type),
                 Street = source.Street,
                 City = source.City,
                 PersonId = personId
@@ -116,41 +116,12 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
             InternalContract.RequireValidated(source, nameof(source));
             var target = new Address
             {
-                Type = ToAddressTypeClient(source.Type),
+                Type = MapperHelper.MapToType<string,int>(source.Type),
                 Street = source.Street,
                 City = source.City
             };
             FulcrumAssert.IsValidated(target);
             return target;
-        }
-
-        private static int ToAddressTypeServer(string source)
-        {
-            switch (source)
-            {
-                case "Public": return 1;
-                case "Invoice": return 2;
-                case "Delivery": return 3;
-                case "Postal": return 4;
-                default:
-                    FulcrumAssert.Fail($"Unknown address type ({source}).");
-                    return 0;
-            }
-        }
-
-        private static string ToAddressTypeClient(int source)
-        {
-            switch (source)
-            {
-                case 1: return "Public";
-                case 2: return "Invoice";
-                case 3:
-                    return "Delivery";
-                case 4: return "Postal";
-                default:
-                    FulcrumAssert.Fail($"Unknown address type ({source}).");
-                    return "None";
-            }
         }
     }
 }

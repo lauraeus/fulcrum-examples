@@ -3,10 +3,10 @@ using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
 
 namespace Frobozz.CapabilityContracts.Gdpr.Model
 {
-    public class Address : IValidatable, ITranslatable
+    public class Address : IValidatable
     {
         [TranslationConcept("person.address.type.code")]
-        public string Type;
+        public string Type { get; set; }
         /// <summary>
         /// The street part of the address
         /// </summary>
@@ -18,18 +18,11 @@ namespace Frobozz.CapabilityContracts.Gdpr.Model
         public string City { get; set; }
 
         #region Interface implementations
-
         /// <inheritdoc />
         public void Validate(string errorLocation, string propertyPath = "")
         {
             FulcrumValidate.IsNotNullOrWhiteSpace(Type, nameof(Type), errorLocation);
             FulcrumValidate.IsNotNullOrWhiteSpace(City, nameof(City), errorLocation);
-        }
-
-        /// <inheritdoc />
-        public void DecorateForTranslation(Translator translator)
-        {
-            Type = translator.Decorate("person.address.type.code", Type);
         }
 
         /// <inheritdoc />

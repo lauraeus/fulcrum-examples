@@ -4,7 +4,7 @@ using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
 
 namespace Frobozz.CapabilityContracts.Gdpr.Model
 {
-    public class PersonConsent : IRecommendedStorableItem<string>, IValidatable, ITranslatable
+    public class PersonConsent : IRecommendedStorableItem<string>, IValidatable
     {
 
         /// <summary>
@@ -47,14 +47,6 @@ namespace Frobozz.CapabilityContracts.Gdpr.Model
         public override string ToString()
         {
             return $"{ConsentName} ({PersonId})";
-        }
-
-        /// <inheritdoc />
-        public void DecorateForTranslation(Translator translator)
-        {
-            Id = translator.Decorate("person-consent.id", Id);
-            PersonId = translator.Decorate("person.id", PersonId);
-            ConsentId = translator.Decorate("consent.id", ConsentId);
         }
         #endregion
     }
