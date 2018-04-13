@@ -8,7 +8,7 @@ using Frobozz.NexusApi.Bll.Test.Support;
 using Frobozz.NexusApi.Dal.Mock.Translator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
+using Xlent.Lever.Libraries2.Core.Translation;
 
 namespace Frobozz.NexusApi.Bll.Test.Gdpr.ServerTranslatorsFrom
 {

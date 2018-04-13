@@ -2,7 +2,6 @@
 using Frobozz.CapabilityContracts.Gdpr.Model;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 using Xlent.Lever.Libraries2.MoveTo.Core.Crud.ServerTranslators.From;
-using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
 
 namespace Frobozz.NexusApi.Bll.Gdpr.ServerTranslators.From
 {

@@ -1,6 +1,6 @@
 ﻿using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
-using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
+using Xlent.Lever.Libraries2.Core.Translation;
 
 namespace Frobozz.CapabilityContracts.Gdpr.Model
 {

@@ -4,6 +4,7 @@ using Frobozz.CapabilityContracts.Gdpr.Logic;
 using Frobozz.CapabilityContracts.Gdpr.Model;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Logic;
+using Xlent.Lever.Libraries2.MoveTo.Core.Crud.MemoryStorage;
 
 namespace Frobozz.NexusApi.Dal.Mock.Gdpr
 {

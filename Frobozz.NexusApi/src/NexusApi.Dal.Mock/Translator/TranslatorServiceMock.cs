@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.MoveTo.Core.Translation;
-using ConceptValue = Xlent.Lever.Libraries2.MoveTo.Core.Translation.ConceptValue;
+using Xlent.Lever.Libraries2.Core.Translation;
 
 namespace Frobozz.NexusApi.Dal.Mock.Translator
 {
