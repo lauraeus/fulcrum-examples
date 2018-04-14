@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Frobozz.CapabilityContracts.Gdpr.Logic;
 using Frobozz.CapabilityContracts.Gdpr.Model;
-using Xlent.Lever.Libraries2.Core.Cache.Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Distributed;
 using Xlent.Lever.Libraries2.Core.Crud.Cache;
 
 namespace Frobozz.NexusApi.Bll.Gdpr.Caches
