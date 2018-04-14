@@ -1,6 +1,6 @@
 ﻿using Frobozz.CapabilityContracts.Gdpr.Logic;
 using Frobozz.CapabilityContracts.Gdpr.Model;
-using Xlent.Lever.Libraries2.Core.Storage.Model;
+using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
 using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
 
 namespace Frobozz.NexusApi.Dal.RestServices.Gdpr

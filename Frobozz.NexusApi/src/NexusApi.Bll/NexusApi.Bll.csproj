@@ -42,7 +42,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="Xlent.Lever.Libraries2.Core.NetFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Core.NetFramework.1.22.1-rc\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Core.NetFramework.1.22.2-rc\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -61,10 +61,6 @@
     <ProjectReference Include="..\Frobozz.CapabilityContracts\Frobozz.CapabilityContracts.csproj">
       <Project>{21a7e0d3-ade5-47da-b295-14b487475cbd}</Project>
       <Name>Frobozz.CapabilityContracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Xlent.Lever.Libraries2.MoveTo\Xlent.Lever.Libraries2.MoveTo.csproj">
-      <Project>{6c5209c3-0307-4d74-80a4-d7af2ecd852f}</Project>
-      <Name>Xlent.Lever.Libraries2.MoveTo</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

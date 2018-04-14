@@ -5,8 +5,8 @@ using Frobozz.CapabilityContracts.Gdpr.Logic;
 using Frobozz.CapabilityContracts.Gdpr.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model;
+using Xlent.Lever.Libraries2.Core.Crud.Mapping;
 using Xlent.Lever.Libraries2.Core.Storage.Logic;
-using Xlent.Lever.Libraries2.MoveTo.Core.Crud.Mapping;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Logic
 {

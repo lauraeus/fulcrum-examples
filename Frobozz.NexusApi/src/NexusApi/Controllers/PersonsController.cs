@@ -36,8 +36,7 @@ namespace Frobozz.NexusApi.Controllers
             return result;
         }
 
-        /// <inheritdoc />
         /// Intentionally disabled.
-        public override Task DeleteAllAsync(CancellationToken token = default(CancellationToken)) => throw new FulcrumNotImplementedException(nameof(DeleteAllAsync));
+        private new Task DeleteAllAsync(CancellationToken token = default(CancellationToken)) => throw new FulcrumNotImplementedException(nameof(DeleteAllAsync));
     }
 }

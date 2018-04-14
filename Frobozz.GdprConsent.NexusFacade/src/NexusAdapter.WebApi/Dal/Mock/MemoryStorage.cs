@@ -1,7 +1,7 @@
 ﻿using System;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts;
-using Xlent.Lever.Libraries2.Core.Storage.Model;
-using Xlent.Lever.Libraries2.MoveTo.Core.Crud.MemoryStorage;
+using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
+using Xlent.Lever.Libraries2.Core.Crud.MemoryStorage;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Mock
 {

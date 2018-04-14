@@ -1,6 +1,6 @@
 ﻿using System;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts;
-using Xlent.Lever.Libraries2.Core.Storage.Model;
+using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
 using Xlent.Lever.Libraries2.SqlServer;
 using Xlent.Lever.Libraries2.SqlServer.Model;
 

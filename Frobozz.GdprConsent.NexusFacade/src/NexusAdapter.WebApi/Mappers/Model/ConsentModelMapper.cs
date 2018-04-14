@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Frobozz.CapabilityContracts.Gdpr.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts;
 using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.MoveTo.Core.Crud.Mapping;
+using Xlent.Lever.Libraries2.Core.Crud.Mapping;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
 {

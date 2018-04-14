@@ -1,5 +1,5 @@
 ﻿using Frobozz.CapabilityContracts.Gdpr.Model;
-using Xlent.Lever.Libraries2.Core.Storage.Model;
+using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
 
 namespace Frobozz.CapabilityContracts.Gdpr.Logic
 {

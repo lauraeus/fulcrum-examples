@@ -64,7 +64,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.Core.NetFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Core.NetFramework.1.22.1-rc\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Core.NetFramework.1.22.2-rc\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -89,10 +89,6 @@
     <ProjectReference Include="..\..\src\NexusApi.Dal.Mock\NexusApi.Dal.Mock.csproj">
       <Project>{fd3aa5b5-1458-4b58-9df4-286c762e6d00}</Project>
       <Name>NexusApi.Dal.Mock</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Xlent.Lever.Libraries2.MoveTo\Xlent.Lever.Libraries2.MoveTo.csproj">
-      <Project>{6C5209C3-0307-4D74-80A4-D7AF2ECD852F}</Project>
-      <Name>Xlent.Lever.Libraries2.MoveTo</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

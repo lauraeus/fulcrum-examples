@@ -1,5 +1,5 @@
 ﻿using System;
-using Xlent.Lever.Libraries2.Core.Storage.Model;
+using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
 
 #pragma warning disable 1591
 

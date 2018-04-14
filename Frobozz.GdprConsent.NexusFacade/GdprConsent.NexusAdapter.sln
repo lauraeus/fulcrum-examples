@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GdprConsent.NexusAdapter.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.CapabilityContracts", "..\Frobozz.NexusApi\src\Frobozz.CapabilityContracts\Frobozz.CapabilityContracts.csproj", "{21A7E0D3-ADE5-47DA-B295-14B487475CBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xlent.Lever.Libraries2.MoveTo", "..\Frobozz.NexusApi\src\Xlent.Lever.Libraries2.MoveTo\Xlent.Lever.Libraries2.MoveTo.csproj", "{6C5209C3-0307-4D74-80A4-D7AF2ECD852F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GdprConsent.NexusAdapter.WebApi", "src\NexusAdapter.WebApi\GdprConsent.NexusAdapter.WebApi.csproj", "{D811A208-B451-43B9-B4CE-07E6B883E9C5}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6C5209C3-0307-4D74-80A4-D7AF2ECD852F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C5209C3-0307-4D74-80A4-D7AF2ECD852F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6C5209C3-0307-4D74-80A4-D7AF2ECD852F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6C5209C3-0307-4D74-80A4-D7AF2ECD852F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D811A208-B451-43B9-B4CE-07E6B883E9C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D811A208-B451-43B9-B4CE-07E6B883E9C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D811A208-B451-43B9-B4CE-07E6B883E9C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
