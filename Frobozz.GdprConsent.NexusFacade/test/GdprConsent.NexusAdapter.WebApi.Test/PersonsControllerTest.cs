@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Frobozz.CapabilityContracts.Gdpr.Model;
-using Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Controllers;
+using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Logic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,7 +14,7 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
     [TestClass]
     public class PersonsControllerTest
     {
-        private IServerLogic _serverLogic;
+        private IStorage _storage;
         private Guid _kalleAnka;
         private PersonsController _personsController;
 
@@ -22,9 +22,9 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
         public async Task Initialize()
         {
             FulcrumApplicationHelper.UnitTestSetup(typeof(PersonsControllerTest).FullName);
-            _serverLogic = new SqlServerStorage("Data Source=WIN-7B74C50VA4D;Initial Catalog=LeverExampleGdpr;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            _storage = new SqlServerStorage("Data Source=WIN-7B74C50VA4D;Initial Catalog=LeverExampleGdpr;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             //_storage = new MemoryStorage();
-            var gdprCapability = new Mapper(_serverLogic);
+            var gdprCapability = new Mapper(_storage);
             await DeleteAll();
             _kalleAnka = await CreateKalleAnkaAsync();
             _personsController = new PersonsController(gdprCapability);
@@ -32,10 +32,10 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
 
         private async Task DeleteAll()
         {
-            await _serverLogic.PersonConsent.DeleteAllAsync();
-            await _serverLogic.Address.DeleteAllAsync();
-            await _serverLogic.Consent.DeleteAllAsync();
-            await _serverLogic.Person.DeleteAllAsync();
+            await _storage.PersonConsent.DeleteAllAsync();
+            await _storage.Address.DeleteAllAsync();
+            await _storage.Consent.DeleteAllAsync();
+            await _storage.Person.DeleteAllAsync();
         }
 
         [TestMethod]
@@ -68,7 +68,7 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
             {
                 Name = "Kalle Anka"
             };
-            var personId = await _serverLogic.Person.CreateAsync(person);
+            var personId = await _storage.Person.CreateAsync(person);
             var address = new AddressTable
             {
                 Type = 1,
@@ -76,7 +76,7 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
                 City = "Ankeborg",
                 PersonId = personId
             };
-            await _serverLogic.Address.CreateAsync(address);
+            await _storage.Address.CreateAsync(address);
             address = new AddressTable
             {
                 Type = 4,
@@ -84,7 +84,7 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
                 City = "Ankeborg",
                 PersonId = personId
             };
-            await _serverLogic.Address.CreateAsync(address);
+            await _storage.Address.CreateAsync(address);
 
             return personId;
         }

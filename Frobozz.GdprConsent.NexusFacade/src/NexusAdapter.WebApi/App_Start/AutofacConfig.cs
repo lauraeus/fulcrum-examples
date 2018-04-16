@@ -3,7 +3,7 @@ using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Frobozz.CapabilityContracts.Gdpr.Logic;
-using Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts;
+using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Mock;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Logic;
@@ -39,17 +39,17 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi
 
         private static IGdprCapability CreateGdprCapability(bool useMock = false)
         {
-            IServerLogic serverLogic;
+            IStorage storage;
             if (useMock)
             {
-                serverLogic = new MemoryStorage();
+                storage = new MemoryStorage();
             }
             else
             {
-                serverLogic = new SqlServerStorage("Data Source=localhost;Initial Catalog=LeverExampleGdpr;Persist Security Info=True;User ID=LeverExampleGdprUser;Password=Password123!;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True");
+                storage = new SqlServerStorage("Data Source=localhost;Initial Catalog=LeverExampleGdpr;Persist Security Info=True;User ID=LeverExampleGdprUser;Password=Password123!;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True");
             }
 
-            return new Mapper(serverLogic);
+            return new Mapper(storage);
         }
     }
 }

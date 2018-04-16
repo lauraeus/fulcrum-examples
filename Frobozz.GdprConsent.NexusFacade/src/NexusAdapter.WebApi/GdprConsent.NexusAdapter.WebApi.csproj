@@ -124,11 +124,11 @@
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Contracts\AddressTable.cs" />
-    <Compile Include="Contracts\ConsentTable.cs" />
-    <Compile Include="Contracts\IServerLogic.cs" />
-    <Compile Include="Contracts\PersonConsentTable.cs" />
-    <Compile Include="Contracts\PersonTable.cs" />
+    <Compile Include="Dal\Contracts\AddressTable.cs" />
+    <Compile Include="Dal\Contracts\ConsentTable.cs" />
+    <Compile Include="Dal\Contracts\IStorage.cs" />
+    <Compile Include="Dal\Contracts\PersonConsentTable.cs" />
+    <Compile Include="Dal\Contracts\PersonTable.cs" />
     <Compile Include="Controllers\ConsentsController.cs" />
     <Compile Include="Controllers\PersonConsentsController.cs" />
     <Compile Include="Controllers\PersonsController.cs" />

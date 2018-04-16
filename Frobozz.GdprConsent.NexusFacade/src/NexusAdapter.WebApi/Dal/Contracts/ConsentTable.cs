@@ -3,7 +3,7 @@ using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 using Xlent.Lever.Libraries2.SqlServer.Model;
 
-namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts
+namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts
 {
     /// <summary>
     /// Information about a consent

@@ -3,9 +3,9 @@ using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
 
 #pragma warning disable 1591
 
-namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts
+namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts
 {
-    public interface IServerLogic
+    public interface IStorage
     {
         IManyToOneRelationComplete<AddressTable, Guid> Address { get; }
         ICrud<PersonTable, Guid> Person { get; }

@@ -1,5 +1,5 @@
 ﻿using System;
-using Frobozz.GdprConsent.NexusAdapter.WebApi.Contracts;
+using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
 using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
 using Xlent.Lever.Libraries2.SqlServer;
 using Xlent.Lever.Libraries2.SqlServer.Model;
@@ -7,7 +7,7 @@ using Xlent.Lever.Libraries2.SqlServer.Model;
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer
 {
     /// <inheritdoc />
-    public class SqlServerStorage : IServerLogic
+    public class SqlServerStorage : IStorage
     {
         /// <inheritdoc />
         public ICrud<PersonTable, Guid> Person { get; }
