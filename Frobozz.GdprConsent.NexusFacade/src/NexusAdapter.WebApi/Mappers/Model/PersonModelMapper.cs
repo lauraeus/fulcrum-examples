@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 using Frobozz.CapabilityContracts.Gdpr.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
 using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.Core.Crud.Mapping;
+using Xlent.Lever.Libraries2.Core.Crud.Mappers;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
 {
     /// <inheritdoc />
-    public class PersonModelMapper : IModelMapper<Person, PersonTable>
+    public class PersonModelMapper : ICrudModelMapper<Person, string, PersonTable>
     {
         private readonly IStorage _storage;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public PersonModelMapper(IStorage storage)
         {
             _storage = storage;
@@ -43,18 +46,6 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
         {
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
-            var target = MapToServer(source);
-            FulcrumAssert.IsValidated(target);
-            FulcrumAssert.IsNotDefaultValue(target.Id);
-            await UpdateAddressesAsync(target.Id, source, token);
-            return target;
-        }
-
-        /// <inheritdoc />
-        public PersonTable MapToServer(Person source)
-        {
-            InternalContract.RequireNotNull(source, nameof(source));
-            InternalContract.RequireValidated(source, nameof(source));
             var target = new PersonTable
             {
                 Id = MapperHelper.MapToType<Guid, string>(source.Id),
@@ -62,6 +53,33 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
                 Etag = source.Etag
             };
             FulcrumAssert.IsValidated(target);
+            return await Task.FromResult(target);
+        }
+
+        /// <inheritdoc />
+        public async Task<PersonTable> CreateAndReturnAsync(Person source, CancellationToken token = default(CancellationToken))
+        {
+            InternalContract.RequireNotNull(source, nameof(source));
+            InternalContract.RequireValidated(source, nameof(source));
+            var target = await MapToServerAsync(source, token);
+            target = await _storage.Person.CreateAndReturnAsync(target, token);
+            FulcrumAssert.IsValidated(target);
+            FulcrumAssert.IsNotDefaultValue(target.Id);
+            await UpdateAddressesAsync(target.Id, source, token);
+            return target;
+        }
+
+        /// <inheritdoc />
+        public async Task<PersonTable> CreateWithSpecifiedIdAndReturnAsync(string id, Person source, CancellationToken token = default(CancellationToken))
+        {
+            InternalContract.RequireNotNull(source, nameof(source));
+            InternalContract.RequireValidated(source, nameof(source));
+            var target = await MapToServerAsync(source, token);
+            var serverId = MapperHelper.MapToType<Guid, string>(source.Id);
+            target = await _storage.Person.CreateWithSpecifiedIdAndReturnAsync(serverId, target, token);
+            FulcrumAssert.IsValidated(target);
+            FulcrumAssert.IsNotDefaultValue(target.Id);
+            await UpdateAddressesAsync(target.Id, source, token);
             return target;
         }
 
