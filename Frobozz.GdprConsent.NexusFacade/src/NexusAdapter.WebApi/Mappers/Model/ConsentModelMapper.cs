@@ -9,10 +9,10 @@ using Xlent.Lever.Libraries2.Core.Crud.Mapping;
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
 {
     /// <inheritdoc />
-    public class ConsentModelMapper : IModelMapper<Consent, IStorage, ConsentTable>
+    public class ConsentModelMapper : IModelMapper<Consent, ConsentTable>
     {
         /// <inheritdoc />
-        public async Task<Consent> MapFromServerAsync(ConsentTable source, IStorage logic,
+        public async Task<Consent> MapFromServerAsync(ConsentTable source,
             CancellationToken token = default(CancellationToken))
         {
             InternalContract.RequireNotNull(source, nameof(source));
@@ -36,7 +36,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
         }
 
         /// <inheritdoc />
-        public async Task<ConsentTable> MapToServerAsync(Consent source, IStorage logic, CancellationToken token = default(CancellationToken))
+        public async Task<ConsentTable> MapToServerAsync(Consent source, CancellationToken token = default(CancellationToken))
         {
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));

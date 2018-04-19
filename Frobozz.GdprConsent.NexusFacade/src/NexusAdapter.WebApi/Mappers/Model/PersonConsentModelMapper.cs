@@ -11,13 +11,19 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
     /// <inheritdoc />
     public class PersonConsentModelMapper : IModelMapper<PersonConsent, IStorage, PersonConsentTable>
     {
+        private readonly IStorage _storage;
+        public  PersonConsentModelMapper(IStorage storage)
+        {
+            _storage = storage;
+        }
+
         /// <inheritdoc />
-        public async Task<PersonConsent> MapFromServerAsync(PersonConsentTable source, IStorage logic,
+        public async Task<PersonConsent> MapFromServerAsync(PersonConsentTable source,
             CancellationToken token = default(CancellationToken))
         {
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
-            var serverConsent = await logic.Consent.ReadAsync(source.ConsentId, token);
+            var serverConsent = await _storage.Consent.ReadAsync(source.ConsentId, token);
             var target = new PersonConsent
             {
                 Id = MapperHelper.MapToType<string, Guid>(source.Id),
@@ -32,7 +38,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
         }
 
         /// <inheritdoc />
-        public async Task<PersonConsentTable> MapToServerAsync(PersonConsent source, IStorage logic, CancellationToken token = default(CancellationToken))
+        public async Task<PersonConsentTable> MapToServerAsync(PersonConsent source, CancellationToken token = default(CancellationToken))
         {
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
