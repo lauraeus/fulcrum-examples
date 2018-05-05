@@ -16,10 +16,10 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer
         public ICrud<ConsentTable, Guid> Consent { get; }
 
         /// <inheritdoc />
-        public IManyToOneRelationComplete<AddressTable, Guid> Address { get; }
+        public IManyToOneComplete<AddressTable, Guid> Address { get; }
 
         /// <inheritdoc />
-        public IManyToOneRelationComplete<PersonConsentTable, Guid> PersonConsent { get; }
+        public IManyToOneComplete<PersonConsentTable, Guid> PersonConsent { get; }
 
         /// <summary>
         /// Constructor

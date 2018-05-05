@@ -30,6 +30,6 @@ namespace Frobozz.NexusApi.Bll.Gdpr.Caches
         public ICrud<Consent, string> ConsentService { get; }
 
         /// <inheritdoc />
-        public IManyToOneRelation<PersonConsent, string> PersonConsentService { get; }
+        public IManyToOne<PersonConsent, string> PersonConsentService { get; }
     }
 }

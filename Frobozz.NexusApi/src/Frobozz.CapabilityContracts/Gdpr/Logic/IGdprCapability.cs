@@ -9,6 +9,6 @@ namespace Frobozz.CapabilityContracts.Gdpr.Logic
 
         ICrud<Consent, string> ConsentService { get; }
 
-        IManyToOneRelation<PersonConsent, string> PersonConsentService { get; }
+        IManyToOne<PersonConsent, string> PersonConsentService { get; }
     }
 }

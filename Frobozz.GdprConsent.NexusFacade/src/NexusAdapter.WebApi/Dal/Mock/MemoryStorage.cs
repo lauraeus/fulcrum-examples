@@ -15,10 +15,10 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Mock
         public ICrud<ConsentTable, Guid> Consent { get; }
 
         /// <inheritdoc />
-        public IManyToOneRelationComplete<AddressTable, Guid> Address { get; }
+        public IManyToOneComplete<AddressTable, Guid> Address { get; }
 
         /// <inheritdoc />
-        public IManyToOneRelationComplete<PersonConsentTable, Guid> PersonConsent { get; }
+        public IManyToOneComplete<PersonConsentTable, Guid> PersonConsent { get; }
 
         /// <summary>
         /// Constructor

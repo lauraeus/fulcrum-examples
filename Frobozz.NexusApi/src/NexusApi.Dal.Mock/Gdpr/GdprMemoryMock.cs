@@ -23,6 +23,6 @@ namespace Frobozz.NexusApi.Dal.Mock.Gdpr
         public IPersonService PersonService { get; }
 
         /// <inheritdoc />
-        public IManyToOneRelation<PersonConsent, string> PersonConsentService { get; }
+        public IManyToOne<PersonConsent, string> PersonConsentService { get; }
     }
 }

@@ -29,6 +29,6 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Logic
         public ICrud<Consent, string> ConsentService { get; }
 
         /// <inheritdoc />
-        public IManyToOneRelation<PersonConsent, string> PersonConsentService { get; }
+        public IManyToOne<PersonConsent, string> PersonConsentService { get; }
     }
 }
