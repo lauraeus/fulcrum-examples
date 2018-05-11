@@ -1,12 +1,15 @@
-﻿using Xlent.Lever.Libraries2.Core.Assert;
+﻿using System.ComponentModel.DataAnnotations;
+using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 using Xlent.Lever.Libraries2.Core.Translation;
 
-namespace Frobozz.CapabilityContracts.Gdpr.Model
+namespace Frobozz.Contracts.GdprCapability.Model
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class PersonConsent : IRecommendedStorableItem<string>, IValidatable
     {
-
         /// <summary>
         /// True if the person has approved the consent
         /// </summary>
@@ -16,12 +19,14 @@ namespace Frobozz.CapabilityContracts.Gdpr.Model
         /// The id of the person that this person-consent is for.
         /// </summary>
         [TranslationConcept("person.id")]
+        [Required]
         public string PersonId { get; set; }
 
         /// <summary>
         /// The id of the consent that this person-consent is for.
         /// </summary>
         [TranslationConcept("consent.id")]
+        [Required]
         public string ConsentId { get; set; }
 
         /// <summary>
@@ -32,6 +37,7 @@ namespace Frobozz.CapabilityContracts.Gdpr.Model
         #region Interface implementations
         /// <inheritdoc />
         [TranslationConcept("person-consent.id")]
+        [Key]
         public string Id { get; set; }
         /// <inheritdoc />
         public string Etag { get; set; }

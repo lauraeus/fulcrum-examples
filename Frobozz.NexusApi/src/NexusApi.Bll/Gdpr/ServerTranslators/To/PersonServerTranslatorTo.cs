@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Frobozz.CapabilityContracts.Gdpr.Logic;
-using Frobozz.CapabilityContracts.Gdpr.Model;
+using Frobozz.Contracts.GdprCapability.Interfaces;
+using Frobozz.Contracts.GdprCapability.Model;
 using Xlent.Lever.Libraries2.Core.Crud.ServerTranslators.To;
 using Xlent.Lever.Libraries2.Core.Translation;
 
@@ -10,7 +10,7 @@ namespace Frobozz.NexusApi.Bll.Gdpr.ServerTranslators.To
     /// <summary>
     /// Client translator
     /// </summary>
-    public class PersonServerTranslatorTo : CrudServerTranslatorTo<Person>, IPersonService
+    public class PersonServerTranslatorTo : CrudServerTranslatorTo<PersonCreate, Person>, IPersonService
     {
         private readonly IGdprCapability _gdprCapability;
 

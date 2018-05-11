@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Frobozz.CapabilityContracts.Gdpr.Logic;
-using Frobozz.CapabilityContracts.Gdpr.Model;
+using Frobozz.Contracts.GdprCapability.Interfaces;
+using Frobozz.Contracts.GdprCapability.Model;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Crud.MemoryStorage;
 using Xlent.Lever.Libraries2.Core.Storage.Logic;
@@ -9,7 +9,7 @@ using Xlent.Lever.Libraries2.Core.Storage.Logic;
 namespace Frobozz.NexusApi.Dal.Mock.Gdpr
 {
     /// <inheritdoc cref="IPersonService" />
-    public class PersonMemoryStorage : CrudMemory<Person, string>, IPersonService
+    public class PersonMemoryStorage : CrudMemory<PersonCreate, Person, string>, IPersonService
     {
         /// <inheritdoc />
         public async Task<Person> FindFirstOrDefaultByNameAsync(string name, CancellationToken token = default(CancellationToken))

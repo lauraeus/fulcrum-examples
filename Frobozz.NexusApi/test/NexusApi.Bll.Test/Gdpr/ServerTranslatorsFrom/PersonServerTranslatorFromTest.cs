@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Frobozz.CapabilityContracts.Gdpr.Logic;
-using Frobozz.CapabilityContracts.Gdpr.Model;
+using Frobozz.Contracts.GdprCapability.Interfaces;
+using Frobozz.Contracts.GdprCapability.Model;
 using Frobozz.NexusApi.Bll.Gdpr.ServerTranslators.From;
 using Frobozz.NexusApi.Bll.Test.Support;
 using Frobozz.NexusApi.Dal.Mock.Translator;

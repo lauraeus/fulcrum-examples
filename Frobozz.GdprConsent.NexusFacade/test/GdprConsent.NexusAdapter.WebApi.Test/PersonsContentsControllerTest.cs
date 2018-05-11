@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Frobozz.CapabilityContracts.Gdpr.Model;
+using Frobozz.Contracts.GdprCapability.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Controllers;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer;
@@ -36,7 +36,9 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
         [TestMethod]
         public async Task ReadConsentsForAPerson()
         {
-            var personConsents = (await _personConsentsController.ReadChildrenAsync(_kalleAnka.ToString())).ToArray();
+            var page = await _personConsentsController.ReadChildrenWithPagingAsync(_kalleAnka.ToString(), 0);
+            Assert.IsNotNull(page?.Data);
+            var personConsents = page.Data.ToArray();
             VerifyConsents(personConsents, true, false);
         }
 

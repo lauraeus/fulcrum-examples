@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Frobozz.Contracts")]
+[assembly: AssemblyTitle("Frobozz.Contracts.WebApi")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Frobozz.Contracts")]
+[assembly: AssemblyProduct("Frobozz.Contracts.WebApi")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("21a7e0d3-ade5-47da-b295-14b487475cbd")]
+[assembly: Guid("0f909b3a-5a95-4395-ad79-3fa38d2646b8")]
 
 // Version information for an assembly consists of the following four values:
 //

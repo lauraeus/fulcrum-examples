@@ -1,15 +1,15 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
-using Frobozz.CapabilityContracts.Gdpr.Logic;
-using Frobozz.CapabilityContracts.Gdpr.Model;
+using Frobozz.Contracts.GdprCapability.Interfaces;
+using Frobozz.Contracts.GdprCapability.Model;
 using Microsoft.Rest;
 using Xlent.Lever.Libraries2.Core.Platform.Authentication;
 using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
 
 namespace Frobozz.NexusApi.Dal.RestServices.Gdpr
 {
-    internal class PersonService : RestClientCrud<Person, string>, IPersonService
+    internal class PersonService : RestClientCrud<PersonCreate, Person, string>, IPersonService
     {
         /// <inheritdoc />
         public PersonService(string baseUri, bool withLogging = true) : base(baseUri, withLogging)

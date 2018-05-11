@@ -103,13 +103,13 @@
       <HintPath>..\..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.Core.NetFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Core.NetFramework.1.26.10\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Core.NetFramework.1.27.1\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.SqlServer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.SqlServer.2.2.1\lib\net46\Xlent.Lever.Libraries2.SqlServer.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.SqlServer.2.2.2\lib\net46\Xlent.Lever.Libraries2.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.WebApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.WebApi.4.10.8\lib\net46\Xlent.Lever.Libraries2.WebApi.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.WebApi.4.11.5\lib\net46\Xlent.Lever.Libraries2.WebApi.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -138,11 +138,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Mappers\Logic\Mapper.cs" />
-    <Compile Include="Mappers\Logic\PersonMapper.cs" />
-    <Compile Include="Mappers\Model\ConsentModelMapper.cs" />
-    <Compile Include="Mappers\Model\PersonConsentModelMapper.cs" />
+    <Compile Include="Mappers\Logic\ConsentMapper.cs" />
+    <Compile Include="Mappers\Logic\PersonConsentMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Mappers\Model\PersonModelMapper.cs" />
+    <Compile Include="Mappers\Logic\PersonMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -155,11 +154,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Mappers\Model\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Frobozz.NexusApi\src\Frobozz.CapabilityContracts\Frobozz.CapabilityContracts.csproj">
+    <ProjectReference Include="..\..\..\Frobozz.NexusApi\src\Frobozz.CapabilityContracts\Frobozz.Contracts.csproj">
       <Project>{21A7E0D3-ADE5-47DA-B295-14B487475CBD}</Project>
-      <Name>Frobozz.CapabilityContracts</Name>
+      <Name>Frobozz.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Frobozz.NexusApi\src\Frobozz.Contracts.WebApi\Frobozz.Contracts.WebApi.csproj">
+      <Project>{0f909b3a-5a95-4395-ad79-3fa38d2646b8}</Project>
+      <Name>Frobozz.Contracts.WebApi</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

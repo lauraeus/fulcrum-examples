@@ -2,7 +2,7 @@
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
-using Frobozz.CapabilityContracts.Gdpr.Logic;
+using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.NexusApi.Bll.Gdpr.Caches;
 using Frobozz.NexusApi.Bll.Gdpr.ClientTranslators;
 using Frobozz.NexusApi.Bll.Gdpr.ServerTranslators.From;

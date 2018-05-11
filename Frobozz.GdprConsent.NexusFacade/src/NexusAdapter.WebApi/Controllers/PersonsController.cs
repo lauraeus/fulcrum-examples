@@ -1,8 +1,9 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Frobozz.CapabilityContracts.Gdpr.Logic;
-using Frobozz.CapabilityContracts.Gdpr.Model;
+using Frobozz.Contracts.GdprCapability.Interfaces;
+using Frobozz.Contracts.GdprCapability.Model;
+using Frobozz.Contracts.WebApi.GdprCapability.Controllers;
 using Xlent.Lever.Libraries2.WebApi.Crud.ApiControllers;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Controllers
@@ -11,7 +12,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Controllers
     /// ApiController for Product that does inputcontrol. Logic is separated into another layer. 
     /// </summary>
     [RoutePrefix("api/Persons")]
-    public class PersonsController : CrudApiController<Person>, IPersonService
+    public class PersonsController : PersonServiceController
     {
         private readonly IGdprCapability _logic;
 
@@ -19,17 +20,9 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Controllers
         /// Constructor 
         /// </summary>
         public PersonsController(IGdprCapability logic)
-        :base(logic.PersonService)
+        :base(logic)
         {
             _logic = logic;
-        }
-
-        /// <inheritdoc />
-        [HttpGet]
-        [Route("FindByName")]
-        public async Task<Person> FindFirstOrDefaultByNameAsync(string name, CancellationToken token = default(CancellationToken))
-        {
-            return await _logic.PersonService.FindFirstOrDefaultByNameAsync(name, token);
         }
     }
 }

@@ -64,7 +64,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.Core.NetFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Core.NetFramework.1.26.10\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Core.NetFramework.1.27.1\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -78,9 +78,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Frobozz.CapabilityContracts\Frobozz.CapabilityContracts.csproj">
+    <ProjectReference Include="..\..\src\Frobozz.CapabilityContracts\Frobozz.Contracts.csproj">
       <Project>{21a7e0d3-ade5-47da-b295-14b487475cbd}</Project>
-      <Name>Frobozz.CapabilityContracts</Name>
+      <Name>Frobozz.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\NexusApi.Bll\NexusApi.Bll.csproj">
       <Project>{075645cb-90c4-421d-b16f-bdd37628eb88}</Project>

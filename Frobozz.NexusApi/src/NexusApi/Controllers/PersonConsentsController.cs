@@ -1,21 +1,20 @@
 ﻿using System.Web.Http;
-using Frobozz.CapabilityContracts.Gdpr.Logic;
-using Frobozz.CapabilityContracts.Gdpr.Model;
-using Xlent.Lever.Libraries2.WebApi.Crud.ApiControllers;
+using Frobozz.Contracts.GdprCapability.Interfaces;
+using Frobozz.Contracts.WebApi.GdprCapability.Controllers;
 
 namespace Frobozz.NexusApi.Controllers
 {
     /// <summary>
     /// ApiController for Product that does inputcontrol. Logic is separated into another layer. 
     /// </summary>
-    [RoutePrefix("api/Persons/{parentId}/Consents")]
-    public class PersonConsentsController : ManyToOneApiController<PersonConsent>
+    [RoutePrefix("api")]
+    public class PersonConsentsController : PersonConsentServiceController
     {
         /// <summary>
         /// Constructor 
         /// </summary>
         public PersonConsentsController(IGdprCapability gdprCapability)
-            : base(gdprCapability.PersonConsentService)
+            : base(gdprCapability)
         {
         }
     }

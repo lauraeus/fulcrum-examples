@@ -100,10 +100,10 @@
       <HintPath>..\..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.Core.NetFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Core.NetFramework.1.26.10\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Core.NetFramework.1.27.1\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.WebApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.WebApi.4.10.8\lib\net46\Xlent.Lever.Libraries2.WebApi.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.WebApi.4.11.5\lib\net46\Xlent.Lever.Libraries2.WebApi.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -135,9 +135,13 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Frobozz.CapabilityContracts\Frobozz.CapabilityContracts.csproj">
+    <ProjectReference Include="..\Frobozz.CapabilityContracts\Frobozz.Contracts.csproj">
       <Project>{21a7e0d3-ade5-47da-b295-14b487475cbd}</Project>
-      <Name>Frobozz.CapabilityContracts</Name>
+      <Name>Frobozz.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Frobozz.Contracts.WebApi\Frobozz.Contracts.WebApi.csproj">
+      <Project>{0f909b3a-5a95-4395-ad79-3fa38d2646b8}</Project>
+      <Name>Frobozz.Contracts.WebApi</Name>
     </ProjectReference>
     <ProjectReference Include="..\NexusApi.Dal.RestServices\NexusApi.Dal.RestServices.csproj">
       <Project>{fa381f07-4c13-4d5b-9609-dcc609d5faee}</Project>

@@ -1,27 +1,47 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Frobozz.CapabilityContracts.Gdpr.Model;
+using Frobozz.Contracts.GdprCapability.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
 using Xlent.Lever.Libraries2.Core.Assert;
+using Xlent.Lever.Libraries2.Core.Crud.Helpers;
 using Xlent.Lever.Libraries2.Core.Crud.Mappers;
+using Xlent.Lever.Libraries2.Core.Storage.Model;
 
-namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
+namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Logic
 {
     /// <inheritdoc />
-    public class PersonConsentModelMapper : ICrudModelMapper<PersonConsent, string, PersonConsentTable>
+    public class PersonConsentMapper : ManyToOneBase<PersonConsent, string>
     {
         private readonly IStorage _storage;
         /// <summary>
         /// Constructor
         /// </summary>
-        public  PersonConsentModelMapper(IStorage storage)
+        public  PersonConsentMapper(IStorage storage)
         {
             _storage = storage;
         }
 
         /// <inheritdoc />
-        public async Task<PersonConsent> MapFromServerAsync(PersonConsentTable source,
+        public override async Task<PageEnvelope<PersonConsent>> ReadChildrenWithPagingAsync(string parentId, int offset, int? limit = null,
+            CancellationToken token = new CancellationToken())
+        {
+            var serverId = MapperHelper.MapToType<Guid, string>(parentId);
+            var storagePage = await _storage.PersonConsent.ReadChildrenWithPagingAsync(serverId, offset, limit, token);
+            FulcrumAssert.IsNotNull(storagePage?.Data);
+            var tasks = storagePage?.Data.Select(record => MapFromServerAsync(record, token));
+            return new PageEnvelope<PersonConsent>(storagePage?.PageInfo, await Task.WhenAll(tasks));
+        }
+
+        /// <inheritdoc />
+        public override async Task DeleteChildrenAsync(string parentId, CancellationToken token = new CancellationToken())
+        {
+            var serverId = MapperHelper.MapToType<Guid, string>(parentId);
+            await _storage.PersonConsent.DeleteChildrenAsync(serverId, token);
+        }
+
+        private async Task<PersonConsent> MapFromServerAsync(PersonConsentTable source,
             CancellationToken token = default(CancellationToken))
         {
             InternalContract.RequireNotNull(source, nameof(source));
@@ -40,8 +60,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
             return target;
         }
 
-        /// <inheritdoc />
-        public async Task<PersonConsentTable> MapToServerAsync(PersonConsent source, CancellationToken token = default(CancellationToken))
+        private PersonConsentTable MapToServer(PersonConsent source)
         {
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
@@ -54,31 +73,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Model
                 ConsentId = MapperHelper.MapToType<Guid, string>(source.ConsentId),
             };
             FulcrumAssert.IsValidated(target);
-            return await Task.FromResult(target);
-        }
-
-        /// <inheritdoc />
-        public async Task<PersonConsentTable> CreateAndReturnAsync(PersonConsent source, CancellationToken token = new CancellationToken())
-        {
-            InternalContract.RequireNotNull(source, nameof(source));
-            InternalContract.RequireValidated(source, nameof(source));
-            var target = await MapToServerAsync(source, token);
-            target = await _storage.PersonConsent.CreateAndReturnAsync(target, token);
-            FulcrumAssert.IsValidated(target);
-            return await Task.FromResult(target);
-        }
-
-        /// <inheritdoc />
-        public async Task<PersonConsentTable> CreateWithSpecifiedIdAndReturnAsync(string id, PersonConsent source,
-            CancellationToken token = new CancellationToken())
-        {
-            InternalContract.RequireNotNull(source, nameof(source));
-            InternalContract.RequireValidated(source, nameof(source));
-            var target = await MapToServerAsync(source, token);
-            var serverId = MapperHelper.MapToType<Guid, string>(id);
-            target = await _storage.PersonConsent.CreateWithSpecifiedIdAndReturnAsync(serverId, target, token);
-            FulcrumAssert.IsValidated(target);
-            return await Task.FromResult(target);
+            return target;
         }
     }
 }

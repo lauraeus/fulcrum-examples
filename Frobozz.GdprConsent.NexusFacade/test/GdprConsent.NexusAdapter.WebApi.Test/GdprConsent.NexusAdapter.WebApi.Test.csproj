@@ -50,6 +50,9 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
@@ -60,10 +63,10 @@
       <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.5\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.Core.NetFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Core.NetFramework.1.26.10\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Core.NetFramework.1.27.1\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.WebApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.WebApi.4.10.8\lib\net46\Xlent.Lever.Libraries2.WebApi.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.WebApi.4.11.5\lib\net46\Xlent.Lever.Libraries2.WebApi.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -76,9 +79,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Frobozz.NexusApi\src\Frobozz.CapabilityContracts\Frobozz.CapabilityContracts.csproj">
-      <Project>{21A7E0D3-ADE5-47DA-B295-14B487475CBD}</Project>
-      <Name>Frobozz.CapabilityContracts</Name>
+    <ProjectReference Include="..\..\..\Frobozz.NexusApi\src\Frobozz.CapabilityContracts\Frobozz.Contracts.csproj">
+      <Project>{21a7e0d3-ade5-47da-b295-14b487475cbd}</Project>
+      <Name>Frobozz.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Frobozz.NexusApi\src\Frobozz.Contracts.WebApi\Frobozz.Contracts.WebApi.csproj">
+      <Project>{0f909b3a-5a95-4395-ad79-3fa38d2646b8}</Project>
+      <Name>Frobozz.Contracts.WebApi</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\NexusAdapter.WebApi\GdprConsent.NexusAdapter.WebApi.csproj">
       <Project>{d811a208-b451-43b9-b4ce-07e6b883e9c5}</Project>

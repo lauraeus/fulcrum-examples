@@ -1,11 +1,12 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Frobozz.CapabilityContracts.Gdpr.Model;
+using Frobozz.Contracts.GdprCapability.Model;
 using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
 
-namespace Frobozz.CapabilityContracts.Gdpr.Logic
+namespace Frobozz.Contracts.GdprCapability.Interfaces
 {
-    public interface IPersonService : ICrud<Person, string>
+    /// <inheritdoc />
+    public interface IPersonService : ICrud<PersonCreate, Person, string>
     {
         /// <summary>
         /// Find the first person with an exact match for the name

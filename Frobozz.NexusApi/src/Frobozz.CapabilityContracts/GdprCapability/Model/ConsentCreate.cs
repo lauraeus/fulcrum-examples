@@ -1,26 +1,22 @@
 ﻿using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.Core.Storage.Model;
-using Xlent.Lever.Libraries2.Core.Translation;
+using System.ComponentModel.DataAnnotations;
 
-namespace Frobozz.CapabilityContracts.Gdpr.Model
+namespace Frobozz.Contracts.GdprCapability.Model
 {
-    public class Consent : IRecommendedStorableItem<string>, IValidatable
+    /// <summary>
+    /// Information about a specific consent.
+    /// </summary>
+    public class ConsentCreate : IValidatable
     {
         /// <summary>
         /// The name of the consent
         /// </summary>
+        [Required]
         public string Name { get; set; }
 
         #region Interface implementations
         /// <inheritdoc />
-        [TranslationConcept("consent.id")]
-        public string Id { get; set; }
-
-        /// <inheritdoc />
-        public string Etag { get; set; }
-
-        /// <inheritdoc />
-        public void Validate(string errorLocation, string propertyPath = "")
+        public virtual void Validate(string errorLocation, string propertyPath = "")
         {
            FulcrumValidate.IsNotNullOrWhiteSpace(Name, nameof(Name), errorLocation);
         }

@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Frobozz.CapabilityContracts.Gdpr.Logic;
-using Frobozz.CapabilityContracts.Gdpr.Model;
+using Frobozz.Contracts.GdprCapability.Interfaces;
+using Frobozz.Contracts.GdprCapability.Model;
 using Microsoft.Extensions.Caching.Distributed;
 using Xlent.Lever.Libraries2.Core.Crud.Cache;
 
@@ -10,7 +10,7 @@ namespace Frobozz.NexusApi.Bll.Gdpr.Caches
     /// <summary>
     /// Client translator
     /// </summary>
-    public class PersonCache : CrudAutoCache<Person, string>, IPersonService
+    public class PersonCache : CrudAutoCache<PersonCreate, Person, string>, IPersonService
     {
         private readonly IGdprCapability _gdprCapability;
 
