@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusApi", "src\NexusApi\NexusApi.csproj", "{409C5A9B-5C42-43CC-880D-E0EBF400F027}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.Contracts", "src\Frobozz.CapabilityContracts\Frobozz.Contracts.csproj", "{21A7E0D3-ADE5-47DA-B295-14B487475CBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusApi.Dal.RestServices", "src\NexusApi.Dal.RestServices\NexusApi.Dal.RestServices.csproj", "{FA381F07-4C13-4D5B-9609-DCC609D5FAEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusApi.Dal.Mock", "src\NexusApi.Dal.Mock\NexusApi.Dal.Mock.csproj", "{FD3AA5B5-1458-4B58-9DF4-286C762E6D00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusApi.Bll", "src\NexusApi.Bll\NexusApi.Bll.csproj", "{075645CB-90C4-421D-B16F-BDD37628EB88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusApi.Bll.Test", "test\NexusApi.Bll.Test\NexusApi.Bll.Test.csproj", "{EAE81702-1B47-44AA-8CCD-8832F9E8773C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{C4C3166D-BD80-4AFC-BDAD-EC9A44409E2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.Contracts.WebApi", "src\Frobozz.Contracts.WebApi\Frobozz.Contracts.WebApi.csproj", "{0F909B3A-5A95-4395-AD79-3FA38D2646B8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{409C5A9B-5C42-43CC-880D-E0EBF400F027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{409C5A9B-5C42-43CC-880D-E0EBF400F027}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{409C5A9B-5C42-43CC-880D-E0EBF400F027}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{409C5A9B-5C42-43CC-880D-E0EBF400F027}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21A7E0D3-ADE5-47DA-B295-14B487475CBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA381F07-4C13-4D5B-9609-DCC609D5FAEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA381F07-4C13-4D5B-9609-DCC609D5FAEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA381F07-4C13-4D5B-9609-DCC609D5FAEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA381F07-4C13-4D5B-9609-DCC609D5FAEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD3AA5B5-1458-4B58-9DF4-286C762E6D00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD3AA5B5-1458-4B58-9DF4-286C762E6D00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD3AA5B5-1458-4B58-9DF4-286C762E6D00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD3AA5B5-1458-4B58-9DF4-286C762E6D00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{075645CB-90C4-421D-B16F-BDD37628EB88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{075645CB-90C4-421D-B16F-BDD37628EB88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{075645CB-90C4-421D-B16F-BDD37628EB88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{075645CB-90C4-421D-B16F-BDD37628EB88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAE81702-1B47-44AA-8CCD-8832F9E8773C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAE81702-1B47-44AA-8CCD-8832F9E8773C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAE81702-1B47-44AA-8CCD-8832F9E8773C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAE81702-1B47-44AA-8CCD-8832F9E8773C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F909B3A-5A95-4395-AD79-3FA38D2646B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F909B3A-5A95-4395-AD79-3FA38D2646B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F909B3A-5A95-4395-AD79-3FA38D2646B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F909B3A-5A95-4395-AD79-3FA38D2646B8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EAE81702-1B47-44AA-8CCD-8832F9E8773C} = {C4C3166D-BD80-4AFC-BDAD-EC9A44409E2C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5C96B704-2672-400A-941F-D023A9FCF320}
+	EndGlobalSection
+EndGlobal

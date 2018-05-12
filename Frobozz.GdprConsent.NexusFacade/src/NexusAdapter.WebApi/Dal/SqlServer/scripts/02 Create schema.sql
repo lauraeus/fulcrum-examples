@@ -1,0 +1,190 @@
+﻿BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+
+
+
+--
+-- Person
+--
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Person
+	(
+	Id uniqueidentifier NOT NULL ROWGUIDCOL,
+	Name nvarchar(50) NULL,
+	Etag nvarchar(50) NULL,
+	RecordCreatedAt datetimeoffset(7) NOT NULL,
+	RecordUpdatedAt datetimeoffset(7) NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Person ADD CONSTRAINT
+	DF_Person_Id DEFAULT (newid()) FOR Id
+GO
+ALTER TABLE dbo.Person ADD CONSTRAINT
+	DF_Person_RecordCreatedAt DEFAULT (getutcdate()) FOR RecordCreatedAt
+GO
+ALTER TABLE dbo.Person ADD CONSTRAINT
+	DF_Person_RecordUpdatedAt DEFAULT (getutcdate()) FOR RecordUpdatedAt
+GO
+ALTER TABLE dbo.Person ADD CONSTRAINT
+	PK_Person PRIMARY KEY NONCLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+CREATE CLUSTERED INDEX IX_Person_RecordCreatedAt ON dbo.Person
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+ALTER TABLE dbo.Person SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+
+--
+-- Address
+--
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Address
+	(
+	Id uniqueidentifier NOT NULL ROWGUIDCOL,
+	Type int NOT NULL DEFAULT (0),
+	Street nvarchar(50) NULL,
+	City nvarchar(50) NULL,
+	PersonId uniqueidentifier NULL,
+	Etag nvarchar(50) NULL,
+	RecordCreatedAt datetimeoffset(7) NOT NULL,
+	RecordUpdatedAt datetimeoffset(7) NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Address ADD CONSTRAINT
+	DF_Address_Id DEFAULT (newid()) FOR Id
+GO
+ALTER TABLE dbo.Address ADD CONSTRAINT
+	DF_Address_RecordCreatedAt DEFAULT (getutcdate()) FOR RecordCreatedAt
+GO
+ALTER TABLE dbo.Address ADD CONSTRAINT
+	DF_Address_RecordUpdatedAt DEFAULT (getutcdate()) FOR RecordUpdatedAt
+GO
+ALTER TABLE dbo.Address ADD CONSTRAINT
+	PK_Address PRIMARY KEY NONCLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+CREATE CLUSTERED INDEX IX_Address_RecordCreatedAt ON dbo.Address
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX IX_PersonConsent_PersonId ON dbo.Address
+	(
+	PersonId
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+ALTER TABLE dbo.Address SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+
+
+--
+-- Consent
+--
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Consent
+	(
+	Id uniqueidentifier NOT NULL ROWGUIDCOL,
+	Name nvarchar(50) NULL,
+	Etag nvarchar(50) NULL,
+	RecordCreatedAt datetimeoffset(7) NOT NULL,
+	RecordUpdatedAt datetimeoffset(7) NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Consent ADD CONSTRAINT
+	DF_Consent_Id DEFAULT (newid()) FOR Id
+GO
+ALTER TABLE dbo.Consent ADD CONSTRAINT
+	DF_Consent_RecordCreatedAt DEFAULT (getutcdate()) FOR RecordCreatedAt
+GO
+ALTER TABLE dbo.Consent ADD CONSTRAINT
+	DF_Consent_RecordUpdatedAt DEFAULT (getutcdate()) FOR RecordUpdatedAt
+GO
+ALTER TABLE dbo.Consent ADD CONSTRAINT
+	PK_Consent PRIMARY KEY NONCLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+CREATE CLUSTERED INDEX IX_Consent_RecordCreatedAt ON dbo.Consent
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+ALTER TABLE dbo.Consent SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+--
+-- PersonConsent
+--
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.PersonConsent
+	(
+	Id uniqueidentifier NOT NULL ROWGUIDCOL,
+	HasGivenConsent bit NOT NULL DEFAULT (0),
+	PersonId uniqueidentifier NULL,
+	ConsentId uniqueidentifier NULL,
+	Etag nvarchar(50) NULL,
+	RecordCreatedAt datetimeoffset(7) NOT NULL,
+	RecordUpdatedAt datetimeoffset(7) NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.PersonConsent ADD CONSTRAINT
+	DF_PersonConsent_Id DEFAULT (newid()) FOR Id
+GO
+ALTER TABLE dbo.PersonConsent ADD CONSTRAINT
+	DF_PersonConsent_RecordCreatedAt DEFAULT (getutcdate()) FOR RecordCreatedAt
+GO
+ALTER TABLE dbo.PersonConsent ADD CONSTRAINT
+	DF_PersonConsent_RecordUpdatedAt DEFAULT (getutcdate()) FOR RecordUpdatedAt
+GO
+ALTER TABLE dbo.PersonConsent ADD CONSTRAINT
+	PK_PersonConsent PRIMARY KEY NONCLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+CREATE CLUSTERED INDEX IX_PersonConsent_RecordCreatedAt ON dbo.PersonConsent
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX IX_PersonConsent_PersonId ON dbo.PersonConsent
+	(
+	PersonId
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX IX_PersonConsent_ConsentId ON dbo.PersonConsent
+	(
+	ConsentId
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+ALTER TABLE dbo.PersonConsent SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT

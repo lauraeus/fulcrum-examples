@@ -32,7 +32,7 @@ namespace Frobozz.HelloWorld.Adapter.MessageHandler
             return message;
         }
 
-        private static async Task<IAuthenticationToken> GenerateAccessToken()
+        private static async Task<AuthenticationToken> GenerateAccessToken()
         {
             string organization = ConfigurationManager.AppSettings["Organization"];
             string environment = ConfigurationManager.AppSettings["Environment"];
