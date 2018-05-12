@@ -34,8 +34,13 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Logic
             return new PageEnvelope<PersonConsent>(storagePage?.PageInfo, await Task.WhenAll(tasks));
         }
 
-        /// <inheritdoc />
-        public override async Task DeleteChildrenAsync(string parentId, CancellationToken token = new CancellationToken())
+        /// <summary>
+        /// Kept for future use
+        /// </summary>
+        /// <param name="parentId"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public async Task DeleteChildrenAsync(string parentId, CancellationToken token = new CancellationToken())
         {
             var serverId = MapperHelper.MapToType<Guid, string>(parentId);
             await _storage.PersonConsent.DeleteChildrenAsync(serverId, token);

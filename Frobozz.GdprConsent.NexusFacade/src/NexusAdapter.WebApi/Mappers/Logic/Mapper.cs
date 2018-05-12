@@ -3,6 +3,7 @@ using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
 using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
+using Xlent.Lever.Libraries2.Core.Crud.Mappers;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Logic
 {
@@ -15,7 +16,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Logic
         public Mapper(IStorage storage)
         {
             PersonService = new PersonMapper(storage);
-            ConsentService = new ConsentMapper(storage);
+            ConsentService = new CrudMapper<ConsentCreate,Consent,string,ConsentTable,Guid>(storage.Consent, new ConsentMapper());
             PersonConsentService = new PersonConsentMapper(storage);
         }
 
