@@ -13,7 +13,7 @@ using Xlent.Lever.Libraries2.Core.Crud.Mappers;
 using Xlent.Lever.Libraries2.Core.Storage.Logic;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
-namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Logic
+namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
 {
     /// <inheritdoc cref="IPersonService" />
     public class PersonMapper : CrudBase<PersonCreate, Person, string>, IPersonService

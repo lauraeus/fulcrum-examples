@@ -9,7 +9,7 @@ using Xlent.Lever.Libraries2.Core.Crud.Helpers;
 using Xlent.Lever.Libraries2.Core.Crud.Mappers;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
-namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Logic
+namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
 {
     /// <inheritdoc />
     public class PersonConsentMapper : ManyToOneBase<PersonConsent, string>

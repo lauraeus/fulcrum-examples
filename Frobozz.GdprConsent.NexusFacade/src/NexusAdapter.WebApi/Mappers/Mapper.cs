@@ -5,7 +5,7 @@ using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
 using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
 using Xlent.Lever.Libraries2.Core.Crud.Mappers;
 
-namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Logic
+namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
 {
     /// <inheritdoc />
     public class Mapper : IGdprCapability

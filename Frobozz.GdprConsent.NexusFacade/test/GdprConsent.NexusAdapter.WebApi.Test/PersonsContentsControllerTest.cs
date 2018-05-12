@@ -5,7 +5,7 @@ using Frobozz.Contracts.GdprCapability.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Controllers;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer;
-using Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Logic;
+using Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xlent.Lever.Libraries2.Core.Application;
 
