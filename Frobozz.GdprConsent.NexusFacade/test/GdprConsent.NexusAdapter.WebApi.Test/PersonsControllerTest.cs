@@ -52,11 +52,11 @@ namespace GdprConsent.NexusAdapter.WebApi.Test
             Assert.IsNotNull(person.Addresses);
             var addresses = person.Addresses.ToArray();
             Assert.AreEqual(2, addresses.Length);
-            var address = addresses.FirstOrDefault(a => a.Type == "Public");
+            var address = addresses.FirstOrDefault(a => a.Type == "1");
             Assert.IsNotNull(address);
             Assert.AreEqual("Kalles gata", address.Street);
             Assert.AreEqual("Ankeborg", address.City);
-            address = addresses.FirstOrDefault(a => a.Type == "Postal");
+            address = addresses.FirstOrDefault(a => a.Type == "4");
             Assert.IsNotNull(address);
             Assert.AreEqual("Box 123", address.Street);
             Assert.AreEqual("Ankeborg", address.City);
