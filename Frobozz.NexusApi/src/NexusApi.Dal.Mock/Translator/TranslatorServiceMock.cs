@@ -29,7 +29,15 @@ namespace Frobozz.NexusApi.Dal.Mock.Translator
                     continue;
                 }
 
-                
+                if ((_fromServer && conceptValue.ClientName == "client")
+                    || (!_fromServer && conceptValue.ClientName == "server"))
+                {
+                    // Not a concept value path, no translation possible.
+                    translations[conceptValuePath] = conceptValue.Value;
+                    continue;
+                }
+
+
                 var value = conceptValue.Value;
                 if (conceptValue.ConceptName == "person.address.type.code")
                 {
