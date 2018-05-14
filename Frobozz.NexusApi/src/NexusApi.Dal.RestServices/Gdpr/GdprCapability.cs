@@ -12,10 +12,10 @@ namespace Frobozz.NexusApi.Dal.RestServices.Gdpr
         /// <inheritdoc />
         public GdprCapability()
         {
-            PersonService = new PersonService("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Persons");
-            ConsentService = new RestClientCrud<ConsentCreate, Consent, string>("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Consents");
+            PersonService = new PersonService("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Persons");
+            ConsentService = new RestClientCrud<ConsentCreate, Consent, string>("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Consents");
             FulcrumAssert.IsNotNull(ConsentService);
-            PersonConsentService = new RestClientManyToOne<PersonConsent, string>("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Persons", "Persons", "Consents");
+            PersonConsentService = new RestClientManyToOne<PersonConsent, string>("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Persons", "Persons", "Consents");
             FulcrumAssert.IsNotNull(PersonConsentService);
         }
 
