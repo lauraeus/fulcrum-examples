@@ -10,7 +10,7 @@ namespace Frobozz.NexusApi.Bll.Gdpr.ServerTranslators.To
     /// <summary>
     /// Client translator
     /// </summary>
-    public class PersonServerTranslatorTo : CrudServerTranslatorTo<PersonCreate, Person>, IPersonService
+    public class PersonServerTranslatorTo : CrudToServerTranslator<PersonCreate, Person>, IPersonService
     {
         private readonly IGdprCapability _gdprCapability;
 

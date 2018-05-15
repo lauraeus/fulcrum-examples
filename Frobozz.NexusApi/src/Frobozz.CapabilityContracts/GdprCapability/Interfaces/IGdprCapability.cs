@@ -21,6 +21,6 @@ namespace Frobozz.Contracts.GdprCapability.Interfaces
         /// <summary>
         /// Service for getting information about the consents of a specific person.
         /// </summary>
-        IManyToOne<PersonConsent, string> PersonConsentService { get; }
+        ISlaveToMaster<PersonConsentCreate, PersonConsent, string> PersonConsentService { get; }
     }
 }

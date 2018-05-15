@@ -15,7 +15,7 @@ namespace Frobozz.NexusApi.Dal.Mock.Gdpr
             ConsentService = new CrudMemory<ConsentCreate, Consent, string>();
             FulcrumAssert.IsNotNull(ConsentService);
             PersonService = new PersonMemoryStorage();
-            PersonConsentService = new ManyToOneMemory<PersonConsent, string>(consent => consent.PersonId);
+            PersonConsentService = new SlaveToMasterMemory<PersonConsentCreate, PersonConsent, string>();
             FulcrumAssert.IsNotNull(PersonConsentService);
         }
 
@@ -26,6 +26,6 @@ namespace Frobozz.NexusApi.Dal.Mock.Gdpr
         public IPersonService PersonService { get; }
 
         /// <inheritdoc />
-        public IManyToOne<PersonConsent, string> PersonConsentService { get; }
+        public ISlaveToMaster<PersonConsentCreate, PersonConsent, string> PersonConsentService { get; }
     }
 }

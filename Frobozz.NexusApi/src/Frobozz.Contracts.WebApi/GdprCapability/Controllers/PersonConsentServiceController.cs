@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
+using Xlent.Lever.Libraries2.Core.Crud.Model;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 using Xlent.Lever.Libraries2.WebApi.Annotations;
 using Xlent.Lever.Libraries2.WebApi.Crud.ApiControllers;
@@ -10,7 +11,7 @@ using Xlent.Lever.Libraries2.WebApi.Crud.ApiControllers;
 namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
 {
     /// <inheritdoc />
-    public abstract class PersonConsentServiceController : ManyToOneApiController<PersonConsent>
+    public abstract class PersonConsentServiceController : SlaveToMasterApiController<PersonConsentCreate, PersonConsent>
     {
         /// <inheritdoc />
         public PersonConsentServiceController(IGdprCapability gdprCapability)
@@ -34,6 +35,22 @@ namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
             CancellationToken token = new CancellationToken())
         {
             return base.ReadChildrenWithPagingAsync(personId, offset, limit, token);
+        }
+
+        /// <summary>
+        /// Add a new consent to a person
+        /// </summary>
+        /// <param name="masterId"></param>
+        /// <param name="item"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("Gdpr/Persons/{personId}/Consents")]
+        [SwaggerGroup("Persons")]
+        [SwaggerSuccessResponse(typeof(string))]
+        public override Task<SlaveToMasterId<string>> CreateAsync(string personId, PersonConsentCreate item, CancellationToken token = new CancellationToken())
+        {
+            return base.CreateAsync(personId, item, token);
         }
     }
 }
