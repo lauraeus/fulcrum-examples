@@ -16,7 +16,7 @@ namespace Frobozz.NexusApi.Bll.Gdpr.ClientTranslators
             PersonService = new PersonClientTranslator(capablity, getclientNameMethod, translatorService);
             ConsentService = new CrudClientTranslator<ConsentCreate, Consent>(capablity.ConsentService, "consent.id", getclientNameMethod, translatorService);
             FulcrumAssert.IsNotNull(ConsentService);
-            PersonConsentService = new ManyToOneClientTranslator<PersonConsent>(capablity.PersonConsentService, "person-consent.id", getclientNameMethod, translatorService);
+            PersonConsentService = new SlaveToMasterClientTranslator<PersonConsentCreate, PersonConsent>(capablity.PersonConsentService, "person.id", "person-consent.id", getclientNameMethod, translatorService);
             FulcrumAssert.IsNotNull(PersonConsentService);
         }
 
@@ -27,6 +27,6 @@ namespace Frobozz.NexusApi.Bll.Gdpr.ClientTranslators
         public ICrud<ConsentCreate, Consent, string> ConsentService { get; }
 
         /// <inheritdoc />
-        public IManyToOne<PersonConsent, string> PersonConsentService { get; }
+        public ISlaveToMaster<PersonConsentCreate, PersonConsent, string> PersonConsentService { get; }
     }
 }

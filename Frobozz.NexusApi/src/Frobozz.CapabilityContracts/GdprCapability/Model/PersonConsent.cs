@@ -8,27 +8,8 @@ namespace Frobozz.Contracts.GdprCapability.Model
     /// <summary>
     /// 
     /// </summary>
-    public class PersonConsent : IRecommendedStorableItem<string>, IValidatable
+    public class PersonConsent : PersonConsentCreate, IRecommendedStorableItem<string>, IValidatable
     {
-        /// <summary>
-        /// True if the person has approved the consent
-        /// </summary>
-        public bool HasGivenConsent { get; set; }
-
-        /// <summary>
-        /// The id of the person that this person-consent is for.
-        /// </summary>
-        [TranslationConcept("person.id")]
-        [Required]
-        public string PersonId { get; set; }
-
-        /// <summary>
-        /// The id of the consent that this person-consent is for.
-        /// </summary>
-        [TranslationConcept("consent.id")]
-        [Required]
-        public string ConsentId { get; set; }
-
         /// <summary>
         /// The name of the consent.
         /// </summary>
@@ -43,10 +24,11 @@ namespace Frobozz.Contracts.GdprCapability.Model
         public string Etag { get; set; }
 
         /// <inheritdoc />
-        public void Validate(string errorLocation, string propertyPath = "")
+        public override void Validate(string errorLocation, string propertyPath = "")
         {
             FulcrumValidate.IsNotNullOrWhiteSpace(ConsentName, nameof(ConsentName), errorLocation);
-            FulcrumValidate.IsNotNull(PersonId, nameof(PersonId), errorLocation);
+            FulcrumValidate.IsNotNullOrWhiteSpace(Id, nameof(Id), errorLocation);
+            FulcrumValidate.IsNotNullOrWhiteSpace(Etag, nameof(Etag), errorLocation);
         }
 
         /// <inheritdoc />

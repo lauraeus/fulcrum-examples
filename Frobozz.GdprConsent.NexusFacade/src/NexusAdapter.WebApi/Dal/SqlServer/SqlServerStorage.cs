@@ -19,7 +19,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer
         public IManyToOneComplete<AddressTable, Guid> Address { get; }
 
         /// <inheritdoc />
-        public IManyToOneComplete<PersonConsentTable, Guid> PersonConsent { get; }
+        public IManyToManyComplete<PersonConsentTable, PersonTable, ConsentTable, Guid> PersonConsent { get; }
 
         /// <summary>
         /// Constructor
@@ -69,7 +69,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer
                 ForeignKeyColumnName = "PersonId"
             };
             PersonConsent =
-                new ManyToOneSql<PersonConsentTable, PersonTable>(connectionString, tableMetadata, "PersonId", person);
+                new ManyToManySql<PersonConsentTable, PersonTable, ConsentTable>(connectionString, tableMetadata, "PersonId", person, "ConsentId", consent);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Frobozz.NexusApi.Bll.Gdpr.Caches
             var personConsentCache = cacheFactory.GetOrCreateDistributedCacheAsync("PersonConsent").Result;
             // ReSharper disable once SuspiciousTypeConversion.Global
             PersonConsentService =
-                new ManyToOneAutoCache<PersonConsent, string>(capablity.PersonConsentService, personConsentCache);
+                new SlaveToMasterAutoCache<PersonConsentCreate, PersonConsent, string>(capablity.PersonConsentService, personConsentCache);
             FulcrumAssert.IsNotNull(PersonConsentService);
         }
 
@@ -53,6 +53,6 @@ namespace Frobozz.NexusApi.Bll.Gdpr.Caches
         public ICrud<ConsentCreate, Consent, string> ConsentService { get; }
 
         /// <inheritdoc />
-        public IManyToOne<PersonConsent, string> PersonConsentService { get; }
+        public ISlaveToMaster<PersonConsentCreate, PersonConsent, string> PersonConsentService { get; }
     }
 }

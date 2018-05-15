@@ -17,8 +17,9 @@ namespace Frobozz.NexusApi.Dal.Mock.Translator
         }
 
         /// <inheritdoc />
-        public async Task TranslateAsync(IEnumerable<string> conceptValues, IDictionary<string, string> translations)
+        public Task<IDictionary<string, string>> TranslateAsync(IEnumerable<string> conceptValues, string targetClientName)
         {
+            var translations = new Dictionary<string, string>();
             foreach (var conceptValuePath in conceptValues)
             {
                 var conceptValue = ToConceptValue(conceptValuePath);
@@ -29,19 +30,19 @@ namespace Frobozz.NexusApi.Dal.Mock.Translator
                     continue;
                 }
 
-                
+                if ((_fromServer && conceptValue.ClientName == "client")
+                    || (!_fromServer && conceptValue.ClientName == "server"))
+                {
+                    // Not a concept value path, no translation possible.
+                    translations[conceptValuePath] = conceptValue.Value;
+                    continue;
+                }
+
+
                 var value = conceptValue.Value;
                 if (conceptValue.ConceptName == "person.address.type.code")
                 {
-                    if (_fromServer)
-                    {
-                        value = ToAddressTypeClient(value);
-                    }
-                    else
-                    {
-                        value = ToAddressTypeServer(value);
-                    }
-                    
+                    value = _fromServer ? ToAddressTypeClient(value) : ToAddressTypeServer(value);
                 }
                 else
                 {
@@ -63,7 +64,8 @@ namespace Frobozz.NexusApi.Dal.Mock.Translator
 
                 translations[conceptValuePath] = value;
             }
-            await Task.Yield();
+
+            return Task.FromResult((IDictionary<string, string>) translations);
         }
 
         private static IConceptValue ToConceptValue(string conceptValuePath)

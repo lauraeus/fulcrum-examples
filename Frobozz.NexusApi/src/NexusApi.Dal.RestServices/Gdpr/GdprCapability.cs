@@ -2,6 +2,7 @@
 using Frobozz.Contracts.GdprCapability.Model;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
+using Xlent.Lever.Libraries2.WebApi.Crud.RestClient;
 using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
 
 namespace Frobozz.NexusApi.Dal.RestServices.Gdpr
@@ -12,10 +13,10 @@ namespace Frobozz.NexusApi.Dal.RestServices.Gdpr
         /// <inheritdoc />
         public GdprCapability()
         {
-            PersonService = new PersonService("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Persons");
-            ConsentService = new RestClientCrud<ConsentCreate, Consent, string>("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Consents");
+            PersonService = new PersonService("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Persons");
+            ConsentService = new CrudRestClient<ConsentCreate, Consent, string>("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Consents");
             FulcrumAssert.IsNotNull(ConsentService);
-            PersonConsentService = new RestClientManyToOne<PersonConsent, string>("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Persons", "Persons", "Consents");
+            PersonConsentService = new SlaveToMasterRestClient<PersonConsentCreate, PersonConsent, string>("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Persons", "Persons", "Consents");
             FulcrumAssert.IsNotNull(PersonConsentService);
         }
 
@@ -26,6 +27,6 @@ namespace Frobozz.NexusApi.Dal.RestServices.Gdpr
         public ICrud<ConsentCreate, Consent, string> ConsentService { get; }
 
         /// <inheritdoc />
-        public IManyToOne<PersonConsent, string> PersonConsentService { get; }
+        public ISlaveToMaster<PersonConsentCreate, PersonConsent, string> PersonConsentService { get; }
     }
 }

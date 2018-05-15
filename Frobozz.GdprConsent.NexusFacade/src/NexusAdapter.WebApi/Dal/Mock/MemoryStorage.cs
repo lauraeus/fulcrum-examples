@@ -18,7 +18,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Mock
         public IManyToOneComplete<AddressTable, Guid> Address { get; }
 
         /// <inheritdoc />
-        public IManyToOneComplete<PersonConsentTable, Guid> PersonConsent { get; }
+        public IManyToManyComplete<PersonConsentTable, PersonTable, ConsentTable, Guid> PersonConsent { get; }
 
         /// <summary>
         /// Constructor
@@ -29,7 +29,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Mock
             Consent = new CrudMemory<ConsentTable, Guid>();
             Address = new ManyToOneMemory<AddressTable, Guid>(item => item.PersonId);
             PersonConsent =
-                new ManyToOneMemory<PersonConsentTable, Guid>(item => item.PersonId);
+                new ManyToManyMemory<PersonConsentTable, PersonTable, ConsentTable, Guid>(item => item.PersonId, item => item.ConsentId, Person, Consent);
         }
     }
 }

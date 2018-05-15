@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
+using Xlent.Lever.Libraries2.Core.Storage.Model;
 using Xlent.Lever.Libraries2.WebApi.Annotations;
 using Xlent.Lever.Libraries2.WebApi.Crud.ApiControllers;
 
@@ -16,7 +17,7 @@ namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
         /// <summary>
         /// Constructor 
         /// </summary>
-        public ConsentServiceController(IGdprCapability gdprCapability)
+        protected ConsentServiceController(IGdprCapability gdprCapability)
             : base(gdprCapability.ConsentService)
         {
         }
@@ -39,6 +40,16 @@ namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
         public override Task<Consent> ReadAsync(string id, CancellationToken token = new CancellationToken())
         {
             return base.ReadAsync(id, token);
+        }
+
+        /// <inheritdoc />
+        [HttpGet]
+        [Route("Gdpr/Consents")]
+        [SwaggerGroup("Consents")]
+        [SwaggerSuccessResponse(typeof(PageEnvelope<Consent>))]
+        public override Task<PageEnvelope<Consent>> ReadAllWithPagingAsync(int offset, int? limit = null, CancellationToken token = new CancellationToken())
+        {
+            return base.ReadAllWithPagingAsync(offset, limit, token);
         }
 
         /// <inheritdoc />
