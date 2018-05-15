@@ -40,7 +40,7 @@ namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
         /// <summary>
         /// Add a new consent to a person
         /// </summary>
-        /// <param name="masterId"></param>
+        /// <param name="personId"></param>
         /// <param name="item"></param>
         /// <param name="token"></param>
         /// <returns></returns>

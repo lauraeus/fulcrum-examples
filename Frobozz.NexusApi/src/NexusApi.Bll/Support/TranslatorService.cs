@@ -7,8 +7,9 @@ namespace Frobozz.NexusApi.Bll.Support
     public class TranslatorService : ITranslatorService
     {
         /// <inheritdoc />
-        public async Task TranslateAsync(IEnumerable<string> conceptValues, IDictionary<string, string> translations)
+        public Task<IDictionary<string, string>> TranslateAsync(IEnumerable<string> conceptValues, string targetClientName)
         {
+            var translations = new Dictionary<string, string>();
             foreach (var path in conceptValues)
             {
                 if (!ConceptValue.TryParse(path, out var conceptValue))
@@ -21,7 +22,8 @@ namespace Frobozz.NexusApi.Bll.Support
                 else if (conceptValue.Value.Contains("server-")) value = value.Replace("server-", "client-");
                 translations[path] = value;
             }
-            await Task.Yield();
+
+            return Task.FromResult((IDictionary<string, string>)translations);
         }
     }
 }
