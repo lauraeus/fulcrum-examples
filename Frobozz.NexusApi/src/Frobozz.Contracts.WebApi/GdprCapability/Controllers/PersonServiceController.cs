@@ -5,6 +5,7 @@ using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
 using Xlent.Lever.Libraries2.Core.Assert;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
+using Xlent.Lever.Libraries2.Crud.Interfaces;
 using Xlent.Lever.Libraries2.WebApi.Annotations;
 using Xlent.Lever.Libraries2.WebApi.Crud.ApiControllers;
 
@@ -42,6 +43,22 @@ namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
 
         /// <inheritdoc />
         /// <summary>
+        /// Get the person with the specified <paramref name="id" />.
+        /// </summary>
+        /// <param name="id">The id of the person to get.</param>
+        /// <param name="token">Propagates notification that operations should be canceled.</param>
+        /// <returns>The found person or null.</returns>
+        [HttpGet]
+        [Route("Gdpr/Persons/{id}")]
+        [SwaggerGroup("Persons")]
+        [SwaggerSuccessResponse(typeof(Person))]
+        public override Task<Person> ReadAsync(string id, CancellationToken token = new CancellationToken())
+        {
+            return base.ReadAsync(id, token);
+        }
+
+        /// <inheritdoc />
+        /// <summary>
         /// Get all persons
         /// </summary>
         /// <param name="offset">The number of items that will be skipped in result.</param>
@@ -55,22 +72,6 @@ namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
         public override Task<PageEnvelope<Person>> ReadAllWithPagingAsync(int offset, int? limit = null, CancellationToken token = new CancellationToken())
         {
             return base.ReadAllWithPagingAsync(offset, limit, token);
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        /// Get the person with the specified <paramref name="id" />.
-        /// </summary>
-        /// <param name="id">The id of the person to get.</param>
-        /// <param name="token">Propagates notification that operations should be canceled.</param>
-        /// <returns>The found person or null.</returns>
-        [HttpGet]
-        [Route("Gdpr/Persons/{id}")]
-        [SwaggerGroup("Persons")]
-        [SwaggerSuccessResponse(typeof(Person))]
-        public override Task<Person> ReadAsync(string id, CancellationToken token = new CancellationToken())
-        {
-            return base.ReadAsync(id, token);
         }
 
         /// <inheritdoc />

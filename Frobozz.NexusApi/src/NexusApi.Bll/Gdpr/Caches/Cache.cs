@@ -1,9 +1,9 @@
 ﻿using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
 using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.Core.Crud.Cache;
-using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
-using Xlent.Lever.Libraries2.Core.Crud.MemoryStorage;
+using Xlent.Lever.Libraries2.Crud.Cache;
+using Xlent.Lever.Libraries2.Crud.Interfaces;
+using Xlent.Lever.Libraries2.Crud.MemoryStorage;
 
 namespace Frobozz.NexusApi.Bll.Gdpr.Caches
 {
@@ -53,6 +53,6 @@ namespace Frobozz.NexusApi.Bll.Gdpr.Caches
         public ICrud<ConsentCreate, Consent, string> ConsentService { get; }
 
         /// <inheritdoc />
-        public ISlaveToMaster<PersonConsentCreate, PersonConsent, string> PersonConsentService { get; }
+        public ICrudSlaveToMaster<PersonConsentCreate, PersonConsent, string> PersonConsentService { get; }
     }
 }

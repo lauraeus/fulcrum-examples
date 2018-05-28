@@ -1,5 +1,5 @@
 ﻿using Frobozz.Contracts.GdprCapability.Model;
-using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
+using Xlent.Lever.Libraries2.Crud.Interfaces;
 
 namespace Frobozz.Contracts.GdprCapability.Interfaces
 {
@@ -21,6 +21,6 @@ namespace Frobozz.Contracts.GdprCapability.Interfaces
         /// <summary>
         /// Service for getting information about the consents of a specific person.
         /// </summary>
-        ISlaveToMaster<PersonConsentCreate, PersonConsent, string> PersonConsentService { get; }
+        ICrudSlaveToMaster<PersonConsentCreate, PersonConsent, string> PersonConsentService { get; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
 using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
+using Xlent.Lever.Libraries2.Crud.Interfaces;
 using Xlent.Lever.Libraries2.WebApi.Crud.RestClient;
 using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
 
@@ -27,6 +27,6 @@ namespace Frobozz.NexusApi.Dal.RestServices.Gdpr
         public ICrud<ConsentCreate, Consent, string> ConsentService { get; }
 
         /// <inheritdoc />
-        public ISlaveToMaster<PersonConsentCreate, PersonConsent, string> PersonConsentService { get; }
+        public ICrudSlaveToMaster<PersonConsentCreate, PersonConsent, string> PersonConsentService { get; }
     }
 }
