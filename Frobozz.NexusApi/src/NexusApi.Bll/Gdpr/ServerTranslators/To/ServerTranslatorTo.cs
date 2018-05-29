@@ -14,19 +14,21 @@ namespace Frobozz.NexusApi.Bll.Gdpr.ServerTranslators.To
         public ServerTranslatorTo(IGdprCapability capablity, System.Func<string> getServerNameMethod, ITranslatorService translatorService)
         {
             PersonService = new PersonServerTranslatorTo(capablity, getServerNameMethod, translatorService);
-            ConsentService = new CrudToServerTranslator<ConsentCreate, Consent>(capablity.ConsentService, "consent.id", getServerNameMethod, translatorService);
-            FulcrumAssert.IsNotNull(ConsentService);
-            PersonConsentService = new SlaveToMasterToServerTranslator<PersonConsentCreate, PersonConsent>(capablity.PersonConsentService, getServerNameMethod, translatorService);
-            FulcrumAssert.IsNotNull(PersonConsentService);
+            ConsentService = new ConsentServerTranslatorTo(capablity, getServerNameMethod, translatorService);
+            PersonConsentService = new PersonConsentServerTranslatorTo(capablity, getServerNameMethod, translatorService);
+            ConsentPersonService = new ConsentPersonServerTranslatorTo(capablity, getServerNameMethod, translatorService);
         }
 
         /// <inheritdoc />
         public IPersonService PersonService { get; }
 
         /// <inheritdoc />
-        public ICrud<ConsentCreate, Consent, string> ConsentService { get; }
+        public IConsentService ConsentService { get; }
 
         /// <inheritdoc />
-        public ICrudSlaveToMaster<PersonConsentCreate, PersonConsent, string> PersonConsentService { get; }
+        public IPersonConsentService PersonConsentService { get; }
+
+        /// <inheritdoc />
+        public IConsentPersonService ConsentPersonService { get; }
     }
 }

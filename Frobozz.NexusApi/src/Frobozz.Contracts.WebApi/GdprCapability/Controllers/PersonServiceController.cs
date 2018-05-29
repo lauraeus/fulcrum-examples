@@ -12,6 +12,7 @@ using Xlent.Lever.Libraries2.WebApi.Crud.ApiControllers;
 namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
 {
     /// <inheritdoc cref="IPersonService" />
+    [RoutePrefix("Gdpr/Persons")]
     public abstract class PersonServiceController : CrudApiController<PersonCreate, Person>, IPersonService
     {
         private readonly IGdprCapability _gdprCapability;
@@ -29,16 +30,16 @@ namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
         /// <summary>
         /// Create a new person
         /// </summary>
-        /// <param name="person">The data for the person to create.</param>
+        /// <param name="item">The data for the person to create.</param>
         /// <param name="token">Propagates notification that operations should be canceled.</param>
         /// <returns>The id for the created person.</returns>
         [HttpPost]
-        [Route("Gdpr/Persons")]
+        [Route("")]
         [SwaggerGroup("Persons")]
         [SwaggerSuccessResponse(typeof(string))]
-        public override Task<string> CreateAsync(PersonCreate person, CancellationToken token = new CancellationToken())
+        public override Task<string> CreateAsync(PersonCreate item, CancellationToken token = new CancellationToken())
         {
-            return base.CreateAsync(person, token);
+            return base.CreateAsync(item, token);
         }
 
         /// <inheritdoc />
@@ -49,7 +50,7 @@ namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
         /// <param name="token">Propagates notification that operations should be canceled.</param>
         /// <returns>The found person or null.</returns>
         [HttpGet]
-        [Route("Gdpr/Persons/{id}")]
+        [Route("{id}")]
         [SwaggerGroup("Persons")]
         [SwaggerSuccessResponse(typeof(Person))]
         public override Task<Person> ReadAsync(string id, CancellationToken token = new CancellationToken())
@@ -66,12 +67,57 @@ namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
         /// <param name="token">Propagates notification that operations should be canceled.</param>
         /// <returns>The found person or null.</returns>
         [HttpGet]
-        [Route("Gdpr/Persons")]
+        [Route("")]
         [SwaggerGroup("Persons")]
         [SwaggerSuccessResponse(typeof(PageEnvelope<Person>))]
         public override Task<PageEnvelope<Person>> ReadAllWithPagingAsync(int offset, int? limit = null, CancellationToken token = new CancellationToken())
         {
             return base.ReadAllWithPagingAsync(offset, limit, token);
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Create a new person
+        /// </summary>
+        /// <param name="id">The id of the person to update.</param>
+        /// <param name="item">The updated information for the person.</param>
+        /// <param name="token">Propagates notification that operations should be canceled.</param>
+        /// <returns>The id for the created person.</returns>
+        [HttpPut]
+        [Route("{id}")]
+        [SwaggerGroup("Persons")]
+        public override Task UpdateAsync(string id, Person item, CancellationToken token = new CancellationToken())
+        {
+            return base.UpdateAsync(id, item, token);
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Delete a person
+        /// </summary>
+        /// <param name="id">The id of the person to delete.</param>
+        /// <param name="token">Propagates notification that operations should be canceled.</param>
+        /// <returns>The id for the created person.</returns>
+        [HttpDelete]
+        [Route("{id}")]
+        [SwaggerGroup("Persons")]
+        public override Task DeleteAsync(string id, CancellationToken token = new CancellationToken())
+        {
+            return base.DeleteAsync(id, token);
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Delete all persons
+        /// </summary>
+        /// <param name="token">Propagates notification that operations should be canceled.</param>
+        /// <returns>The id for the created person.</returns>
+        [HttpDelete]
+        [Route("")]
+        [SwaggerGroup("Persons")]
+        public override Task DeleteAllAsync(CancellationToken token = new CancellationToken())
+        {
+            return base.DeleteAllAsync(token);
         }
 
         /// <inheritdoc />
@@ -82,7 +128,7 @@ namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
         /// <param name="token">Propagates notification that operations should be canceled.</param>
         /// <returns>The found person or null.</returns>
         [HttpGet]
-        [Route("Gdpr/Persons/FindByName")]
+        [Route("FindByName")]
         [SwaggerGroup("Persons")]
         [SwaggerSuccessResponse(typeof(Person))]
         [SwaggerBadRequestResponse]

@@ -12,20 +12,22 @@ namespace Frobozz.NexusApi.Dal.Mock.Gdpr
         /// <inheritdoc />
         public GdprMemoryMock()
         {
-            ConsentService = new CrudMemory<ConsentCreate, Consent, string>();
-            FulcrumAssert.IsNotNull(ConsentService);
             PersonService = new PersonMemoryStorage();
-            PersonConsentService = new SlaveToMasterMemory<PersonConsentCreate, PersonConsent, string>();
-            FulcrumAssert.IsNotNull(PersonConsentService);
+            ConsentService = new ConsentMemoryStorage();
+            PersonConsentService = new PersonConsentMemoryStorage();
+            ConsentPersonService = new ConsentPersonMemoryStorage();
         }
 
         /// <inheritdoc />
-        public ICrud<ConsentCreate, Consent, string> ConsentService { get; }
+        public IConsentService ConsentService { get; }
 
         /// <inheritdoc />
         public IPersonService PersonService { get; }
 
         /// <inheritdoc />
-        public ICrudSlaveToMaster<PersonConsentCreate, PersonConsent, string> PersonConsentService { get; }
+        public IPersonConsentService PersonConsentService { get; }
+
+        /// <inheritdoc />
+        public IConsentPersonService ConsentPersonService { get; }
     }
 }

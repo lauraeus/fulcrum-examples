@@ -18,7 +18,7 @@ namespace Frobozz.NexusApi.Bll.Gdpr.ServerTranslators.To
         /// Constructor 
         /// </summary>
         public PersonServerTranslatorTo(IGdprCapability gdprCapability, System.Func<string> getServerNameMethod, ITranslatorService translatorService)
-        :base(gdprCapability.PersonService, "person.id", getServerNameMethod, translatorService)
+        :base(gdprCapability.PersonService, "person.id",  getServerNameMethod, translatorService)
         {
             _gdprCapability = gdprCapability;
         }

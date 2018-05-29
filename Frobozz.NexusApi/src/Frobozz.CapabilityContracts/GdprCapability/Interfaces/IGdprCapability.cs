@@ -16,11 +16,16 @@ namespace Frobozz.Contracts.GdprCapability.Interfaces
         /// <summary>
         /// Service for administrating consents
         /// </summary>
-        ICrud<ConsentCreate, Consent, string> ConsentService { get; }
+        IConsentService ConsentService { get; }
 
         /// <summary>
-        /// Service for getting information about the consents of a specific person.
+        /// Service for accessing information about the consents of a specific person.
         /// </summary>
-        ICrudSlaveToMaster<PersonConsentCreate, PersonConsent, string> PersonConsentService { get; }
+        IPersonConsentService PersonConsentService { get; }
+
+        /// <summary>
+        /// Service for getting information about which persons that has a specific consent.
+        /// </summary>
+        IConsentPersonService ConsentPersonService { get; }
     }
 }

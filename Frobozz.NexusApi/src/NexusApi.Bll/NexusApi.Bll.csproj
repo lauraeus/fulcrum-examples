@@ -45,16 +45,28 @@
       <HintPath>..\..\packages\Xlent.Lever.Libraries2.Core.NetFramework.2.1.3\lib\net46\Xlent.Lever.Libraries2.Core.NetFramework.dll</HintPath>
     </Reference>
     <Reference Include="Xlent.Lever.Libraries2.Crud.NetFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Crud.NetFramework.1.1.1\lib\net46\Xlent.Lever.Libraries2.Crud.NetFramework.dll</HintPath>
+      <HintPath>..\..\packages\Xlent.Lever.Libraries2.Crud.NetFramework.1.1.12\lib\net46\Xlent.Lever.Libraries2.Crud.NetFramework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Gdpr\Caches\Cache.cs" />
+    <Compile Include="Gdpr\Caches\ConsentPersonCache.cs" />
+    <Compile Include="Gdpr\Caches\PersonConsentCache.cs" />
+    <Compile Include="Gdpr\Caches\ConsentCache.cs" />
     <Compile Include="Gdpr\Caches\PersonCache.cs" />
     <Compile Include="Gdpr\ClientTranslators\ClientTranslator.cs" />
+    <Compile Include="Gdpr\ClientTranslators\ConsentPersonClientTranslator.cs" />
+    <Compile Include="Gdpr\ClientTranslators\PersonConsentClientTranslator.cs" />
+    <Compile Include="Gdpr\ClientTranslators\ConsentClientTranslator.cs" />
     <Compile Include="Gdpr\ClientTranslators\PersonClientTranslator.cs" />
+    <Compile Include="Gdpr\ServerTranslators\From\ConsentPersonServerTranslatorFrom.cs" />
+    <Compile Include="Gdpr\ServerTranslators\From\PersonConsentServerTranslatorFrom.cs" />
+    <Compile Include="Gdpr\ServerTranslators\From\ConsentServerTranslatorFrom.cs" />
     <Compile Include="Gdpr\ServerTranslators\From\ServerTranslatorFrom.cs" />
     <Compile Include="Gdpr\ServerTranslators\From\PersonServerTranslatorFrom.cs" />
+    <Compile Include="Gdpr\ServerTranslators\To\ConsentServerTranslatorTo.cs" />
+    <Compile Include="Gdpr\ServerTranslators\To\ConsentPersonServerTranslatorTo.cs" />
+    <Compile Include="Gdpr\ServerTranslators\To\PersonConsentServerTranslatorTo.cs" />
     <Compile Include="Gdpr\ServerTranslators\To\PersonServerTranslatorTo.cs" />
     <Compile Include="Gdpr\ServerTranslators\To\ServerTranslatorTo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

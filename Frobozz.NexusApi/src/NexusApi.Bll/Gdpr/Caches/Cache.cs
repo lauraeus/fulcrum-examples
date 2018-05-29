@@ -25,13 +25,15 @@ namespace Frobozz.NexusApi.Bll.Gdpr.Caches
             _personService = new PersonCache(capablity, personCache);
             var consentCache = cacheFactory.GetOrCreateDistributedCacheAsync("Consent").Result;
             // ReSharper disable once SuspiciousTypeConversion.Global
-            ConsentService = new CrudAutoCache<ConsentCreate, Consent, string>(capablity.ConsentService, consentCache);
-            FulcrumAssert.IsNotNull(ConsentService);
+            ConsentService = new ConsentCache(capablity, consentCache);
             var personConsentCache = cacheFactory.GetOrCreateDistributedCacheAsync("PersonConsent").Result;
             // ReSharper disable once SuspiciousTypeConversion.Global
             PersonConsentService =
-                new SlaveToMasterAutoCache<PersonConsentCreate, PersonConsent, string>(capablity.PersonConsentService, personConsentCache);
-            FulcrumAssert.IsNotNull(PersonConsentService);
+                new PersonConsentCache(capablity, personConsentCache);
+            var consentPersonCache = cacheFactory.GetOrCreateDistributedCacheAsync("ConsentPerson").Result;
+            // ReSharper disable once SuspiciousTypeConversion.Global
+            ConsentPersonService =
+                new ConsentPersonCache(capablity, consentPersonCache);
         }
 
         /// <inheritdoc />
@@ -50,9 +52,12 @@ namespace Frobozz.NexusApi.Bll.Gdpr.Caches
         }
 
         /// <inheritdoc />
-        public ICrud<ConsentCreate, Consent, string> ConsentService { get; }
+        public IConsentService ConsentService { get; }
 
         /// <inheritdoc />
-        public ICrudSlaveToMaster<PersonConsentCreate, PersonConsent, string> PersonConsentService { get; }
+        public IPersonConsentService PersonConsentService { get; }
+
+        /// <inheritdoc />
+        public IConsentPersonService ConsentPersonService { get; }
     }
 }

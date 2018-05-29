@@ -5,8 +5,10 @@ using Xlent.Lever.Libraries2.Crud.Interfaces;
 
 namespace Frobozz.Contracts.GdprCapability.Interfaces
 {
-    /// <inheritdoc />
-    public interface IPersonService : ICrud<PersonCreate, Person, string>
+    /// <summary>
+    /// Methods for accessing a person
+    /// </summary>
+    public interface IPersonService : ICrudBasic<PersonCreate, Person, string>
     {
         /// <summary>
         /// Find the first person with an exact match for the name

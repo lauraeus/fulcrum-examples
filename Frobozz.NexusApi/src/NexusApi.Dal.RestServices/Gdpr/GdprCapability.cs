@@ -14,9 +14,10 @@ namespace Frobozz.NexusApi.Dal.RestServices.Gdpr
         public GdprCapability()
         {
             PersonService = new PersonService("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Persons");
-            ConsentService = new CrudRestClient<ConsentCreate, Consent, string>("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Consents");
+            ConsentService = new ConsentService("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Consents");
             FulcrumAssert.IsNotNull(ConsentService);
-            PersonConsentService = new SlaveToMasterRestClient<PersonConsentCreate, PersonConsent, string>("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Persons", "Persons", "Consents");
+            PersonConsentService = new PersonConsentService("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Persons", "Persons", "Consents");
+            ConsentPersonService = new ConsentPersonService("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Consents", "Consents", "Persons");
             FulcrumAssert.IsNotNull(PersonConsentService);
         }
 
@@ -24,9 +25,12 @@ namespace Frobozz.NexusApi.Dal.RestServices.Gdpr
         public IPersonService PersonService { get; }
 
         /// <inheritdoc />
-        public ICrud<ConsentCreate, Consent, string> ConsentService { get; }
+        public IConsentService ConsentService { get; }
 
         /// <inheritdoc />
-        public ICrudSlaveToMaster<PersonConsentCreate, PersonConsent, string> PersonConsentService { get; }
+        public IPersonConsentService PersonConsentService { get; }
+
+        /// <inheritdoc />
+        public IConsentPersonService ConsentPersonService { get; }
     }
 }

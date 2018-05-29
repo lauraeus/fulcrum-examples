@@ -12,7 +12,8 @@ namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
     /// <summary>
     /// ApiController for Product that does inputcontrol. Logic is separated into another layer. 
     /// </summary>
-    public abstract class ConsentServiceController : CrudApiController<ConsentCreate, Consent>
+    [RoutePrefix("Gdpr/Consents")]
+    public abstract class ConsentServiceController : CrudApiController<ConsentCreate, Consent>, IConsentService
     {
         /// <summary>
         /// Constructor 
@@ -23,8 +24,14 @@ namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
         }
 
         /// <inheritdoc />
+        /// <summary>
+        /// Create a new consent
+        /// </summary>
+        /// <param name="item">The data for the consent to create.</param>
+        /// <param name="token">Propagates notification that operations should be canceled.</param>
+        /// <returns>The id for the created consent.</returns>
         [HttpPost]
-        [Route("Gdpr/Consents")]
+        [Route("")]
         [SwaggerGroup("Consents")]
         [SwaggerSuccessResponse(typeof(string))]
         public override Task<string> CreateAsync(ConsentCreate item, CancellationToken token = new CancellationToken())
@@ -33,18 +40,31 @@ namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
         }
 
         /// <inheritdoc />
+        /// <summary>
+        /// Get the consent with the specified <paramref name="id" />.
+        /// </summary>
+        /// <param name="id">The id of the consent to get.</param>
+        /// <param name="token">Propagates notification that operations should be canceled.</param>
+        /// <returns>The found consent or null.</returns>
         [HttpGet]
-        [Route("Gdpr/Consents/{id}")]
+        [Route("{id}")]
         [SwaggerGroup("Consents")]
-        [SwaggerSuccessResponse(typeof(Person))]
+        [SwaggerSuccessResponse(typeof(Consent))]
         public override Task<Consent> ReadAsync(string id, CancellationToken token = new CancellationToken())
         {
             return base.ReadAsync(id, token);
         }
 
         /// <inheritdoc />
+        /// <summary>
+        /// Get all consents
+        /// </summary>
+        /// <param name="offset">The number of items that will be skipped in result.</param>
+        /// <param name="limit">The maximum number of items to return.</param>
+        /// <param name="token">Propagates notification that operations should be canceled.</param>
+        /// <returns>The found consent or null.</returns>
         [HttpGet]
-        [Route("Gdpr/Consents")]
+        [Route("")]
         [SwaggerGroup("Consents")]
         [SwaggerSuccessResponse(typeof(PageEnvelope<Consent>))]
         public override Task<PageEnvelope<Consent>> ReadAllWithPagingAsync(int offset, int? limit = null, CancellationToken token = new CancellationToken())
@@ -53,23 +73,48 @@ namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
         }
 
         /// <inheritdoc />
+        /// <summary>
+        /// Create a new consent
+        /// </summary>
+        /// <param name="id">The id of the consent to update.</param>
+        /// <param name="item">The updated information for the consent.</param>
+        /// <param name="token">Propagates notification that operations should be canceled.</param>
+        /// <returns>The id for the created consent.</returns>
         [HttpPut]
-        [Route("Gdpr/Consents/{id}")]
+        [Route("{id}")]
         [SwaggerGroup("Consents")]
-        [SwaggerSuccessResponse]
         public override Task UpdateAsync(string id, Consent item, CancellationToken token = new CancellationToken())
         {
             return base.UpdateAsync(id, item, token);
         }
 
         /// <inheritdoc />
+        /// <summary>
+        /// Delete a consent
+        /// </summary>
+        /// <param name="id">The id of the consent to delete.</param>
+        /// <param name="token">Propagates notification that operations should be canceled.</param>
+        /// <returns>The id for the created consent.</returns>
         [HttpDelete]
-        [Route("Gdpr/Consents/{id}")]
+        [Route("{id}")]
         [SwaggerGroup("Consents")]
-        [SwaggerSuccessResponse]
         public override Task DeleteAsync(string id, CancellationToken token = new CancellationToken())
         {
             return base.DeleteAsync(id, token);
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Delete all consents
+        /// </summary>
+        /// <param name="token">Propagates notification that operations should be canceled.</param>
+        /// <returns>The id for the created consent.</returns>
+        [HttpDelete]
+        [Route("")]
+        [SwaggerGroup("Consents")]
+        public override Task DeleteAllAsync(CancellationToken token = new CancellationToken())
+        {
+            return base.DeleteAllAsync(token);
         }
     }
 }
