@@ -7,16 +7,17 @@ using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
 using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.Core.Crud.Helpers;
-using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
-using Xlent.Lever.Libraries2.Core.Crud.Mappers;
+using Xlent.Lever.Libraries2.Crud.Helpers;
+using Xlent.Lever.Libraries2.Crud.Interfaces;
+using Xlent.Lever.Libraries2.Crud.Mappers;
 using Xlent.Lever.Libraries2.Core.Storage.Logic;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
+using Xlent.Lever.Libraries2.Crud.Model;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
 {
     /// <inheritdoc cref="IPersonService" />
-    public class PersonMapper : CrudBase<PersonCreate, Person, string>, IPersonService
+    public class PersonMapper : IPersonService
     {
         private readonly IStorage _storage;
 
@@ -29,7 +30,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
         }
 
         /// <inheritdoc />
-        public override async Task<Person> ReadAsync(string id, CancellationToken token = new CancellationToken())
+        public async Task<Person> ReadAsync(string id, CancellationToken token = new CancellationToken())
         {
             var serverId = MapperHelper.MapToType<Guid, string>(id);
             var record = await _storage.Person.ReadAsync(serverId, token);
@@ -37,7 +38,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
         }
 
         /// <inheritdoc />
-        public override async Task<PageEnvelope<Person>> ReadAllWithPagingAsync(int offset, int? limit = null, CancellationToken token = new CancellationToken())
+        public async Task<PageEnvelope<Person>> ReadAllWithPagingAsync(int offset, int? limit = null, CancellationToken token = new CancellationToken())
         {
             var storagePage = await _storage.Person.ReadAllWithPagingAsync(offset, limit, token);
             FulcrumAssert.IsNotNull(storagePage?.Data);
@@ -46,7 +47,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
         }
 
         /// <inheritdoc />
-        public override async Task<string> CreateAsync(PersonCreate item, CancellationToken token = new CancellationToken())
+        public async Task<string> CreateAsync(PersonCreate item, CancellationToken token = new CancellationToken())
         {
             var record = await MapToServerAsync(item, token);
             record = await _storage.Person.CreateAndReturnAsync(record, token);
@@ -57,7 +58,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
         }
 
         /// <inheritdoc />
-        public override async Task DeleteAsync(string id, CancellationToken token = new CancellationToken())
+        public async Task DeleteAsync(string id, CancellationToken token = new CancellationToken())
         {
             var serverId = MapperHelper.MapToType<Guid, string>(id);
             var item = new PersonCreate();
@@ -66,36 +67,28 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
         }
 
         /// <inheritdoc />
-        public override async Task CreateWithSpecifiedIdAsync(string id, PersonCreate item, CancellationToken token = new CancellationToken())
-        {
-            var serverId = MapperHelper.MapToType<Guid, string>(id);
-            var record = await MapToServerAsync(item, token);
-            await _storage.Person.CreateWithSpecifiedIdAsync(serverId, record, token);
-            FulcrumAssert.IsValidated(record);
-            FulcrumAssert.IsNotDefaultValue(record.Id);
-            await UpdateAddressesAsync(record.Id, item, token);
-        }
-
-        /// <inheritdoc />
-        public override Task<Lock> ClaimLockAsync(string id, CancellationToken token = new CancellationToken())
-        {
-            var serverId = MapperHelper.MapToType<Guid, string>(id);
-            return _storage.Person.ClaimLockAsync(serverId, token);
-        }
-
-        /// <inheritdoc />
-        public override Task ReleaseLockAsync(Lock @lock, CancellationToken token = new CancellationToken())
-        {
-            return _storage.Person.ReleaseLockAsync(@lock, token);
-        }
-
-        /// <inheritdoc />
-        public override async Task UpdateAsync(string id, Person item, CancellationToken token = new CancellationToken())
+        public async Task UpdateAsync(string id, Person item, CancellationToken token = new CancellationToken())
         {
             var serverId = MapperHelper.MapToType<Guid, string>(id);
             var record = await MapToServerAsync(item, token);
             await _storage.Person.UpdateAsync(serverId, record, token);
             await UpdateAddressesAsync(record.Id, item, token);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteAllAsync(CancellationToken token = new CancellationToken())
+        {
+            var personEnumerator = new PageEnvelopeEnumeratorAsync<Person>((offset, ct) => ReadAllWithPagingAsync(offset, null, ct), token);
+            var tasks = new List<Task>();
+            while (await personEnumerator.MoveNextAsync())
+            {
+                token.ThrowIfCancellationRequested();
+                var person = personEnumerator.Current;
+                var task = DeleteAsync(person.Id, token);
+                tasks.Add(task);
+            }
+
+            await Task.WhenAll(tasks);
         }
 
         /// <inheritdoc />

@@ -1,7 +1,7 @@
 ﻿using System;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
-using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
-using Xlent.Lever.Libraries2.Core.Crud.MemoryStorage;
+using Xlent.Lever.Libraries2.Crud.Interfaces;
+using Xlent.Lever.Libraries2.Crud.MemoryStorage;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Mock
 {
@@ -15,10 +15,10 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Mock
         public ICrud<ConsentTable, Guid> Consent { get; }
 
         /// <inheritdoc />
-        public IManyToOneComplete<AddressTable, Guid> Address { get; }
+        public ICrudManyToOne<AddressTable, Guid> Address { get; }
 
         /// <inheritdoc />
-        public IManyToManyComplete<PersonConsentTable, PersonTable, ConsentTable, Guid> PersonConsent { get; }
+        public ICrudManyToMany<PersonConsentTable, PersonTable, ConsentTable, Guid> PersonConsent { get; }
 
         /// <summary>
         /// Constructor

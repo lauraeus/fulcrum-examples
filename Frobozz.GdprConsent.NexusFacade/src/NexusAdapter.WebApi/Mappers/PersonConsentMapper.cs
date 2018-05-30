@@ -2,19 +2,20 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
 using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.Core.Crud.Helpers;
-using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
-using Xlent.Lever.Libraries2.Core.Crud.Mappers;
-using Xlent.Lever.Libraries2.Core.Crud.Model;
+using Xlent.Lever.Libraries2.Crud.Helpers;
+using Xlent.Lever.Libraries2.Crud.Interfaces;
+using Xlent.Lever.Libraries2.Crud.Mappers;
+using Xlent.Lever.Libraries2.Crud.Model;
 using Xlent.Lever.Libraries2.Core.Storage.Model;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
 {
     /// <inheritdoc />
-    public class PersonConsentMapper : SlaveToMasterBase<PersonConsentCreate, PersonConsent, string>, ISlaveToMaster<PersonConsentCreate, PersonConsent, string>
+    public class PersonConsentMapper : IPersonConsentService
     {
         private readonly IStorage _storage;
         /// <summary>
@@ -26,10 +27,46 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
         }
 
         /// <inheritdoc />
-        public override async Task<PageEnvelope<PersonConsent>> ReadChildrenWithPagingAsync(string parentId, int offset, int? limit = null,
+        public Task CreateWithSpecifiedIdAsync(string masterId, string slaveId, PersonConsentCreate item,
             CancellationToken token = new CancellationToken())
         {
-            var serverId = MapperHelper.MapToType<Guid, string>(parentId);
+            InternalContract.RequireNotNull(item, nameof(item));
+            InternalContract.RequireValidated(item, nameof(item));
+            InternalContract.Require(masterId == item.PersonId, $"{nameof(masterId)} ({masterId} must have the same value as {nameof(item)}.{nameof(item.PersonId)} ({item.PersonId}).");
+            InternalContract.Require(slaveId == item.ConsentId, $"{nameof(slaveId)} ({slaveId} must have the same value as {nameof(item)}.{nameof(item.ConsentId)} ({item.ConsentId}).");
+            var serverItem = MapToServer(item);
+            return _storage.PersonConsent.CreateAsync(serverItem, token);
+        }
+
+        /// <inheritdoc />
+        public async Task<PersonConsent> CreateWithSpecifiedIdAndReturnAsync(string masterId, string slaveId, PersonConsentCreate item,
+            CancellationToken token = new CancellationToken())
+        {
+            InternalContract.RequireNotNull(item, nameof(item));
+            InternalContract.RequireValidated(item, nameof(item));
+            InternalContract.Require(masterId == item.PersonId, $"{nameof(masterId)} ({masterId} must have the same value as {nameof(item)}.{nameof(item.PersonId)} ({item.PersonId}).");
+            InternalContract.Require(slaveId == item.ConsentId, $"{nameof(slaveId)} ({slaveId} must have the same value as {nameof(item)}.{nameof(item.ConsentId)} ({item.ConsentId}).");
+            var serverItem = MapToServer(item);
+            serverItem = await _storage.PersonConsent.CreateAndReturnAsync(serverItem, token);
+            return await MapFromServerAsync(serverItem, token);
+        }
+
+        /// <inheritdoc />
+        public async Task<PersonConsent> ReadAsync(string masterId, string slaveId, CancellationToken token = new CancellationToken())
+        {
+            InternalContract.RequireNotDefaultValue(masterId, nameof(masterId));
+            InternalContract.RequireNotDefaultValue(slaveId, nameof(slaveId));
+            var serverMasterId = MapperHelper.MapToType<Guid, string>(masterId);
+            var serverSlaveId = MapperHelper.MapToType<Guid, string>(slaveId);
+            var serverItem = await _storage.PersonConsent.ReadAsync(serverMasterId, serverSlaveId, token);
+            return await MapFromServerAsync(serverItem, token);
+        }
+
+        /// <inheritdoc />
+        public async Task<PageEnvelope<PersonConsent>> ReadChildrenWithPagingAsync(string personId, int offset, int? limit = null,
+            CancellationToken token = new CancellationToken())
+        {
+            var serverId = MapperHelper.MapToType<Guid, string>(personId);
             var storagePage = await _storage.PersonConsent.ReadByReference1WithPagingAsync(serverId, offset, limit, token);
             FulcrumAssert.IsNotNull(storagePage?.Data);
             var tasks = storagePage?.Data.Select(record => MapFromServerAsync(record, token));
@@ -37,44 +74,29 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
         }
 
         /// <inheritdoc />
-        public override async Task<SlaveToMasterId<string>> CreateAsync(string masterId, PersonConsentCreate item, CancellationToken token = new CancellationToken())
+        public Task UpdateAsync(string masterId, string slaveId, PersonConsent item,
+            CancellationToken token = new CancellationToken())
         {
+            InternalContract.RequireNotDefaultValue(masterId, nameof(masterId));
+            InternalContract.RequireNotDefaultValue(slaveId, nameof(slaveId));
             var serverMasterId = MapperHelper.MapToType<Guid, string>(masterId);
+            var serverSlaveId = MapperHelper.MapToType<Guid, string>(slaveId);
             var serverItem = MapToServer(item);
-            var serverId = await _storage.PersonConsent.CreateAsync(serverItem, token);
-            var slaveId = MapperHelper.MapToType<string, Guid>(serverId);
-            return new SlaveToMasterId<string>(masterId, slaveId);
+            return _storage.PersonConsent.UpdateAsync(serverMasterId, serverSlaveId, serverItem, token);
         }
 
         /// <inheritdoc />
-        public override async Task<PersonConsent> CreateAndReturnAsync(string masterId, PersonConsentCreate item, CancellationToken token = new CancellationToken())
+        public Task DeleteAsync(string masterId, string slaveId, CancellationToken token = new CancellationToken())
         {
-            var serverItem = MapToServer(item);
-            serverItem = await _storage.PersonConsent.CreateAndReturnAsync(serverItem, token);
-            return await MapFromServerAsync(serverItem, token);
+            InternalContract.RequireNotDefaultValue(masterId, nameof(masterId));
+            InternalContract.RequireNotDefaultValue(slaveId, nameof(slaveId));
+            var serverMasterId = MapperHelper.MapToType<Guid, string>(masterId);
+            var serverSlaveId = MapperHelper.MapToType<Guid, string>(slaveId);
+            return _storage.PersonConsent.DeleteAsync(serverMasterId, serverSlaveId, token);
         }
 
         /// <inheritdoc />
-        public override async Task CreateWithSpecifiedIdAsync(SlaveToMasterId<string> id, PersonConsentCreate item,
-            CancellationToken token = new CancellationToken())
-        {
-            var serverId = MapperHelper.MapToType<Guid, string>(id);
-            var serverItem = MapToServer(item);
-            await _storage.PersonConsent.CreateWithSpecifiedIdAsync(serverId.SlaveId, serverItem, token);
-        }
-
-        /// <inheritdoc />
-        public override async Task<PersonConsent> CreateWithSpecifiedIdAndReturnAsync(SlaveToMasterId<string> id, PersonConsentCreate item,
-            CancellationToken token = new CancellationToken())
-        {
-            var serverId = MapperHelper.MapToType<Guid, string>(id);
-            var serverItem = MapToServer(item);
-            serverItem = await _storage.PersonConsent.CreateWithSpecifiedIdAndReturnAsync(serverId.SlaveId, serverItem, token);
-            return await MapFromServerAsync(serverItem, token);
-        }
-
-        /// <inheritdoc />
-        public override async Task DeleteChildrenAsync(string parentId, CancellationToken token = new CancellationToken())
+        public async Task DeleteChildrenAsync(string parentId, CancellationToken token = new CancellationToken())
         {
             var serverId = MapperHelper.MapToType<Guid, string>(parentId);
             await _storage.PersonConsent.DeleteByReference1Async(serverId, token);
@@ -85,12 +107,14 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
         {
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
-            var serverConsent = await _storage.Consent.ReadAsync(source.ConsentId, token);
+            var serverConsentTask = _storage.Consent.ReadAsync(source.ConsentId, token);
+            var serverPersonTask = _storage.Consent.ReadAsync(source.PersonId, token);
             var target = new PersonConsent
             {
                 Id = MapperHelper.MapToType<string, Guid>(source.Id),
                 ConsentId = MapperHelper.MapToType<string, Guid>(source.ConsentId),
-                ConsentName = serverConsent.Name,
+                PersonName = (await serverPersonTask).Name,
+                ConsentName = (await serverConsentTask).Name,
                 Etag = source.Etag,
                 PersonId = MapperHelper.MapToType<string, Guid>(source.PersonId),
                 HasGivenConsent = source.HasGivenConsent

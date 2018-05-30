@@ -2,8 +2,9 @@
 using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
-using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
-using Xlent.Lever.Libraries2.Core.Crud.Mappers;
+using Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Basic;
+using Xlent.Lever.Libraries2.Crud.Interfaces;
+using Xlent.Lever.Libraries2.Crud.Mappers;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
 {
@@ -16,17 +17,21 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
         public Mapper(IStorage storage)
         {
             PersonService = new PersonMapper(storage);
-            ConsentService = new CrudMapper<ConsentCreate,Consent,string,ConsentTable,Guid>(storage.Consent, new ConsentMapper());
+            ConsentService = new ConsentMapper(storage, new Basic.ConsentMapper());
             PersonConsentService = new PersonConsentMapper(storage);
+            ConsentPersonService = new ConsentPersonMapper(storage);
         }
 
         /// <inheritdoc />
         public IPersonService PersonService { get; }
 
         /// <inheritdoc />
-        public ICrud<ConsentCreate, Consent, string> ConsentService { get; }
+        public IConsentService ConsentService { get; }
 
         /// <inheritdoc />
-        public ISlaveToMaster<PersonConsentCreate, PersonConsent, string> PersonConsentService { get; }
+        public IPersonConsentService PersonConsentService { get; }
+
+        /// <inheritdoc />
+        public IConsentPersonService ConsentPersonService { get; }
     }
 }

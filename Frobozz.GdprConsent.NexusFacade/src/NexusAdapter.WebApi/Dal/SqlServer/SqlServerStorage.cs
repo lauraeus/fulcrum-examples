@@ -1,6 +1,6 @@
 ﻿using System;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
-using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
+using Xlent.Lever.Libraries2.Crud.Interfaces;
 using Xlent.Lever.Libraries2.SqlServer;
 using Xlent.Lever.Libraries2.SqlServer.Model;
 
@@ -16,10 +16,10 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer
         public ICrud<ConsentTable, Guid> Consent { get; }
 
         /// <inheritdoc />
-        public IManyToOneComplete<AddressTable, Guid> Address { get; }
+        public ICrudManyToOne<AddressTable, Guid> Address { get; }
 
         /// <inheritdoc />
-        public IManyToManyComplete<PersonConsentTable, PersonTable, ConsentTable, Guid> PersonConsent { get; }
+        public ICrudManyToMany<PersonConsentTable, PersonTable, ConsentTable, Guid> PersonConsent { get; }
 
         /// <summary>
         /// Constructor

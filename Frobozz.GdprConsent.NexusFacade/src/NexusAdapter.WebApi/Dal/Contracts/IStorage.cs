@@ -1,5 +1,5 @@
 ﻿using System;
-using Xlent.Lever.Libraries2.Core.Crud.Interfaces;
+using Xlent.Lever.Libraries2.Crud.Interfaces;
 
 #pragma warning disable 1591
 
@@ -7,9 +7,9 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts
 {
     public interface IStorage
     {
-        IManyToOneComplete<AddressTable, Guid> Address { get; }
+        ICrudManyToOne<AddressTable, Guid> Address { get; }
         ICrud<PersonTable, Guid> Person { get; }
         ICrud<ConsentTable, Guid> Consent { get; }
-        IManyToManyComplete<PersonConsentTable, PersonTable, ConsentTable, Guid> PersonConsent { get; }
+        ICrudManyToMany<PersonConsentTable, PersonTable, ConsentTable, Guid> PersonConsent { get; }
     }
 }
