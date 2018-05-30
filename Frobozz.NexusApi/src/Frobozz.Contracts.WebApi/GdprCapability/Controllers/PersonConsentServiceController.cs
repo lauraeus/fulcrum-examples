@@ -13,10 +13,12 @@ namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
 {
     /// <inheritdoc />
     [RoutePrefix("Gdpr/Persons/{personId}/Consents")]
-    public abstract class PersonConsentServiceController : SlaveToMasterApiController<PersonConsentCreate, PersonConsent>, IPersonConsentService
+    public abstract class PersonConsentServiceController : 
+        SlaveToMasterApiController<PersonConsentCreate, PersonConsent>,
+        IPersonConsentService
     {
         /// <inheritdoc />
-        public PersonConsentServiceController(IGdprCapability gdprCapability)
+        protected PersonConsentServiceController(IGdprCapability gdprCapability)
             : base(gdprCapability.PersonConsentService)
         {
         }

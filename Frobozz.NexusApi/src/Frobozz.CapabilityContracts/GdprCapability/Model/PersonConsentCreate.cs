@@ -10,10 +10,6 @@ namespace Frobozz.Contracts.GdprCapability.Model
     /// </summary>
     public class PersonConsentCreate : IValidatable
     {
-        /// <summary>
-        /// True if the person has approved the consent
-        /// </summary>
-        public bool HasGivenConsent { get; set; }
 
         /// <summary>
         /// The id of the person that this person-consent is for.
@@ -29,18 +25,35 @@ namespace Frobozz.Contracts.GdprCapability.Model
         [Required]
         public string ConsentId { get; set; }
 
+        /// <summary>
+        /// True if the person has approved the consent
+        /// </summary>
+        public bool HasGivenConsent { get; set; }
+
+        /// <summary>
+        /// The name of the person.
+        /// </summary>
+        public string PersonName { get; set; }
+
+        /// <summary>
+        /// The name of the consent.
+        /// </summary>
+        public string ConsentName { get; set; }
+
         #region Interface implementations
         /// <inheritdoc />
         public virtual void Validate(string errorLocation, string propertyPath = "")
         {
             FulcrumValidate.IsNotNullOrWhiteSpace(PersonId, nameof(PersonId), errorLocation);
             FulcrumValidate.IsNotNullOrWhiteSpace(ConsentId, nameof(ConsentId), errorLocation);
+            FulcrumValidate.IsNotNullOrWhiteSpace(ConsentName, nameof(ConsentName), errorLocation);
+            FulcrumValidate.IsNotNullOrWhiteSpace(PersonName, nameof(PersonName), errorLocation);
         }
 
         /// <inheritdoc />
         public override string ToString()
         {
-            return $"({PersonId}, {ConsentId})";
+            return $"({PersonName}, {ConsentName} : {HasGivenConsent})";
         }
         #endregion
     }

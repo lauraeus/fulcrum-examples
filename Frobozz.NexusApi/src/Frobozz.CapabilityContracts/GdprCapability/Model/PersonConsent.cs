@@ -10,11 +10,6 @@ namespace Frobozz.Contracts.GdprCapability.Model
     /// </summary>
     public class PersonConsent : PersonConsentCreate, IRecommendedStorableItem<string>, IValidatable
     {
-        /// <summary>
-        /// The name of the consent.
-        /// </summary>
-        public string ConsentName { get; set; }
-
         #region Interface implementations
         /// <inheritdoc />
         [TranslationConcept("person-consent.id")]
@@ -26,15 +21,8 @@ namespace Frobozz.Contracts.GdprCapability.Model
         /// <inheritdoc />
         public override void Validate(string errorLocation, string propertyPath = "")
         {
-            FulcrumValidate.IsNotNullOrWhiteSpace(ConsentName, nameof(ConsentName), errorLocation);
             FulcrumValidate.IsNotNullOrWhiteSpace(Id, nameof(Id), errorLocation);
             FulcrumValidate.IsNotNullOrWhiteSpace(Etag, nameof(Etag), errorLocation);
-        }
-
-        /// <inheritdoc />
-        public override string ToString()
-        {
-            return $"{ConsentName} ({PersonId})";
         }
         #endregion
     }

@@ -6,6 +6,7 @@ using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
 using Xlent.Lever.Libraries2.Core.Assert;
+using Xlent.Lever.Libraries2.Core.Error.Logic;
 using Xlent.Lever.Libraries2.Crud.Helpers;
 using Xlent.Lever.Libraries2.Crud.Interfaces;
 using Xlent.Lever.Libraries2.Crud.Mappers;
@@ -109,12 +110,16 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
             InternalContract.RequireValidated(source, nameof(source));
             var serverConsentTask = _storage.Consent.ReadAsync(source.ConsentId, token);
             var serverPersonTask = _storage.Consent.ReadAsync(source.PersonId, token);
+            var serverConsent = await serverConsentTask;
+            var serverPerson = await serverPersonTask;
+            if (serverConsent == null) throw new FulcrumNotFoundException($"Could not find consent with id {source.ConsentId}");
+            if (serverPerson == null) throw new FulcrumNotFoundException($"Could not find person with id {source.PersonId}");
             var target = new PersonConsent
             {
                 Id = MapperHelper.MapToType<string, Guid>(source.Id),
                 ConsentId = MapperHelper.MapToType<string, Guid>(source.ConsentId),
-                PersonName = (await serverPersonTask).Name,
-                ConsentName = (await serverConsentTask).Name,
+                PersonName = serverPerson.Name,
+                ConsentName = serverConsent.Name,
                 Etag = source.Etag,
                 PersonId = MapperHelper.MapToType<string, Guid>(source.PersonId),
                 HasGivenConsent = source.HasGivenConsent
