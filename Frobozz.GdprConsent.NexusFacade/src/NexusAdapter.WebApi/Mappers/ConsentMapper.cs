@@ -19,7 +19,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
     {
         /// <inheritdoc />
         public ConsentMapper(IStorage service, IMappable mapper) 
-            : base(service.PersonConsent, mapper)
+            : base(service.Consent, mapper)
         {
         }
     }

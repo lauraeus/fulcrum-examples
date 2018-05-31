@@ -13,7 +13,6 @@ using Xlent.Lever.Libraries2.WebApi.Crud.ApiControllers;
 namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
 {
     /// <inheritdoc cref="IConsentPersonService" />
-    [RoutePrefix("Gdpr/Consents/{consentId}/Persons")]
     public abstract class ConsentPersonServiceController : SlaveToMasterApiController<PersonConsentCreate, PersonConsent>, IConsentPersonService
     {
         /// <inheritdoc />
@@ -23,16 +22,16 @@ namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
         }
 
         /// <summary>
-        /// Get a page of consents for the specified person.
+        /// Get a page of persons for a specific consent..
         /// </summary>
-        /// <param name="consentId">The id for the person to find consents for.</param>
+        /// <param name="consentId">The id for the consent to find persons.</param>
         /// <param name="offset">How many items to skip before crating the page.</param>
         /// <param name="limit">The maaximum number of items in the page. Null means use the greatest number that is efficient for the implementation.</param>
         /// <param name="token">Propagates notification that operations should be canceled.</param>
-        /// <returns>A <see cref="PageEnvelope{T}"/> of consents that belongs to the specified person.</returns>
+        /// <returns>A <see cref="PageEnvelope{T}"/> of persons that has a record for the specified consent. .</returns>
         [HttpGet]
-        [Route("")]
-        [SwaggerGroup("Consents")]
+        [Route("Gdpr/Consents/{consentId}/Persons")]
+        [SwaggerGroup("Gdpr/Consents")]
         [SwaggerSuccessResponse(typeof(PageEnvelope<PersonConsent>))]
         public override Task<PageEnvelope<PersonConsent>> ReadChildrenWithPagingAsync(string consentId, int offset, int? limit = null,
             CancellationToken token = new CancellationToken())
