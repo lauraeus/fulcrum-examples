@@ -22,7 +22,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
         /// <summary>
         /// Constructor
         /// </summary>
-        public  PersonConsentMapper(IStorage storage)
+        public PersonConsentMapper(IStorage storage)
         {
             _storage = storage;
         }
@@ -109,7 +109,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
             InternalContract.RequireNotNull(source, nameof(source));
             InternalContract.RequireValidated(source, nameof(source));
             var serverConsentTask = _storage.Consent.ReadAsync(source.ConsentId, token);
-            var serverPersonTask = _storage.Consent.ReadAsync(source.PersonId, token);
+            var serverPersonTask = _storage.Person.ReadAsync(source.PersonId, token);
             var serverConsent = await serverConsentTask;
             var serverPerson = await serverPersonTask;
             if (serverConsent == null) throw new FulcrumNotFoundException($"Could not find consent with id {source.ConsentId}");
