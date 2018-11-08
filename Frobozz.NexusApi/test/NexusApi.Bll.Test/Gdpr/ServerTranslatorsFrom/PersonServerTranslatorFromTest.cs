@@ -8,6 +8,7 @@ using Frobozz.NexusApi.Bll.Test.Support;
 using Frobozz.NexusApi.Dal.Mock.Translator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Xlent.Lever.Libraries2.Core.Application;
 using Xlent.Lever.Libraries2.Core.Translation;
 
 namespace Frobozz.NexusApi.Bll.Test.Gdpr.ServerTranslatorsFrom
@@ -24,6 +25,7 @@ namespace Frobozz.NexusApi.Bll.Test.Gdpr.ServerTranslatorsFrom
         [TestInitialize]
         public void Initialize()
         {
+            FulcrumApplicationHelper.UnitTestSetup(typeof(PersonServerTranslatorFromTest).FullName);
             _translationServiceMock = new TranslatorServiceMock(MockTestContext.GetClientName(), true);
             _serviceMock = new Mock<IGdprCapability>();
             _serverTranslator = new PersonServerTranslatorFrom(_serviceMock.Object, MockTestContext.GetServerName);
