@@ -16,6 +16,7 @@ namespace Frobozz.NexusApi.Bll.Test.Gdpr.ClientTranslators
     public class PersonClientTranslatorTest
     {
         private Mock<IGdprCapability> _serviceMock;
+        private Mock<IPersonService> _personServiceMock;
         private PersonClientTranslator _clientTranslator;
         private Person _serverPerson;
         private Person _clientPerson;
@@ -25,7 +26,10 @@ namespace Frobozz.NexusApi.Bll.Test.Gdpr.ClientTranslators
         public void Initialize()
         {
             _translationServiceFromServerMock = new TranslatorServiceMock(MockTestContext.GetClientName(), true);
+            _personServiceMock = new Mock<IPersonService>();
             _serviceMock = new Mock<IGdprCapability>();
+            _serviceMock.SetupProperty(capability =>
+                capability.PersonService, _personServiceMock.Object);
             _clientTranslator = new PersonClientTranslator(_serviceMock.Object, MockTestContext.GetClientName, _translationServiceFromServerMock);
             var name = "Kalle Anka";
             var addresses = new Address[] { };
@@ -50,8 +54,8 @@ namespace Frobozz.NexusApi.Bll.Test.Gdpr.ClientTranslators
         {
             var name = _clientPerson.Name;
             var id = _clientPerson.Id;
-            _serviceMock.Setup(capability =>
-                capability.PersonService.FindFirstOrDefaultByNameAsync(It.Is<string>(s => s == name),
+            _personServiceMock.Setup(service =>
+                service.FindFirstOrDefaultByNameAsync(It.Is<string>(s => s == name),
                     CancellationToken.None)).ReturnsAsync(_clientPerson);
             var person = await _clientTranslator.FindFirstOrDefaultByNameAsync(_clientPerson.Name);
             var translator = new Translator(MockTestContext.GetClientName(), _translationServiceFromServerMock);
