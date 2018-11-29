@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
-using Xlent.Lever.Libraries2.Crud.ClientTranslators;
-using Xlent.Lever.Libraries2.Core.Translation;
+using Nexus.Link.Libraries.Crud.ClientTranslators;
+using Nexus.Link.Libraries.Core.Translation;
 
 namespace Frobozz.NexusApi.Bll.Gdpr.ClientTranslators
 {

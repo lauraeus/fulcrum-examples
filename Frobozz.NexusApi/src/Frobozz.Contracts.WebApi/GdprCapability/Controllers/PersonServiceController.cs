@@ -3,16 +3,16 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
-using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.Core.Storage.Model;
-using Xlent.Lever.Libraries2.Crud.Interfaces;
-using Xlent.Lever.Libraries2.WebApi.Annotations;
-using Xlent.Lever.Libraries2.WebApi.Crud.ApiControllers;
+using Nexus.Link.Libraries.Core.Assert;
+using Nexus.Link.Libraries.Core.Storage.Model;
+using Nexus.Link.Libraries.Crud.Interfaces;
+using Nexus.Link.Libraries.NetFramework.WebApi.Annotations;
+using Nexus.Link.Libraries.Crud.NetFramework.WebApi.Controllers;
 
 namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
 {
     /// <inheritdoc cref="IPersonService" />
-    public abstract class PersonServiceController : CrudApiController<PersonCreate, Person>, IPersonService
+    public abstract class PersonServiceController : CrudController<PersonCreate, Person>, IPersonService
     {
         private readonly IGdprCapability _gdprCapability;
 
@@ -134,7 +134,7 @@ namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
         [SwaggerInternalServerErrorResponse]
         public async Task<Person> FindFirstOrDefaultByNameAsync(string name, CancellationToken token = default(CancellationToken))
         {
-            ServiceContract.RequireNotNullOrWhitespace(name, nameof(name));
+            ServiceContract.RequireNotNullOrWhiteSpace(name, nameof(name));
             var result = await _gdprCapability.PersonService.FindFirstOrDefaultByNameAsync(name, token);
             return result;
         }

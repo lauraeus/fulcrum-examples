@@ -1,8 +1,8 @@
 ﻿using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
-using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.Crud.Interfaces;
-using Xlent.Lever.Libraries2.Crud.MemoryStorage;
+using Nexus.Link.Libraries.Core.Assert;
+using Nexus.Link.Libraries.Crud.Interfaces;
+using Nexus.Link.Libraries.Crud.MemoryStorage;
 
 namespace Frobozz.NexusApi.Dal.Mock.Gdpr
 {

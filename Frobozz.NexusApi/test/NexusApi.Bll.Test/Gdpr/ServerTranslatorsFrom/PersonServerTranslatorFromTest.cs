@@ -8,8 +8,8 @@ using Frobozz.NexusApi.Bll.Test.Support;
 using Frobozz.NexusApi.Dal.Mock.Translator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Xlent.Lever.Libraries2.Core.Application;
-using Xlent.Lever.Libraries2.Core.Translation;
+using Nexus.Link.Libraries.Core.Application;
+using Nexus.Link.Libraries.Core.Translation;
 
 namespace Frobozz.NexusApi.Bll.Test.Gdpr.ServerTranslatorsFrom
 {

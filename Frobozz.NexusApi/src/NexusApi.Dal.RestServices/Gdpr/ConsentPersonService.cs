@@ -4,13 +4,13 @@ using System.Web;
 using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
 using Microsoft.Rest;
-using Xlent.Lever.Libraries2.Core.Platform.Authentication;
-using Xlent.Lever.Libraries2.WebApi.Crud.RestClient;
-using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
+using Nexus.Link.Libraries.Core.Platform.Authentication;
+using Nexus.Link.Libraries.Crud.NetFramework.WebApi.RestClient;
+using Nexus.Link.Libraries.Web.RestClientHelper;
 
 namespace Frobozz.NexusApi.Dal.RestServices.Gdpr
 {
-    internal class ConsentPersonService : SlaveToMasterRestClient<PersonConsentCreate, PersonConsent, string>, IConsentPersonService
+    internal class ConsentPersonService : CrudSlaveToMasterRestClient<PersonConsentCreate, PersonConsent, string>, IConsentPersonService
     {
         /// <inheritdoc />
         public ConsentPersonService(string baseUri, string parentName = "Parent", string childrenName = "Children", bool withLogging = true) : base(baseUri, parentName, childrenName, withLogging)

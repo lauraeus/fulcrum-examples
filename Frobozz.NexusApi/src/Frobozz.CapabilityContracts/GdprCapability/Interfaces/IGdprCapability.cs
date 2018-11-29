@@ -1,5 +1,5 @@
 ﻿using Frobozz.Contracts.GdprCapability.Model;
-using Xlent.Lever.Libraries2.Crud.Interfaces;
+using Nexus.Link.Libraries.Crud.Interfaces;
 
 namespace Frobozz.Contracts.GdprCapability.Interfaces
 {

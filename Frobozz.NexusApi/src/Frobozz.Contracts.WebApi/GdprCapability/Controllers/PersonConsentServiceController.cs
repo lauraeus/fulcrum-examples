@@ -4,16 +4,16 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
-using Xlent.Lever.Libraries2.Crud.Model;
-using Xlent.Lever.Libraries2.Core.Storage.Model;
-using Xlent.Lever.Libraries2.WebApi.Annotations;
-using Xlent.Lever.Libraries2.WebApi.Crud.ApiControllers;
+using Nexus.Link.Libraries.Crud.Model;
+using Nexus.Link.Libraries.Core.Storage.Model;
+using Nexus.Link.Libraries.NetFramework.WebApi.Annotations;
+using Nexus.Link.Libraries.Crud.NetFramework.WebApi.Controllers;
 
 namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
 {
     /// <inheritdoc />
     public abstract class PersonConsentServiceController : 
-        SlaveToMasterApiController<PersonConsentCreate, PersonConsent>,
+        CrudSlaveToMasterController<PersonConsentCreate, PersonConsent>,
         IPersonConsentService
     {
         /// <inheritdoc />

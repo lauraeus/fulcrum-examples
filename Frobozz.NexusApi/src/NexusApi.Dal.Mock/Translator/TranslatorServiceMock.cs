@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.Core.Translation;
+using Nexus.Link.Libraries.Core.Assert;
+using Nexus.Link.Libraries.Core.Translation;
 
 namespace Frobozz.NexusApi.Dal.Mock.Translator
 {

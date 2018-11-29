@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Xlent.Lever.Libraries2.Core.Translation;
+using Nexus.Link.Libraries.Core.Translation;
 
 namespace Frobozz.NexusApi.Bll.Support
 {
