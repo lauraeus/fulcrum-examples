@@ -1,7 +1,7 @@
 ﻿using System;
-using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.Core.Storage.Model;
-using Xlent.Lever.Libraries2.SqlServer.Model;
+using Nexus.Link.Libraries.Core.Assert;
+using Nexus.Link.Libraries.Core.Storage.Model;
+using Nexus.Link.Libraries.SqlServer.Model;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts
 {

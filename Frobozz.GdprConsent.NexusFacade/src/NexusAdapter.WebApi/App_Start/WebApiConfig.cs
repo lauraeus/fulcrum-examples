@@ -5,8 +5,8 @@ using System.Web.Http.Controllers;
 using System.Web.Http.ExceptionHandling;
 using System.Web.Http.Routing;
 using Newtonsoft.Json;
-using Xlent.Lever.Libraries2.Core.Context;
-using Xlent.Lever.Libraries2.WebApi.Pipe.Inbound;
+using Nexus.Link.Libraries.Core.Context;
+using Nexus.Link.Libraries.WebApi.Pipe.Inbound;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi
 {

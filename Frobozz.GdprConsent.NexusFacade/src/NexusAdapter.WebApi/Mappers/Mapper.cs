@@ -3,8 +3,8 @@ using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Basic;
-using Xlent.Lever.Libraries2.Crud.Interfaces;
-using Xlent.Lever.Libraries2.Crud.Mappers;
+using Nexus.Link.Libraries.Crud.Interfaces;
+using Nexus.Link.Libraries.Crud.Mappers;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
 {

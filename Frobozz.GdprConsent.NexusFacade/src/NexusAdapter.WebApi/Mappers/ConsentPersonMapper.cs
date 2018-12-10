@@ -7,11 +7,11 @@ using System.Web;
 using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
-using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.Core.Error.Logic;
-using Xlent.Lever.Libraries2.Core.Storage.Model;
-using Xlent.Lever.Libraries2.Crud.Helpers;
-using Xlent.Lever.Libraries2.Crud.Mappers;
+using Nexus.Link.Libraries.Core.Assert;
+using Nexus.Link.Libraries.Core.Error.Logic;
+using Nexus.Link.Libraries.Core.Storage.Model;
+using Nexus.Link.Libraries.Crud.Helpers;
+using Nexus.Link.Libraries.Crud.Mappers;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
 {

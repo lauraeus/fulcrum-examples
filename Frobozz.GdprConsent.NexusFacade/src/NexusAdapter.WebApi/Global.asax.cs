@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
-using Xlent.Lever.Libraries2.Core.Application;
-using FulcrumApplicationHelper = Xlent.Lever.Libraries2.WebApi.Application.FulcrumApplicationHelper;
+using Nexus.Link.Libraries.Core.Application;
+using FulcrumApplicationHelper = Nexus.Link.Libraries.WebApi.Application.FulcrumApplicationHelper;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi
 {

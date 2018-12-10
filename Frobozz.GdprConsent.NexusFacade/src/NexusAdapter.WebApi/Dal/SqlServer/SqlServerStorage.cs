@@ -1,8 +1,8 @@
 ﻿using System;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
-using Xlent.Lever.Libraries2.Crud.Interfaces;
-using Xlent.Lever.Libraries2.SqlServer;
-using Xlent.Lever.Libraries2.SqlServer.Model;
+using Nexus.Link.Libraries.Crud.Interfaces;
+using Nexus.Link.Libraries.SqlServer;
+using Nexus.Link.Libraries.SqlServer.Model;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer
 {

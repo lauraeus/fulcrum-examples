@@ -1,5 +1,5 @@
 ﻿using System;
-using Xlent.Lever.Libraries2.Crud.Interfaces;
+using Nexus.Link.Libraries.Crud.Interfaces;
 
 #pragma warning disable 1591
 

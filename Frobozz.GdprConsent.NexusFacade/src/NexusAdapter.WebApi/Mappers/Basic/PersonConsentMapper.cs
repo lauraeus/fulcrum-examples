@@ -1,9 +1,9 @@
 ﻿using System;
 using Frobozz.Contracts.GdprCapability.Model;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
-using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.Crud.Helpers;
-using Xlent.Lever.Libraries2.Crud.Mappers;
+using Nexus.Link.Libraries.Core.Assert;
+using Nexus.Link.Libraries.Crud.Helpers;
+using Nexus.Link.Libraries.Crud.Mappers;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Basic
 {
