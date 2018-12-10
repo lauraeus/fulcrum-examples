@@ -5,7 +5,7 @@ using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
 using Microsoft.Rest;
 using Nexus.Link.Libraries.Core.Platform.Authentication;
-using Nexus.Link.Libraries.Crud.NetFramework.WebApi.RestClient;
+using Nexus.Link.Libraries.Crud.Web.RestClient;
 using Nexus.Link.Libraries.Web.RestClientHelper;
 
 namespace Frobozz.NexusApi.Dal.RestServices.Gdpr

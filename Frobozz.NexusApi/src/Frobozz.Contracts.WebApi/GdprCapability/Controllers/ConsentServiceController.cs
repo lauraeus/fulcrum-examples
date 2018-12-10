@@ -4,8 +4,8 @@ using System.Web.Http;
 using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
 using Nexus.Link.Libraries.Core.Storage.Model;
-using Nexus.Link.Libraries.NetFramework.WebApi.Annotations;
-using Nexus.Link.Libraries.Crud.NetFramework.WebApi.Controllers;
+using Nexus.Link.Libraries.Web.Annotations;
+using Nexus.Link.Libraries.Crud.Web.Controllers;
 
 namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
 {

@@ -34,11 +34,11 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Nexus.Link.Libraries.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Nexus.Link.Libraries.Core.1.0.1\lib\net461\Nexus.Link.Libraries.Core.dll</HintPath>
+    <Reference Include="Nexus.Link.Libraries.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nexus.Link.Libraries.Core.1.0.3\lib\net461\Nexus.Link.Libraries.Core.dll</HintPath>
     </Reference>
     <Reference Include="Nexus.Link.Libraries.Crud, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Nexus.Link.Libraries.Crud.0.1.0\lib\net461\Nexus.Link.Libraries.Crud.dll</HintPath>
+      <HintPath>..\..\packages\Nexus.Link.Libraries.Crud.0.2.4\lib\net461\Nexus.Link.Libraries.Crud.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
