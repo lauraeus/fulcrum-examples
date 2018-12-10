@@ -39,6 +39,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Rest.ClientRuntime.2.3.18\lib\net452\Microsoft.Rest.ClientRuntime.dll</HintPath>
     </Reference>
@@ -51,18 +52,28 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Nexus.Link.Libraries.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nexus.Link.Libraries.Core.1.0.3\lib\net461\Nexus.Link.Libraries.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Nexus.Link.Libraries.Crud, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nexus.Link.Libraries.Crud.0.2.4\lib\net461\Nexus.Link.Libraries.Crud.dll</HintPath>
+    </Reference>
+    <Reference Include="Nexus.Link.Libraries.Crud.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nexus.Link.Libraries.Crud.Web.1.0.0\lib\net461\Nexus.Link.Libraries.Crud.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Nexus.Link.Libraries.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nexus.Link.Libraries.Web.1.1.0\lib\net461\Nexus.Link.Libraries.Web.dll</HintPath>
+    </Reference>
     <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
     <Reference Include="Nexus.Link.Libraries.Core.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Nexus.Link.Libraries.Core.Web.2.5.5\lib\net46\Nexus.Link.Libraries.Core.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="Nexus.Link.Libraries.Crud.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Nexus.Link.Libraries.Crud.Web.1.4.1\lib\net46\Nexus.Link.Libraries.Crud.Web.dll</HintPath>
     </Reference>
     <Reference Include="Nexus.Link.Libraries.WebApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Nexus.Link.Libraries.WebApi.4.17.0\lib\net46\Nexus.Link.Libraries.WebApi.dll</HintPath>
@@ -73,8 +84,12 @@
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Runtime" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.6\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
