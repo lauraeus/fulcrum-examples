@@ -1,12 +1,16 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using System.Web.Http;
 using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
 using Nexus.Link.Libraries.Core.Assert;
 using Nexus.Link.Libraries.Core.Storage.Model;
 using Nexus.Link.Libraries.Crud.AspNet.Controllers;
 using Nexus.Link.Libraries.Web.AspNet.Annotations;
+#if NETCOREAPP
+using Microsoft.AspNetCore.Mvc;
+#elif NET472
+using System.Web.Http;
+#endif
 
 namespace Frobozz.Contracts.AspNet.GdprCapability.Controllers
 {
