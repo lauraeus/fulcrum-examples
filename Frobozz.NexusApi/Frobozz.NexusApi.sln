@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusApi.Bll.Test", "test\N
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{C4C3166D-BD80-4AFC-BDAD-EC9A44409E2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.Contracts.WebApi", "src\Frobozz.Contracts.WebApi\Frobozz.Contracts.WebApi.csproj", "{0F909B3A-5A95-4395-AD79-3FA38D2646B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.Contracts.AspNet", "src\Frobozz.Contracts.AspNet\Frobozz.Contracts.AspNet.csproj", "{0F909B3A-5A95-4395-AD79-3FA38D2646B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

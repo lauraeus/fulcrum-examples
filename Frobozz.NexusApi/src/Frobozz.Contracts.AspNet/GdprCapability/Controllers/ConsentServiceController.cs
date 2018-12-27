@@ -7,7 +7,7 @@ using Nexus.Link.Libraries.Core.Storage.Model;
 using Nexus.Link.Libraries.Crud.AspNet.Controllers;
 using Nexus.Link.Libraries.Web.AspNet.Annotations;
 
-namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
+namespace Frobozz.Contracts.AspNet.GdprCapability.Controllers
 {
     /// <summary>
     /// ApiController for Product that does inputcontrol. Logic is separated into another layer. 

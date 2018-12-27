@@ -8,7 +8,7 @@ using Nexus.Link.Libraries.Core.Storage.Model;
 using Nexus.Link.Libraries.Crud.AspNet.Controllers;
 using Nexus.Link.Libraries.Web.AspNet.Annotations;
 
-namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
+namespace Frobozz.Contracts.AspNet.GdprCapability.Controllers
 {
     /// <inheritdoc cref="IPersonService" />
     public abstract class PersonServiceController : CrudController<PersonCreate, Person>, IPersonService
