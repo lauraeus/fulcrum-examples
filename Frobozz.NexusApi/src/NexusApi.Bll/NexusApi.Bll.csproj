@@ -1,89 +1,25 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{075645CB-90C4-421D-B16F-BDD37628EB88}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Frobozz.NexusApi.Bll</RootNamespace>
-    <AssemblyName>Frobozz.NexusApi.Bll</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
+
+  <ItemGroup>
+    <PackageReference Include="Nexus.Link.Libraries.Crud" Version="1.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Frobozz.CapabilityContracts\Frobozz.Contracts.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <AssemblyName>Frobozz.NexusApi.Bll</AssemblyName>
+    <RootNamespace>Frobozz.NexusApi.Bll</RootNamespace>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Nexus.Link.Libraries.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Nexus.Link.Libraries.Core.1.1.3\lib\net461\Nexus.Link.Libraries.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Nexus.Link.Libraries.Crud, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Nexus.Link.Libraries.Crud.1.0.2\lib\net461\Nexus.Link.Libraries.Crud.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Gdpr\Caches\Cache.cs" />
-    <Compile Include="Gdpr\Caches\ConsentPersonCache.cs" />
-    <Compile Include="Gdpr\Caches\PersonConsentCache.cs" />
-    <Compile Include="Gdpr\Caches\ConsentCache.cs" />
-    <Compile Include="Gdpr\Caches\PersonCache.cs" />
-    <Compile Include="Gdpr\ClientTranslators\ClientTranslator.cs" />
-    <Compile Include="Gdpr\ClientTranslators\ConsentPersonClientTranslator.cs" />
-    <Compile Include="Gdpr\ClientTranslators\PersonConsentClientTranslator.cs" />
-    <Compile Include="Gdpr\ClientTranslators\ConsentClientTranslator.cs" />
-    <Compile Include="Gdpr\ClientTranslators\PersonClientTranslator.cs" />
-    <Compile Include="Gdpr\ServerTranslators\From\ConsentPersonServerTranslatorFrom.cs" />
-    <Compile Include="Gdpr\ServerTranslators\From\PersonConsentServerTranslatorFrom.cs" />
-    <Compile Include="Gdpr\ServerTranslators\From\ConsentServerTranslatorFrom.cs" />
-    <Compile Include="Gdpr\ServerTranslators\From\ServerTranslatorFrom.cs" />
-    <Compile Include="Gdpr\ServerTranslators\From\PersonServerTranslatorFrom.cs" />
-    <Compile Include="Gdpr\ServerTranslators\To\ConsentServerTranslatorTo.cs" />
-    <Compile Include="Gdpr\ServerTranslators\To\ConsentPersonServerTranslatorTo.cs" />
-    <Compile Include="Gdpr\ServerTranslators\To\PersonConsentServerTranslatorTo.cs" />
-    <Compile Include="Gdpr\ServerTranslators\To\PersonServerTranslatorTo.cs" />
-    <Compile Include="Gdpr\ServerTranslators\To\ServerTranslatorTo.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Support\TranslatorService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Frobozz.CapabilityContracts\Frobozz.Contracts.csproj">
-      <Project>{21a7e0d3-ade5-47da-b295-14b487475cbd}</Project>
-      <Name>Frobozz.Contracts</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
