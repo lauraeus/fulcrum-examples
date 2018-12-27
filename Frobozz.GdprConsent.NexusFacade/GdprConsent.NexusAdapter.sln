@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GdprConsent.NexusAdapter.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.Contracts", "..\Frobozz.NexusApi\src\Frobozz.CapabilityContracts\Frobozz.Contracts.csproj", "{21A7E0D3-ADE5-47DA-B295-14B487475CBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.Contracts.WebApi", "..\Frobozz.NexusApi\src\Frobozz.Contracts.WebApi\Frobozz.Contracts.WebApi.csproj", "{0F909B3A-5A95-4395-AD79-3FA38D2646B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.Contracts.AspNet", "..\Frobozz.NexusApi\src\Frobozz.Contracts.AspNet\Frobozz.Contracts.AspNet.csproj", "{0F909B3A-5A95-4395-AD79-3FA38D2646B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

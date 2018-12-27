@@ -108,9 +108,9 @@
       <Project>{21a7e0d3-ade5-47da-b295-14b487475cbd}</Project>
       <Name>Frobozz.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Frobozz.NexusApi\src\Frobozz.Contracts.WebApi\Frobozz.Contracts.WebApi.csproj">
+    <ProjectReference Include="..\..\..\Frobozz.NexusApi\src\Frobozz.Contracts.AspNet\Frobozz.Contracts.AspNet.csproj">
       <Project>{0f909b3a-5a95-4395-ad79-3fa38d2646b8}</Project>
-      <Name>Frobozz.Contracts.WebApi</Name>
+      <Name>Frobozz.Contracts.AspNet</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\NexusAdapter.WebApi\GdprConsent.NexusAdapter.WebApi.csproj">
       <Project>{d811a208-b451-43b9-b4ce-07e6b883e9c5}</Project>
