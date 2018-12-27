@@ -1,13 +1,11 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
-using Nexus.Link.Libraries.Crud.Model;
 using Nexus.Link.Libraries.Core.Storage.Model;
-using Nexus.Link.Libraries.Web.Annotations;
-using Nexus.Link.Libraries.Crud.Web.Controllers;
+using Nexus.Link.Libraries.Crud.AspNet.Controllers;
+using Nexus.Link.Libraries.Web.AspNet.Annotations;
 
 namespace Frobozz.Contracts.WebApi.GdprCapability.Controllers
 {

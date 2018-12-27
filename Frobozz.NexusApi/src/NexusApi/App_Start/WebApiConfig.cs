@@ -6,7 +6,7 @@ using System.Web.Http.ExceptionHandling;
 using System.Web.Http.Routing;
 using Newtonsoft.Json;
 using Nexus.Link.Libraries.Core.Context;
-using Nexus.Link.Libraries.Web.Pipe.Inbound;
+using Nexus.Link.Libraries.Web.AspNet.Pipe.Inbound;
 
 namespace Frobozz.NexusApi
 {

@@ -1,23 +1,24 @@
-﻿using Frobozz.Contracts.GdprCapability.Interfaces;
-using Frobozz.Contracts.GdprCapability.Model;
+﻿using System.Net.Http;
+using Frobozz.Contracts.GdprCapability.Interfaces;
 using Nexus.Link.Libraries.Core.Assert;
-using Nexus.Link.Libraries.Crud.Interfaces;
-using Nexus.Link.Libraries.Crud.Web.RestClient;
-using Nexus.Link.Libraries.Web.RestClientHelper;
+using Nexus.Link.Libraries.Web.Pipe.Outbound;
 
 namespace Frobozz.NexusApi.Dal.RestServices.Gdpr
 {
     /// <inheritdoc />
     public class GdprCapability : IGdprCapability
     {
+        private static HttpClient _httpClient;
         /// <inheritdoc />
         public GdprCapability()
         {
-            PersonService = new PersonService("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Persons");
-            ConsentService = new ConsentService("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Consents");
+            var delegatingHandlers = OutboundPipeFactory.CreateDelegatingHandlers();
+            _httpClient = HttpClientFactory.Create(delegatingHandlers);
+            PersonService = new PersonService("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Persons", _httpClient);
+            ConsentService = new ConsentService("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Consents", _httpClient);
             FulcrumAssert.IsNotNull(ConsentService);
-            PersonConsentService = new PersonConsentService("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Persons", "Persons", "Consents");
-            ConsentPersonService = new ConsentPersonService("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Consents", "Consents", "Persons");
+            PersonConsentService = new PersonConsentService("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Persons", _httpClient, "Persons", "Consents");
+            ConsentPersonService = new ConsentPersonService("http://localhost/GdprConsent.NexusAdapter.WebApi/api/Gdpr/Consents", _httpClient, "Consents", "Persons");
             FulcrumAssert.IsNotNull(PersonConsentService);
         }
 

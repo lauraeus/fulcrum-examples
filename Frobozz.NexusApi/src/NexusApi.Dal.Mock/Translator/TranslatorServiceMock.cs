@@ -82,7 +82,7 @@ namespace Frobozz.NexusApi.Dal.Mock.Translator
                 case "Delivery": return "3";
                 case "Postal": return "4";
                 default:
-                    FulcrumAssert.Fail($"Unknown address type ({source}).");
+                    FulcrumAssert.Fail($"Unknown address type ({source}). Must be one of Public, Invoice, Deliver, Postal.");
                     return "0";
             }
         }

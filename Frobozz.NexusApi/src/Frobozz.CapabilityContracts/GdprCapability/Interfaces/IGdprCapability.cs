@@ -1,7 +1,4 @@
-﻿using Frobozz.Contracts.GdprCapability.Model;
-using Nexus.Link.Libraries.Crud.Interfaces;
-
-namespace Frobozz.Contracts.GdprCapability.Interfaces
+﻿namespace Frobozz.Contracts.GdprCapability.Interfaces
 {
     /// <summary>
     /// The services required to be a GDPR capability.

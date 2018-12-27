@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 using Nexus.Link.Libraries.Core.Application;
-using FulcrumApplicationHelper = Nexus.Link.Libraries.Web.Application.FulcrumApplicationHelper;
+using FulcrumApplicationHelper = Nexus.Link.Libraries.Web.AspNet.Application.FulcrumApplicationHelper;
 
 namespace Frobozz.NexusApi
 {
