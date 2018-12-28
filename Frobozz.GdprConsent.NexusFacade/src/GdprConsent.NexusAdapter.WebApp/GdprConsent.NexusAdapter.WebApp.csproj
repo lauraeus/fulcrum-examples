@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>Frobozz.GdprConsent.NexusAdapter.WebApp</AssemblyName>
+    <RootNamespace>Frobozz.GdprConsent.NexusAdapter.WebApp</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Nexus.Link.Libraries.Crud.AspNet" Version="1.1.4" />
+    <!--<PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />-->
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Frobozz.NexusApi\src\Frobozz.Contracts.AspNet\Frobozz.Contracts.AspNet.csproj" />
+    <ProjectReference Include="..\GdprConsent.Logic\GdprConsent.Logic.csproj" />
+  </ItemGroup>
+
+</Project>
