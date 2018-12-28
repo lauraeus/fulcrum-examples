@@ -52,9 +52,6 @@
     <Reference Include="Autofac.Integration.WebApi, Version=4.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.WebApi2.4.2.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
     </Reference>
-    <Reference Include="Dapper, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Dapper.1.50.5\lib\net451\Dapper.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -79,9 +76,6 @@
     </Reference>
     <Reference Include="Nexus.Link.Libraries.Crud.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Nexus.Link.Libraries.Crud.Web.1.1.3\lib\net461\Nexus.Link.Libraries.Crud.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="Nexus.Link.Libraries.SqlServer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Nexus.Link.Libraries.SqlServer.1.0.3\lib\net461\Nexus.Link.Libraries.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Nexus.Link.Libraries.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Nexus.Link.Libraries.Web.1.4.1\lib\net461\Nexus.Link.Libraries.Web.dll</HintPath>
@@ -126,8 +120,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dal\SqlServer\scripts\01 Create local database.sql" />
-    <Content Include="Dal\SqlServer\scripts\02 Create schema.sql" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -137,27 +129,13 @@
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Dal\Contracts\AddressTable.cs" />
-    <Compile Include="Dal\Contracts\ConsentTable.cs" />
-    <Compile Include="Dal\Contracts\IStorage.cs" />
-    <Compile Include="Dal\Contracts\PersonConsentTable.cs" />
-    <Compile Include="Dal\Contracts\PersonTable.cs" />
     <Compile Include="Controllers\ConsentsController.cs" />
     <Compile Include="Controllers\PersonConsentsController.cs" />
     <Compile Include="Controllers\PersonsController.cs" />
-    <Compile Include="Dal\Mock\MemoryStorage.cs" />
-    <Compile Include="Dal\SqlServer\SqlServerStorage.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Mappers\Basic\PersonConsentMapper.cs" />
-    <Compile Include="Mappers\Basic\ConsentMapper.cs" />
-    <Compile Include="Mappers\ConsentMapper.cs" />
-    <Compile Include="Mappers\ConsentPersonMapper.cs" />
-    <Compile Include="Mappers\Mapper.cs" />
-    <Compile Include="Mappers\PersonConsentMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Mappers\PersonMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -179,6 +157,10 @@
     <ProjectReference Include="..\..\..\Frobozz.NexusApi\src\Frobozz.Contracts.AspNet\Frobozz.Contracts.AspNet.csproj">
       <Project>{0f909b3a-5a95-4395-ad79-3fa38d2646b8}</Project>
       <Name>Frobozz.Contracts.AspNet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GdprConsent.Logic\GdprConsent.Logic.csproj">
+      <Project>{4ecc58df-b88d-48b0-96b7-1a34bd2f5d4f}</Project>
+      <Name>GdprConsent.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

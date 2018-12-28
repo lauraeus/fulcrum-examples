@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
-using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
-using Nexus.Link.Libraries.Crud.Interfaces;
+using Frobozz.GdprConsent.Logic.Dal.Contracts;
 using Nexus.Link.Libraries.Crud.Mappers;
 
-namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
+namespace Frobozz.GdprConsent.Logic.Mappers
 {
     /// <summary>
     /// Maps between storage and service models

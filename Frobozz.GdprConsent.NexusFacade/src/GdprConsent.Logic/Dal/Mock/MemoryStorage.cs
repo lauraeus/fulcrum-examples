@@ -1,9 +1,9 @@
 ﻿using System;
-using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
+using Frobozz.GdprConsent.Logic.Dal.Contracts;
 using Nexus.Link.Libraries.Crud.Interfaces;
 using Nexus.Link.Libraries.Crud.MemoryStorage;
 
-namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Mock
+namespace Frobozz.GdprConsent.Logic.Dal.Mock
 {
     /// <inheritdoc />
     public class MemoryStorage : IStorage

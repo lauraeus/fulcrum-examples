@@ -1,10 +1,10 @@
 ﻿using System;
-using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
+using Frobozz.GdprConsent.Logic.Dal.Contracts;
 using Nexus.Link.Libraries.Crud.Interfaces;
 using Nexus.Link.Libraries.SqlServer;
 using Nexus.Link.Libraries.SqlServer.Model;
 
-namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer
+namespace Frobozz.GdprConsent.Logic.Dal.SqlServer
 {
     /// <inheritdoc />
     public class SqlServerStorage : IStorage

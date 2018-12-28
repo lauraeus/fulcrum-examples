@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
 using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
-using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
+using Frobozz.GdprConsent.Logic.Dal.Contracts;
 using Nexus.Link.Libraries.Core.Assert;
 using Nexus.Link.Libraries.Core.Error.Logic;
 using Nexus.Link.Libraries.Core.Storage.Model;
 using Nexus.Link.Libraries.Crud.Helpers;
-using Nexus.Link.Libraries.Crud.Mappers;
 
-namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
+namespace Frobozz.GdprConsent.Logic.Mappers
 {
     /// <summary>
     /// Map between storage and service

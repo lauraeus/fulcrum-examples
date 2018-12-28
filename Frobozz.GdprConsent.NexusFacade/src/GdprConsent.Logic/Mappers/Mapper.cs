@@ -1,12 +1,7 @@
-﻿using System;
-using Frobozz.Contracts.GdprCapability.Interfaces;
-using Frobozz.Contracts.GdprCapability.Model;
-using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
-using Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Basic;
-using Nexus.Link.Libraries.Crud.Interfaces;
-using Nexus.Link.Libraries.Crud.Mappers;
+﻿using Frobozz.Contracts.GdprCapability.Interfaces;
+using Frobozz.GdprConsent.Logic.Dal.Contracts;
 
-namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers
+namespace Frobozz.GdprConsent.Logic.Mappers
 {
     /// <inheritdoc />
     public class Mapper : IGdprCapability

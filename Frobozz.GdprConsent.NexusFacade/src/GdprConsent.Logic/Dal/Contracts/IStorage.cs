@@ -3,7 +3,7 @@ using Nexus.Link.Libraries.Crud.Interfaces;
 
 #pragma warning disable 1591
 
-namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts
+namespace Frobozz.GdprConsent.Logic.Dal.Contracts
 {
     public interface IStorage
     {

@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GdprConsent.NexusAdapter.WebApi.Test", "test\GdprConsent.NexusAdapter.WebApi.Test\GdprConsent.NexusAdapter.WebApi.Test.csproj", "{9A85514E-98CC-443F-B324-AF567D1B6960}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GdprConsent.NexusAdapter.WebApi.Test", "test\GdprConsent.NexusAdapter.WebApi.Test\GdprConsent.NexusAdapter.WebApi.Test.csproj", "{9A85514E-98CC-443F-B324-AF567D1B6960}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GdprConsent.NexusAdapter.WebApi", "src\NexusAdapter.WebApi\GdprConsent.NexusAdapter.WebApi.csproj", "{D811A208-B451-43B9-B4CE-07E6B883E9C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.Contracts", "..\Frobozz.NexusApi\src\Frobozz.CapabilityContracts\Frobozz.Contracts.csproj", "{21A7E0D3-ADE5-47DA-B295-14B487475CBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frobozz.Contracts", "..\Frobozz.NexusApi\src\Frobozz.CapabilityContracts\Frobozz.Contracts.csproj", "{21A7E0D3-ADE5-47DA-B295-14B487475CBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frobozz.Contracts.AspNet", "..\Frobozz.NexusApi\src\Frobozz.Contracts.AspNet\Frobozz.Contracts.AspNet.csproj", "{0F909B3A-5A95-4395-AD79-3FA38D2646B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frobozz.Contracts.AspNet", "..\Frobozz.NexusApi\src\Frobozz.Contracts.AspNet\Frobozz.Contracts.AspNet.csproj", "{0F909B3A-5A95-4395-AD79-3FA38D2646B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GdprConsent.Logic", "src\GdprConsent.Logic\GdprConsent.Logic.csproj", "{4ECC58DF-B88D-48B0-96B7-1A34BD2F5D4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0F909B3A-5A95-4395-AD79-3FA38D2646B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F909B3A-5A95-4395-AD79-3FA38D2646B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F909B3A-5A95-4395-AD79-3FA38D2646B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ECC58DF-B88D-48B0-96B7-1A34BD2F5D4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ECC58DF-B88D-48B0-96B7-1A34BD2F5D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ECC58DF-B88D-48B0-96B7-1A34BD2F5D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ECC58DF-B88D-48B0-96B7-1A34BD2F5D4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

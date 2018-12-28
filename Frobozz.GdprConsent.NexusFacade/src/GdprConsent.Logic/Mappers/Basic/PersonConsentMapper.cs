@@ -1,11 +1,11 @@
 ﻿using System;
 using Frobozz.Contracts.GdprCapability.Model;
-using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
+using Frobozz.GdprConsent.Logic.Dal.Contracts;
 using Nexus.Link.Libraries.Core.Assert;
 using Nexus.Link.Libraries.Crud.Helpers;
 using Nexus.Link.Libraries.Crud.Mappers;
 
-namespace Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers.Basic
+namespace Frobozz.GdprConsent.Logic.Mappers.Basic
 {
     /// <inheritdoc />
     public class PersonConsentMapper : IReadMapper<PersonConsent, PersonConsentTable>
