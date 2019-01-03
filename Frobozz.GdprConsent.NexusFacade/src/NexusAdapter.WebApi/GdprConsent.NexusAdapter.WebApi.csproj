@@ -66,19 +66,19 @@
       <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Nexus.Link.Libraries.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Nexus.Link.Libraries.Core.1.1.3\lib\net461\Nexus.Link.Libraries.Core.dll</HintPath>
+      <HintPath>..\..\packages\Nexus.Link.Libraries.Core.1.2.0\lib\net461\Nexus.Link.Libraries.Core.dll</HintPath>
     </Reference>
     <Reference Include="Nexus.Link.Libraries.Crud, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Nexus.Link.Libraries.Crud.1.0.2\lib\net461\Nexus.Link.Libraries.Crud.dll</HintPath>
     </Reference>
     <Reference Include="Nexus.Link.Libraries.Crud.AspNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Nexus.Link.Libraries.Crud.AspNet.1.1.4\lib\net461\Nexus.Link.Libraries.Crud.AspNet.dll</HintPath>
+      <HintPath>..\..\packages\Nexus.Link.Libraries.Crud.AspNet.1.2.1\lib\net461\Nexus.Link.Libraries.Crud.AspNet.dll</HintPath>
     </Reference>
     <Reference Include="Nexus.Link.Libraries.Crud.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Nexus.Link.Libraries.Crud.Web.1.1.3\lib\net461\Nexus.Link.Libraries.Crud.Web.dll</HintPath>
     </Reference>
     <Reference Include="Nexus.Link.Libraries.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Nexus.Link.Libraries.Web.1.4.1\lib\net461\Nexus.Link.Libraries.Web.dll</HintPath>
+      <HintPath>..\..\packages\Nexus.Link.Libraries.Web.1.4.2\lib\net461\Nexus.Link.Libraries.Web.dll</HintPath>
     </Reference>
     <Reference Include="Nexus.Link.Libraries.Web.AspNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Nexus.Link.Libraries.Web.AspNet.1.1.2\lib\net461\Nexus.Link.Libraries.Web.AspNet.dll</HintPath>
