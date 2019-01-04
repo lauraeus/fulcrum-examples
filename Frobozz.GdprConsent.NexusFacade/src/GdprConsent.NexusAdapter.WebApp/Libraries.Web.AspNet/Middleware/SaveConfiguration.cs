@@ -43,7 +43,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApp.Libraries.Web.AspNet.Middlewar
                 var environment = match.Groups[2].Value;
 
                 var tenant = new Tenant(organization, environment);
-                _tenantProvider.Tenant = tenant;
+                _tenantProvider.ClientTenant = tenant;
                 try
                 {
                     // SaveConfiguration should be run before SaveCorrelationId, so setup correlation id from request header if necessary
