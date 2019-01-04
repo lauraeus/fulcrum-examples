@@ -1,17 +1,16 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.GdprConsent.Logic.Dal.Contracts;
 using Frobozz.GdprConsent.Logic.Dal.Mock;
 using Frobozz.GdprConsent.Logic.Dal.SqlServer;
 using Frobozz.GdprConsent.Logic.Mappers;
-using Frobozz.GdprConsent.NexusAdapter.WebApp.Libraries.Web.AspNet.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Nexus.Link.Libraries.Web.AspNet.Pipe.Inbound;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Frobozz.GdprConsent.NexusAdapter.WebApp
@@ -73,8 +72,8 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApp
             }
 
             app.UseHttpsRedirection();
-            app.UseNexusSaveCorrelationId();
             //app.UseNexusSaveConfiguration(serviceConfiguration);
+            app.UseNexusSaveCorrelationId();
             app.UseNexusBatchLogs();
             app.UseNexusLogRequestAndResponse();
             app.UseNexusConvertExceptionToFulcrumResponse();
