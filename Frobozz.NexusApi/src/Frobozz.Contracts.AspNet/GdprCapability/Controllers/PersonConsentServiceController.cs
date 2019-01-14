@@ -7,7 +7,7 @@ using Nexus.Link.Libraries.Crud.AspNet.Controllers;
 using Nexus.Link.Libraries.Web.AspNet.Annotations;
 #if NETCOREAPP
 using Microsoft.AspNetCore.Mvc;
-#elif NET472
+#else
 using System.Web.Http;
 #endif
 

@@ -9,7 +9,7 @@ using Nexus.Link.Libraries.Crud.AspNet.Controllers;
 using Nexus.Link.Libraries.Web.AspNet.Annotations;
 #if NETCOREAPP
 using Microsoft.AspNetCore.Mvc;
-#elif NET472
+#else
 using System.Web.Http;
 #endif
 
@@ -19,7 +19,7 @@ namespace Frobozz.Contracts.AspNet.GdprCapability.Controllers
     public abstract class PersonServiceController :
 #if NETCOREAPP
         ControllerBase
-#elif NET472
+#else
         ApiController
 # endif
         //: IPersonService
@@ -44,7 +44,7 @@ namespace Frobozz.Contracts.AspNet.GdprCapability.Controllers
         /// <returns>The id for the created person.</returns>
 #if NETCOREAPP
         [HttpPost("Gdpr/Persons")]
-#elif NET472
+#else
         [HttpPost]
         [Route("Gdpr/Persons")]
 #endif
@@ -66,7 +66,7 @@ namespace Frobozz.Contracts.AspNet.GdprCapability.Controllers
         /// <returns>The found person or null.</returns>
 #if NETCOREAPP
         [HttpGet("Gdpr/Persons/{id}")]
-#elif NET472
+#else
         [HttpGet]
         [Route("Gdpr/Persons/{id}")]
 #endif
@@ -89,7 +89,7 @@ namespace Frobozz.Contracts.AspNet.GdprCapability.Controllers
         /// <returns>The found person or null.</returns>
 #if NETCOREAPP
         [HttpGet("Gdpr/Persons")]
-#elif NET472
+#else
         [HttpGet]
         [Route("Gdpr/Persons")]
         [SwaggerGroup("Gdpr/Persons")]
@@ -114,7 +114,7 @@ namespace Frobozz.Contracts.AspNet.GdprCapability.Controllers
 #if NETCOREAPP
         [HttpPut("Gdpr/Persons/{id}")]
         [ApiExplorerSettings(GroupName = "Gdpr/Persons")]
-#elif NET472
+#else
         [HttpPut]
         [Route("Gdpr/Persons/{id}")]
         [SwaggerGroup("Gdpr/Persons")]
@@ -135,7 +135,7 @@ namespace Frobozz.Contracts.AspNet.GdprCapability.Controllers
         /// <returns>The id for the created person.</returns>
 #if NETCOREAPP
         [HttpDelete("Gdpr/Persons/{id}")]
-#elif NET472
+#else
         [HttpDelete]
         [Route("Gdpr/Persons/{id}")]
 #endif
@@ -155,7 +155,7 @@ namespace Frobozz.Contracts.AspNet.GdprCapability.Controllers
         /// <returns>The id for the created person.</returns>
 #if NETCOREAPP
         [HttpDelete("Gdpr/Persons")]
-#elif NET472
+#else
         [HttpDelete]
         [Route("Gdpr/Persons")]
 #endif
@@ -176,7 +176,7 @@ namespace Frobozz.Contracts.AspNet.GdprCapability.Controllers
         /// <returns>The found person or null.</returns>
 #if NETCOREAPP
         [HttpGet("Gdpr/Persons/FindByName")]
-#elif NET472
+#else
         [HttpGet]
         [Route("Gdpr/Persons/FindByName")]
 #endif
