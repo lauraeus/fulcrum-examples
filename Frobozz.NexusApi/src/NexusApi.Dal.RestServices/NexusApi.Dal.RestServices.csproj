@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Nexus.Link.Libraries.Crud.Web" Version="1.1.3" />
+    <PackageReference Include="Nexus.Link.Libraries.Crud.Web" Version="1.1.6" />
   </ItemGroup>
 
   <ItemGroup>

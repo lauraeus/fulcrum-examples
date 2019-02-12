@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Nexus.Link.Libraries.Core" Version="1.1.3" />
+    <PackageReference Include="Nexus.Link.Libraries.Core" Version="3.2.4" />
     <!--<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />-->
     <PackageReference Include="Moq" Version="4.10.1" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
