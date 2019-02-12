@@ -1,29 +1,23 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
+﻿using System.Net.Http;
 using Frobozz.Contracts.GdprCapability.Interfaces;
 using Frobozz.Contracts.GdprCapability.Model;
 using Microsoft.Rest;
-using Xlent.Lever.Libraries2.Core.Platform.Authentication;
-using Xlent.Lever.Libraries2.WebApi.Crud.RestClient;
-using Xlent.Lever.Libraries2.WebApi.RestClientHelper;
+using Nexus.Link.Libraries.Core.Platform.Authentication;
+using Nexus.Link.Libraries.Crud.Web.RestClient;
 
 namespace Frobozz.NexusApi.Dal.RestServices.Gdpr
 {
-    internal class ConsentPersonService : SlaveToMasterRestClient<PersonConsentCreate, PersonConsent, string>, IConsentPersonService
+    internal class ConsentPersonService : CrudSlaveToMasterRestClient<PersonConsentCreate, PersonConsent, string>, IConsentPersonService
     {
         /// <inheritdoc />
-        public ConsentPersonService(string baseUri, string parentName = "Parent", string childrenName = "Children", bool withLogging = true) : base(baseUri, parentName, childrenName, withLogging)
+        public ConsentPersonService(string baseUri, HttpClient client, string parentName = "Parent", string childrenName = "Children") 
+            : base(baseUri, client, parentName, childrenName)
         {
         }
 
         /// <inheritdoc />
-        public ConsentPersonService(string baseUri, ServiceClientCredentials credentials, string parentName = "Parent", string childrenName = "Children", bool withLogging = true) : base(baseUri, credentials, parentName, childrenName, withLogging)
-        {
-        }
-
-        /// <inheritdoc />
-        public ConsentPersonService(string baseUri, AuthenticationToken authenticationToken, string parentName = "Parent", string childrenName = "Children", bool withLogging = true) : base(baseUri, authenticationToken, parentName, childrenName, withLogging)
+        public ConsentPersonService(string baseUri, HttpClient client, ServiceClientCredentials credentials, string parentName = "Parent", string childrenName = "Children") 
+            : base(baseUri, client, credentials, parentName, childrenName)
         {
         }
     }

@@ -5,8 +5,8 @@ using System.Web.Http.Controllers;
 using System.Web.Http.ExceptionHandling;
 using System.Web.Http.Routing;
 using Newtonsoft.Json;
-using Xlent.Lever.Libraries2.Core.Context;
-using Xlent.Lever.Libraries2.WebApi.Pipe.Inbound;
+using Nexus.Link.Libraries.Core.Context;
+using Nexus.Link.Libraries.Web.AspNet.Pipe.Inbound;
 
 namespace Frobozz.NexusApi
 {
@@ -27,9 +27,6 @@ namespace Frobozz.NexusApi
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
             //If a null value exists, ignore value
             config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-
-            var correlationIdValueProvider = new CorrelationIdValueProvider();
-
             RegisterFilters(config);
             RegisterServices(config);
             RegisterMessageHandlers(config);

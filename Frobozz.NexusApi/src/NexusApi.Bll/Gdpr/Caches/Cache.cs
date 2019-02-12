@@ -1,9 +1,6 @@
 ﻿using Frobozz.Contracts.GdprCapability.Interfaces;
-using Frobozz.Contracts.GdprCapability.Model;
-using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.Crud.Cache;
-using Xlent.Lever.Libraries2.Crud.Interfaces;
-using Xlent.Lever.Libraries2.Crud.MemoryStorage;
+using Nexus.Link.Libraries.Crud.Cache;
+using Nexus.Link.Libraries.Crud.MemoryStorage;
 
 namespace Frobozz.NexusApi.Bll.Gdpr.Caches
 {

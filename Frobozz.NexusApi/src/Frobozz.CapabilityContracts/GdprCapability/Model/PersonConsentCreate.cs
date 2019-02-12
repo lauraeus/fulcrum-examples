@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.Core.Storage.Model;
-using Xlent.Lever.Libraries2.Core.Translation;
+using Nexus.Link.Libraries.Core.Assert;
+using Nexus.Link.Libraries.Core.Translation;
 
 namespace Frobozz.Contracts.GdprCapability.Model
 {

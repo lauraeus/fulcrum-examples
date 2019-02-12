@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Frobozz.Contracts.GdprCapability.Model;
+using Frobozz.GdprConsent.Logic.Dal.Contracts;
+using Frobozz.GdprConsent.Logic.Dal.SqlServer;
+using Frobozz.GdprConsent.Logic.Mappers;
 using Frobozz.GdprConsent.NexusAdapter.WebApi.Controllers;
-using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.Contracts;
-using Frobozz.GdprConsent.NexusAdapter.WebApi.Dal.SqlServer;
-using Frobozz.GdprConsent.NexusAdapter.WebApi.Mappers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Xlent.Lever.Libraries2.Core.Application;
+using Nexus.Link.Libraries.Core.Application;
 
 namespace GdprConsent.NexusAdapter.WebApi.Test
 {

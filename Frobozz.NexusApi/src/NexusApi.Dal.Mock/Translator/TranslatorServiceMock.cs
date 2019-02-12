@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Xlent.Lever.Libraries2.Core.Assert;
-using Xlent.Lever.Libraries2.Core.Translation;
+using Nexus.Link.Libraries.Core.Assert;
+using Nexus.Link.Libraries.Core.Translation;
 
 namespace Frobozz.NexusApi.Dal.Mock.Translator
 {
@@ -82,7 +82,7 @@ namespace Frobozz.NexusApi.Dal.Mock.Translator
                 case "Delivery": return "3";
                 case "Postal": return "4";
                 default:
-                    FulcrumAssert.Fail($"Unknown address type ({source}).");
+                    FulcrumAssert.Fail($"Unknown address type ({source}). Must be one of Public, Invoice, Deliver, Postal.");
                     return "0";
             }
         }

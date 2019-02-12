@@ -108,7 +108,7 @@ namespace Frobozz.NexusApi
                         // those comments into the generated docs and UI. You can enable this by providing the path to one or
                         // more Xml comment files.
                         //
-                        c.IncludeXmlComments(GetXmlCommentsPath("Frobozz.Contracts.WebApi.xml"));
+                        c.IncludeXmlComments(GetXmlCommentsPath("Frobozz.Contracts.AspNet.xml"));
                         c.IncludeXmlComments(GetXmlCommentsPath("Frobozz.NexusApi.xml"));
 
                         // Swashbuckle makes a best attempt at generating Swagger compliant JSON schemas for the various types
