@@ -17,7 +17,7 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi
         /// </remarks>
         protected void Application_Start()
         {
-            FulcrumApplicationHelper.WebApiBasicSetup(new ConfigurationManagerAppSettings());
+            FulcrumApplicationHelper.WebBasicSetup(new ConfigurationManagerAppSettings());
             GlobalConfiguration.Configure(WebApiConfig.Register);
             GlobalConfiguration.Configure(SwaggerConfig.Register);
             GlobalConfiguration.Configure(AutofacConfig.Register);

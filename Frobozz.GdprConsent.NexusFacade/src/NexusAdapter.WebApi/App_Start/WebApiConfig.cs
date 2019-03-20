@@ -27,9 +27,6 @@ namespace Frobozz.GdprConsent.NexusAdapter.WebApi
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
             //If a null value exists, ignore value
             config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-
-            var correlationIdValueProvider = new CorrelationIdValueProvider();
-
             RegisterFilters(config);
             RegisterServices(config);
             RegisterMessageHandlers(config);
