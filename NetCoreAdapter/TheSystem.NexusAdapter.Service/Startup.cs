@@ -63,9 +63,13 @@ namespace TheSystem.NexusAdapter.Service
             app.UseHttpsRedirection();
             app.UseMvc();
 
+            // Get the correlation ID from the request header and store it in FulcrumApplication.Context
             app.UseNexusSaveCorrelationId();
+            // Start and stop a batch of logs, see also Nexus.Link.Libraries.Core.Logging.BatchLogger.
             app.UseNexusBatchLogs();
+            // Log all requests and responses
             app.UseNexusLogRequestAndResponse();
+            // Convert exceptions into error responses (HTTP status codes 400 and 500)
             app.UseNexusConvertExceptionToFulcrumResponse();
         }
     }
