@@ -1,4 +1,4 @@
-﻿namespace TheSystem.NexusAdapter.Service.CrmSystemContract
+﻿namespace TheSystem.NexusAdapter.Service.Projects.CrmSystemContract
 {
     public interface ICrmSystem
     {

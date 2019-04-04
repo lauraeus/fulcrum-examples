@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TheSystem.NexusAdapter.Service.CrmSystemContract.Model
+namespace TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model
 {
     /// <summary>
     /// Information about a lead

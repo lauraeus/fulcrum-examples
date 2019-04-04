@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Nexus.Link.Libraries.Core.Application;
 using Nexus.Link.Libraries.Core.Assert;
-using TheSystem.NexusAdapter.Service.CapabilityContracts.OnBoarding;
-using TheSystem.NexusAdapter.Service.CapabilityContracts.OnBoarding.Model;
+using TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding;
+using TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.Model;
 
 namespace TheSystem.NexusAdapter.Service.Controllers
 {

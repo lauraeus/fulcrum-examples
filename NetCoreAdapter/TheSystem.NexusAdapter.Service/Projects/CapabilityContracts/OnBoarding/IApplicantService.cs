@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using TheSystem.NexusAdapter.Service.CapabilityContracts.OnBoarding.Model;
+using TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.Model;
 
-namespace TheSystem.NexusAdapter.Service.CapabilityContracts.OnBoarding
+namespace TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding
 {
     /// <summary>
     /// Methods for dealing with an applicant.
@@ -18,15 +18,15 @@ namespace TheSystem.NexusAdapter.Service.CapabilityContracts.OnBoarding
         /// <summary>
         /// Add one application
         /// </summary>
-        /// <param name="applicant">Data for the lead</param>
+        /// <param name="applicant">Data for the applicant</param>
         /// <returns>The id for the newly created customer</returns>
         Task<string> CreateAsync(Applicant applicant);
 
         /// <summary>
         /// Approve an application to become a member
         /// </summary>
-        /// <param name="id">The id of the lead to qualify.</param>
-        /// <returns>The internal id of the new customer record.</returns>
+        /// <param name="id">The id of the applicant to approve.</param>
+        /// <returns>The internal id of the new member record.</returns>
         Task<string> ApproveAsync(string id);
 
         /// <summary>

@@ -1,11 +1,9 @@
-﻿using System;
-using Nexus.Link.Libraries.Core.Assert;
-using TheSystem.NexusAdapter.Service.CapabilityContracts.OnBoarding.Model;
-using TheSystem.NexusAdapter.Service.CrmSystemContract.Model;
+﻿using TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.Model;
+using TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model;
 
-namespace TheSystem.NexusAdapter.Service.Logic.ModelMapping
+namespace TheSystem.NexusAdapter.Service.Projects.AdapterLogic.OnBoarding
 {
-    public static class MiscExtensions
+    public static class TypeExtensions
     {
         public static Applicant From(this Applicant target, Lead source)
         {
@@ -24,17 +22,6 @@ namespace TheSystem.NexusAdapter.Service.Logic.ModelMapping
         public static Lead From(this Lead target, Applicant source)
         {
             target.Name = source.Name;
-            return target;
-        }
-
-        public static string ToIdString(this Guid source)
-        {
-            return source.ToString().ToLowerInvariant();
-        }
-
-        public static Guid ToGuid(this string source)
-        {
-            InternalContract.Require(Guid.TryParse(source, out var target), nameof(source));
             return target;
         }
     }

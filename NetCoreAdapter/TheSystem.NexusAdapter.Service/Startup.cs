@@ -7,10 +7,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nexus.Link.Libraries.Web.AspNet.Pipe.Inbound;
 using Swashbuckle.AspNetCore.Swagger;
-using TheSystem.NexusAdapter.Service.CapabilityContracts.OnBoarding;
-using TheSystem.NexusAdapter.Service.CrmSystemContract;
-using TheSystem.NexusAdapter.Service.CrmSystemMock;
-using TheSystem.NexusAdapter.Service.Logic;
+using TheSystem.NexusAdapter.Service.Projects.AdapterContract;
+using TheSystem.NexusAdapter.Service.Projects.AdapterLogic;
+using TheSystem.NexusAdapter.Service.Projects.AdapterLogic.OnBoarding;
+using TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding;
+using TheSystem.NexusAdapter.Service.Projects.CrmSystemContract;
+using TheSystem.NexusAdapter.Service.Projects.CrmSystemMock;
+using TheSystem.NexusAdapter.Service.Projects.NexusApiContract;
+using TheSystem.NexusAdapter.Service.Projects.NexusApiMock;
 
 namespace TheSystem.NexusAdapter.Service
 {
@@ -27,7 +31,9 @@ namespace TheSystem.NexusAdapter.Service
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSingleton<ICrmSystem>(provider => new CrmSystem());
+            services.AddSingleton<INexusApi, NexusApiMock>();
+            services.AddSingleton<IAdapterService, AdapterServiceForSystem>();
+            services.AddSingleton<ICrmSystem, CrmSystemMock>();
             services.AddScoped<IOnBoardingService, OnBoardingLogic>();
             services.AddSwaggerGen(c =>
             {
@@ -53,7 +59,7 @@ namespace TheSystem.NexusAdapter.Service
 
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
             }
             else
             {
@@ -61,7 +67,6 @@ namespace TheSystem.NexusAdapter.Service
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
 
             // Get the correlation ID from the request header and store it in FulcrumApplication.Context
             app.UseNexusSaveCorrelationId();
@@ -71,6 +76,8 @@ namespace TheSystem.NexusAdapter.Service
             app.UseNexusLogRequestAndResponse();
             // Convert exceptions into error responses (HTTP status codes 400 and 500)
             app.UseNexusConvertExceptionToFulcrumResponse();
+
+            app.UseMvc();
         }
     }
 }

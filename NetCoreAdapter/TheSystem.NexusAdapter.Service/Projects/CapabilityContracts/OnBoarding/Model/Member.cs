@@ -1,12 +1,12 @@
-﻿namespace TheSystem.NexusAdapter.Service.CapabilityContracts.OnBoarding.Model
+﻿namespace TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.Model
 {
     /// <summary>
-    /// Information about a customer
+    /// Information about a member
     /// </summary>
     public class Member
     {
         /// <summary>
-        /// The internal id of the customer.
+        /// The internal id of the member.
         /// </summary>
         public string Id { get; set; }
 
@@ -16,7 +16,7 @@
         public string MembershipNumber { get; set; }
 
         /// <summary>
-        /// The name of the customer
+        /// The name of the member
         /// </summary>
         public string Name { get; set; }
     }

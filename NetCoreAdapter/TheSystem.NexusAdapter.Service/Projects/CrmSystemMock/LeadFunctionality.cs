@@ -4,30 +4,33 @@ using System.Linq;
 using System.Threading.Tasks;
 using Nexus.Link.Libraries.Core.Assert;
 using Nexus.Link.Libraries.Core.Error.Logic;
-using TheSystem.NexusAdapter.Service.CrmSystemContract;
-using TheSystem.NexusAdapter.Service.CrmSystemContract.Model;
+using TheSystem.NexusAdapter.Service.Projects.AdapterContract;
+using TheSystem.NexusAdapter.Service.Projects.CrmSystemContract;
+using TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model;
 
-namespace TheSystem.NexusAdapter.Service.CrmSystemMock
+namespace TheSystem.NexusAdapter.Service.Projects.CrmSystemMock
 {
     public class LeadFunctionality : ILeadFunctionality
     {
         private readonly ContactFunctionality _contactFunctionality;
-        private static readonly List<Lead> _items = new List<Lead>();
+        private readonly IAdapterService _adapterService;
+        private static readonly List<Lead> Items = new List<Lead>();
 
 
-        public LeadFunctionality(ContactFunctionality contactFunctionality)
+        public LeadFunctionality(ContactFunctionality contactFunctionality, IAdapterService adapterService)
         {
             _contactFunctionality = contactFunctionality;
+            _adapterService = adapterService;
         }
         /// <inheritdoc />
         public Task<IEnumerable<Lead>> ReadAllAsync()
         {
-            return Task.FromResult((IEnumerable<Lead>)_items);
+            return Task.FromResult((IEnumerable<Lead>)Items);
         }
 
         internal Task<Lead> ReadAsync(Guid id)
         {
-            return Task.FromResult(_items.FirstOrDefault(i => i.Id == id));
+            return Task.FromResult(Items.FirstOrDefault(i => i.Id == id));
         }
 
         /// <inheritdoc />
@@ -36,7 +39,7 @@ namespace TheSystem.NexusAdapter.Service.CrmSystemMock
             item.Id = Guid.NewGuid();
             item.Status = Lead.StatusEnum.Active;
             item.UpdatedAt = DateTimeOffset.Now;
-            _items.Add(item);
+            Items.Add(item);
             return Task.FromResult(item.Id);
         }
 
@@ -53,10 +56,12 @@ namespace TheSystem.NexusAdapter.Service.CrmSystemMock
                     lead.UpdatedAt = DateTimeOffset.Now;
                     var contact = new Contact
                     {
-                        Name = lead.Name
+                        Name = lead.Name,
+                        OriginatingLeadId = lead.Id
                     };
-                    var memberId = await _contactFunctionality.CreateAsync(contact);
-                    return memberId;
+                    var contactId = await _contactFunctionality.CreateAsync(contact);
+                    await _adapterService.LeadWasQualified(lead.Id, contactId, lead.UpdatedAt);
+                    return contactId;
                 case Lead.StatusEnum.Qualified:
                     throw new FulcrumBusinessRuleException("The lead was already qualified.");
                 case Lead.StatusEnum.Rejected:

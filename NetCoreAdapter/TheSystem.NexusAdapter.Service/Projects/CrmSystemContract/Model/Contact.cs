@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TheSystem.NexusAdapter.Service.CrmSystemContract.Model
+namespace TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model
 {
     /// <summary>
     /// Information about a customer
@@ -11,6 +11,11 @@ namespace TheSystem.NexusAdapter.Service.CrmSystemContract.Model
         /// The internal id of the customer.
         /// </summary>
         public Guid Id { get; set; }
+
+        /// <summary>
+        /// The lead that led to this contact.
+        /// </summary>
+        public Guid? OriginatingLeadId { get; set; }
 
         /// <summary>
         /// The unique customer number to be used in all communication

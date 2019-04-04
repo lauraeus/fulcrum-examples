@@ -1,7 +1,7 @@
-﻿namespace TheSystem.NexusAdapter.Service.CapabilityContracts.OnBoarding.Model
+﻿namespace TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.Model
 {
     /// <summary>
-    /// Information about a lead
+    /// Information about an applicant
     /// </summary>
     public class Applicant
     {
@@ -11,7 +11,7 @@
         public string Id { get; set; }
 
         /// <summary>
-        /// The name of the customer
+        /// The name of the applicant
         /// </summary>
         public string Name { get; set; }
     }

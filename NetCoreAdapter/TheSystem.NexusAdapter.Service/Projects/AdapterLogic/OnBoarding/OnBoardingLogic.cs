@@ -1,7 +1,7 @@
-﻿using TheSystem.NexusAdapter.Service.CapabilityContracts.OnBoarding;
-using TheSystem.NexusAdapter.Service.CrmSystemContract;
+﻿using TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding;
+using TheSystem.NexusAdapter.Service.Projects.CrmSystemContract;
 
-namespace TheSystem.NexusAdapter.Service.Logic
+namespace TheSystem.NexusAdapter.Service.Projects.AdapterLogic.OnBoarding
 {
     public class OnBoardingLogic : IOnBoardingService
     {

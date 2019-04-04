@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TheSystem.NexusAdapter.Service.CrmSystemContract.Model;
+using TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model;
 
-namespace TheSystem.NexusAdapter.Service.CrmSystemContract
+namespace TheSystem.NexusAdapter.Service.Projects.CrmSystemContract
 {
     /// <summary>
     /// The contract for the lead service

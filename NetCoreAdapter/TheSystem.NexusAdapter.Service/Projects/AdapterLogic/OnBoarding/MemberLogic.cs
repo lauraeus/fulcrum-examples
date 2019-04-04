@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TheSystem.NexusAdapter.Service.CapabilityContracts.OnBoarding;
-using TheSystem.NexusAdapter.Service.CapabilityContracts.OnBoarding.Model;
-using TheSystem.NexusAdapter.Service.CrmSystemContract;
-using TheSystem.NexusAdapter.Service.Logic.ModelMapping;
+using TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding;
+using TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.Model;
+using TheSystem.NexusAdapter.Service.Projects.CrmSystemContract;
 
-namespace TheSystem.NexusAdapter.Service.Logic
+namespace TheSystem.NexusAdapter.Service.Projects.AdapterLogic.OnBoarding
 {
     /// <summary>
     /// Implements logic for of <see cref="IMemberService"/>

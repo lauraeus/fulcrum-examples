@@ -1,4 +1,4 @@
-﻿namespace TheSystem.NexusAdapter.Service.CapabilityContracts.OnBoarding
+﻿namespace TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding
 {
     /// <summary>
     /// The CRM capability

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TheSystem.NexusAdapter.Service.CapabilityContracts.OnBoarding;
-using TheSystem.NexusAdapter.Service.CapabilityContracts.OnBoarding.Model;
+using TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding;
+using TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.Model;
 
 namespace TheSystem.NexusAdapter.Service.Controllers
 {
