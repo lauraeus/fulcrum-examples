@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frobozz.Contracts.AspNet", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GdprConsent.Logic", "src\GdprConsent.Logic\GdprConsent.Logic.csproj", "{4ECC58DF-B88D-48B0-96B7-1A34BD2F5D4F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GdprConsent.NexusAdapter.WebApp", "src\GdprConsent.NexusAdapter.WebApp\GdprConsent.NexusAdapter.WebApp.csproj", "{8196E0B3-28FC-44DA-ACF7-1565D03633BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{4ECC58DF-B88D-48B0-96B7-1A34BD2F5D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ECC58DF-B88D-48B0-96B7-1A34BD2F5D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4ECC58DF-B88D-48B0-96B7-1A34BD2F5D4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8196E0B3-28FC-44DA-ACF7-1565D03633BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8196E0B3-28FC-44DA-ACF7-1565D03633BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8196E0B3-28FC-44DA-ACF7-1565D03633BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8196E0B3-28FC-44DA-ACF7-1565D03633BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

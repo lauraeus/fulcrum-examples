@@ -1,0 +1,399 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TheSystem.NexusAdapter.Service</name>
+    </assembly>
+    <members>
+        <member name="T:TheSystem.NexusAdapter.Service.Controllers.ApplicantsController">
+            <summary>
+            Service implementation of <see cref="T:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.IApplicantService"/>
+            </summary>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Controllers.ApplicantsController.#ctor(TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.IOnBoardingService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="capability">The logic layer</param>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Controllers.ApplicantsController.ReadAllAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Controllers.ApplicantsController.CreateAsync(TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.Model.Applicant)">
+            <inheritdoc />
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Controllers.ApplicantsController.ApproveAsync(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Controllers.ApplicantsController.RejectAsync(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Controllers.ApplicantsController.WithdrawAsync(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Controllers.MembersController">
+            <summary>
+            Service implementation of <see cref="T:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.IMemberService"/>
+            </summary>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Controllers.MembersController.#ctor(TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.IOnBoardingService)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="capability">The logic layer</param>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Controllers.MembersController.ReadAllAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.AdapterLogic.AdapterServiceForSystem.LeadWasQualified(System.Guid,System.Guid,System.DateTimeOffset)">
+            <inheritdoc />
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Projects.AdapterLogic.OnBoarding.ApplicantLogic">
+            <summary>
+            Implements logic for of <see cref="T:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.IApplicantService"/>
+            </summary>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.AdapterLogic.OnBoarding.ApplicantLogic.#ctor(TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.ICrmSystem)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.AdapterLogic.OnBoarding.ApplicantLogic.ReadAllAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.AdapterLogic.OnBoarding.ApplicantLogic.CreateAsync(TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.Model.Applicant)">
+            <inheritdoc />
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.AdapterLogic.OnBoarding.ApplicantLogic.ApproveAsync(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.AdapterLogic.OnBoarding.ApplicantLogic.RejectAsync(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.AdapterLogic.OnBoarding.ApplicantLogic.WithdrawAsync(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Projects.AdapterLogic.OnBoarding.MemberLogic">
+            <summary>
+            Implements logic for of <see cref="T:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.IMemberService"/>
+            </summary>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.AdapterLogic.OnBoarding.MemberLogic.#ctor(TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.ICrmSystem)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.AdapterLogic.OnBoarding.MemberLogic.ReadAllAsync">
+            <inheritdoc />
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.AdapterLogic.OnBoarding.OnBoardingLogic.ApplicantService">
+            <inheritdoc />
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.AdapterLogic.OnBoarding.OnBoardingLogic.MemberService">
+            <inheritdoc />
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.Events.EventMetadata">
+            <summary>
+            Metadata for an event
+            </summary>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.Events.EventMetadata.#ctor(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="entityName">The entity name, e.g. "User"</param>
+            <param name="eventName">The event name, e.g. LoggedIn</param>
+            <param name="majorVersion">The major version for the event schema.</param>
+            <param name="minorVersion">The minor version for the event schema.</param>
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.Events.IPublishableEvent">
+            <summary>
+            Metadata that are needed for publishing events.
+            </summary>
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.Events.MemberApprovedEvent">
+            <summary>
+            This event is published whenever an applicant is approved to become a member.
+            </summary>
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.Events.MemberApprovedEvent.Metadata">
+            <inheritdoc />
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.Events.MemberApprovedEvent.MemberId">
+            <summary>
+            The 
+            </summary>
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.Events.MemberApprovedEvent.ApprovedAt">
+            <summary>
+            The time when the member was approved
+            </summary>
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.IApplicantService">
+            <summary>
+            Methods for dealing with an applicant.
+            </summary>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.IApplicantService.ReadAllAsync">
+            <summary>
+            Get a list of all applicants
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.IApplicantService.CreateAsync(TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.Model.Applicant)">
+            <summary>
+            Add one application
+            </summary>
+            <param name="applicant">Data for the applicant</param>
+            <returns>The id for the newly created customer</returns>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.IApplicantService.ApproveAsync(System.String)">
+            <summary>
+            Approve an application to become a member
+            </summary>
+            <param name="id">The id of the applicant to approve.</param>
+            <returns>The internal id of the new member record.</returns>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.IApplicantService.RejectAsync(System.String)">
+            <summary>
+            Deny an applicant to become member
+            </summary>
+            <param name="id">The id of the lead to qualify.</param>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.IApplicantService.WithdrawAsync(System.String)">
+            <summary>
+            The applicant has withdrawn the application
+            </summary>
+            <param name="id">The id of the applicant.</param>
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.IMemberService">
+            <summary>
+            Methods for dealing with a member
+            </summary>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.IMemberService.ReadAllAsync">
+            <summary>
+            Get a list of all members
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.IOnBoardingService">
+            <summary>
+            The CRM capability
+            </summary>
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.Model.Applicant">
+            <summary>
+            Information about an applicant
+            </summary>
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.Model.Applicant.Id">
+            <summary>
+            The id of the object
+            </summary>
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.Model.Applicant.Name">
+            <summary>
+            The name of the applicant
+            </summary>
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.Model.Member">
+            <summary>
+            Information about a member
+            </summary>
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.Model.Member.Id">
+            <summary>
+            The internal id of the member.
+            </summary>
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.Model.Member.MembershipNumber">
+            <summary>
+            The unique number to be used in all communication
+            </summary>
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding.Model.Member.Name">
+            <summary>
+            The name of the member
+            </summary>
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.IContactFunctionality">
+            <summary>
+            The contract for the customer service
+            </summary>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.IContactFunctionality.ReadAllAsync">
+            <summary>
+            Get a list of all customers
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.ILeadFunctionality">
+            <summary>
+            The contract for the lead service
+            </summary>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.ILeadFunctionality.ReadAllAsync">
+            <summary>
+            Get a list of all leads
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.ILeadFunctionality.CreateAsync(TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model.Lead)">
+            <summary>
+            Create one lead
+            </summary>
+            <param name="lead">Data for the lead</param>
+            <returns>The id for the newly created customer</returns>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.ILeadFunctionality.QualifyAsync(System.Guid)">
+            <summary>
+            Qualify a lead to become a customer
+            </summary>
+            <param name="id">The id of the lead to qualify.</param>
+            <returns>The internal id of the new customer record.</returns>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.ILeadFunctionality.RejectAsync(System.Guid,System.String)">
+            <summary>
+            Deny a lead from becoming a customer
+            </summary>
+            <param name="id">The id of the lead to qualify.</param>
+            <param name="reason">The reason behind the rejection</param>
+            <returns>The internal id of the new customer record.</returns>
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model.Contact">
+            <summary>
+            Information about a customer
+            </summary>
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model.Contact.Id">
+            <summary>
+            The internal id of the customer.
+            </summary>
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model.Contact.OriginatingLeadId">
+            <summary>
+            The lead that led to this contact.
+            </summary>
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model.Contact.CustomerNumber">
+            <summary>
+            The unique customer number to be used in all communication
+            </summary>
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model.Contact.Name">
+            <summary>
+            The name of the customer
+            </summary>
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model.Lead">
+            <summary>
+            Information about a lead
+            </summary>
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model.Lead.Id">
+            <summary>
+            The id of the object
+            </summary>
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model.Lead.Name">
+            <summary>
+            The name of the customer
+            </summary>
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model.Lead.StatusEnum">
+            <summary>
+            The possible values for lead status
+            </summary>
+        </member>
+        <member name="F:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model.Lead.StatusEnum.Active">
+            <summary>
+            Waiting for qualification
+            </summary>
+        </member>
+        <member name="F:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model.Lead.StatusEnum.Qualified">
+            <summary>
+            Success
+            </summary>
+        </member>
+        <member name="F:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model.Lead.StatusEnum.Rejected">
+            <summary>
+            Lost
+            </summary>
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model.Lead.Status">
+            <summary>
+            The current status for the lead
+            </summary>
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model.Lead.Reason">
+            <summary>
+            Why the lead was rejected or qualified
+            </summary>
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model.Lead.UpdatedAt">
+            <summary>
+             The latest time that the lead was updated.
+            </summary>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.CrmSystemMock.ContactFunctionality.ReadAllAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.CrmSystemMock.CrmSystemMock.#ctor(TheSystem.NexusAdapter.Service.Projects.AdapterContract.IAdapterService)">
+            <inheritdoc />
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.CrmSystemMock.CrmSystemMock.LeadFunctionality">
+            <inheritdoc />
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.CrmSystemMock.CrmSystemMock.ContactFunctionality">
+            <inheritdoc />
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.CrmSystemMock.LeadFunctionality.ReadAllAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.CrmSystemMock.LeadFunctionality.CreateAsync(TheSystem.NexusAdapter.Service.Projects.CrmSystemContract.Model.Lead)">
+            <inheritdoc />
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.CrmSystemMock.LeadFunctionality.QualifyAsync(System.Guid)">
+            <inheritdoc />
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.CrmSystemMock.LeadFunctionality.RejectAsync(System.Guid,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Projects.NexusApiContract.IBusinessEventService">
+            <summary>
+            Services for BusinessEvents
+            </summary>
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.NexusApiContract.IBusinessEventService.PublishAsync(TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.Events.IPublishableEvent)">
+            <summary>
+            Publish an event
+            </summary>
+            <param name="event">The event to publish.</param>
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Projects.NexusApiContract.INexusApi">
+            <summary>
+            The services that the nexus API provides
+            </summary>
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.NexusApiContract.INexusApi.BusinessEventService">
+            <summary>
+            Service for business events
+            </summary>
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Projects.NexusApiMock.BusinessEventService">
+            <inheritdoc />
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.NexusApiMock.BusinessEventService.PublishAsync(TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.Events.IPublishableEvent)">
+            <inheritdoc />
+        </member>
+        <member name="T:TheSystem.NexusAdapter.Service.Projects.NexusApiMock.NexusApiMock">
+            <inheritdoc />
+        </member>
+        <member name="M:TheSystem.NexusAdapter.Service.Projects.NexusApiMock.NexusApiMock.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="P:TheSystem.NexusAdapter.Service.Projects.NexusApiMock.NexusApiMock.BusinessEventService">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

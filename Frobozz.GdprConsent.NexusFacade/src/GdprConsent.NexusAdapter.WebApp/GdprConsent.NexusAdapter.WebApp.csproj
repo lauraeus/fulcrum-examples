@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>Frobozz.GdprConsent.NexusAdapter.WebApp</AssemblyName>
+    <RootNamespace>Frobozz.GdprConsent.NexusAdapter.WebApp</RootNamespace>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Compile Remove="Controllers\ConsentsController.cs" />
+    <Compile Remove="Controllers\PersonConsentsController.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Nexus.Link.Libraries.Core" Version="2.0.0" />
+    <PackageReference Include="Nexus.Link.Libraries.Crud.AspNet" Version="1.2.2" />
+    <PackageReference Include="Nexus.Link.Libraries.Web.AspNet" Version="1.1.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
+    <!--<PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />-->
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Frobozz.NexusApi\src\Frobozz.Contracts.AspNet\Frobozz.Contracts.AspNet.csproj" />
+    <ProjectReference Include="..\GdprConsent.Logic\GdprConsent.Logic.csproj" />
+  </ItemGroup>
+</Project>
