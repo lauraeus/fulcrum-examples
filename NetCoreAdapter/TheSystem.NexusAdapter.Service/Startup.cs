@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Nexus.Link.Libraries.Web.AspNet.Pipe.Inbound;
 using Swashbuckle.AspNetCore.Swagger;
+using TheSystem.NexusAdapter.Service.CapabilityContracts.OnBoarding;
+using TheSystem.NexusAdapter.Service.CrmSystemContract;
+using TheSystem.NexusAdapter.Service.CrmSystemMock;
+using TheSystem.NexusAdapter.Service.Logic;
 
 namespace TheSystem.NexusAdapter.Service
 {
@@ -29,6 +27,8 @@ namespace TheSystem.NexusAdapter.Service
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSingleton<ICrmSystem>(provider => new CrmSystem());
+            services.AddScoped<IOnBoardingService, OnBoardingLogic>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "TheSystem.NexusAdapter", Version = "v1" });
