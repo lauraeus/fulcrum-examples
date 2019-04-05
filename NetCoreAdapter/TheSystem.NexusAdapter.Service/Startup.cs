@@ -7,14 +7,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nexus.Link.Libraries.Web.AspNet.Pipe.Inbound;
 using Swashbuckle.AspNetCore.Swagger;
-using TheSystem.NexusAdapter.Service.Projects.AdapterContract;
-using TheSystem.NexusAdapter.Service.Projects.AdapterLogic;
-using TheSystem.NexusAdapter.Service.Projects.AdapterLogic.OnBoarding;
-using TheSystem.NexusAdapter.Service.Projects.CapabilityContracts.OnBoarding;
-using TheSystem.NexusAdapter.Service.Projects.CrmSystemContract;
-using TheSystem.NexusAdapter.Service.Projects.CrmSystemMock;
-using TheSystem.NexusAdapter.Service.Projects.NexusApiContract;
-using TheSystem.NexusAdapter.Service.Projects.NexusApiMock;
+using TheSystem.NexusAdapter.Service.Adapter.Contract;
+using TheSystem.NexusAdapter.Service.Adapter.Logic;
+using TheSystem.NexusAdapter.Service.Adapter.Logic.OnBoarding;
+using TheSystem.NexusAdapter.Service.Mock.CrmSystemMock;
+using TheSystem.NexusAdapter.Service.Mock.NexusApiMock;
+using TheSystem.NexusAdapter.Service.NexusApi.CapabilityContracts.OnBoarding;
+using TheSystem.NexusAdapter.Service.NexusApi.NexusApiContract;
+using TheSystem.NexusAdapter.Service.System.CrmSystemContract;
 
 namespace TheSystem.NexusAdapter.Service
 {
