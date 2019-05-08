@@ -75,7 +75,7 @@ namespace TheSystem.NexusAdapter.Service
             // Log all requests and responses
             app.UseNexusLogRequestAndResponse();
             // Convert exceptions into error responses (HTTP status codes 400 and 500)
-            app.UseNexusConvertExceptionToFulcrumResponse();
+            app.UseNexusExceptionToFulcrumResponse();
 
             app.UseMvc();
         }
