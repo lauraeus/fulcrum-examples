@@ -1,4 +1,4 @@
-# Template for a ASP.NET Core Nexus adapter
+# Example of a ASP.NET Core Nexus adapter
 
-There is a [tutorial](https://docs.nexus.link/docs/develop-adapter/tutorial) that describes how to set up this solution step-by-step.
+There is a [tutorial](https://docs.nexus.link/docs/development/tutorials#create-a-rest-service) that describes how to set up a basic REST service.
 
